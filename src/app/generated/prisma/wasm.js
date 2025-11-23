@@ -352,6 +352,16 @@ exports.Prisma.Apropos_outilsScalarFieldEnum = {
   afficher: 'afficher'
 };
 
+exports.Prisma.Apropos_etudesScalarFieldEnum = {
+  id_etu: 'id_etu',
+  date_debut: 'date_debut',
+  date_fin: 'date_fin',
+  titre: 'titre',
+  nom_ecole: 'nom_ecole',
+  lien_ecole: 'lien_ecole',
+  afficher: 'afficher'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -509,6 +519,12 @@ exports.Prisma.apropos_outilsOrderByRelevanceFieldEnum = {
   couleur_description: 'couleur_description'
 };
 
+exports.Prisma.apropos_etudesOrderByRelevanceFieldEnum = {
+  titre: 'titre',
+  nom_ecole: 'nom_ecole',
+  lien_ecole: 'lien_ecole'
+};
+
 
 exports.Prisma.ModelName = {
   autre: 'autre',
@@ -536,7 +552,8 @@ exports.Prisma.ModelName = {
   Verification: 'Verification',
   accueil_general: 'accueil_general',
   apropos_general: 'apropos_general',
-  apropos_outils: 'apropos_outils'
+  apropos_outils: 'apropos_outils',
+  apropos_etudes: 'apropos_etudes'
 };
 
 /**

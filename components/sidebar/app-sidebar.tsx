@@ -75,6 +75,10 @@ const data = {
           title: "Outils",
           url: "/a-propos/outils",
         },
+        {
+          title: "Études",
+          url: "/a-propos/etudes",
+        },
       ],
     },
     {
