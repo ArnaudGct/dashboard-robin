@@ -438,6 +438,10 @@ export async function addPhotoAction(formData: FormData) {
 
     const alt = formData.get("alt")?.toString() || "";
     const afficher = formData.get("isPublished") === "on";
+    const afficherCarrouselMain =
+      formData.get("afficherCarrouselMain") === "on";
+    const afficherCarrouselPhotos =
+      formData.get("afficherCarrouselPhotos") === "on";
 
     console.log("Création en base de données...");
 
@@ -451,6 +455,8 @@ export async function addPhotoAction(formData: FormData) {
         alt,
         date: new Date(),
         afficher,
+        afficher_carrousel_main: afficherCarrouselMain,
+        afficher_carrousel_photos: afficherCarrouselPhotos,
         derniere_modification: new Date(),
       },
     });
@@ -633,6 +639,10 @@ export async function updatePhotoAction(formData: FormData) {
     // ====== MISE À JOUR EN BASE DE DONNÉES ======
     const alt = formData.get("alt")?.toString() || existingPhoto.alt;
     const afficher = formData.get("isPublished") === "on";
+    const afficherCarrouselMain =
+      formData.get("afficherCarrouselMain") === "on";
+    const afficherCarrouselPhotos =
+      formData.get("afficherCarrouselPhotos") === "on";
 
     let photoDate: Date | undefined;
     if (formData.get("date")) {
@@ -649,6 +659,8 @@ export async function updatePhotoAction(formData: FormData) {
         hauteur,
         alt,
         afficher,
+        afficher_carrousel_main: afficherCarrouselMain,
+        afficher_carrousel_photos: afficherCarrouselPhotos,
         ...(photoDate && { date: photoDate }),
         derniere_modification: new Date(),
       },
@@ -1495,6 +1507,12 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
       const itemAlt = formData.get(`alt_${i}`)?.toString() || alt;
       const generateLowRes = formData.get(`generateLowRes_${i}`) === "true";
 
+      // Récupérer les états carrousel pour cette image spécifique
+      const afficherCarrouselMain =
+        formData.get(`afficherCarrouselMain_${i}`) === "on";
+      const afficherCarrouselPhotos =
+        formData.get(`afficherCarrouselPhotos_${i}`) === "on";
+
       // Uploader les images via l'API du portfolio
       let lienHigh = "";
       let lienLow = "";
@@ -1568,6 +1586,10 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
               largeur: width,
               hauteur: height,
               afficher: isPublished,
+              afficher_carrousel_main:
+                formData.get("afficherCarrouselMain") === "on",
+              afficher_carrousel_photos:
+                formData.get("afficherCarrouselPhotos") === "on",
               derniere_modification: new Date(),
               ...(photoDate && { date: photoDate }),
             },
@@ -1641,6 +1663,8 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
           hauteur: height,
           alt: itemAlt,
           afficher: isPublished,
+          afficher_carrousel_main: afficherCarrouselMain,
+          afficher_carrousel_photos: afficherCarrouselPhotos,
           date: new Date(),
           derniere_modification: new Date(),
         });
@@ -1662,6 +1686,8 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
               hauteur: photoData.hauteur,
               alt: photoData.alt,
               afficher: photoData.afficher,
+              afficher_carrousel_main: photoData.afficher_carrousel_main,
+              afficher_carrousel_photos: photoData.afficher_carrousel_photos,
               date: photoData.date,
               derniere_modification: photoData.derniere_modification,
             },

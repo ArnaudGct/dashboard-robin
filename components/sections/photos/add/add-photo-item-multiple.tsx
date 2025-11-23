@@ -32,18 +32,29 @@ type AddPhotoItemMultipleProps = {
     id: string;
     label: string;
   }[];
+  carouselCounts: {
+    mainCount: number;
+    mainLimit: number;
+    mainRemaining: number;
+    photosCount: number;
+    photosLimit: number;
+    photosRemaining: number;
+  };
 };
 
 type PreviewImage = {
   file: File;
   preview: string;
   alt: string;
+  afficherCarrouselMain: boolean;
+  afficherCarrouselPhotos: boolean;
 };
 
 export function AddPhotoItemMultiple({
   availableTags,
   availableSearchTags,
   availableAlbums,
+  carouselCounts,
 }: AddPhotoItemMultipleProps) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -108,6 +119,8 @@ export function AddPhotoItemMultiple({
             file,
             preview: reader.result as string,
             alt: formattedName,
+            afficherCarrouselMain: false,
+            afficherCarrouselPhotos: false,
           });
 
           processedCount++;
@@ -137,6 +150,22 @@ export function AddPhotoItemMultiple({
     setImages((prev) => {
       const updated = [...prev];
       updated[index].alt = alt;
+      return updated;
+    });
+  };
+
+  const updateCarrouselMain = (index: number, value: boolean) => {
+    setImages((prev) => {
+      const updated = [...prev];
+      updated[index].afficherCarrouselMain = value;
+      return updated;
+    });
+  };
+
+  const updateCarrouselPhotos = (index: number, value: boolean) => {
+    setImages((prev) => {
+      const updated = [...prev];
+      updated[index].afficherCarrouselPhotos = value;
       return updated;
     });
   };
@@ -197,6 +226,13 @@ export function AddPhotoItemMultiple({
         formData.append(`alt_${index}`, img.alt);
         // Toujours générer la version basse résolution
         formData.append(`generateLowRes_${index}`, "true");
+        // Ajouter les états carrousel pour chaque image
+        if (img.afficherCarrouselMain) {
+          formData.append(`afficherCarrouselMain_${index}`, "on");
+        }
+        if (img.afficherCarrouselPhotos) {
+          formData.append(`afficherCarrouselPhotos_${index}`, "on");
+        }
       });
 
       // Ajouter le nombre total d'images
@@ -418,7 +454,78 @@ export function AddPhotoItemMultiple({
                           disabled={isUploading}
                         />
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1">
+
+                      {/* Switchs carrousel pour cette image */}
+                      <div className="flex flex-col gap-2 mt-3 p-3 border rounded-md bg-muted/20">
+                        <p className="text-xs font-medium text-muted-foreground mb-1">
+                          Mise en avant
+                        </p>
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id={`carrouselMain-${index}`}
+                            checked={img.afficherCarrouselMain}
+                            onCheckedChange={(checked) => {
+                              const currentMainCount = images.filter(
+                                (i, idx) =>
+                                  idx !== index && i.afficherCarrouselMain
+                              ).length;
+                              if (
+                                checked &&
+                                carouselCounts.mainCount + currentMainCount >=
+                                  carouselCounts.mainLimit
+                              ) {
+                                toast.error(
+                                  `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
+                                );
+                                return;
+                              }
+                              updateCarrouselMain(index, checked);
+                            }}
+                            disabled={isUploading}
+                            className="cursor-pointer"
+                          />
+                          <Label
+                            htmlFor={`carrouselMain-${index}`}
+                            className="text-xs cursor-pointer"
+                          >
+                            Carrousel principal
+                          </Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Switch
+                            id={`carrouselPhotos-${index}`}
+                            checked={img.afficherCarrouselPhotos}
+                            onCheckedChange={(checked) => {
+                              const currentPhotosCount = images.filter(
+                                (i, idx) =>
+                                  idx !== index && i.afficherCarrouselPhotos
+                              ).length;
+                              if (
+                                checked &&
+                                carouselCounts.photosCount +
+                                  currentPhotosCount >=
+                                  carouselCounts.photosLimit
+                              ) {
+                                toast.error(
+                                  `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
+                                );
+                                return;
+                              }
+                              updateCarrouselPhotos(index, checked);
+                            }}
+                            disabled={isUploading}
+                            className="cursor-pointer"
+                          />
+                          <Label
+                            htmlFor={`carrouselPhotos-${index}`}
+                            className="text-xs cursor-pointer"
+                          >
+                            Carrousel photos
+                          </Label>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-muted-foreground mt-2">
                         {img.file.name} -{" "}
                         {(img.file.size / (1024 * 1024)).toFixed(2)} MB
                       </p>
@@ -449,6 +556,60 @@ export function AddPhotoItemMultiple({
               {progress}% - Veuillez patienter pendant le traitement des
               images...
             </p>
+          </div>
+        )}
+
+        {/* Résumé des carrousels */}
+        {images.length > 0 && (
+          <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
+            <h3 className="text-sm font-medium">Résumé de la mise en avant</h3>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Carrousel principal :</span>
+                <span className="text-xs text-muted-foreground">
+                  ({images.filter((img) => img.afficherCarrouselMain).length}{" "}
+                  photo(s) sélectionnée(s))
+                </span>
+              </div>
+              <span
+                className={`text-sm font-medium ${
+                  carouselCounts.mainCount +
+                    images.filter((img) => img.afficherCarrouselMain).length >
+                  carouselCounts.mainLimit
+                    ? "text-destructive"
+                    : ""
+                }`}
+              >
+                {carouselCounts.mainCount +
+                  images.filter((img) => img.afficherCarrouselMain).length}{" "}
+                / {carouselCounts.mainLimit}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Carrousel photos :</span>
+                <span className="text-xs text-muted-foreground">
+                  ({images.filter((img) => img.afficherCarrouselPhotos).length}{" "}
+                  photo(s) sélectionnée(s))
+                </span>
+              </div>
+              <span
+                className={`text-sm font-medium ${
+                  carouselCounts.photosCount +
+                    images.filter((img) => img.afficherCarrouselPhotos).length >
+                  carouselCounts.photosLimit
+                    ? "text-destructive"
+                    : ""
+                }`}
+              >
+                {carouselCounts.photosCount +
+                  images.filter((img) => img.afficherCarrouselPhotos)
+                    .length}{" "}
+                / {carouselCounts.photosLimit}
+              </span>
+            </div>
           </div>
         )}
 

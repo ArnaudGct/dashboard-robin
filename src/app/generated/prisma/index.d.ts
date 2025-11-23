@@ -29,11 +29,6 @@ export type autre_tags = $Result.DefaultSelection<Prisma.$autre_tagsPayload>
  */
 export type autre_tags_link = $Result.DefaultSelection<Prisma.$autre_tags_linkPayload>
 /**
- * Model experiences
- * 
- */
-export type experiences = $Result.DefaultSelection<Prisma.$experiencesPayload>
-/**
  * Model faq
  * 
  */
@@ -308,16 +303,6 @@ export class PrismaClient<
     * ```
     */
   get autre_tags_link(): Prisma.autre_tags_linkDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.experiences`: Exposes CRUD operations for the **experiences** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Experiences
-    * const experiences = await prisma.experiences.findMany()
-    * ```
-    */
-  get experiences(): Prisma.experiencesDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.faq`: Exposes CRUD operations for the **faq** model.
@@ -1001,7 +986,6 @@ export namespace Prisma {
     autre: 'autre',
     autre_tags: 'autre_tags',
     autre_tags_link: 'autre_tags_link',
-    experiences: 'experiences',
     faq: 'faq',
     photos: 'photos',
     photos_albums: 'photos_albums',
@@ -1044,7 +1028,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "experiences" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "clients" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes" | "apropos_experiences"
+      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "clients" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes" | "apropos_experiences"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1243,72 +1227,6 @@ export namespace Prisma {
           count: {
             args: Prisma.autre_tags_linkCountArgs<ExtArgs>
             result: $Utils.Optional<Autre_tags_linkCountAggregateOutputType> | number
-          }
-        }
-      }
-      experiences: {
-        payload: Prisma.$experiencesPayload<ExtArgs>
-        fields: Prisma.experiencesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.experiencesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.experiencesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          findFirst: {
-            args: Prisma.experiencesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.experiencesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          findMany: {
-            args: Prisma.experiencesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>[]
-          }
-          create: {
-            args: Prisma.experiencesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          createMany: {
-            args: Prisma.experiencesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.experiencesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          update: {
-            args: Prisma.experiencesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          deleteMany: {
-            args: Prisma.experiencesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.experiencesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.experiencesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$experiencesPayload>
-          }
-          aggregate: {
-            args: Prisma.ExperiencesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateExperiences>
-          }
-          groupBy: {
-            args: Prisma.experiencesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ExperiencesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.experiencesCountArgs<ExtArgs>
-            result: $Utils.Optional<ExperiencesCountAggregateOutputType> | number
           }
         }
       }
@@ -2983,7 +2901,6 @@ export namespace Prisma {
     autre?: autreOmit
     autre_tags?: autre_tagsOmit
     autre_tags_link?: autre_tags_linkOmit
-    experiences?: experiencesOmit
     faq?: faqOmit
     photos?: photosOmit
     photos_albums?: photos_albumsOmit
@@ -6357,966 +6274,6 @@ export namespace Prisma {
 
 
   /**
-   * Model experiences
-   */
-
-  export type AggregateExperiences = {
-    _count: ExperiencesCountAggregateOutputType | null
-    _avg: ExperiencesAvgAggregateOutputType | null
-    _sum: ExperiencesSumAggregateOutputType | null
-    _min: ExperiencesMinAggregateOutputType | null
-    _max: ExperiencesMaxAggregateOutputType | null
-  }
-
-  export type ExperiencesAvgAggregateOutputType = {
-    id_exp: number | null
-  }
-
-  export type ExperiencesSumAggregateOutputType = {
-    id_exp: number | null
-  }
-
-  export type ExperiencesMinAggregateOutputType = {
-    id_exp: number | null
-    date: Date | null
-    titre: string | null
-    description: string | null
-    url_img: string | null
-    position_img: string | null
-    credit_nom: string | null
-    credit_url: string | null
-    afficher: boolean | null
-  }
-
-  export type ExperiencesMaxAggregateOutputType = {
-    id_exp: number | null
-    date: Date | null
-    titre: string | null
-    description: string | null
-    url_img: string | null
-    position_img: string | null
-    credit_nom: string | null
-    credit_url: string | null
-    afficher: boolean | null
-  }
-
-  export type ExperiencesCountAggregateOutputType = {
-    id_exp: number
-    date: number
-    titre: number
-    description: number
-    url_img: number
-    position_img: number
-    credit_nom: number
-    credit_url: number
-    afficher: number
-    _all: number
-  }
-
-
-  export type ExperiencesAvgAggregateInputType = {
-    id_exp?: true
-  }
-
-  export type ExperiencesSumAggregateInputType = {
-    id_exp?: true
-  }
-
-  export type ExperiencesMinAggregateInputType = {
-    id_exp?: true
-    date?: true
-    titre?: true
-    description?: true
-    url_img?: true
-    position_img?: true
-    credit_nom?: true
-    credit_url?: true
-    afficher?: true
-  }
-
-  export type ExperiencesMaxAggregateInputType = {
-    id_exp?: true
-    date?: true
-    titre?: true
-    description?: true
-    url_img?: true
-    position_img?: true
-    credit_nom?: true
-    credit_url?: true
-    afficher?: true
-  }
-
-  export type ExperiencesCountAggregateInputType = {
-    id_exp?: true
-    date?: true
-    titre?: true
-    description?: true
-    url_img?: true
-    position_img?: true
-    credit_nom?: true
-    credit_url?: true
-    afficher?: true
-    _all?: true
-  }
-
-  export type ExperiencesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which experiences to aggregate.
-     */
-    where?: experiencesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of experiences to fetch.
-     */
-    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: experiencesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` experiences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` experiences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned experiences
-    **/
-    _count?: true | ExperiencesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ExperiencesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ExperiencesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ExperiencesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ExperiencesMaxAggregateInputType
-  }
-
-  export type GetExperiencesAggregateType<T extends ExperiencesAggregateArgs> = {
-        [P in keyof T & keyof AggregateExperiences]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateExperiences[P]>
-      : GetScalarType<T[P], AggregateExperiences[P]>
-  }
-
-
-
-
-  export type experiencesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: experiencesWhereInput
-    orderBy?: experiencesOrderByWithAggregationInput | experiencesOrderByWithAggregationInput[]
-    by: ExperiencesScalarFieldEnum[] | ExperiencesScalarFieldEnum
-    having?: experiencesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ExperiencesCountAggregateInputType | true
-    _avg?: ExperiencesAvgAggregateInputType
-    _sum?: ExperiencesSumAggregateInputType
-    _min?: ExperiencesMinAggregateInputType
-    _max?: ExperiencesMaxAggregateInputType
-  }
-
-  export type ExperiencesGroupByOutputType = {
-    id_exp: number
-    date: Date
-    titre: string
-    description: string
-    url_img: string
-    position_img: string
-    credit_nom: string
-    credit_url: string
-    afficher: boolean
-    _count: ExperiencesCountAggregateOutputType | null
-    _avg: ExperiencesAvgAggregateOutputType | null
-    _sum: ExperiencesSumAggregateOutputType | null
-    _min: ExperiencesMinAggregateOutputType | null
-    _max: ExperiencesMaxAggregateOutputType | null
-  }
-
-  type GetExperiencesGroupByPayload<T extends experiencesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ExperiencesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ExperiencesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ExperiencesGroupByOutputType[P]>
-            : GetScalarType<T[P], ExperiencesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type experiencesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id_exp?: boolean
-    date?: boolean
-    titre?: boolean
-    description?: boolean
-    url_img?: boolean
-    position_img?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
-    afficher?: boolean
-  }, ExtArgs["result"]["experiences"]>
-
-
-
-  export type experiencesSelectScalar = {
-    id_exp?: boolean
-    date?: boolean
-    titre?: boolean
-    description?: boolean
-    url_img?: boolean
-    position_img?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
-    afficher?: boolean
-  }
-
-  export type experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_exp" | "date" | "titre" | "description" | "url_img" | "position_img" | "credit_nom" | "credit_url" | "afficher", ExtArgs["result"]["experiences"]>
-
-  export type $experiencesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "experiences"
-    objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      id_exp: number
-      date: Date
-      titre: string
-      description: string
-      url_img: string
-      position_img: string
-      credit_nom: string
-      credit_url: string
-      afficher: boolean
-    }, ExtArgs["result"]["experiences"]>
-    composites: {}
-  }
-
-  type experiencesGetPayload<S extends boolean | null | undefined | experiencesDefaultArgs> = $Result.GetResult<Prisma.$experiencesPayload, S>
-
-  type experiencesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<experiencesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ExperiencesCountAggregateInputType | true
-    }
-
-  export interface experiencesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['experiences'], meta: { name: 'experiences' } }
-    /**
-     * Find zero or one Experiences that matches the filter.
-     * @param {experiencesFindUniqueArgs} args - Arguments to find a Experiences
-     * @example
-     * // Get one Experiences
-     * const experiences = await prisma.experiences.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends experiencesFindUniqueArgs>(args: SelectSubset<T, experiencesFindUniqueArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Experiences that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {experiencesFindUniqueOrThrowArgs} args - Arguments to find a Experiences
-     * @example
-     * // Get one Experiences
-     * const experiences = await prisma.experiences.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends experiencesFindUniqueOrThrowArgs>(args: SelectSubset<T, experiencesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Experiences that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesFindFirstArgs} args - Arguments to find a Experiences
-     * @example
-     * // Get one Experiences
-     * const experiences = await prisma.experiences.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends experiencesFindFirstArgs>(args?: SelectSubset<T, experiencesFindFirstArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Experiences that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesFindFirstOrThrowArgs} args - Arguments to find a Experiences
-     * @example
-     * // Get one Experiences
-     * const experiences = await prisma.experiences.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends experiencesFindFirstOrThrowArgs>(args?: SelectSubset<T, experiencesFindFirstOrThrowArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Experiences that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Experiences
-     * const experiences = await prisma.experiences.findMany()
-     * 
-     * // Get first 10 Experiences
-     * const experiences = await prisma.experiences.findMany({ take: 10 })
-     * 
-     * // Only select the `id_exp`
-     * const experiencesWithId_expOnly = await prisma.experiences.findMany({ select: { id_exp: true } })
-     * 
-     */
-    findMany<T extends experiencesFindManyArgs>(args?: SelectSubset<T, experiencesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Experiences.
-     * @param {experiencesCreateArgs} args - Arguments to create a Experiences.
-     * @example
-     * // Create one Experiences
-     * const Experiences = await prisma.experiences.create({
-     *   data: {
-     *     // ... data to create a Experiences
-     *   }
-     * })
-     * 
-     */
-    create<T extends experiencesCreateArgs>(args: SelectSubset<T, experiencesCreateArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Experiences.
-     * @param {experiencesCreateManyArgs} args - Arguments to create many Experiences.
-     * @example
-     * // Create many Experiences
-     * const experiences = await prisma.experiences.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends experiencesCreateManyArgs>(args?: SelectSubset<T, experiencesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Experiences.
-     * @param {experiencesDeleteArgs} args - Arguments to delete one Experiences.
-     * @example
-     * // Delete one Experiences
-     * const Experiences = await prisma.experiences.delete({
-     *   where: {
-     *     // ... filter to delete one Experiences
-     *   }
-     * })
-     * 
-     */
-    delete<T extends experiencesDeleteArgs>(args: SelectSubset<T, experiencesDeleteArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Experiences.
-     * @param {experiencesUpdateArgs} args - Arguments to update one Experiences.
-     * @example
-     * // Update one Experiences
-     * const experiences = await prisma.experiences.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends experiencesUpdateArgs>(args: SelectSubset<T, experiencesUpdateArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Experiences.
-     * @param {experiencesDeleteManyArgs} args - Arguments to filter Experiences to delete.
-     * @example
-     * // Delete a few Experiences
-     * const { count } = await prisma.experiences.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends experiencesDeleteManyArgs>(args?: SelectSubset<T, experiencesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Experiences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Experiences
-     * const experiences = await prisma.experiences.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends experiencesUpdateManyArgs>(args: SelectSubset<T, experiencesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Experiences.
-     * @param {experiencesUpsertArgs} args - Arguments to update or create a Experiences.
-     * @example
-     * // Update or create a Experiences
-     * const experiences = await prisma.experiences.upsert({
-     *   create: {
-     *     // ... data to create a Experiences
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Experiences we want to update
-     *   }
-     * })
-     */
-    upsert<T extends experiencesUpsertArgs>(args: SelectSubset<T, experiencesUpsertArgs<ExtArgs>>): Prisma__experiencesClient<$Result.GetResult<Prisma.$experiencesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Experiences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesCountArgs} args - Arguments to filter Experiences to count.
-     * @example
-     * // Count the number of Experiences
-     * const count = await prisma.experiences.count({
-     *   where: {
-     *     // ... the filter for the Experiences we want to count
-     *   }
-     * })
-    **/
-    count<T extends experiencesCountArgs>(
-      args?: Subset<T, experiencesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ExperiencesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Experiences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ExperiencesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ExperiencesAggregateArgs>(args: Subset<T, ExperiencesAggregateArgs>): Prisma.PrismaPromise<GetExperiencesAggregateType<T>>
-
-    /**
-     * Group by Experiences.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {experiencesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends experiencesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: experiencesGroupByArgs['orderBy'] }
-        : { orderBy?: experiencesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, experiencesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExperiencesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the experiences model
-   */
-  readonly fields: experiencesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for experiences.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__experiencesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the experiences model
-   */
-  interface experiencesFieldRefs {
-    readonly id_exp: FieldRef<"experiences", 'Int'>
-    readonly date: FieldRef<"experiences", 'DateTime'>
-    readonly titre: FieldRef<"experiences", 'String'>
-    readonly description: FieldRef<"experiences", 'String'>
-    readonly url_img: FieldRef<"experiences", 'String'>
-    readonly position_img: FieldRef<"experiences", 'String'>
-    readonly credit_nom: FieldRef<"experiences", 'String'>
-    readonly credit_url: FieldRef<"experiences", 'String'>
-    readonly afficher: FieldRef<"experiences", 'Boolean'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * experiences findUnique
-   */
-  export type experiencesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter, which experiences to fetch.
-     */
-    where: experiencesWhereUniqueInput
-  }
-
-  /**
-   * experiences findUniqueOrThrow
-   */
-  export type experiencesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter, which experiences to fetch.
-     */
-    where: experiencesWhereUniqueInput
-  }
-
-  /**
-   * experiences findFirst
-   */
-  export type experiencesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter, which experiences to fetch.
-     */
-    where?: experiencesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of experiences to fetch.
-     */
-    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for experiences.
-     */
-    cursor?: experiencesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` experiences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` experiences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of experiences.
-     */
-    distinct?: ExperiencesScalarFieldEnum | ExperiencesScalarFieldEnum[]
-  }
-
-  /**
-   * experiences findFirstOrThrow
-   */
-  export type experiencesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter, which experiences to fetch.
-     */
-    where?: experiencesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of experiences to fetch.
-     */
-    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for experiences.
-     */
-    cursor?: experiencesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` experiences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` experiences.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of experiences.
-     */
-    distinct?: ExperiencesScalarFieldEnum | ExperiencesScalarFieldEnum[]
-  }
-
-  /**
-   * experiences findMany
-   */
-  export type experiencesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter, which experiences to fetch.
-     */
-    where?: experiencesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of experiences to fetch.
-     */
-    orderBy?: experiencesOrderByWithRelationInput | experiencesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing experiences.
-     */
-    cursor?: experiencesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` experiences from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` experiences.
-     */
-    skip?: number
-    distinct?: ExperiencesScalarFieldEnum | ExperiencesScalarFieldEnum[]
-  }
-
-  /**
-   * experiences create
-   */
-  export type experiencesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * The data needed to create a experiences.
-     */
-    data: XOR<experiencesCreateInput, experiencesUncheckedCreateInput>
-  }
-
-  /**
-   * experiences createMany
-   */
-  export type experiencesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many experiences.
-     */
-    data: experiencesCreateManyInput | experiencesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * experiences update
-   */
-  export type experiencesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * The data needed to update a experiences.
-     */
-    data: XOR<experiencesUpdateInput, experiencesUncheckedUpdateInput>
-    /**
-     * Choose, which experiences to update.
-     */
-    where: experiencesWhereUniqueInput
-  }
-
-  /**
-   * experiences updateMany
-   */
-  export type experiencesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update experiences.
-     */
-    data: XOR<experiencesUpdateManyMutationInput, experiencesUncheckedUpdateManyInput>
-    /**
-     * Filter which experiences to update
-     */
-    where?: experiencesWhereInput
-    /**
-     * Limit how many experiences to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * experiences upsert
-   */
-  export type experiencesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * The filter to search for the experiences to update in case it exists.
-     */
-    where: experiencesWhereUniqueInput
-    /**
-     * In case the experiences found by the `where` argument doesn't exist, create a new experiences with this data.
-     */
-    create: XOR<experiencesCreateInput, experiencesUncheckedCreateInput>
-    /**
-     * In case the experiences was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<experiencesUpdateInput, experiencesUncheckedUpdateInput>
-  }
-
-  /**
-   * experiences delete
-   */
-  export type experiencesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-    /**
-     * Filter which experiences to delete.
-     */
-    where: experiencesWhereUniqueInput
-  }
-
-  /**
-   * experiences deleteMany
-   */
-  export type experiencesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which experiences to delete
-     */
-    where?: experiencesWhereInput
-    /**
-     * Limit how many experiences to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * experiences without action
-   */
-  export type experiencesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the experiences
-     */
-    select?: experiencesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the experiences
-     */
-    omit?: experiencesOmit<ExtArgs> | null
-  }
-
-
-  /**
    * Model faq
    */
 
@@ -8253,6 +7210,8 @@ export namespace Prisma {
     hauteur: number | null
     alt: string | null
     date: Date | null
+    afficher_carrousel_main: boolean | null
+    afficher_carrousel_photos: boolean | null
     afficher: boolean | null
     derniere_modification: Date | null
   }
@@ -8265,6 +7224,8 @@ export namespace Prisma {
     hauteur: number | null
     alt: string | null
     date: Date | null
+    afficher_carrousel_main: boolean | null
+    afficher_carrousel_photos: boolean | null
     afficher: boolean | null
     derniere_modification: Date | null
   }
@@ -8277,6 +7238,8 @@ export namespace Prisma {
     hauteur: number
     alt: number
     date: number
+    afficher_carrousel_main: number
+    afficher_carrousel_photos: number
     afficher: number
     derniere_modification: number
     _all: number
@@ -8303,6 +7266,8 @@ export namespace Prisma {
     hauteur?: true
     alt?: true
     date?: true
+    afficher_carrousel_main?: true
+    afficher_carrousel_photos?: true
     afficher?: true
     derniere_modification?: true
   }
@@ -8315,6 +7280,8 @@ export namespace Prisma {
     hauteur?: true
     alt?: true
     date?: true
+    afficher_carrousel_main?: true
+    afficher_carrousel_photos?: true
     afficher?: true
     derniere_modification?: true
   }
@@ -8327,6 +7294,8 @@ export namespace Prisma {
     hauteur?: true
     alt?: true
     date?: true
+    afficher_carrousel_main?: true
+    afficher_carrousel_photos?: true
     afficher?: true
     derniere_modification?: true
     _all?: true
@@ -8426,6 +7395,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date
+    afficher_carrousel_main: boolean
+    afficher_carrousel_photos: boolean
     afficher: boolean
     derniere_modification: Date
     _count: PhotosCountAggregateOutputType | null
@@ -8457,6 +7428,8 @@ export namespace Prisma {
     hauteur?: boolean
     alt?: boolean
     date?: boolean
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher?: boolean
     derniere_modification?: boolean
     photos_albums_link?: boolean | photos$photos_albums_linkArgs<ExtArgs>
@@ -8475,11 +7448,13 @@ export namespace Prisma {
     hauteur?: boolean
     alt?: boolean
     date?: boolean
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher?: boolean
     derniere_modification?: boolean
   }
 
-  export type photosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_pho" | "lien_high" | "lien_low" | "largeur" | "hauteur" | "alt" | "date" | "afficher" | "derniere_modification", ExtArgs["result"]["photos"]>
+  export type photosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_pho" | "lien_high" | "lien_low" | "largeur" | "hauteur" | "alt" | "date" | "afficher_carrousel_main" | "afficher_carrousel_photos" | "afficher" | "derniere_modification", ExtArgs["result"]["photos"]>
   export type photosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     photos_albums_link?: boolean | photos$photos_albums_linkArgs<ExtArgs>
     photos_tags_link?: boolean | photos$photos_tags_linkArgs<ExtArgs>
@@ -8502,6 +7477,8 @@ export namespace Prisma {
       hauteur: number
       alt: string
       date: Date
+      afficher_carrousel_main: boolean
+      afficher_carrousel_photos: boolean
       afficher: boolean
       derniere_modification: Date
     }, ExtArgs["result"]["photos"]>
@@ -8883,6 +7860,8 @@ export namespace Prisma {
     readonly hauteur: FieldRef<"photos", 'Int'>
     readonly alt: FieldRef<"photos", 'String'>
     readonly date: FieldRef<"photos", 'DateTime'>
+    readonly afficher_carrousel_main: FieldRef<"photos", 'Boolean'>
+    readonly afficher_carrousel_photos: FieldRef<"photos", 'Boolean'>
     readonly afficher: FieldRef<"photos", 'Boolean'>
     readonly derniere_modification: FieldRef<"photos", 'DateTime'>
   }
@@ -18848,10 +17827,12 @@ export namespace Prisma {
 
   export type VideosAvgAggregateOutputType = {
     id_vid: number | null
+    tag_section_videos: number | null
   }
 
   export type VideosSumAggregateOutputType = {
     id_vid: number | null
+    tag_section_videos: number | null
   }
 
   export type VideosMinAggregateOutputType = {
@@ -18865,6 +17846,9 @@ export namespace Prisma {
     media_mp4: string | null
     duree: string | null
     afficher_competences: string | null
+    afficher_carrousel_main: boolean | null
+    afficher_section_videos: boolean | null
+    tag_section_videos: number | null
     afficher: boolean | null
     derniere_modification: Date | null
   }
@@ -18880,6 +17864,9 @@ export namespace Prisma {
     media_mp4: string | null
     duree: string | null
     afficher_competences: string | null
+    afficher_carrousel_main: boolean | null
+    afficher_section_videos: boolean | null
+    tag_section_videos: number | null
     afficher: boolean | null
     derniere_modification: Date | null
   }
@@ -18895,6 +17882,9 @@ export namespace Prisma {
     media_mp4: number
     duree: number
     afficher_competences: number
+    afficher_carrousel_main: number
+    afficher_section_videos: number
+    tag_section_videos: number
     afficher: number
     derniere_modification: number
     _all: number
@@ -18903,10 +17893,12 @@ export namespace Prisma {
 
   export type VideosAvgAggregateInputType = {
     id_vid?: true
+    tag_section_videos?: true
   }
 
   export type VideosSumAggregateInputType = {
     id_vid?: true
+    tag_section_videos?: true
   }
 
   export type VideosMinAggregateInputType = {
@@ -18920,6 +17912,9 @@ export namespace Prisma {
     media_mp4?: true
     duree?: true
     afficher_competences?: true
+    afficher_carrousel_main?: true
+    afficher_section_videos?: true
+    tag_section_videos?: true
     afficher?: true
     derniere_modification?: true
   }
@@ -18935,6 +17930,9 @@ export namespace Prisma {
     media_mp4?: true
     duree?: true
     afficher_competences?: true
+    afficher_carrousel_main?: true
+    afficher_section_videos?: true
+    tag_section_videos?: true
     afficher?: true
     derniere_modification?: true
   }
@@ -18950,6 +17948,9 @@ export namespace Prisma {
     media_mp4?: true
     duree?: true
     afficher_competences?: true
+    afficher_carrousel_main?: true
+    afficher_section_videos?: true
+    tag_section_videos?: true
     afficher?: true
     derniere_modification?: true
     _all?: true
@@ -19052,6 +18053,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main: boolean
+    afficher_section_videos: boolean
+    tag_section_videos: number | null
     afficher: boolean
     derniere_modification: Date
     _count: VideosCountAggregateOutputType | null
@@ -19086,6 +18090,9 @@ export namespace Prisma {
     media_mp4?: boolean
     duree?: boolean
     afficher_competences?: boolean
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: boolean
     afficher?: boolean
     derniere_modification?: boolean
     videos_tags_link?: boolean | videos$videos_tags_linkArgs<ExtArgs>
@@ -19105,11 +18112,14 @@ export namespace Prisma {
     media_mp4?: boolean
     duree?: boolean
     afficher_competences?: boolean
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: boolean
     afficher?: boolean
     derniere_modification?: boolean
   }
 
-  export type videosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_vid" | "titre" | "description" | "tags" | "lien" | "date" | "media_webm" | "media_mp4" | "duree" | "afficher_competences" | "afficher" | "derniere_modification", ExtArgs["result"]["videos"]>
+  export type videosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_vid" | "titre" | "description" | "tags" | "lien" | "date" | "media_webm" | "media_mp4" | "duree" | "afficher_competences" | "afficher_carrousel_main" | "afficher_section_videos" | "tag_section_videos" | "afficher" | "derniere_modification", ExtArgs["result"]["videos"]>
   export type videosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     videos_tags_link?: boolean | videos$videos_tags_linkArgs<ExtArgs>
     _count?: boolean | VideosCountOutputTypeDefaultArgs<ExtArgs>
@@ -19131,6 +18141,9 @@ export namespace Prisma {
       media_mp4: string
       duree: string
       afficher_competences: string
+      afficher_carrousel_main: boolean
+      afficher_section_videos: boolean
+      tag_section_videos: number | null
       afficher: boolean
       derniere_modification: Date
     }, ExtArgs["result"]["videos"]>
@@ -19513,6 +18526,9 @@ export namespace Prisma {
     readonly media_mp4: FieldRef<"videos", 'String'>
     readonly duree: FieldRef<"videos", 'String'>
     readonly afficher_competences: FieldRef<"videos", 'String'>
+    readonly afficher_carrousel_main: FieldRef<"videos", 'Boolean'>
+    readonly afficher_section_videos: FieldRef<"videos", 'Boolean'>
+    readonly tag_section_videos: FieldRef<"videos", 'Int'>
     readonly afficher: FieldRef<"videos", 'Boolean'>
     readonly derniere_modification: FieldRef<"videos", 'DateTime'>
   }
@@ -30296,21 +29312,6 @@ export namespace Prisma {
   export type Autre_tags_linkScalarFieldEnum = (typeof Autre_tags_linkScalarFieldEnum)[keyof typeof Autre_tags_linkScalarFieldEnum]
 
 
-  export const ExperiencesScalarFieldEnum: {
-    id_exp: 'id_exp',
-    date: 'date',
-    titre: 'titre',
-    description: 'description',
-    url_img: 'url_img',
-    position_img: 'position_img',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url',
-    afficher: 'afficher'
-  };
-
-  export type ExperiencesScalarFieldEnum = (typeof ExperiencesScalarFieldEnum)[keyof typeof ExperiencesScalarFieldEnum]
-
-
   export const FaqScalarFieldEnum: {
     id_faq: 'id_faq',
     titre: 'titre',
@@ -30329,6 +29330,8 @@ export namespace Prisma {
     hauteur: 'hauteur',
     alt: 'alt',
     date: 'date',
+    afficher_carrousel_main: 'afficher_carrousel_main',
+    afficher_carrousel_photos: 'afficher_carrousel_photos',
     afficher: 'afficher',
     derniere_modification: 'derniere_modification'
   };
@@ -30444,6 +29447,9 @@ export namespace Prisma {
     media_mp4: 'media_mp4',
     duree: 'duree',
     afficher_competences: 'afficher_competences',
+    afficher_carrousel_main: 'afficher_carrousel_main',
+    afficher_section_videos: 'afficher_section_videos',
+    tag_section_videos: 'tag_section_videos',
     afficher: 'afficher',
     derniere_modification: 'derniere_modification'
   };
@@ -30624,18 +29630,6 @@ export namespace Prisma {
   };
 
   export type autre_tagsOrderByRelevanceFieldEnum = (typeof autre_tagsOrderByRelevanceFieldEnum)[keyof typeof autre_tagsOrderByRelevanceFieldEnum]
-
-
-  export const experiencesOrderByRelevanceFieldEnum: {
-    titre: 'titre',
-    description: 'description',
-    url_img: 'url_img',
-    position_img: 'position_img',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url'
-  };
-
-  export type experiencesOrderByRelevanceFieldEnum = (typeof experiencesOrderByRelevanceFieldEnum)[keyof typeof experiencesOrderByRelevanceFieldEnum]
 
 
   export const faqOrderByRelevanceFieldEnum: {
@@ -31068,81 +30062,6 @@ export namespace Prisma {
     id_tags?: IntWithAggregatesFilter<"autre_tags_link"> | number
   }
 
-  export type experiencesWhereInput = {
-    AND?: experiencesWhereInput | experiencesWhereInput[]
-    OR?: experiencesWhereInput[]
-    NOT?: experiencesWhereInput | experiencesWhereInput[]
-    id_exp?: IntFilter<"experiences"> | number
-    date?: DateTimeFilter<"experiences"> | Date | string
-    titre?: StringFilter<"experiences"> | string
-    description?: StringFilter<"experiences"> | string
-    url_img?: StringFilter<"experiences"> | string
-    position_img?: StringFilter<"experiences"> | string
-    credit_nom?: StringFilter<"experiences"> | string
-    credit_url?: StringFilter<"experiences"> | string
-    afficher?: BoolFilter<"experiences"> | boolean
-  }
-
-  export type experiencesOrderByWithRelationInput = {
-    id_exp?: SortOrder
-    date?: SortOrder
-    titre?: SortOrder
-    description?: SortOrder
-    url_img?: SortOrder
-    position_img?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
-    afficher?: SortOrder
-    _relevance?: experiencesOrderByRelevanceInput
-  }
-
-  export type experiencesWhereUniqueInput = Prisma.AtLeast<{
-    id_exp?: number
-    AND?: experiencesWhereInput | experiencesWhereInput[]
-    OR?: experiencesWhereInput[]
-    NOT?: experiencesWhereInput | experiencesWhereInput[]
-    date?: DateTimeFilter<"experiences"> | Date | string
-    titre?: StringFilter<"experiences"> | string
-    description?: StringFilter<"experiences"> | string
-    url_img?: StringFilter<"experiences"> | string
-    position_img?: StringFilter<"experiences"> | string
-    credit_nom?: StringFilter<"experiences"> | string
-    credit_url?: StringFilter<"experiences"> | string
-    afficher?: BoolFilter<"experiences"> | boolean
-  }, "id_exp">
-
-  export type experiencesOrderByWithAggregationInput = {
-    id_exp?: SortOrder
-    date?: SortOrder
-    titre?: SortOrder
-    description?: SortOrder
-    url_img?: SortOrder
-    position_img?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
-    afficher?: SortOrder
-    _count?: experiencesCountOrderByAggregateInput
-    _avg?: experiencesAvgOrderByAggregateInput
-    _max?: experiencesMaxOrderByAggregateInput
-    _min?: experiencesMinOrderByAggregateInput
-    _sum?: experiencesSumOrderByAggregateInput
-  }
-
-  export type experiencesScalarWhereWithAggregatesInput = {
-    AND?: experiencesScalarWhereWithAggregatesInput | experiencesScalarWhereWithAggregatesInput[]
-    OR?: experiencesScalarWhereWithAggregatesInput[]
-    NOT?: experiencesScalarWhereWithAggregatesInput | experiencesScalarWhereWithAggregatesInput[]
-    id_exp?: IntWithAggregatesFilter<"experiences"> | number
-    date?: DateTimeWithAggregatesFilter<"experiences"> | Date | string
-    titre?: StringWithAggregatesFilter<"experiences"> | string
-    description?: StringWithAggregatesFilter<"experiences"> | string
-    url_img?: StringWithAggregatesFilter<"experiences"> | string
-    position_img?: StringWithAggregatesFilter<"experiences"> | string
-    credit_nom?: StringWithAggregatesFilter<"experiences"> | string
-    credit_url?: StringWithAggregatesFilter<"experiences"> | string
-    afficher?: BoolWithAggregatesFilter<"experiences"> | boolean
-  }
-
   export type faqWhereInput = {
     AND?: faqWhereInput | faqWhereInput[]
     OR?: faqWhereInput[]
@@ -31204,6 +30123,8 @@ export namespace Prisma {
     hauteur?: IntFilter<"photos"> | number
     alt?: StringFilter<"photos"> | string
     date?: DateTimeFilter<"photos"> | Date | string
+    afficher_carrousel_main?: BoolFilter<"photos"> | boolean
+    afficher_carrousel_photos?: BoolFilter<"photos"> | boolean
     afficher?: BoolFilter<"photos"> | boolean
     derniere_modification?: DateTimeFilter<"photos"> | Date | string
     photos_albums_link?: Photos_albums_linkListRelationFilter
@@ -31219,6 +30140,8 @@ export namespace Prisma {
     hauteur?: SortOrder
     alt?: SortOrder
     date?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_carrousel_photos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
     photos_albums_link?: photos_albums_linkOrderByRelationAggregateInput
@@ -31238,6 +30161,8 @@ export namespace Prisma {
     hauteur?: IntFilter<"photos"> | number
     alt?: StringFilter<"photos"> | string
     date?: DateTimeFilter<"photos"> | Date | string
+    afficher_carrousel_main?: BoolFilter<"photos"> | boolean
+    afficher_carrousel_photos?: BoolFilter<"photos"> | boolean
     afficher?: BoolFilter<"photos"> | boolean
     derniere_modification?: DateTimeFilter<"photos"> | Date | string
     photos_albums_link?: Photos_albums_linkListRelationFilter
@@ -31253,6 +30178,8 @@ export namespace Prisma {
     hauteur?: SortOrder
     alt?: SortOrder
     date?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_carrousel_photos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
     _count?: photosCountOrderByAggregateInput
@@ -31273,6 +30200,8 @@ export namespace Prisma {
     hauteur?: IntWithAggregatesFilter<"photos"> | number
     alt?: StringWithAggregatesFilter<"photos"> | string
     date?: DateTimeWithAggregatesFilter<"photos"> | Date | string
+    afficher_carrousel_main?: BoolWithAggregatesFilter<"photos"> | boolean
+    afficher_carrousel_photos?: BoolWithAggregatesFilter<"photos"> | boolean
     afficher?: BoolWithAggregatesFilter<"photos"> | boolean
     derniere_modification?: DateTimeWithAggregatesFilter<"photos"> | Date | string
   }
@@ -31815,6 +30744,9 @@ export namespace Prisma {
     media_mp4?: StringFilter<"videos"> | string
     duree?: StringFilter<"videos"> | string
     afficher_competences?: StringFilter<"videos"> | string
+    afficher_carrousel_main?: BoolFilter<"videos"> | boolean
+    afficher_section_videos?: BoolFilter<"videos"> | boolean
+    tag_section_videos?: IntNullableFilter<"videos"> | number | null
     afficher?: BoolFilter<"videos"> | boolean
     derniere_modification?: DateTimeFilter<"videos"> | Date | string
     videos_tags_link?: Videos_tags_linkListRelationFilter
@@ -31831,6 +30763,9 @@ export namespace Prisma {
     media_mp4?: SortOrder
     duree?: SortOrder
     afficher_competences?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_section_videos?: SortOrder
+    tag_section_videos?: SortOrderInput | SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
     videos_tags_link?: videos_tags_linkOrderByRelationAggregateInput
@@ -31851,6 +30786,9 @@ export namespace Prisma {
     media_mp4?: StringFilter<"videos"> | string
     duree?: StringFilter<"videos"> | string
     afficher_competences?: StringFilter<"videos"> | string
+    afficher_carrousel_main?: BoolFilter<"videos"> | boolean
+    afficher_section_videos?: BoolFilter<"videos"> | boolean
+    tag_section_videos?: IntNullableFilter<"videos"> | number | null
     afficher?: BoolFilter<"videos"> | boolean
     derniere_modification?: DateTimeFilter<"videos"> | Date | string
     videos_tags_link?: Videos_tags_linkListRelationFilter
@@ -31867,6 +30805,9 @@ export namespace Prisma {
     media_mp4?: SortOrder
     duree?: SortOrder
     afficher_competences?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_section_videos?: SortOrder
+    tag_section_videos?: SortOrderInput | SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
     _count?: videosCountOrderByAggregateInput
@@ -31890,6 +30831,9 @@ export namespace Prisma {
     media_mp4?: StringWithAggregatesFilter<"videos"> | string
     duree?: StringWithAggregatesFilter<"videos"> | string
     afficher_competences?: StringWithAggregatesFilter<"videos"> | string
+    afficher_carrousel_main?: BoolWithAggregatesFilter<"videos"> | boolean
+    afficher_section_videos?: BoolWithAggregatesFilter<"videos"> | boolean
+    tag_section_videos?: IntNullableWithAggregatesFilter<"videos"> | number | null
     afficher?: BoolWithAggregatesFilter<"videos"> | boolean
     derniere_modification?: DateTimeWithAggregatesFilter<"videos"> | Date | string
   }
@@ -32808,87 +31752,6 @@ export namespace Prisma {
     id_tags?: IntFieldUpdateOperationsInput | number
   }
 
-  export type experiencesCreateInput = {
-    date: Date | string
-    titre: string
-    description: string
-    url_img: string
-    position_img: string
-    credit_nom: string
-    credit_url: string
-    afficher: boolean
-  }
-
-  export type experiencesUncheckedCreateInput = {
-    id_exp?: number
-    date: Date | string
-    titre: string
-    description: string
-    url_img: string
-    position_img: string
-    credit_nom: string
-    credit_url: string
-    afficher: boolean
-  }
-
-  export type experiencesUpdateInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    url_img?: StringFieldUpdateOperationsInput | string
-    position_img?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
-    afficher?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type experiencesUncheckedUpdateInput = {
-    id_exp?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    url_img?: StringFieldUpdateOperationsInput | string
-    position_img?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
-    afficher?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type experiencesCreateManyInput = {
-    id_exp?: number
-    date: Date | string
-    titre: string
-    description: string
-    url_img: string
-    position_img: string
-    credit_nom: string
-    credit_url: string
-    afficher: boolean
-  }
-
-  export type experiencesUpdateManyMutationInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    url_img?: StringFieldUpdateOperationsInput | string
-    position_img?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
-    afficher?: BoolFieldUpdateOperationsInput | boolean
-  }
-
-  export type experiencesUncheckedUpdateManyInput = {
-    id_exp?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    url_img?: StringFieldUpdateOperationsInput | string
-    position_img?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
-    afficher?: BoolFieldUpdateOperationsInput | boolean
-  }
-
   export type faqCreateInput = {
     titre: string
     contenu: string
@@ -32942,6 +31805,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkCreateNestedManyWithoutPhotosInput
@@ -32957,6 +31822,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkUncheckedCreateNestedManyWithoutPhotosInput
@@ -32971,6 +31838,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUpdateManyWithoutPhotosNestedInput
@@ -32986,6 +31855,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUncheckedUpdateManyWithoutPhotosNestedInput
@@ -33001,6 +31872,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
   }
@@ -33012,6 +31885,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33024,6 +31899,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33504,6 +32381,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: number | null
     afficher: boolean
     derniere_modification: Date | string
     videos_tags_link?: videos_tags_linkCreateNestedManyWithoutVideosInput
@@ -33520,6 +32400,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: number | null
     afficher: boolean
     derniere_modification: Date | string
     videos_tags_link?: videos_tags_linkUncheckedCreateNestedManyWithoutVideosInput
@@ -33535,6 +32418,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     videos_tags_link?: videos_tags_linkUpdateManyWithoutVideosNestedInput
@@ -33551,6 +32437,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     videos_tags_link?: videos_tags_linkUncheckedUpdateManyWithoutVideosNestedInput
@@ -33567,6 +32456,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: number | null
     afficher: boolean
     derniere_modification: Date | string
   }
@@ -33581,6 +32473,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -33596,6 +32491,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -34615,56 +33513,6 @@ export namespace Prisma {
     id_tags?: SortOrder
   }
 
-  export type experiencesOrderByRelevanceInput = {
-    fields: experiencesOrderByRelevanceFieldEnum | experiencesOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type experiencesCountOrderByAggregateInput = {
-    id_exp?: SortOrder
-    date?: SortOrder
-    titre?: SortOrder
-    description?: SortOrder
-    url_img?: SortOrder
-    position_img?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type experiencesAvgOrderByAggregateInput = {
-    id_exp?: SortOrder
-  }
-
-  export type experiencesMaxOrderByAggregateInput = {
-    id_exp?: SortOrder
-    date?: SortOrder
-    titre?: SortOrder
-    description?: SortOrder
-    url_img?: SortOrder
-    position_img?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type experiencesMinOrderByAggregateInput = {
-    id_exp?: SortOrder
-    date?: SortOrder
-    titre?: SortOrder
-    description?: SortOrder
-    url_img?: SortOrder
-    position_img?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type experiencesSumOrderByAggregateInput = {
-    id_exp?: SortOrder
-  }
-
   export type faqOrderByRelevanceInput = {
     fields: faqOrderByRelevanceFieldEnum | faqOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -34744,6 +33592,8 @@ export namespace Prisma {
     hauteur?: SortOrder
     alt?: SortOrder
     date?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_carrousel_photos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
@@ -34762,6 +33612,8 @@ export namespace Prisma {
     hauteur?: SortOrder
     alt?: SortOrder
     date?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_carrousel_photos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
@@ -34774,6 +33626,8 @@ export namespace Prisma {
     hauteur?: SortOrder
     alt?: SortOrder
     date?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_carrousel_photos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
@@ -35253,12 +34107,16 @@ export namespace Prisma {
     media_mp4?: SortOrder
     duree?: SortOrder
     afficher_competences?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_section_videos?: SortOrder
+    tag_section_videos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
 
   export type videosAvgOrderByAggregateInput = {
     id_vid?: SortOrder
+    tag_section_videos?: SortOrder
   }
 
   export type videosMaxOrderByAggregateInput = {
@@ -35272,6 +34130,9 @@ export namespace Prisma {
     media_mp4?: SortOrder
     duree?: SortOrder
     afficher_competences?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_section_videos?: SortOrder
+    tag_section_videos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
@@ -35287,12 +34148,16 @@ export namespace Prisma {
     media_mp4?: SortOrder
     duree?: SortOrder
     afficher_competences?: SortOrder
+    afficher_carrousel_main?: SortOrder
+    afficher_section_videos?: SortOrder
+    tag_section_videos?: SortOrder
     afficher?: SortOrder
     derniere_modification?: SortOrder
   }
 
   export type videosSumOrderByAggregateInput = {
     id_vid?: SortOrder
+    tag_section_videos?: SortOrder
   }
 
   export type videos_tagsOrderByRelevanceInput = {
@@ -37109,6 +35974,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_tags_link?: photos_tags_linkCreateNestedManyWithoutPhotosInput
@@ -37123,6 +35990,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_tags_link?: photos_tags_linkUncheckedCreateNestedManyWithoutPhotosInput
@@ -37178,6 +36047,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_tags_link?: photos_tags_linkUpdateManyWithoutPhotosNestedInput
@@ -37192,6 +36063,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_tags_link?: photos_tags_linkUncheckedUpdateManyWithoutPhotosNestedInput
@@ -37405,6 +36278,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkCreateNestedManyWithoutPhotosInput
@@ -37419,6 +36294,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkUncheckedCreateNestedManyWithoutPhotosInput
@@ -37466,6 +36343,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUpdateManyWithoutPhotosNestedInput
@@ -37480,6 +36359,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUncheckedUpdateManyWithoutPhotosNestedInput
@@ -37551,6 +36432,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkCreateNestedManyWithoutPhotosInput
@@ -37565,6 +36448,8 @@ export namespace Prisma {
     hauteur: number
     alt: string
     date: Date | string
+    afficher_carrousel_main?: boolean
+    afficher_carrousel_photos?: boolean
     afficher: boolean
     derniere_modification: Date | string
     photos_albums_link?: photos_albums_linkUncheckedCreateNestedManyWithoutPhotosInput
@@ -37610,6 +36495,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUpdateManyWithoutPhotosNestedInput
@@ -37624,6 +36511,8 @@ export namespace Prisma {
     hauteur?: IntFieldUpdateOperationsInput | number
     alt?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_carrousel_photos?: BoolFieldUpdateOperationsInput | boolean
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
     photos_albums_link?: photos_albums_linkUncheckedUpdateManyWithoutPhotosNestedInput
@@ -37738,6 +36627,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: number | null
     afficher: boolean
     derniere_modification: Date | string
   }
@@ -37753,6 +36645,9 @@ export namespace Prisma {
     media_mp4: string
     duree: string
     afficher_competences: string
+    afficher_carrousel_main?: boolean
+    afficher_section_videos?: boolean
+    tag_section_videos?: number | null
     afficher: boolean
     derniere_modification: Date | string
   }
@@ -37799,6 +36694,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -37814,6 +36712,9 @@ export namespace Prisma {
     media_mp4?: StringFieldUpdateOperationsInput | string
     duree?: StringFieldUpdateOperationsInput | string
     afficher_competences?: StringFieldUpdateOperationsInput | string
+    afficher_carrousel_main?: BoolFieldUpdateOperationsInput | boolean
+    afficher_section_videos?: BoolFieldUpdateOperationsInput | boolean
+    tag_section_videos?: NullableIntFieldUpdateOperationsInput | number | null
     afficher?: BoolFieldUpdateOperationsInput | boolean
     derniere_modification?: DateTimeFieldUpdateOperationsInput | Date | string
   }

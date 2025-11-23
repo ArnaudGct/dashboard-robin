@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { PhotoAddItem } from "@/components/sections/photos/add/add-photo-item";
+import { getCarouselCounts } from "@/lib/photo-carousel-utils";
 
 export default async function AddPhoto() {
   // Récupérer tous les tags disponibles pour les photos
@@ -23,6 +24,9 @@ export default async function AddPhoto() {
     },
   });
 
+  // Récupérer les compteurs des carrousels
+  const carouselCounts = await getCarouselCounts();
+
   return (
     <PhotoAddItem
       availableTags={tags.map((tag) => ({
@@ -39,6 +43,7 @@ export default async function AddPhoto() {
         id: album.id_alb.toString(),
         label: album.titre,
       }))}
+      carouselCounts={carouselCounts}
     />
   );
 }

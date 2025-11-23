@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { AddVideoItem } from "@/components/sections/videos/add-video-item";
 import { Suspense } from "react";
 import { Card } from "@/components/ui/card";
+import { getVideoCarouselCounts } from "@/lib/video-carousel-utils";
 
 // Composant de chargement
 function VideoAddLoading() {
@@ -56,9 +57,15 @@ async function AddVideoContent() {
       important: Boolean(tag.important),
     }));
 
+    // Récupérer les compteurs des carrousels
+    const carouselCounts = await getVideoCarouselCounts();
+
     return (
       <div className="w-[90%] mx-auto">
-        <AddVideoItem availableTags={availableTags} />
+        <AddVideoItem
+          availableTags={availableTags}
+          carouselCounts={carouselCounts}
+        />
       </div>
     );
   } catch (error) {

@@ -60,6 +60,8 @@ type EditPhotoFormProps = {
     alt: string;
     date: Date;
     afficher: boolean;
+    afficher_carrousel_main: boolean;
+    afficher_carrousel_photos: boolean;
   };
   availableTags: {
     id: string;
@@ -78,6 +80,14 @@ type EditPhotoFormProps = {
   selectedTagIds: string[];
   selectedSearchTagIds: string[];
   selectedAlbumIds: string[];
+  carouselCounts: {
+    mainCount: number;
+    mainLimit: number;
+    mainRemaining: number;
+    photosCount: number;
+    photosLimit: number;
+    photosRemaining: number;
+  };
 };
 
 type TagOption = {
@@ -94,6 +104,7 @@ export function EditPhotoItem({
   selectedTagIds,
   selectedSearchTagIds,
   selectedAlbumIds,
+  carouselCounts,
 }: EditPhotoFormProps) {
   const router = useRouter();
   const [selectedTags, setSelectedTags] = useState<string[]>(selectedTagIds);
@@ -115,6 +126,12 @@ export function EditPhotoItem({
   });
   const [date, setDate] = useState<Date | undefined>(
     initialData.date ? new Date(initialData.date) : undefined
+  );
+  const [afficherCarrouselMain, setAfficherCarrouselMain] = useState(
+    initialData.afficher_carrousel_main
+  );
+  const [afficherCarrouselPhotos, setAfficherCarrouselPhotos] = useState(
+    initialData.afficher_carrousel_photos
   );
 
   function getImageUrl(path: string) {
@@ -249,6 +266,14 @@ export function EditPhotoItem({
       // Gérer l'état de publication
       const isPublished = formData.get("isPublished") === "on";
       formData.set("isPublished", isPublished ? "on" : "off");
+
+      // Ajouter les états des carrousels
+      if (afficherCarrouselMain) {
+        formData.set("afficherCarrouselMain", "on");
+      }
+      if (afficherCarrouselPhotos) {
+        formData.set("afficherCarrouselPhotos", "on");
+      }
 
       // Ajouter les tags sélectionnés
       formData.delete("tags");
@@ -672,6 +697,77 @@ export function EditPhotoItem({
                   })}
                 </div>
               )}
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
+            <h3 className="text-sm font-medium">
+              Mise en avant sur la page d&apos;accueil
+            </h3>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="afficherCarrouselMain"
+                  checked={afficherCarrouselMain}
+                  onCheckedChange={(checked) => {
+                    if (checked && carouselCounts.mainRemaining <= 0) {
+                      toast.error(
+                        `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
+                      );
+                      return;
+                    }
+                    setAfficherCarrouselMain(checked);
+                  }}
+                  disabled={
+                    !afficherCarrouselMain && carouselCounts.mainRemaining <= 0
+                  }
+                  className="cursor-pointer"
+                />
+                <Label
+                  htmlFor="afficherCarrouselMain"
+                  className="cursor-pointer"
+                >
+                  Carrousel principal (vidéos & photos)
+                </Label>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {carouselCounts.mainCount + (afficherCarrouselMain ? 1 : 0)} /{" "}
+                {carouselCounts.mainLimit}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="afficherCarrouselPhotos"
+                  checked={afficherCarrouselPhotos}
+                  onCheckedChange={(checked) => {
+                    if (checked && carouselCounts.photosRemaining <= 0) {
+                      toast.error(
+                        `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
+                      );
+                      return;
+                    }
+                    setAfficherCarrouselPhotos(checked);
+                  }}
+                  disabled={
+                    !afficherCarrouselPhotos &&
+                    carouselCounts.photosRemaining <= 0
+                  }
+                  className="cursor-pointer"
+                />
+                <Label
+                  htmlFor="afficherCarrouselPhotos"
+                  className="cursor-pointer"
+                >
+                  Carrousel dédié aux photos
+                </Label>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {carouselCounts.photosCount + (afficherCarrouselPhotos ? 1 : 0)}{" "}
+                / {carouselCounts.photosLimit}
+              </span>
             </div>
           </div>
 

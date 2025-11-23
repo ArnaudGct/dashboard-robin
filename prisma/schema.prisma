@@ -41,18 +41,6 @@ model autre_tags_link {
   @@index([id_tags], map: "fk_autre_tags")
 }
 
-model experiences {
-  id_exp       Int      @id @default(autoincrement())
-  date         DateTime @db.Date
-  titre        String   @db.VarChar(150)
-  description  String   @db.VarChar(10000)
-  url_img      String   @db.VarChar(250)
-  position_img String   @db.VarChar(50)
-  credit_nom   String   @db.VarChar(50)
-  credit_url   String   @db.VarChar(250)
-  afficher     Boolean
-}
-
 model faq {
   id_faq   Int     @id @default(autoincrement())
   titre    String  @db.VarChar(250)
@@ -68,6 +56,8 @@ model photos {
   hauteur                    Int
   alt                        String                       @db.VarChar(500)
   date                       DateTime                     @db.Date
+  afficher_carrousel_main    Boolean                      @default(false)
+  afficher_carrousel_photos  Boolean                      @default(false)
   afficher                   Boolean
   derniere_modification      DateTime                     @db.DateTime(0)
   photos_albums_link         photos_albums_link[]
@@ -168,19 +158,22 @@ model utilisateurs {
 }
 
 model videos {
-  id_vid                Int                @id @default(autoincrement())
-  titre                 String             @db.VarChar(100)
-  description           String             @db.VarChar(3500)
-  tags                  String             @db.VarChar(50)
-  lien                  String             @db.VarChar(500)
-  date                  DateTime           @db.Date
-  media_webm            String             @db.VarChar(100)
-  media_mp4             String             @db.VarChar(100)
-  duree                 String             @db.VarChar(25)
-  afficher_competences  String             @db.VarChar(50)
-  afficher              Boolean
-  derniere_modification DateTime           @db.DateTime(0)
-  videos_tags_link      videos_tags_link[]
+  id_vid                  Int                @id @default(autoincrement())
+  titre                   String             @db.VarChar(100)
+  description             String             @db.VarChar(3500)
+  tags                    String             @db.VarChar(50)
+  lien                    String             @db.VarChar(500)
+  date                    DateTime           @db.Date
+  media_webm              String             @db.VarChar(100)
+  media_mp4               String             @db.VarChar(100)
+  duree                   String             @db.VarChar(25)
+  afficher_competences    String             @db.VarChar(50)
+  afficher_carrousel_main Boolean            @default(false)
+  afficher_section_videos Boolean            @default(false)
+  tag_section_videos      Int?
+  afficher                Boolean
+  derniere_modification   DateTime           @db.DateTime(0)
+  videos_tags_link        videos_tags_link[]
 }
 
 model videos_tags {

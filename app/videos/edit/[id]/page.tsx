@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { EditVideoItem } from "@/components/sections/videos/edit-video-item";
 import { Suspense } from "react";
 import { Card } from "@/components/ui/card";
+import { getVideoCarouselCounts } from "@/lib/video-carousel-utils";
 
 // Composant de chargement
 function VideoEditLoading() {
@@ -63,6 +64,9 @@ async function EditVideoContent({ params }: { params: Params }) {
           duree: true,
           date: true,
           afficher: true,
+          afficher_carrousel_main: true,
+          afficher_section_videos: true,
+          tag_section_videos: true,
           videos_tags_link: {
             select: {
               videos_tags: {
@@ -100,6 +104,16 @@ async function EditVideoContent({ params }: { params: Params }) {
     // Convertir la date si elle existe
     const videoDate = video.date ? new Date(video.date) : undefined;
 
+    // Récupérer le titre du tag de section si un ID est défini
+    let tagSectionVideosTitle: string | null = null;
+    if (video.tag_section_videos) {
+      const sectionTag = await prisma.videos_tags.findUnique({
+        where: { id_tags: video.tag_section_videos },
+        select: { titre: true },
+      });
+      tagSectionVideosTitle = sectionTag?.titre || null;
+    }
+
     // Transformer les tags pour le composant client
     const formattedTags = tags.map((tag) => ({
       id: tag.titre,
@@ -116,14 +130,21 @@ async function EditVideoContent({ params }: { params: Params }) {
       duree: video.duree,
       date: videoDate,
       afficher: video.afficher,
+      afficher_carrousel_main: video.afficher_carrousel_main,
+      afficher_section_videos: video.afficher_section_videos,
+      tag_section_videos: tagSectionVideosTitle,
       tags: videoTags,
     };
+
+    // Récupérer les compteurs des carrousels (exclure la vidéo courante)
+    const carouselCounts = await getVideoCarouselCounts(videoId);
 
     return (
       <div className="w-[90%] mx-auto">
         <EditVideoItem
           initialData={initialData}
           availableTags={formattedTags}
+          carouselCounts={carouselCounts}
         />
       </div>
     );

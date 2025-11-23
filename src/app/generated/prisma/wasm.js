@@ -146,18 +146,6 @@ exports.Prisma.Autre_tags_linkScalarFieldEnum = {
   id_tags: 'id_tags'
 };
 
-exports.Prisma.ExperiencesScalarFieldEnum = {
-  id_exp: 'id_exp',
-  date: 'date',
-  titre: 'titre',
-  description: 'description',
-  url_img: 'url_img',
-  position_img: 'position_img',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url',
-  afficher: 'afficher'
-};
-
 exports.Prisma.FaqScalarFieldEnum = {
   id_faq: 'id_faq',
   titre: 'titre',
@@ -173,6 +161,8 @@ exports.Prisma.PhotosScalarFieldEnum = {
   hauteur: 'hauteur',
   alt: 'alt',
   date: 'date',
+  afficher_carrousel_main: 'afficher_carrousel_main',
+  afficher_carrousel_photos: 'afficher_carrousel_photos',
   afficher: 'afficher',
   derniere_modification: 'derniere_modification'
 };
@@ -255,6 +245,9 @@ exports.Prisma.VideosScalarFieldEnum = {
   media_mp4: 'media_mp4',
   duree: 'duree',
   afficher_competences: 'afficher_competences',
+  afficher_carrousel_main: 'afficher_carrousel_main',
+  afficher_section_videos: 'afficher_section_videos',
+  tag_section_videos: 'tag_section_videos',
   afficher: 'afficher',
   derniere_modification: 'derniere_modification'
 };
@@ -390,15 +383,6 @@ exports.Prisma.autreOrderByRelevanceFieldEnum = {
 
 exports.Prisma.autre_tagsOrderByRelevanceFieldEnum = {
   titre: 'titre'
-};
-
-exports.Prisma.experiencesOrderByRelevanceFieldEnum = {
-  titre: 'titre',
-  description: 'description',
-  url_img: 'url_img',
-  position_img: 'position_img',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url'
 };
 
 exports.Prisma.faqOrderByRelevanceFieldEnum = {
@@ -546,7 +530,6 @@ exports.Prisma.ModelName = {
   autre: 'autre',
   autre_tags: 'autre_tags',
   autre_tags_link: 'autre_tags_link',
-  experiences: 'experiences',
   faq: 'faq',
   photos: 'photos',
   photos_albums: 'photos_albums',

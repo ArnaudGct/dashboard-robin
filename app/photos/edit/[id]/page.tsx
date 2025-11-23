@@ -3,6 +3,7 @@ import { EditPhotoItem } from "@/components/sections/photos/edit-photo-item";
 import { notFound } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Suspense } from "react";
+import { getCarouselCounts } from "@/lib/photo-carousel-utils";
 
 function PhotoEditLoading() {
   return (
@@ -53,6 +54,8 @@ async function EditPhotoContent({ params }: { params: Params }) {
       alt: true,
       date: true,
       afficher: true,
+      afficher_carrousel_main: true,
+      afficher_carrousel_photos: true,
       photos_tags_link: {
         select: {
           id_tags: true,
@@ -119,6 +122,9 @@ async function EditPhotoContent({ params }: { params: Params }) {
     link.id_alb.toString()
   );
 
+  // Récupérer les compteurs des carrousels (exclure la photo courante)
+  const carouselCounts = await getCarouselCounts(photoId);
+
   return (
     <EditPhotoItem
       initialData={{
@@ -130,6 +136,8 @@ async function EditPhotoContent({ params }: { params: Params }) {
         alt: photo.alt,
         date: photo.date,
         afficher: photo.afficher,
+        afficher_carrousel_main: photo.afficher_carrousel_main,
+        afficher_carrousel_photos: photo.afficher_carrousel_photos,
       }}
       availableTags={tags.map((tag) => ({
         id: tag.id_tags.toString(),
@@ -148,6 +156,7 @@ async function EditPhotoContent({ params }: { params: Params }) {
       selectedTagIds={selectedTagIds}
       selectedSearchTagIds={selectedSearchTagIds}
       selectedAlbumIds={selectedAlbumIds}
+      carouselCounts={carouselCounts}
     />
   );
 }

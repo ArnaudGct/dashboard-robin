@@ -19,6 +19,18 @@ export async function addVideoAction(formData: FormData) {
       }
     }
 
+    // Gérer le tag de la section vidéos (conversion titre -> ID)
+    let tagSectionVideosId: number | null = null;
+    const tagSectionVideosTitle = formData.get("tagSectionVideos")?.toString();
+    if (tagSectionVideosTitle) {
+      const foundTag = await prisma.videos_tags.findFirst({
+        where: { titre: tagSectionVideosTitle },
+      });
+      if (foundTag) {
+        tagSectionVideosId = foundTag.id_tags;
+      }
+    }
+
     const video = await prisma.videos.create({
       data: {
         titre: formData.get("title")?.toString() || "",
@@ -29,6 +41,9 @@ export async function addVideoAction(formData: FormData) {
         media_webm: "", // Valeur par défaut ou à récupérer du formulaire
         media_mp4: "", // Valeur par défaut ou à récupérer du formulaire
         afficher_competences: "", // Valeur par défaut ou à récupérer du formulaire
+        afficher_carrousel_main: formData.get("afficherCarrouselMain") === "on",
+        afficher_section_videos: formData.get("afficherSectionVideos") === "on",
+        tag_section_videos: tagSectionVideosId,
         afficher: formData.get("isPublished") === "on", // MySQL utilise 0/1 pour les booléens
         derniere_modification: new Date(),
         tags: "", // Champ texte de tags, à utiliser si nécessaire
@@ -105,6 +120,18 @@ export async function updateVideoAction(formData: FormData) {
       }
     }
 
+    // Gérer le tag de la section vidéos (conversion titre -> ID)
+    let tagSectionVideosId: number | null = null;
+    const tagSectionVideosTitle = formData.get("tagSectionVideos")?.toString();
+    if (tagSectionVideosTitle) {
+      const foundTag = await prisma.videos_tags.findFirst({
+        where: { titre: tagSectionVideosTitle },
+      });
+      if (foundTag) {
+        tagSectionVideosId = foundTag.id_tags;
+      }
+    }
+
     // 1. Mettre à jour la vidéo
     const video = await prisma.videos.update({
       where: {
@@ -116,6 +143,9 @@ export async function updateVideoAction(formData: FormData) {
         lien: formData.get("url")?.toString() || "",
         duree: formData.get("duree")?.toString() || "",
         date: dateValue || new Date(), // Utiliser la date actuelle si aucune date n'est fournie
+        afficher_carrousel_main: formData.get("afficherCarrouselMain") === "on",
+        afficher_section_videos: formData.get("afficherSectionVideos") === "on",
+        tag_section_videos: tagSectionVideosId,
         afficher: formData.get("isPublished") === "on",
         derniere_modification: new Date(),
       },

@@ -28,12 +28,21 @@ type PhotoAddTabsProps = {
     id: string;
     label: string;
   }[];
+  carouselCounts: {
+    mainCount: number;
+    mainLimit: number;
+    mainRemaining: number;
+    photosCount: number;
+    photosLimit: number;
+    photosRemaining: number;
+  };
 };
 
 export function PhotoAddItem({
   availableTags,
   availableSearchTags,
   availableAlbums,
+  carouselCounts,
 }: PhotoAddTabsProps) {
   const [activeTab, setActiveTab] = useState<string>("simple");
 
@@ -73,6 +82,7 @@ export function PhotoAddItem({
               availableTags={availableTags}
               availableSearchTags={availableSearchTags}
               availableAlbums={availableAlbums}
+              carouselCounts={carouselCounts}
             />
           </TabsContent>
 
@@ -81,6 +91,7 @@ export function PhotoAddItem({
               availableTags={availableTags}
               availableSearchTags={availableSearchTags}
               availableAlbums={availableAlbums}
+              carouselCounts={carouselCounts}
             />
           </TabsContent>
         </Tabs>

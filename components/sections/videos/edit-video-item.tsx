@@ -64,14 +64,26 @@ type EditVideoFormProps = {
     duree: string;
     date?: Date;
     afficher: boolean;
+    afficher_carrousel_main: boolean;
+    afficher_section_videos: boolean;
+    tag_section_videos: string | null;
     tags: string[];
   };
   availableTags: TagOption[];
+  carouselCounts: {
+    mainCount: number;
+    mainLimit: number;
+    mainRemaining: number;
+    videosCount: number;
+    videosLimit: number;
+    videosRemaining: number;
+  };
 };
 
 export function EditVideoItem({
   initialData,
   availableTags,
+  carouselCounts,
 }: EditVideoFormProps) {
   const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(
@@ -87,6 +99,15 @@ export function EditVideoItem({
   const [markdown, setMarkdown] = useState<string>(initialData.description);
   const [isDeleting, setIsDeleting] = useState(false);
   const editorRef = useRef<MDXEditorMethods | null>(null);
+  const [afficherCarrouselMain, setAfficherCarrouselMain] = useState(
+    initialData.afficher_carrousel_main
+  );
+  const [afficherSectionVideos, setAfficherSectionVideos] = useState(
+    initialData.afficher_section_videos
+  );
+  const [tagSectionVideos, setTagSectionVideos] = useState<string | null>(
+    initialData.tag_section_videos || null
+  );
 
   const handleTagsChange = (newSelectedTags: string[]) => {
     setSelectedTags(newSelectedTags);
@@ -124,6 +145,17 @@ export function EditVideoItem({
       selectedTags.forEach((tag) => {
         formData.append("tags", tag);
       });
+
+      // Ajouter les états carrousel
+      if (afficherCarrouselMain) {
+        formData.set("afficherCarrouselMain", "on");
+      }
+      if (afficherSectionVideos) {
+        formData.set("afficherSectionVideos", "on");
+      }
+      if (tagSectionVideos) {
+        formData.set("tagSectionVideos", tagSectionVideos);
+      }
 
       // Ajouter la date au format ISO si elle existe
       if (date) {
@@ -359,6 +391,132 @@ export function EditVideoItem({
                 name="date"
                 value={`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`}
               />
+            )}
+          </div>
+
+          <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
+            <h3 className="text-sm font-medium">
+              Mise en avant sur la page d&apos;accueil
+            </h3>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="afficherCarrouselMain"
+                  checked={afficherCarrouselMain}
+                  onCheckedChange={(checked) => {
+                    if (checked && carouselCounts.mainRemaining <= 0) {
+                      toast.error(
+                        `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} vidéos/photos max)`
+                      );
+                      return;
+                    }
+                    setAfficherCarrouselMain(checked);
+                  }}
+                  disabled={
+                    !afficherCarrouselMain && carouselCounts.mainRemaining <= 0
+                  }
+                  className="cursor-pointer"
+                />
+                <Label
+                  htmlFor="afficherCarrouselMain"
+                  className="cursor-pointer"
+                >
+                  Carrousel principal (vidéos & photos)
+                </Label>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {carouselCounts.mainCount + (afficherCarrouselMain ? 1 : 0)} /{" "}
+                {carouselCounts.mainLimit}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between mt-2">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="afficherSectionVideos"
+                  checked={afficherSectionVideos}
+                  onCheckedChange={(checked) => {
+                    if (checked && carouselCounts.videosRemaining <= 0) {
+                      toast.error(
+                        `Limite atteinte pour la section Vidéos (${carouselCounts.videosLimit} vidéos max)`
+                      );
+                      return;
+                    }
+                    setAfficherSectionVideos(checked);
+                    // Réinitialiser le tag si on désactive
+                    if (!checked) {
+                      setTagSectionVideos(null);
+                    }
+                  }}
+                  disabled={
+                    !afficherSectionVideos &&
+                    carouselCounts.videosRemaining <= 0
+                  }
+                  className="cursor-pointer"
+                />
+                <Label
+                  htmlFor="afficherSectionVideos"
+                  className="cursor-pointer"
+                >
+                  Afficher dans la section Vidéos
+                </Label>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                {carouselCounts.videosCount + (afficherSectionVideos ? 1 : 0)} /{" "}
+                {carouselCounts.videosLimit}
+              </span>
+            </div>
+
+            {afficherSectionVideos && (
+              <div className="flex flex-col gap-2 mt-2 pl-4 border-l-2 border-primary/20">
+                <Label htmlFor="tagSectionVideos" className="text-sm">
+                  Tag à mettre en avant (parmi les tags sélectionnés)
+                </Label>
+                {selectedTags.length === 0 ? (
+                  <p className="text-xs text-muted-foreground italic">
+                    Veuillez d&apos;abord sélectionner des tags pour cette vidéo
+                  </p>
+                ) : (
+                  <>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedTags.map((tagId) => {
+                        const tag = availableTags.find((t) => t.id === tagId);
+                        if (!tag) return null;
+                        return (
+                          <Button
+                            key={tag.id}
+                            type="button"
+                            variant={
+                              tagSectionVideos === tag.id
+                                ? "default"
+                                : "outline"
+                            }
+                            size="sm"
+                            onClick={() => {
+                              setTagSectionVideos(
+                                tagSectionVideos === tag.id ? null : tag.id
+                              );
+                            }}
+                            className="cursor-pointer"
+                          >
+                            {tag.label}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                    {tagSectionVideos && (
+                      <p className="text-xs text-muted-foreground">
+                        Tag mis en avant :{" "}
+                        {
+                          availableTags.find((t) => t.id === tagSectionVideos)
+                            ?.label
+                        }
+                      </p>
+                    )}
+                  </>
+                )}
+              </div>
             )}
           </div>
 
