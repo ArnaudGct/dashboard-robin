@@ -113,7 +113,7 @@ export function AppSidebar({
       <SidebarHeader>
         <div className="flex items-center justify-start px-4 py-2 gap-4">
           <Image
-            src="/arnaud_graciet_pp.webp"
+            src="/photo_robin_main.webp"
             alt="Logo"
             width={32}
             height={32}

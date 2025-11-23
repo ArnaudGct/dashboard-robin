@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/select";
 import { Tag } from "@/components/tag";
 
+const MAX_MAIN_CAROUSEL = 6;
+const MAX_VIDEOS_CAROUSEL = 6;
+
 type VideoTag = {
   id_tags: number;
   titre: string;
@@ -99,7 +102,7 @@ export function VideoFeaturedSections({
               Carrousel principal (Accueil)
             </h3>
             <p className="text-sm text-muted-foreground">
-              {mainCarouselVideos.length} vidéo
+              {mainCarouselVideos.length} / {MAX_MAIN_CAROUSEL} vidéo
               {mainCarouselVideos.length !== 1 ? "s" : ""} épinglée
               {mainCarouselVideos.length !== 1 ? "s" : ""}
             </p>
@@ -109,6 +112,7 @@ export function VideoFeaturedSections({
             size="sm"
             onClick={() => setIsAddingMain(!isAddingMain)}
             className="cursor-pointer"
+            disabled={mainCarouselVideos.length >= MAX_MAIN_CAROUSEL}
           >
             <Plus className="h-4 w-4 mr-1" />
             Ajouter
@@ -180,10 +184,10 @@ export function VideoFeaturedSections({
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-lg font-semibold">
-                Carrousel section vidéos
+                Section vidéos (Accueil)
               </h3>
               <p className="text-sm text-muted-foreground">
-                {videosCarouselVideos.length} vidéo
+                {videosCarouselVideos.length} / {MAX_VIDEOS_CAROUSEL} vidéo
                 {videosCarouselVideos.length !== 1 ? "s" : ""} épinglée
                 {videosCarouselVideos.length !== 1 ? "s" : ""}
               </p>
@@ -193,6 +197,7 @@ export function VideoFeaturedSections({
               size="sm"
               onClick={() => setIsAddingVideos(!isAddingVideos)}
               className="cursor-pointer"
+              disabled={videosCarouselVideos.length >= MAX_VIDEOS_CAROUSEL}
             >
               <Plus className="h-4 w-4 mr-1" />
               Ajouter

@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
 
 const PORTFOLIO_BASE_URL = process.env.NEXT_PUBLIC_PORTFOLIO_URL || "";
 
+const MAX_MAIN_CAROUSEL = 6;
+const MAX_PHOTOS_CAROUSEL = 12;
+
 type Photo = {
   id_pho: number;
   lien_high: string;
@@ -73,7 +76,7 @@ export function PhotoFeaturedSections({
               Carrousel principal (Accueil)
             </h3>
             <p className="text-sm text-muted-foreground">
-              {mainCarouselPhotos.length} photo
+              {mainCarouselPhotos.length} / {MAX_MAIN_CAROUSEL} photo
               {mainCarouselPhotos.length !== 1 ? "s" : ""} épinglée
               {mainCarouselPhotos.length !== 1 ? "s" : ""}
             </p>
@@ -83,6 +86,7 @@ export function PhotoFeaturedSections({
             size="sm"
             onClick={() => setIsAddingMain(!isAddingMain)}
             className="cursor-pointer"
+            disabled={mainCarouselPhotos.length >= MAX_MAIN_CAROUSEL}
           >
             <Plus className="h-4 w-4 mr-1" />
             Ajouter
@@ -152,9 +156,11 @@ export function PhotoFeaturedSections({
       <Card className="p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-lg font-semibold">Carrousel section photos</h3>
+            <h3 className="text-lg font-semibold">
+              Carrousel photos (Accueil)
+            </h3>
             <p className="text-sm text-muted-foreground">
-              {photosCarouselPhotos.length} photo
+              {photosCarouselPhotos.length} / {MAX_PHOTOS_CAROUSEL} photo
               {photosCarouselPhotos.length !== 1 ? "s" : ""} épinglée
               {photosCarouselPhotos.length !== 1 ? "s" : ""}
             </p>
@@ -164,6 +170,7 @@ export function PhotoFeaturedSections({
             size="sm"
             onClick={() => setIsAddingPhotos(!isAddingPhotos)}
             className="cursor-pointer"
+            disabled={photosCarouselPhotos.length >= MAX_PHOTOS_CAROUSEL}
           >
             <Plus className="h-4 w-4 mr-1" />
             Ajouter
