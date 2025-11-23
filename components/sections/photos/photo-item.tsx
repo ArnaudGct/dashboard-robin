@@ -24,6 +24,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { PhotoFeaturedSections } from "./photo-featured-sections";
+import { togglePhotoFeaturedAction } from "@/actions/photos-actions";
+import { toast } from "sonner";
 
 const PORTFOLIO_BASE_URL = process.env.NEXT_PUBLIC_PORTFOLIO_URL || "";
 
@@ -37,6 +40,8 @@ type Photo = {
   alt: string;
   date: Date;
   afficher: boolean;
+  afficher_carrousel_main: boolean;
+  afficher_carrousel_photos: boolean;
   photos_tags_link: {
     id_tags: number;
     photos_tags: {
@@ -114,29 +119,31 @@ export function PhotoItem({ photos, albums }: PhotosContainerProps) {
     return path;
   };
 
+  // Fonction pour gérer le basculement des photos épinglées
+  const handleToggleFeatured = async (
+    photoId: number,
+    section: "main" | "photos"
+  ) => {
+    const result = await togglePhotoFeaturedAction(photoId, section);
+    if (result.success) {
+      toast.success(
+        section === "main"
+          ? "Photo mise à jour pour le carrousel principal"
+          : "Photo mise à jour pour la section photos"
+      );
+    } else {
+      toast.error(result.error || "Erreur lors de la mise à jour");
+    }
+  };
+
   return (
     <section className="">
       <div className="flex flex-col gap-8">
-        {/* <div className="flex items-center justify-between">
-          <p className="text-3xl font-bold">Photos</p>
-          <div className="flex gap-2">
-            <Link href="/photos/albums">
-              <Button variant="outline" className="cursor-pointer">
-                Albums
-              </Button>
-            </Link>
-            <Link href="/photos/tags?from=photos">
-              <Button variant="outline" className="cursor-pointer">
-                Tags
-              </Button>
-            </Link>
-            <Link href="/photos/add">
-              <Button className="cursor-pointer">
-                <Plus /> Ajouter une photo
-              </Button>
-            </Link>
-          </div>
-        </div> */}
+        {/* Sections épinglées */}
+        <PhotoFeaturedSections
+          photos={photos}
+          onToggleFeatured={handleToggleFeatured}
+        />
 
         {/* Combobox pour filtrer par album */}
         <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center justify-between">

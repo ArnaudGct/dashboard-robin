@@ -1800,3 +1800,51 @@ async function deleteOriginalFromCloudinary(
     return false;
   }
 }
+
+// Basculer l'état d'une photo dans les sections épinglées
+export async function togglePhotoFeaturedAction(
+  photoId: number,
+  section: "main" | "photos"
+) {
+  try {
+    const photo = await prisma.photos.findUnique({
+      where: { id_pho: photoId },
+      select: {
+        afficher_carrousel_main: true,
+        afficher_carrousel_photos: true,
+      },
+    });
+
+    if (!photo) {
+      throw new Error("Photo introuvable");
+    }
+
+    const updateData: {
+      afficher_carrousel_main?: boolean;
+      afficher_carrousel_photos?: boolean;
+    } = {};
+
+    if (section === "main") {
+      updateData.afficher_carrousel_main = !photo.afficher_carrousel_main;
+    } else if (section === "photos") {
+      updateData.afficher_carrousel_photos = !photo.afficher_carrousel_photos;
+    }
+
+    await prisma.photos.update({
+      where: { id_pho: photoId },
+      data: updateData,
+    });
+
+    revalidatePath("/photos");
+    return { success: true };
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la photo:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Erreur lors de la mise à jour",
+    };
+  }
+}

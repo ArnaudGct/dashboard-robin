@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
-import { VideoItem } from "@/components/sections/videos/video-item";
+import { VideoListContainer } from "@/components/sections/videos/video-list-container";
 import { Suspense } from "react";
 
 // Composant de chargement pour la Suspense
@@ -84,6 +84,18 @@ async function VideosList() {
         date: "desc",
       },
     });
+
+    // Récupérer tous les tags disponibles
+    const allTags = await prisma.videos_tags.findMany({
+      select: {
+        id_tags: true,
+        titre: true,
+      },
+      orderBy: {
+        titre: "asc",
+      },
+    });
+
     // Si aucune vidéo, afficher un message
     if (videos.length === 0) {
       return (
@@ -96,13 +108,7 @@ async function VideosList() {
     }
 
     // Sinon afficher toutes les vidéos
-    return (
-      <div className="flex flex-col gap-6">
-        {videos.map((video) => (
-          <VideoItem key={video.id_vid} video={video} />
-        ))}
-      </div>
-    );
+    return <VideoListContainer videos={videos} allTags={allTags} />;
   } catch (error) {
     console.error("Erreur lors du chargement des vidéos:", error);
     return (

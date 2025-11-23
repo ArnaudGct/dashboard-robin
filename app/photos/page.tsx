@@ -72,6 +72,8 @@ async function PhotoData() {
       alt: true,
       date: true,
       afficher: true,
+      afficher_carrousel_main: true,
+      afficher_carrousel_photos: true,
       photos_tags_link: {
         select: {
           id_tags: true,

@@ -326,3 +326,78 @@ export async function createVideoTagAction(
     throw error;
   }
 }
+
+// Basculer l'état d'une vidéo dans les sections épinglées
+export async function toggleVideoFeaturedAction(
+  videoId: number,
+  section: "main" | "videos"
+) {
+  try {
+    const video = await prisma.videos.findUnique({
+      where: { id_vid: videoId },
+      select: {
+        afficher_carrousel_main: true,
+        afficher_section_videos: true,
+      },
+    });
+
+    if (!video) {
+      throw new Error("Vidéo introuvable");
+    }
+
+    const updateData: {
+      afficher_carrousel_main?: boolean;
+      afficher_section_videos?: boolean;
+    } = {};
+
+    if (section === "main") {
+      updateData.afficher_carrousel_main = !video.afficher_carrousel_main;
+    } else if (section === "videos") {
+      updateData.afficher_section_videos = !video.afficher_section_videos;
+    }
+
+    await prisma.videos.update({
+      where: { id_vid: videoId },
+      data: updateData,
+    });
+
+    revalidatePath("/videos");
+    return { success: true };
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour de la vidéo:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Erreur lors de la mise à jour",
+    };
+  }
+}
+
+// Mettre à jour le tag mis en avant pour une vidéo dans la section vidéos
+export async function updateVideoFeaturedTagAction(
+  videoId: number,
+  tagId: number | null
+) {
+  try {
+    await prisma.videos.update({
+      where: { id_vid: videoId },
+      data: {
+        tag_section_videos: tagId,
+      },
+    });
+
+    revalidatePath("/videos");
+    return { success: true };
+  } catch (error) {
+    console.error("Erreur lors de la mise à jour du tag:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Erreur lors de la mise à jour",
+    };
+  }
+}
