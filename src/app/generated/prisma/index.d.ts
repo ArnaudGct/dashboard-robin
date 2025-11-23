@@ -148,6 +148,11 @@ export type apropos_outils = $Result.DefaultSelection<Prisma.$apropos_outilsPayl
  * 
  */
 export type apropos_etudes = $Result.DefaultSelection<Prisma.$apropos_etudesPayload>
+/**
+ * Model apropos_experiences
+ * 
+ */
+export type apropos_experiences = $Result.DefaultSelection<Prisma.$apropos_experiencesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -543,6 +548,16 @@ export class PrismaClient<
     * ```
     */
   get apropos_etudes(): Prisma.apropos_etudesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.apropos_experiences`: Exposes CRUD operations for the **apropos_experiences** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Apropos_experiences
+    * const apropos_experiences = await prisma.apropos_experiences.findMany()
+    * ```
+    */
+  get apropos_experiences(): Prisma.apropos_experiencesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1009,7 +1024,8 @@ export namespace Prisma {
     accueil_general: 'accueil_general',
     apropos_general: 'apropos_general',
     apropos_outils: 'apropos_outils',
-    apropos_etudes: 'apropos_etudes'
+    apropos_etudes: 'apropos_etudes',
+    apropos_experiences: 'apropos_experiences'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1028,7 +1044,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "experiences" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "clients" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes"
+      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "experiences" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "clients" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes" | "apropos_experiences"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2814,6 +2830,72 @@ export namespace Prisma {
           }
         }
       }
+      apropos_experiences: {
+        payload: Prisma.$apropos_experiencesPayload<ExtArgs>
+        fields: Prisma.apropos_experiencesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.apropos_experiencesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.apropos_experiencesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          findFirst: {
+            args: Prisma.apropos_experiencesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.apropos_experiencesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          findMany: {
+            args: Prisma.apropos_experiencesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>[]
+          }
+          create: {
+            args: Prisma.apropos_experiencesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          createMany: {
+            args: Prisma.apropos_experiencesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.apropos_experiencesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          update: {
+            args: Prisma.apropos_experiencesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          deleteMany: {
+            args: Prisma.apropos_experiencesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.apropos_experiencesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.apropos_experiencesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$apropos_experiencesPayload>
+          }
+          aggregate: {
+            args: Prisma.Apropos_experiencesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApropos_experiences>
+          }
+          groupBy: {
+            args: Prisma.apropos_experiencesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Apropos_experiencesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.apropos_experiencesCountArgs<ExtArgs>
+            result: $Utils.Optional<Apropos_experiencesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2925,6 +3007,7 @@ export namespace Prisma {
     apropos_general?: apropos_generalOmit
     apropos_outils?: apropos_outilsOmit
     apropos_etudes?: apropos_etudesOmit
+    apropos_experiences?: apropos_experiencesOmit
   }
 
   /* Types for Logging */
@@ -29227,6 +29310,944 @@ export namespace Prisma {
 
 
   /**
+   * Model apropos_experiences
+   */
+
+  export type AggregateApropos_experiences = {
+    _count: Apropos_experiencesCountAggregateOutputType | null
+    _avg: Apropos_experiencesAvgAggregateOutputType | null
+    _sum: Apropos_experiencesSumAggregateOutputType | null
+    _min: Apropos_experiencesMinAggregateOutputType | null
+    _max: Apropos_experiencesMaxAggregateOutputType | null
+  }
+
+  export type Apropos_experiencesAvgAggregateOutputType = {
+    id_exp: number | null
+  }
+
+  export type Apropos_experiencesSumAggregateOutputType = {
+    id_exp: number | null
+  }
+
+  export type Apropos_experiencesMinAggregateOutputType = {
+    id_exp: number | null
+    date_debut: Date | null
+    date_fin: Date | null
+    titre: string | null
+    nom_entreprise: string | null
+    lien_entreprise: string | null
+    afficher: boolean | null
+  }
+
+  export type Apropos_experiencesMaxAggregateOutputType = {
+    id_exp: number | null
+    date_debut: Date | null
+    date_fin: Date | null
+    titre: string | null
+    nom_entreprise: string | null
+    lien_entreprise: string | null
+    afficher: boolean | null
+  }
+
+  export type Apropos_experiencesCountAggregateOutputType = {
+    id_exp: number
+    date_debut: number
+    date_fin: number
+    titre: number
+    nom_entreprise: number
+    lien_entreprise: number
+    afficher: number
+    _all: number
+  }
+
+
+  export type Apropos_experiencesAvgAggregateInputType = {
+    id_exp?: true
+  }
+
+  export type Apropos_experiencesSumAggregateInputType = {
+    id_exp?: true
+  }
+
+  export type Apropos_experiencesMinAggregateInputType = {
+    id_exp?: true
+    date_debut?: true
+    date_fin?: true
+    titre?: true
+    nom_entreprise?: true
+    lien_entreprise?: true
+    afficher?: true
+  }
+
+  export type Apropos_experiencesMaxAggregateInputType = {
+    id_exp?: true
+    date_debut?: true
+    date_fin?: true
+    titre?: true
+    nom_entreprise?: true
+    lien_entreprise?: true
+    afficher?: true
+  }
+
+  export type Apropos_experiencesCountAggregateInputType = {
+    id_exp?: true
+    date_debut?: true
+    date_fin?: true
+    titre?: true
+    nom_entreprise?: true
+    lien_entreprise?: true
+    afficher?: true
+    _all?: true
+  }
+
+  export type Apropos_experiencesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which apropos_experiences to aggregate.
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apropos_experiences to fetch.
+     */
+    orderBy?: apropos_experiencesOrderByWithRelationInput | apropos_experiencesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: apropos_experiencesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apropos_experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apropos_experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned apropos_experiences
+    **/
+    _count?: true | Apropos_experiencesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Apropos_experiencesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Apropos_experiencesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Apropos_experiencesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Apropos_experiencesMaxAggregateInputType
+  }
+
+  export type GetApropos_experiencesAggregateType<T extends Apropos_experiencesAggregateArgs> = {
+        [P in keyof T & keyof AggregateApropos_experiences]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApropos_experiences[P]>
+      : GetScalarType<T[P], AggregateApropos_experiences[P]>
+  }
+
+
+
+
+  export type apropos_experiencesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: apropos_experiencesWhereInput
+    orderBy?: apropos_experiencesOrderByWithAggregationInput | apropos_experiencesOrderByWithAggregationInput[]
+    by: Apropos_experiencesScalarFieldEnum[] | Apropos_experiencesScalarFieldEnum
+    having?: apropos_experiencesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Apropos_experiencesCountAggregateInputType | true
+    _avg?: Apropos_experiencesAvgAggregateInputType
+    _sum?: Apropos_experiencesSumAggregateInputType
+    _min?: Apropos_experiencesMinAggregateInputType
+    _max?: Apropos_experiencesMaxAggregateInputType
+  }
+
+  export type Apropos_experiencesGroupByOutputType = {
+    id_exp: number
+    date_debut: Date
+    date_fin: Date | null
+    titre: string
+    nom_entreprise: string
+    lien_entreprise: string
+    afficher: boolean
+    _count: Apropos_experiencesCountAggregateOutputType | null
+    _avg: Apropos_experiencesAvgAggregateOutputType | null
+    _sum: Apropos_experiencesSumAggregateOutputType | null
+    _min: Apropos_experiencesMinAggregateOutputType | null
+    _max: Apropos_experiencesMaxAggregateOutputType | null
+  }
+
+  type GetApropos_experiencesGroupByPayload<T extends apropos_experiencesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Apropos_experiencesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Apropos_experiencesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Apropos_experiencesGroupByOutputType[P]>
+            : GetScalarType<T[P], Apropos_experiencesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type apropos_experiencesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_exp?: boolean
+    date_debut?: boolean
+    date_fin?: boolean
+    titre?: boolean
+    nom_entreprise?: boolean
+    lien_entreprise?: boolean
+    afficher?: boolean
+  }, ExtArgs["result"]["apropos_experiences"]>
+
+
+
+  export type apropos_experiencesSelectScalar = {
+    id_exp?: boolean
+    date_debut?: boolean
+    date_fin?: boolean
+    titre?: boolean
+    nom_entreprise?: boolean
+    lien_entreprise?: boolean
+    afficher?: boolean
+  }
+
+  export type apropos_experiencesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_exp" | "date_debut" | "date_fin" | "titre" | "nom_entreprise" | "lien_entreprise" | "afficher", ExtArgs["result"]["apropos_experiences"]>
+
+  export type $apropos_experiencesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "apropos_experiences"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id_exp: number
+      date_debut: Date
+      date_fin: Date | null
+      titre: string
+      nom_entreprise: string
+      lien_entreprise: string
+      afficher: boolean
+    }, ExtArgs["result"]["apropos_experiences"]>
+    composites: {}
+  }
+
+  type apropos_experiencesGetPayload<S extends boolean | null | undefined | apropos_experiencesDefaultArgs> = $Result.GetResult<Prisma.$apropos_experiencesPayload, S>
+
+  type apropos_experiencesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<apropos_experiencesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Apropos_experiencesCountAggregateInputType | true
+    }
+
+  export interface apropos_experiencesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['apropos_experiences'], meta: { name: 'apropos_experiences' } }
+    /**
+     * Find zero or one Apropos_experiences that matches the filter.
+     * @param {apropos_experiencesFindUniqueArgs} args - Arguments to find a Apropos_experiences
+     * @example
+     * // Get one Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends apropos_experiencesFindUniqueArgs>(args: SelectSubset<T, apropos_experiencesFindUniqueArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Apropos_experiences that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {apropos_experiencesFindUniqueOrThrowArgs} args - Arguments to find a Apropos_experiences
+     * @example
+     * // Get one Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends apropos_experiencesFindUniqueOrThrowArgs>(args: SelectSubset<T, apropos_experiencesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Apropos_experiences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesFindFirstArgs} args - Arguments to find a Apropos_experiences
+     * @example
+     * // Get one Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends apropos_experiencesFindFirstArgs>(args?: SelectSubset<T, apropos_experiencesFindFirstArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Apropos_experiences that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesFindFirstOrThrowArgs} args - Arguments to find a Apropos_experiences
+     * @example
+     * // Get one Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends apropos_experiencesFindFirstOrThrowArgs>(args?: SelectSubset<T, apropos_experiencesFindFirstOrThrowArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Apropos_experiences that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findMany()
+     * 
+     * // Get first 10 Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.findMany({ take: 10 })
+     * 
+     * // Only select the `id_exp`
+     * const apropos_experiencesWithId_expOnly = await prisma.apropos_experiences.findMany({ select: { id_exp: true } })
+     * 
+     */
+    findMany<T extends apropos_experiencesFindManyArgs>(args?: SelectSubset<T, apropos_experiencesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Apropos_experiences.
+     * @param {apropos_experiencesCreateArgs} args - Arguments to create a Apropos_experiences.
+     * @example
+     * // Create one Apropos_experiences
+     * const Apropos_experiences = await prisma.apropos_experiences.create({
+     *   data: {
+     *     // ... data to create a Apropos_experiences
+     *   }
+     * })
+     * 
+     */
+    create<T extends apropos_experiencesCreateArgs>(args: SelectSubset<T, apropos_experiencesCreateArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Apropos_experiences.
+     * @param {apropos_experiencesCreateManyArgs} args - Arguments to create many Apropos_experiences.
+     * @example
+     * // Create many Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends apropos_experiencesCreateManyArgs>(args?: SelectSubset<T, apropos_experiencesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Apropos_experiences.
+     * @param {apropos_experiencesDeleteArgs} args - Arguments to delete one Apropos_experiences.
+     * @example
+     * // Delete one Apropos_experiences
+     * const Apropos_experiences = await prisma.apropos_experiences.delete({
+     *   where: {
+     *     // ... filter to delete one Apropos_experiences
+     *   }
+     * })
+     * 
+     */
+    delete<T extends apropos_experiencesDeleteArgs>(args: SelectSubset<T, apropos_experiencesDeleteArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Apropos_experiences.
+     * @param {apropos_experiencesUpdateArgs} args - Arguments to update one Apropos_experiences.
+     * @example
+     * // Update one Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends apropos_experiencesUpdateArgs>(args: SelectSubset<T, apropos_experiencesUpdateArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Apropos_experiences.
+     * @param {apropos_experiencesDeleteManyArgs} args - Arguments to filter Apropos_experiences to delete.
+     * @example
+     * // Delete a few Apropos_experiences
+     * const { count } = await prisma.apropos_experiences.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends apropos_experiencesDeleteManyArgs>(args?: SelectSubset<T, apropos_experiencesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Apropos_experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends apropos_experiencesUpdateManyArgs>(args: SelectSubset<T, apropos_experiencesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Apropos_experiences.
+     * @param {apropos_experiencesUpsertArgs} args - Arguments to update or create a Apropos_experiences.
+     * @example
+     * // Update or create a Apropos_experiences
+     * const apropos_experiences = await prisma.apropos_experiences.upsert({
+     *   create: {
+     *     // ... data to create a Apropos_experiences
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Apropos_experiences we want to update
+     *   }
+     * })
+     */
+    upsert<T extends apropos_experiencesUpsertArgs>(args: SelectSubset<T, apropos_experiencesUpsertArgs<ExtArgs>>): Prisma__apropos_experiencesClient<$Result.GetResult<Prisma.$apropos_experiencesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Apropos_experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesCountArgs} args - Arguments to filter Apropos_experiences to count.
+     * @example
+     * // Count the number of Apropos_experiences
+     * const count = await prisma.apropos_experiences.count({
+     *   where: {
+     *     // ... the filter for the Apropos_experiences we want to count
+     *   }
+     * })
+    **/
+    count<T extends apropos_experiencesCountArgs>(
+      args?: Subset<T, apropos_experiencesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Apropos_experiencesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Apropos_experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Apropos_experiencesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Apropos_experiencesAggregateArgs>(args: Subset<T, Apropos_experiencesAggregateArgs>): Prisma.PrismaPromise<GetApropos_experiencesAggregateType<T>>
+
+    /**
+     * Group by Apropos_experiences.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {apropos_experiencesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends apropos_experiencesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: apropos_experiencesGroupByArgs['orderBy'] }
+        : { orderBy?: apropos_experiencesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, apropos_experiencesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApropos_experiencesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the apropos_experiences model
+   */
+  readonly fields: apropos_experiencesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for apropos_experiences.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__apropos_experiencesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the apropos_experiences model
+   */
+  interface apropos_experiencesFieldRefs {
+    readonly id_exp: FieldRef<"apropos_experiences", 'Int'>
+    readonly date_debut: FieldRef<"apropos_experiences", 'DateTime'>
+    readonly date_fin: FieldRef<"apropos_experiences", 'DateTime'>
+    readonly titre: FieldRef<"apropos_experiences", 'String'>
+    readonly nom_entreprise: FieldRef<"apropos_experiences", 'String'>
+    readonly lien_entreprise: FieldRef<"apropos_experiences", 'String'>
+    readonly afficher: FieldRef<"apropos_experiences", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * apropos_experiences findUnique
+   */
+  export type apropos_experiencesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter, which apropos_experiences to fetch.
+     */
+    where: apropos_experiencesWhereUniqueInput
+  }
+
+  /**
+   * apropos_experiences findUniqueOrThrow
+   */
+  export type apropos_experiencesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter, which apropos_experiences to fetch.
+     */
+    where: apropos_experiencesWhereUniqueInput
+  }
+
+  /**
+   * apropos_experiences findFirst
+   */
+  export type apropos_experiencesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter, which apropos_experiences to fetch.
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apropos_experiences to fetch.
+     */
+    orderBy?: apropos_experiencesOrderByWithRelationInput | apropos_experiencesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for apropos_experiences.
+     */
+    cursor?: apropos_experiencesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apropos_experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apropos_experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of apropos_experiences.
+     */
+    distinct?: Apropos_experiencesScalarFieldEnum | Apropos_experiencesScalarFieldEnum[]
+  }
+
+  /**
+   * apropos_experiences findFirstOrThrow
+   */
+  export type apropos_experiencesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter, which apropos_experiences to fetch.
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apropos_experiences to fetch.
+     */
+    orderBy?: apropos_experiencesOrderByWithRelationInput | apropos_experiencesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for apropos_experiences.
+     */
+    cursor?: apropos_experiencesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apropos_experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apropos_experiences.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of apropos_experiences.
+     */
+    distinct?: Apropos_experiencesScalarFieldEnum | Apropos_experiencesScalarFieldEnum[]
+  }
+
+  /**
+   * apropos_experiences findMany
+   */
+  export type apropos_experiencesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter, which apropos_experiences to fetch.
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of apropos_experiences to fetch.
+     */
+    orderBy?: apropos_experiencesOrderByWithRelationInput | apropos_experiencesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing apropos_experiences.
+     */
+    cursor?: apropos_experiencesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` apropos_experiences from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` apropos_experiences.
+     */
+    skip?: number
+    distinct?: Apropos_experiencesScalarFieldEnum | Apropos_experiencesScalarFieldEnum[]
+  }
+
+  /**
+   * apropos_experiences create
+   */
+  export type apropos_experiencesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a apropos_experiences.
+     */
+    data: XOR<apropos_experiencesCreateInput, apropos_experiencesUncheckedCreateInput>
+  }
+
+  /**
+   * apropos_experiences createMany
+   */
+  export type apropos_experiencesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many apropos_experiences.
+     */
+    data: apropos_experiencesCreateManyInput | apropos_experiencesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * apropos_experiences update
+   */
+  export type apropos_experiencesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a apropos_experiences.
+     */
+    data: XOR<apropos_experiencesUpdateInput, apropos_experiencesUncheckedUpdateInput>
+    /**
+     * Choose, which apropos_experiences to update.
+     */
+    where: apropos_experiencesWhereUniqueInput
+  }
+
+  /**
+   * apropos_experiences updateMany
+   */
+  export type apropos_experiencesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update apropos_experiences.
+     */
+    data: XOR<apropos_experiencesUpdateManyMutationInput, apropos_experiencesUncheckedUpdateManyInput>
+    /**
+     * Filter which apropos_experiences to update
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * Limit how many apropos_experiences to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * apropos_experiences upsert
+   */
+  export type apropos_experiencesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the apropos_experiences to update in case it exists.
+     */
+    where: apropos_experiencesWhereUniqueInput
+    /**
+     * In case the apropos_experiences found by the `where` argument doesn't exist, create a new apropos_experiences with this data.
+     */
+    create: XOR<apropos_experiencesCreateInput, apropos_experiencesUncheckedCreateInput>
+    /**
+     * In case the apropos_experiences was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<apropos_experiencesUpdateInput, apropos_experiencesUncheckedUpdateInput>
+  }
+
+  /**
+   * apropos_experiences delete
+   */
+  export type apropos_experiencesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+    /**
+     * Filter which apropos_experiences to delete.
+     */
+    where: apropos_experiencesWhereUniqueInput
+  }
+
+  /**
+   * apropos_experiences deleteMany
+   */
+  export type apropos_experiencesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which apropos_experiences to delete
+     */
+    where?: apropos_experiencesWhereInput
+    /**
+     * Limit how many apropos_experiences to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * apropos_experiences without action
+   */
+  export type apropos_experiencesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the apropos_experiences
+     */
+    select?: apropos_experiencesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the apropos_experiences
+     */
+    omit?: apropos_experiencesOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -29563,6 +30584,19 @@ export namespace Prisma {
   export type Apropos_etudesScalarFieldEnum = (typeof Apropos_etudesScalarFieldEnum)[keyof typeof Apropos_etudesScalarFieldEnum]
 
 
+  export const Apropos_experiencesScalarFieldEnum: {
+    id_exp: 'id_exp',
+    date_debut: 'date_debut',
+    date_fin: 'date_fin',
+    titre: 'titre',
+    nom_entreprise: 'nom_entreprise',
+    lien_entreprise: 'lien_entreprise',
+    afficher: 'afficher'
+  };
+
+  export type Apropos_experiencesScalarFieldEnum = (typeof Apropos_experiencesScalarFieldEnum)[keyof typeof Apropos_experiencesScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -29793,6 +30827,15 @@ export namespace Prisma {
   };
 
   export type apropos_etudesOrderByRelevanceFieldEnum = (typeof apropos_etudesOrderByRelevanceFieldEnum)[keyof typeof apropos_etudesOrderByRelevanceFieldEnum]
+
+
+  export const apropos_experiencesOrderByRelevanceFieldEnum: {
+    titre: 'titre',
+    nom_entreprise: 'nom_entreprise',
+    lien_entreprise: 'lien_entreprise'
+  };
+
+  export type apropos_experiencesOrderByRelevanceFieldEnum = (typeof apropos_experiencesOrderByRelevanceFieldEnum)[keyof typeof apropos_experiencesOrderByRelevanceFieldEnum]
 
 
   /**
@@ -31517,6 +32560,71 @@ export namespace Prisma {
     afficher?: BoolWithAggregatesFilter<"apropos_etudes"> | boolean
   }
 
+  export type apropos_experiencesWhereInput = {
+    AND?: apropos_experiencesWhereInput | apropos_experiencesWhereInput[]
+    OR?: apropos_experiencesWhereInput[]
+    NOT?: apropos_experiencesWhereInput | apropos_experiencesWhereInput[]
+    id_exp?: IntFilter<"apropos_experiences"> | number
+    date_debut?: DateTimeFilter<"apropos_experiences"> | Date | string
+    date_fin?: DateTimeNullableFilter<"apropos_experiences"> | Date | string | null
+    titre?: StringFilter<"apropos_experiences"> | string
+    nom_entreprise?: StringFilter<"apropos_experiences"> | string
+    lien_entreprise?: StringFilter<"apropos_experiences"> | string
+    afficher?: BoolFilter<"apropos_experiences"> | boolean
+  }
+
+  export type apropos_experiencesOrderByWithRelationInput = {
+    id_exp?: SortOrder
+    date_debut?: SortOrder
+    date_fin?: SortOrderInput | SortOrder
+    titre?: SortOrder
+    nom_entreprise?: SortOrder
+    lien_entreprise?: SortOrder
+    afficher?: SortOrder
+    _relevance?: apropos_experiencesOrderByRelevanceInput
+  }
+
+  export type apropos_experiencesWhereUniqueInput = Prisma.AtLeast<{
+    id_exp?: number
+    AND?: apropos_experiencesWhereInput | apropos_experiencesWhereInput[]
+    OR?: apropos_experiencesWhereInput[]
+    NOT?: apropos_experiencesWhereInput | apropos_experiencesWhereInput[]
+    date_debut?: DateTimeFilter<"apropos_experiences"> | Date | string
+    date_fin?: DateTimeNullableFilter<"apropos_experiences"> | Date | string | null
+    titre?: StringFilter<"apropos_experiences"> | string
+    nom_entreprise?: StringFilter<"apropos_experiences"> | string
+    lien_entreprise?: StringFilter<"apropos_experiences"> | string
+    afficher?: BoolFilter<"apropos_experiences"> | boolean
+  }, "id_exp">
+
+  export type apropos_experiencesOrderByWithAggregationInput = {
+    id_exp?: SortOrder
+    date_debut?: SortOrder
+    date_fin?: SortOrderInput | SortOrder
+    titre?: SortOrder
+    nom_entreprise?: SortOrder
+    lien_entreprise?: SortOrder
+    afficher?: SortOrder
+    _count?: apropos_experiencesCountOrderByAggregateInput
+    _avg?: apropos_experiencesAvgOrderByAggregateInput
+    _max?: apropos_experiencesMaxOrderByAggregateInput
+    _min?: apropos_experiencesMinOrderByAggregateInput
+    _sum?: apropos_experiencesSumOrderByAggregateInput
+  }
+
+  export type apropos_experiencesScalarWhereWithAggregatesInput = {
+    AND?: apropos_experiencesScalarWhereWithAggregatesInput | apropos_experiencesScalarWhereWithAggregatesInput[]
+    OR?: apropos_experiencesScalarWhereWithAggregatesInput[]
+    NOT?: apropos_experiencesScalarWhereWithAggregatesInput | apropos_experiencesScalarWhereWithAggregatesInput[]
+    id_exp?: IntWithAggregatesFilter<"apropos_experiences"> | number
+    date_debut?: DateTimeWithAggregatesFilter<"apropos_experiences"> | Date | string
+    date_fin?: DateTimeNullableWithAggregatesFilter<"apropos_experiences"> | Date | string | null
+    titre?: StringWithAggregatesFilter<"apropos_experiences"> | string
+    nom_entreprise?: StringWithAggregatesFilter<"apropos_experiences"> | string
+    lien_entreprise?: StringWithAggregatesFilter<"apropos_experiences"> | string
+    afficher?: BoolWithAggregatesFilter<"apropos_experiences"> | boolean
+  }
+
   export type autreCreateInput = {
     titre: string
     description: string
@@ -33201,6 +34309,73 @@ export namespace Prisma {
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type apropos_experiencesCreateInput = {
+    date_debut: Date | string
+    date_fin?: Date | string | null
+    titre: string
+    nom_entreprise: string
+    lien_entreprise: string
+    afficher: boolean
+  }
+
+  export type apropos_experiencesUncheckedCreateInput = {
+    id_exp?: number
+    date_debut: Date | string
+    date_fin?: Date | string | null
+    titre: string
+    nom_entreprise: string
+    lien_entreprise: string
+    afficher: boolean
+  }
+
+  export type apropos_experiencesUpdateInput = {
+    date_debut?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_fin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    nom_entreprise?: StringFieldUpdateOperationsInput | string
+    lien_entreprise?: StringFieldUpdateOperationsInput | string
+    afficher?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type apropos_experiencesUncheckedUpdateInput = {
+    id_exp?: IntFieldUpdateOperationsInput | number
+    date_debut?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_fin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    nom_entreprise?: StringFieldUpdateOperationsInput | string
+    lien_entreprise?: StringFieldUpdateOperationsInput | string
+    afficher?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type apropos_experiencesCreateManyInput = {
+    id_exp?: number
+    date_debut: Date | string
+    date_fin?: Date | string | null
+    titre: string
+    nom_entreprise: string
+    lien_entreprise: string
+    afficher: boolean
+  }
+
+  export type apropos_experiencesUpdateManyMutationInput = {
+    date_debut?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_fin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    nom_entreprise?: StringFieldUpdateOperationsInput | string
+    lien_entreprise?: StringFieldUpdateOperationsInput | string
+    afficher?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type apropos_experiencesUncheckedUpdateManyInput = {
+    id_exp?: IntFieldUpdateOperationsInput | number
+    date_debut?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_fin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    titre?: StringFieldUpdateOperationsInput | string
+    nom_entreprise?: StringFieldUpdateOperationsInput | string
+    lien_entreprise?: StringFieldUpdateOperationsInput | string
+    afficher?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -34573,6 +35748,50 @@ export namespace Prisma {
 
   export type apropos_etudesSumOrderByAggregateInput = {
     id_etu?: SortOrder
+  }
+
+  export type apropos_experiencesOrderByRelevanceInput = {
+    fields: apropos_experiencesOrderByRelevanceFieldEnum | apropos_experiencesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type apropos_experiencesCountOrderByAggregateInput = {
+    id_exp?: SortOrder
+    date_debut?: SortOrder
+    date_fin?: SortOrder
+    titre?: SortOrder
+    nom_entreprise?: SortOrder
+    lien_entreprise?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type apropos_experiencesAvgOrderByAggregateInput = {
+    id_exp?: SortOrder
+  }
+
+  export type apropos_experiencesMaxOrderByAggregateInput = {
+    id_exp?: SortOrder
+    date_debut?: SortOrder
+    date_fin?: SortOrder
+    titre?: SortOrder
+    nom_entreprise?: SortOrder
+    lien_entreprise?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type apropos_experiencesMinOrderByAggregateInput = {
+    id_exp?: SortOrder
+    date_debut?: SortOrder
+    date_fin?: SortOrder
+    titre?: SortOrder
+    nom_entreprise?: SortOrder
+    lien_entreprise?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type apropos_experiencesSumOrderByAggregateInput = {
+    id_exp?: SortOrder
   }
 
   export type autre_tags_linkCreateNestedManyWithoutAutreInput = {

@@ -77,7 +77,7 @@ export async function addVideoAction(formData: FormData) {
       }
     }
 
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos");
   } catch (error) {
     console.error("Erreur lors de l'ajout de la vidéo:", error);
     throw error; // Retransmettre l'erreur pour la gérer dans l'interface utilisateur
@@ -160,7 +160,7 @@ export async function updateVideoAction(formData: FormData) {
       });
     }
 
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la vidéo:", error);
@@ -190,7 +190,7 @@ export async function deleteVideoAction(videoId: number) {
     });
 
     // 3. Revalider le chemin pour mettre à jour la liste des vidéos
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos");
 
     return { success: true };
   } catch (error) {
@@ -212,8 +212,8 @@ export async function deleteVideoTagAction(id: number) {
       where: { id_tags: id },
     });
 
-    revalidatePath("/creations/videos/tags");
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos/tags");
+    revalidatePath("/videos");
 
     return { success: true };
   } catch (error) {
@@ -247,8 +247,8 @@ export async function updateVideoTagAction(
       data: updateData,
     });
 
-    revalidatePath("/creations/videos/tags");
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos/tags");
+    revalidatePath("/videos");
 
     return { success: true };
   } catch (error) {
@@ -284,8 +284,8 @@ export async function createVideoTagAction(
       },
     });
 
-    revalidatePath("/creations/videos/tags");
-    revalidatePath("/creations/videos");
+    revalidatePath("/videos/tags");
+    revalidatePath("/videos");
 
     return {
       success: true,

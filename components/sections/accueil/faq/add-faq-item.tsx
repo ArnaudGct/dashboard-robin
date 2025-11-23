@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { MDXEditorMethods } from "@mdxeditor/editor";
-import { addFaqAction } from "@/actions/faq-actions";
+import { addFaqAction } from "@/actions/accueil_accueil_faq-actions";
 import { toast } from "sonner";
 
 // Importer l'éditeur de manière dynamique

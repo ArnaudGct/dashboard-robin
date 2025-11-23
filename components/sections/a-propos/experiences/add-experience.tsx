@@ -7,7 +7,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { addEtudeAction } from "@/actions/a-propos_etudes-actions";
+import { addExperienceAction } from "@/actions/a-propos_experiences-actions";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,14 +29,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Checkbox } from "@/components/ui/checkbox";
 
-export function AddEtude() {
+export function AddExperience() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dateDebut, setDateDebut] = useState<Date | undefined>(new Date());
   const [dateFin, setDateFin] = useState<Date | undefined>(undefined);
   const [isEnCours, setIsEnCours] = useState(true);
 
-  const handleAddEtude = async (formData: FormData) => {
+  const handleAddExperience = async (formData: FormData) => {
     try {
       setIsSubmitting(true);
 
@@ -69,20 +69,20 @@ export function AddEtude() {
         }
       }
 
-      // Vérifier si on a au moins un titre et une école
+      // Vérifier si on a au moins un titre et une entreprise
       const titre = formData.get("titre")?.toString();
-      const nomEcole = formData.get("nom_ecole")?.toString();
+      const nomEntreprise = formData.get("nom_entreprise")?.toString();
 
-      if (!titre || !nomEcole) {
-        toast.error("Le titre et le nom de l'école sont obligatoires");
+      if (!titre || !nomEntreprise) {
+        toast.error("Le titre et le nom de l'entreprise sont obligatoires");
         return;
       }
 
-      const result = await addEtudeAction(formData);
+      const result = await addExperienceAction(formData);
 
       if (result.success) {
-        toast.success("Étude ajoutée avec succès");
-        router.push("/a-propos/etudes");
+        toast.success("Expérience ajoutée avec succès");
+        router.push("/a-propos/experiences");
         router.refresh();
       } else {
         toast.error(
@@ -91,7 +91,7 @@ export function AddEtude() {
       }
     } catch (error) {
       console.error("Erreur lors de l'ajout:", error);
-      toast.error("Erreur lors de l'ajout de l'étude");
+      toast.error("Erreur lors de l'ajout de l'expérience");
     } finally {
       setIsSubmitting(false);
     }
@@ -103,45 +103,49 @@ export function AddEtude() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/a-propos/etudes">Études</BreadcrumbLink>
+              <BreadcrumbLink href="/a-propos/experiences">
+                Expériences
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Ajouter une étude</BreadcrumbPage>
+              <BreadcrumbPage>Ajouter une expérience</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
 
-        <form className="flex flex-col gap-5" action={handleAddEtude}>
+        <form className="flex flex-col gap-5" action={handleAddExperience}>
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="titre">Titre de la formation</Label>
+            <Label htmlFor="titre">Titre du poste</Label>
             <Input
               type="text"
               id="titre"
               name="titre"
-              placeholder="Ex: Études de cinéma"
+              placeholder="Ex: Réalisateur audiovisuel"
               required
             />
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="nom_ecole">Nom de l'école</Label>
+            <Label htmlFor="nom_entreprise">Nom de l'entreprise</Label>
             <Input
               type="text"
-              id="nom_ecole"
-              name="nom_ecole"
-              placeholder="Ex: 3IS"
+              id="nom_entreprise"
+              name="nom_entreprise"
+              placeholder="Ex: TV7"
               required
             />
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="lien_ecole">Lien du site de l'école</Label>
+            <Label htmlFor="lien_entreprise">
+              Lien du site de l'entreprise
+            </Label>
             <Input
               type="url"
-              id="lien_ecole"
-              name="lien_ecole"
-              placeholder="Ex: https://www.3is.fr"
+              id="lien_entreprise"
+              name="lien_entreprise"
+              placeholder="Ex: https://www.sudouest.fr/lachainetv7/"
             />
           </div>
 
@@ -184,7 +188,7 @@ export function AddEtude() {
               className="cursor-pointer"
             />
             <Label htmlFor="en_cours" className="cursor-pointer">
-              Formation en cours
+              Poste actuellement occupé
             </Label>
           </div>
 
@@ -244,7 +248,7 @@ export function AddEtude() {
               type="button"
               variant="outline"
               className="cursor-pointer"
-              onClick={() => router.push("/a-propos/etudes")}
+              onClick={() => router.push("/a-propos/experiences")}
               disabled={isSubmitting}
             >
               Annuler

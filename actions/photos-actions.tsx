@@ -236,7 +236,7 @@ async function regenerateAlbumCovers(photoId: number): Promise<void> {
     }
 
     // Revalider les chemins des albums
-    revalidatePath("/creations/photos/albums");
+    revalidatePath("/photos/albums");
   } catch (error) {
     console.error(
       "Erreur lors de la régénération des couvertures d'albums:",
@@ -335,7 +335,7 @@ export async function regenerateAllAlbumCoversAction() {
     }
 
     // Revalider les chemins
-    revalidatePath("/creations/photos/albums");
+    revalidatePath("/photos/albums");
 
     console.log(`\n=== RÉSULTATS ===`);
     console.log(`Albums traités avec succès: ${successCount}`);
@@ -507,7 +507,7 @@ export async function addPhotoAction(formData: FormData) {
       }
     }
 
-    revalidatePath("/creations/photos");
+    revalidatePath("/photos");
     return { success: true, photoId: photo.id_pho };
   } catch (error) {
     console.error("Erreur lors de l'ajout de la photo:", error);
@@ -821,9 +821,9 @@ export async function updatePhotoAction(formData: FormData) {
       );
     }
 
-    revalidatePath("/creations/photos");
-    revalidatePath(`/creations/photos/${photoId}/edit`);
-    revalidatePath("/creations/photos/albums"); // Ajouter cette ligne
+    revalidatePath("/photos");
+    revalidatePath(`/photos/${photoId}/edit`);
+    revalidatePath("/photos/albums"); // Ajouter cette ligne
 
     console.log("=== FIN MISE À JOUR PHOTO ===");
     return { success: true };
@@ -971,8 +971,8 @@ export async function deletePhotoAction(photoId: number) {
       );
     }
 
-    revalidatePath("/creations/photos");
-    revalidatePath("/creations/photos/albums"); // Ajouter cette ligne
+    revalidatePath("/photos");
+    revalidatePath("/photos/albums"); // Ajouter cette ligne
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la suppression de la photo:", error);
@@ -1005,7 +1005,7 @@ export async function createPhotoTagAction(
       },
     });
 
-    revalidatePath("/creations/photos/tags");
+    revalidatePath("/photos/tags");
     return { success: true, id: newTag.id_tags.toString() };
   } catch (error) {
     console.error("Erreur lors de la création du tag:", error);
@@ -1038,7 +1038,7 @@ export async function updatePhotoTagAction(
       data: updateData,
     });
 
-    revalidatePath("/creations/photos/tags");
+    revalidatePath("/photos/tags");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la mise à jour du tag:", error);
@@ -1052,7 +1052,7 @@ export async function deletePhotoTagAction(id: number) {
       where: { id_tags: id },
     });
 
-    revalidatePath("/creations/photos/tags");
+    revalidatePath("/photos/tags");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la suppression du tag:", error);
@@ -1085,7 +1085,7 @@ export async function createPhotoSearchTagAction(
       },
     });
 
-    revalidatePath("/creations/photos/search-tags");
+    revalidatePath("/photos/search-tags");
     return { success: true, id: newTag.id_tags.toString() };
   } catch (error) {
     console.error("Erreur lors de la création du tag de recherche:", error);
@@ -1118,7 +1118,7 @@ export async function updatePhotoSearchTagAction(
       data: updateData,
     });
 
-    revalidatePath("/creations/photos/search-tags");
+    revalidatePath("/photos/search-tags");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la mise à jour du tag de recherche:", error);
@@ -1132,7 +1132,7 @@ export async function deletePhotoSearchTagAction(id: number) {
       where: { id_tags: id },
     });
 
-    revalidatePath("/creations/photos/search-tags");
+    revalidatePath("/photos/search-tags");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la suppression du tag de recherche:", error);
@@ -1208,7 +1208,7 @@ export async function createAlbumAction(formData: FormData) {
       }
     }
 
-    revalidatePath("/creations/photos/albums");
+    revalidatePath("/photos/albums");
     return { success: true, id: newAlbum.id_alb };
   } catch (error) {
     console.error("Erreur lors de la création de l'album:", error);
@@ -1320,8 +1320,8 @@ export async function updateAlbumAction(formData: FormData) {
     }
 
     // Forcer le rechargement de la page
-    revalidatePath("/creations/photos/albums");
-    revalidatePath(`/creations/photos/albums/edit/${id}`);
+    revalidatePath("/photos/albums");
+    revalidatePath(`/photos/albums/edit/${id}`);
 
     return { success: true };
   } catch (error) {
@@ -1368,7 +1368,7 @@ export async function deleteAlbumAction(albumId: number) {
       }
     }
 
-    revalidatePath("/creations/photos/albums");
+    revalidatePath("/photos/albums");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de la suppression de l'album:", error);
@@ -1479,8 +1479,8 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
       }
 
       // Revalider les chemins
-      revalidatePath("/creations/photos");
-      revalidatePath(`/creations/photos/${photoId}/edit`);
+      revalidatePath("/photos");
+      revalidatePath(`/photos/${photoId}/edit`);
 
       return { success: true, mode: "update-metadata" };
     }
@@ -1628,8 +1628,8 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
           }
 
           // Revalider les chemins
-          revalidatePath("/creations/photos");
-          revalidatePath(`/creations/photos/${photoId}/edit`);
+          revalidatePath("/photos");
+          revalidatePath(`/photos/${photoId}/edit`);
 
           return { success: true, mode: "update" };
         }
@@ -1706,7 +1706,7 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
       );
     }
 
-    revalidatePath("/creations/photos");
+    revalidatePath("/photos");
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de l'upload par lot des photos:", error);

@@ -9,7 +9,7 @@ import { Calendar as CalendarIcon, Trash2 } from "lucide-react";
 import {
   updateClientAction,
   deleteClientAction,
-} from "@/actions/clients-actions";
+} from "@/actions/accueil_clients-actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

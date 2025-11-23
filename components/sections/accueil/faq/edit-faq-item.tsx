@@ -6,7 +6,10 @@ import { toast } from "sonner";
 import { MDXEditorMethods } from "@mdxeditor/editor";
 import dynamic from "next/dynamic";
 
-import { updateFaqAction, deleteFaqAction } from "@/actions/faq-actions";
+import {
+  updateFaqAction,
+  deleteFaqAction,
+} from "@/actions/accueil_accueil_faq-actions";
 
 import {
   Breadcrumb,

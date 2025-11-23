@@ -7,6 +7,8 @@ import {
   Newspaper,
   PenTool,
   LayoutDashboard,
+  Video,
+  Camera,
 } from "lucide-react"; // Exemple d'icônes
 import { usePathname } from "next/navigation"; // Import du hook pour récupérer l'URL actuelle
 
@@ -76,35 +78,26 @@ const data = {
           url: "/a-propos/outils",
         },
         {
+          title: "Experiences",
+          url: "/a-propos/experiences",
+        },
+        {
           title: "Études",
           url: "/a-propos/etudes",
         },
       ],
     },
     {
-      title: "Journal personnel",
-      url: "/journal-personnel",
-      icon: Newspaper, // Icône pour cette page
+      title: "Vidéos",
+      url: "/videos",
+      icon: Video, // Icône pour cette page
       items: [], // Pas de sous-items, lien direct
     },
     {
-      title: "Créations",
-      url: "#",
-      icon: PenTool, // Icône pour cette section
-      items: [
-        {
-          title: "Vidéos",
-          url: "/creations/videos",
-        },
-        {
-          title: "Photos",
-          url: "/creations/photos",
-        },
-        {
-          title: "Autres",
-          url: "/creations/autres",
-        },
-      ],
+      title: "Photos",
+      url: "/photos",
+      icon: Camera, // Icône pour cette page
+      items: [], // Pas de sous-items, lien direct
     },
   ],
 };

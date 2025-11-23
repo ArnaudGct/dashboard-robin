@@ -8,9 +8,9 @@ import { fr } from "date-fns/locale";
 import { CalendarIcon, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  updateEtudeAction,
-  deleteEtudeAction,
-} from "@/actions/a-propos_etudes-actions";
+  updateExperienceAction,
+  deleteExperienceAction,
+} from "@/actions/a-propos_experiences-actions";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,19 +43,19 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 
-interface EditEtudeProps {
+interface EditExperienceProps {
   initialData: {
-    id_etu: number;
+    id_exp: number;
     date_debut: Date;
     date_fin: Date | null;
     titre: string;
-    nom_ecole: string;
-    lien_ecole: string;
+    nom_entreprise: string;
+    lien_entreprise: string;
     afficher: boolean;
   };
 }
 
-export function EditEtude({ initialData }: EditEtudeProps) {
+export function EditExperience({ initialData }: EditExperienceProps) {
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -68,12 +68,12 @@ export function EditEtude({ initialData }: EditEtudeProps) {
   const [isEnCours, setIsEnCours] = useState(!initialData.date_fin);
   const [isPublished, setIsPublished] = useState<boolean>(initialData.afficher);
 
-  const handleUpdateEtude = async (formData: FormData) => {
+  const handleUpdateExperience = async (formData: FormData) => {
     try {
       setIsUpdating(true);
 
       // Ajouter l'ID
-      formData.set("id", initialData.id_etu.toString());
+      formData.set("id", initialData.id_exp.toString());
 
       // Gérer les dates
       if (dateDebut) {
@@ -111,20 +111,20 @@ export function EditEtude({ initialData }: EditEtudeProps) {
       // État de publication
       formData.set("afficher", isPublished ? "on" : "off");
 
-      // Vérifier si on a au moins un titre et une école
+      // Vérifier si on a au moins un titre et une entreprise
       const titre = formData.get("titre")?.toString();
-      const nomEcole = formData.get("nom_ecole")?.toString();
+      const nomEntreprise = formData.get("nom_entreprise")?.toString();
 
-      if (!titre || !nomEcole) {
-        toast.error("Le titre et le nom de l'école sont obligatoires");
+      if (!titre || !nomEntreprise) {
+        toast.error("Le titre et le nom de l'entreprise sont obligatoires");
         return;
       }
 
-      const result = await updateEtudeAction(formData);
+      const result = await updateExperienceAction(formData);
 
       if (result && result.success) {
-        toast.success("Étude mise à jour avec succès");
-        router.push("/a-propos/etudes");
+        toast.success("Expérience mise à jour avec succès");
+        router.push("/a-propos/experiences");
         router.refresh();
       } else {
         toast.error(
@@ -134,20 +134,20 @@ export function EditEtude({ initialData }: EditEtudeProps) {
       }
     } catch (error) {
       console.error("Erreur lors de la mise à jour:", error);
-      toast.error("Erreur lors de la mise à jour de l'étude");
+      toast.error("Erreur lors de la mise à jour de l'expérience");
     } finally {
       setIsUpdating(false);
     }
   };
 
-  const handleDeleteEtude = async () => {
+  const handleDeleteExperience = async () => {
     try {
       setIsDeleting(true);
-      const result = await deleteEtudeAction(initialData.id_etu);
+      const result = await deleteExperienceAction(initialData.id_exp);
 
       if (result && result.success) {
-        toast.success("Étude supprimée avec succès");
-        router.push("/a-propos/etudes");
+        toast.success("Expérience supprimée avec succès");
+        router.push("/a-propos/experiences");
         router.refresh();
       } else {
         toast.error("Erreur lors de la suppression");
@@ -155,7 +155,7 @@ export function EditEtude({ initialData }: EditEtudeProps) {
       }
     } catch (error) {
       console.error("Erreur lors de la suppression:", error);
-      toast.error("Erreur lors de la suppression de l'étude");
+      toast.error("Erreur lors de la suppression de l'expérience");
       setIsDeleting(false);
     }
   };
@@ -166,11 +166,13 @@ export function EditEtude({ initialData }: EditEtudeProps) {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/a-propos/etudes">Études</BreadcrumbLink>
+              <BreadcrumbLink href="/a-propos/experiences">
+                Expériences
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>Modifier l'étude</BreadcrumbPage>
+              <BreadcrumbPage>Modifier l'expérience</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -185,7 +187,7 @@ export function EditEtude({ initialData }: EditEtudeProps) {
             <AlertDialogHeader>
               <AlertDialogTitle>Êtes-vous sûr ?</AlertDialogTitle>
               <AlertDialogDescription>
-                Cette action est irréversible. L'étude sera définitivement
+                Cette action est irréversible. L'expérience sera définitivement
                 supprimée.
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -194,7 +196,7 @@ export function EditEtude({ initialData }: EditEtudeProps) {
                 Annuler
               </AlertDialogCancel>
               <AlertDialogAction
-                onClick={handleDeleteEtude}
+                onClick={handleDeleteExperience}
                 disabled={isDeleting}
                 className="bg-destructive text-white cursor-pointer"
               >
@@ -205,39 +207,39 @@ export function EditEtude({ initialData }: EditEtudeProps) {
         </AlertDialog>
       </div>
 
-      <form className="flex flex-col gap-5" action={handleUpdateEtude}>
+      <form className="flex flex-col gap-5" action={handleUpdateExperience}>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="titre">Titre de la formation</Label>
+          <Label htmlFor="titre">Titre du poste</Label>
           <Input
             type="text"
             id="titre"
             name="titre"
             defaultValue={initialData.titre}
-            placeholder="Ex: Études de cinéma"
+            placeholder="Ex: Réalisateur audiovisuel"
             required
           />
         </div>
 
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="nom_ecole">Nom de l'école</Label>
+          <Label htmlFor="nom_entreprise">Nom de l'entreprise</Label>
           <Input
             type="text"
-            id="nom_ecole"
-            name="nom_ecole"
-            defaultValue={initialData.nom_ecole}
-            placeholder="Ex: 3IS"
+            id="nom_entreprise"
+            name="nom_entreprise"
+            defaultValue={initialData.nom_entreprise}
+            placeholder="Ex: TV7"
             required
           />
         </div>
 
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="lien_ecole">Lien du site de l'école</Label>
+          <Label htmlFor="lien_entreprise">Lien du site de l'entreprise</Label>
           <Input
             type="url"
-            id="lien_ecole"
-            name="lien_ecole"
-            defaultValue={initialData.lien_ecole}
-            placeholder="Ex: https://www.3is.fr"
+            id="lien_entreprise"
+            name="lien_entreprise"
+            defaultValue={initialData.lien_entreprise}
+            placeholder="Ex: https://www.sudouest.fr/lachainetv7/"
           />
         </div>
 
@@ -280,7 +282,7 @@ export function EditEtude({ initialData }: EditEtudeProps) {
             className="cursor-pointer"
           />
           <Label htmlFor="en_cours" className="cursor-pointer">
-            Formation en cours
+            Poste actuellement occupé
           </Label>
         </div>
 
@@ -341,7 +343,7 @@ export function EditEtude({ initialData }: EditEtudeProps) {
             type="button"
             variant="outline"
             className="cursor-pointer"
-            onClick={() => router.push("/a-propos/etudes")}
+            onClick={() => router.push("/a-propos/experiences")}
             disabled={isUpdating}
           >
             Annuler

@@ -301,3 +301,13 @@ model apropos_etudes {
   lien_ecole String    @db.VarChar(255)
   afficher   Boolean
 }
+
+model apropos_experiences {
+  id_exp          Int       @id @default(autoincrement())
+  date_debut      DateTime  @db.Date
+  date_fin        DateTime? @db.Date
+  titre           String    @db.VarChar(255)
+  nom_entreprise  String    @db.VarChar(255)
+  lien_entreprise String    @db.VarChar(255)
+  afficher        Boolean
+}

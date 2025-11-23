@@ -362,6 +362,16 @@ exports.Prisma.Apropos_etudesScalarFieldEnum = {
   afficher: 'afficher'
 };
 
+exports.Prisma.Apropos_experiencesScalarFieldEnum = {
+  id_exp: 'id_exp',
+  date_debut: 'date_debut',
+  date_fin: 'date_fin',
+  titre: 'titre',
+  nom_entreprise: 'nom_entreprise',
+  lien_entreprise: 'lien_entreprise',
+  afficher: 'afficher'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -525,6 +535,12 @@ exports.Prisma.apropos_etudesOrderByRelevanceFieldEnum = {
   lien_ecole: 'lien_ecole'
 };
 
+exports.Prisma.apropos_experiencesOrderByRelevanceFieldEnum = {
+  titre: 'titre',
+  nom_entreprise: 'nom_entreprise',
+  lien_entreprise: 'lien_entreprise'
+};
+
 
 exports.Prisma.ModelName = {
   autre: 'autre',
@@ -553,7 +569,8 @@ exports.Prisma.ModelName = {
   accueil_general: 'accueil_general',
   apropos_general: 'apropos_general',
   apropos_outils: 'apropos_outils',
-  apropos_etudes: 'apropos_etudes'
+  apropos_etudes: 'apropos_etudes',
+  apropos_experiences: 'apropos_experiences'
 };
 
 /**
