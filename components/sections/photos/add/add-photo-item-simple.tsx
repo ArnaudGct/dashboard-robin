@@ -269,334 +269,329 @@ export function AddPhotoItemSimple({
   };
 
   return (
-    <div className="w-full">
-      <div className="flex flex-col gap-8">
-        <form className="flex flex-col gap-5" action={handleAddPhoto}>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="flex flex-col w-full items-start gap-1.5">
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="imageHigh">Image haute résolution</Label>
-                <Input
-                  type="file"
-                  id="imageHigh"
-                  name="imageHigh"
-                  accept="image/*"
-                  onChange={handleHighResImageChange}
-                  required
-                />
-              </div>
-              {previewHighRes && (
-                <div className="mt-2 w-full">
-                  <div className="rounded-md overflow-hidden bg-muted w-full relative aspect-video">
-                    <Image
-                      src={previewHighRes}
-                      alt="Aperçu haute résolution"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      priority
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="flex flex-col w-full items-start gap-1.5">
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="imageLow">
-                  Image basse résolution (optionnel)
-                </Label>
-                <Input
-                  type="file"
-                  id="imageLow"
-                  name="imageLow"
-                  accept="image/*"
-                  onChange={handleLowResImageChange}
-                />
-                <p className="text-xs text-muted-foreground">
-                  Si non fournie, l'image haute résolution sera utilisée
-                </p>
-              </div>
-
-              {previewLowRes && (
-                <div className="mt-2 w-full">
-                  <div className="rounded-md overflow-hidden bg-muted w-full relative aspect-video">
-                    <Image
-                      src={previewLowRes}
-                      alt="Aperçu basse résolution"
-                      fill
-                      className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-8 mb-8">
+      <form className="flex flex-col gap-5" action={handleAddPhoto}>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="flex flex-col w-full items-start gap-1.5">
             <div className="grid w-full gap-1.5">
-              <Label htmlFor="alt">Texte alternatif</Label>
+              <Label htmlFor="imageHigh">Image haute résolution</Label>
               <Input
-                type="text"
-                id="alt"
-                name="alt"
-                placeholder="Description de l'image"
-                value={altText}
-                onChange={(e) => setAltText(e.target.value)}
+                type="file"
+                id="imageHigh"
+                name="imageHigh"
+                accept="image/*"
+                onChange={handleHighResImageChange}
                 required
               />
             </div>
+            {previewHighRes && (
+              <div className="mt-2 w-full">
+                <div className="rounded-md overflow-hidden bg-muted w-full relative aspect-video">
+                  <Image
+                    src={previewHighRes}
+                    alt="Aperçu haute résolution"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-col w-full items-start gap-1.5">
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="imageLow">
+                Image basse résolution (optionnel)
+              </Label>
+              <Input
+                type="file"
+                id="imageLow"
+                name="imageLow"
+                accept="image/*"
+                onChange={handleLowResImageChange}
+              />
+              <p className="text-xs text-muted-foreground">
+                Si non fournie, l'image haute résolution sera utilisée
+              </p>
+            </div>
+
+            {previewLowRes && (
+              <div className="mt-2 w-full">
+                <div className="rounded-md overflow-hidden bg-muted w-full relative aspect-video">
+                  <Image
+                    src={previewLowRes}
+                    alt="Aperçu basse résolution"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <div className="grid w-full gap-1.5">
+            <Label htmlFor="alt">Texte alternatif</Label>
+            <Input
+              type="text"
+              id="alt"
+              name="alt"
+              placeholder="Description de l'image"
+              value={altText}
+              onChange={(e) => setAltText(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid w-full gap-1.5">
+          <Label htmlFor="date">Date de la photo</Label>
+          <div className="grid gap-2">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  id="date"
+                  variant={"outline"}
+                  className={`w-full justify-start text-left font-normal cursor-pointer ${
+                    !date ? "text-muted-foreground" : ""
+                  }`}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date
+                    ? format(date, "d MMMM yyyy", { locale: fr })
+                    : "Sélectionner une date"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                  locale={fr}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
+          <div className="grid w-full gap-1.5">
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="tags">Tags</Label>
+              <TagSheet
+                title="Sélection des tags"
+                description="Choisissez les tags à appliquer à cette image"
+                options={availableTags}
+                selectedTags={selectedTags}
+                onChange={handleTagsChange}
+                onAddNew={handleAddTag}
+                triggerLabel="Sélectionner des tags"
+                searchPlaceholder="Rechercher un tag..."
+                addNewLabel="Ajouter un nouveau tag"
+                type="tag"
+              />
+            </div>
+            {selectedTags.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {selectedTags.map((tagId) => {
+                  const tag = availableTags.find((t) => t.id === tagId);
+                  return (
+                    <RemovableTag
+                      key={tagId}
+                      id={tagId}
+                      label={tag?.label || tagId}
+                      important={tag?.important}
+                      onRemove={(id) => {
+                        setSelectedTags(selectedTags.filter((t) => t !== id));
+                      }}
+                      tagType="tag"
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="date">Date de la photo</Label>
-            <div className="grid gap-2">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    id="date"
-                    variant={"outline"}
-                    className={`w-full justify-start text-left font-normal cursor-pointer ${
-                      !date ? "text-muted-foreground" : ""
-                    }`}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date
-                      ? format(date, "d MMMM yyyy", { locale: fr })
-                      : "Sélectionner une date"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    initialFocus
-                    locale={fr}
-                  />
-                </PopoverContent>
-              </Popover>
+            <div className="grid w-full gap-1.5">
+              <Label htmlFor="searchTags">Tags de recherche</Label>
+              <TagSheet
+                title="Sélection des tags de recherche"
+                description="Choisissez les tags de recherche à appliquer à cette image"
+                options={availableSearchTags}
+                selectedTags={selectedSearchTags}
+                onChange={handleSearchTagsChange}
+                onAddNew={handleAddSearchTag}
+                triggerLabel="Sélectionner des tags de recherche"
+                searchPlaceholder="Rechercher un tag de recherche..."
+                addNewLabel="Ajouter un nouveau tag de recherche"
+                type="searchTag"
+              />
             </div>
+            {selectedSearchTags.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {selectedSearchTags.map((tagId) => {
+                  const tag = availableSearchTags.find((t) => t.id === tagId);
+                  return (
+                    <RemovableTag
+                      key={tagId}
+                      id={tagId}
+                      label={tag?.label || tagId}
+                      important={tag?.important}
+                      onRemove={(id) => {
+                        setSelectedSearchTags(
+                          selectedSearchTags.filter((t) => t !== id)
+                        );
+                      }}
+                      tagType="searchTag"
+                    />
+                  );
+                })}
+              </div>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
+          <div className="grid w-full gap-1.5">
             <div className="grid w-full gap-1.5">
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="tags">Tags</Label>
-                <TagSheet
-                  title="Sélection des tags"
-                  description="Choisissez les tags à appliquer à cette image"
-                  options={availableTags}
-                  selectedTags={selectedTags}
-                  onChange={handleTagsChange}
-                  onAddNew={handleAddTag}
-                  triggerLabel="Sélectionner des tags"
-                  searchPlaceholder="Rechercher un tag..."
-                  addNewLabel="Ajouter un nouveau tag"
-                  type="tag"
-                />
-              </div>
-              {selectedTags.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {selectedTags.map((tagId) => {
-                    const tag = availableTags.find((t) => t.id === tagId);
-                    return (
-                      <RemovableTag
-                        key={tagId}
-                        id={tagId}
-                        label={tag?.label || tagId}
-                        important={tag?.important}
-                        onRemove={(id) => {
-                          setSelectedTags(selectedTags.filter((t) => t !== id));
-                        }}
-                        tagType="tag"
-                      />
-                    );
-                  })}
-                </div>
-              )}
+              <Label htmlFor="albums">Albums</Label>
+              <TagSheet
+                title="Sélection des albums"
+                description="Choisissez les albums dans lesquels ajouter cette image"
+                options={availableAlbums}
+                selectedTags={selectedAlbums}
+                onChange={handleAlbumsChange}
+                onAddNew={handleAddAlbum}
+                triggerLabel="Sélectionner des albums"
+                searchPlaceholder="Rechercher un album..."
+                addNewLabel="Ajouter un nouvel album"
+                type="album"
+              />
             </div>
-
-            <div className="grid w-full gap-1.5">
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="searchTags">Tags de recherche</Label>
-                <TagSheet
-                  title="Sélection des tags de recherche"
-                  description="Choisissez les tags de recherche à appliquer à cette image"
-                  options={availableSearchTags}
-                  selectedTags={selectedSearchTags}
-                  onChange={handleSearchTagsChange}
-                  onAddNew={handleAddSearchTag}
-                  triggerLabel="Sélectionner des tags de recherche"
-                  searchPlaceholder="Rechercher un tag de recherche..."
-                  addNewLabel="Ajouter un nouveau tag de recherche"
-                  type="searchTag"
-                />
+            {selectedAlbums.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {selectedAlbums.map((albumId) => {
+                  const album = availableAlbums.find((a) => a.id === albumId);
+                  return (
+                    <RemovableTag
+                      key={albumId}
+                      id={albumId}
+                      label={album?.label || albumId}
+                      important={false}
+                      onRemove={(id) => {
+                        setSelectedAlbums(
+                          selectedAlbums.filter((a) => a !== id)
+                        );
+                      }}
+                      tagType="album"
+                    />
+                  );
+                })}
               </div>
-              {selectedSearchTags.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {selectedSearchTags.map((tagId) => {
-                    const tag = availableSearchTags.find((t) => t.id === tagId);
-                    return (
-                      <RemovableTag
-                        key={tagId}
-                        id={tagId}
-                        label={tag?.label || tagId}
-                        important={tag?.important}
-                        onRemove={(id) => {
-                          setSelectedSearchTags(
-                            selectedSearchTags.filter((t) => t !== id)
-                          );
-                        }}
-                        tagType="searchTag"
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <div className="grid w-full gap-1.5">
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="albums">Albums</Label>
-                <TagSheet
-                  title="Sélection des albums"
-                  description="Choisissez les albums dans lesquels ajouter cette image"
-                  options={availableAlbums}
-                  selectedTags={selectedAlbums}
-                  onChange={handleAlbumsChange}
-                  onAddNew={handleAddAlbum}
-                  triggerLabel="Sélectionner des albums"
-                  searchPlaceholder="Rechercher un album..."
-                  addNewLabel="Ajouter un nouvel album"
-                  type="album"
-                />
-              </div>
-              {selectedAlbums.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {selectedAlbums.map((albumId) => {
-                    const album = availableAlbums.find((a) => a.id === albumId);
-                    return (
-                      <RemovableTag
-                        key={albumId}
-                        id={albumId}
-                        label={album?.label || albumId}
-                        important={false}
-                        onRemove={(id) => {
-                          setSelectedAlbums(
-                            selectedAlbums.filter((a) => a !== id)
-                          );
-                        }}
-                        tagType="album"
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+            )}
           </div>
+        </div>
 
-          <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
-            <h3 className="text-sm font-medium">
-              Mise en avant sur la page d&apos;accueil
-            </h3>
+        <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
+          <h3 className="text-sm font-medium">
+            Mise en avant sur la page d&apos;accueil
+          </h3>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="afficherCarrouselMain"
-                  checked={afficherCarrouselMain}
-                  onCheckedChange={(checked) => {
-                    if (checked && carouselCounts.mainRemaining <= 0) {
-                      toast.error(
-                        `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
-                      );
-                      return;
-                    }
-                    setAfficherCarrouselMain(checked);
-                  }}
-                  disabled={
-                    !afficherCarrouselMain && carouselCounts.mainRemaining <= 0
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="afficherCarrouselMain"
+                checked={afficherCarrouselMain}
+                onCheckedChange={(checked) => {
+                  if (checked && carouselCounts.mainRemaining <= 0) {
+                    toast.error(
+                      `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
+                    );
+                    return;
                   }
-                  className="cursor-pointer"
-                />
-                <Label
-                  htmlFor="afficherCarrouselMain"
-                  className="cursor-pointer"
-                >
-                  Carrousel principal (vidéos & photos)
-                </Label>
-              </div>
-              <span className="text-sm text-muted-foreground">
-                {carouselCounts.mainCount + (afficherCarrouselMain ? 1 : 0)} /{" "}
-                {carouselCounts.mainLimit}
-              </span>
+                  setAfficherCarrouselMain(checked);
+                }}
+                disabled={
+                  !afficherCarrouselMain && carouselCounts.mainRemaining <= 0
+                }
+                className="cursor-pointer"
+              />
+              <Label htmlFor="afficherCarrouselMain" className="cursor-pointer">
+                Carrousel principal (vidéos & photos)
+              </Label>
             </div>
+            <span className="text-sm text-muted-foreground">
+              {carouselCounts.mainCount + (afficherCarrouselMain ? 1 : 0)} /{" "}
+              {carouselCounts.mainLimit}
+            </span>
+          </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="afficherCarrouselPhotos"
-                  checked={afficherCarrouselPhotos}
-                  onCheckedChange={(checked) => {
-                    if (checked && carouselCounts.photosRemaining <= 0) {
-                      toast.error(
-                        `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
-                      );
-                      return;
-                    }
-                    setAfficherCarrouselPhotos(checked);
-                  }}
-                  disabled={
-                    !afficherCarrouselPhotos &&
-                    carouselCounts.photosRemaining <= 0
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Switch
+                id="afficherCarrouselPhotos"
+                checked={afficherCarrouselPhotos}
+                onCheckedChange={(checked) => {
+                  if (checked && carouselCounts.photosRemaining <= 0) {
+                    toast.error(
+                      `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
+                    );
+                    return;
                   }
-                  className="cursor-pointer"
-                />
-                <Label
-                  htmlFor="afficherCarrouselPhotos"
-                  className="cursor-pointer"
-                >
-                  Carrousel dédié aux photos
-                </Label>
-              </div>
-              <span className="text-sm text-muted-foreground">
-                {carouselCounts.photosCount + (afficherCarrouselPhotos ? 1 : 0)}{" "}
-                / {carouselCounts.photosLimit}
-              </span>
+                  setAfficherCarrouselPhotos(checked);
+                }}
+                disabled={
+                  !afficherCarrouselPhotos &&
+                  carouselCounts.photosRemaining <= 0
+                }
+                className="cursor-pointer"
+              />
+              <Label
+                htmlFor="afficherCarrouselPhotos"
+                className="cursor-pointer"
+              >
+                Carrousel dédié aux photos
+              </Label>
             </div>
+            <span className="text-sm text-muted-foreground">
+              {carouselCounts.photosCount + (afficherCarrouselPhotos ? 1 : 0)} /{" "}
+              {carouselCounts.photosLimit}
+            </span>
           </div>
+        </div>
 
-          <div className="flex items-center space-x-2 mt-2">
-            <Label htmlFor="isPublished">Afficher</Label>
-            <Switch
-              id="isPublished"
-              name="isPublished"
-              defaultChecked
-              className="cursor-pointer"
-            />
-          </div>
-          <div className="flex gap-2">
-            <Button
-              type="submit"
-              className="cursor-pointer"
-              disabled={!previewHighRes || isUploading}
-            >
-              {isUploading ? "Ajout en cours..." : "Ajouter"}
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              className="cursor-pointer"
-              onClick={() => router.push("/photos")}
-              disabled={isUploading}
-            >
-              Annuler
-            </Button>
-          </div>
-        </form>
-      </div>
+        <div className="flex items-center space-x-2 mt-2">
+          <Label htmlFor="isPublished">Afficher</Label>
+          <Switch
+            id="isPublished"
+            name="isPublished"
+            defaultChecked
+            className="cursor-pointer"
+          />
+        </div>
+        <div className="flex gap-2">
+          <Button
+            type="submit"
+            className="cursor-pointer"
+            disabled={!previewHighRes || isUploading}
+          >
+            {isUploading ? "Ajout en cours..." : "Ajouter"}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            className="cursor-pointer"
+            onClick={() => router.push("/photos")}
+            disabled={isUploading}
+          >
+            Annuler
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

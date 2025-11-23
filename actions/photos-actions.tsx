@@ -165,7 +165,9 @@ async function generateAlbumCover(albumId: number): Promise<string> {
     }
 
     // Créer un objet File-like pour l'upload
-    const coverFile = new File([coverBuffer], `album_${albumId}_cover.jpg`, {
+    // Convertir le Buffer en Uint8Array pour satisfaire BlobPart/ArrayBufferView attendu par File
+    const coverArray = Uint8Array.from(coverBuffer);
+    const coverFile = new File([coverArray], `album_${albumId}_cover.jpg`, {
       type: "image/jpeg",
     });
 
@@ -1157,7 +1159,6 @@ export async function createAlbumAction(formData: FormData) {
   try {
     // Récupérer les données du formulaire
     const title = formData.get("title") as string;
-    const description = formData.get("description") as string;
     const date = formData.get("date") as string;
     const isPublished = formData.get("isPublished") === "on";
     const tags = formData.getAll("tags") as string[];
@@ -1167,7 +1168,6 @@ export async function createAlbumAction(formData: FormData) {
     const newAlbum = await prisma.photos_albums.create({
       data: {
         titre: title,
-        description: description || "",
         date: date ? new Date(date) : new Date(),
         afficher: isPublished,
         lien_cover: "", // Sera mis à jour après génération
@@ -1235,7 +1235,6 @@ export async function updateAlbumAction(formData: FormData) {
     // Récupérer les données du formulaire
     const id = parseInt(formData.get("id") as string);
     const title = formData.get("title") as string;
-    const description = formData.get("description") as string;
     const date = formData.get("date") as string;
     const isPublished = formData.get("isPublished") === "on";
     const tags = formData.getAll("tags") as string[];
@@ -1252,7 +1251,6 @@ export async function updateAlbumAction(formData: FormData) {
       where: { id_alb: id },
       data: {
         titre: title,
-        description: description || "",
         date: date ? new Date(date) : new Date(),
         afficher: isPublished,
         derniere_modification: new Date(),

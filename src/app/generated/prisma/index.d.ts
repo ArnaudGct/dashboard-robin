@@ -8320,7 +8320,6 @@ export namespace Prisma {
   export type Photos_albumsMinAggregateOutputType = {
     id_alb: number | null
     titre: string | null
-    description: string | null
     lien_cover: string | null
     date: Date | null
     afficher: boolean | null
@@ -8330,7 +8329,6 @@ export namespace Prisma {
   export type Photos_albumsMaxAggregateOutputType = {
     id_alb: number | null
     titre: string | null
-    description: string | null
     lien_cover: string | null
     date: Date | null
     afficher: boolean | null
@@ -8340,7 +8338,6 @@ export namespace Prisma {
   export type Photos_albumsCountAggregateOutputType = {
     id_alb: number
     titre: number
-    description: number
     lien_cover: number
     date: number
     afficher: number
@@ -8360,7 +8357,6 @@ export namespace Prisma {
   export type Photos_albumsMinAggregateInputType = {
     id_alb?: true
     titre?: true
-    description?: true
     lien_cover?: true
     date?: true
     afficher?: true
@@ -8370,7 +8366,6 @@ export namespace Prisma {
   export type Photos_albumsMaxAggregateInputType = {
     id_alb?: true
     titre?: true
-    description?: true
     lien_cover?: true
     date?: true
     afficher?: true
@@ -8380,7 +8375,6 @@ export namespace Prisma {
   export type Photos_albumsCountAggregateInputType = {
     id_alb?: true
     titre?: true
-    description?: true
     lien_cover?: true
     date?: true
     afficher?: true
@@ -8477,7 +8471,6 @@ export namespace Prisma {
   export type Photos_albumsGroupByOutputType = {
     id_alb: number
     titre: string
-    description: string
     lien_cover: string
     date: Date
     afficher: boolean
@@ -8506,7 +8499,6 @@ export namespace Prisma {
   export type photos_albumsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_alb?: boolean
     titre?: boolean
-    description?: boolean
     lien_cover?: boolean
     date?: boolean
     afficher?: boolean
@@ -8521,14 +8513,13 @@ export namespace Prisma {
   export type photos_albumsSelectScalar = {
     id_alb?: boolean
     titre?: boolean
-    description?: boolean
     lien_cover?: boolean
     date?: boolean
     afficher?: boolean
     derniere_modification?: boolean
   }
 
-  export type photos_albumsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_alb" | "titre" | "description" | "lien_cover" | "date" | "afficher" | "derniere_modification", ExtArgs["result"]["photos_albums"]>
+  export type photos_albumsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_alb" | "titre" | "lien_cover" | "date" | "afficher" | "derniere_modification", ExtArgs["result"]["photos_albums"]>
   export type photos_albumsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     photos_albums_link?: boolean | photos_albums$photos_albums_linkArgs<ExtArgs>
     photos_albums_tags_link?: boolean | photos_albums$photos_albums_tags_linkArgs<ExtArgs>
@@ -8544,7 +8535,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id_alb: number
       titre: string
-      description: string
       lien_cover: string
       date: Date
       afficher: boolean
@@ -8922,7 +8912,6 @@ export namespace Prisma {
   interface photos_albumsFieldRefs {
     readonly id_alb: FieldRef<"photos_albums", 'Int'>
     readonly titre: FieldRef<"photos_albums", 'String'>
-    readonly description: FieldRef<"photos_albums", 'String'>
     readonly lien_cover: FieldRef<"photos_albums", 'String'>
     readonly date: FieldRef<"photos_albums", 'DateTime'>
     readonly afficher: FieldRef<"photos_albums", 'Boolean'>
@@ -29342,7 +29331,6 @@ export namespace Prisma {
   export const Photos_albumsScalarFieldEnum: {
     id_alb: 'id_alb',
     titre: 'titre',
-    description: 'description',
     lien_cover: 'lien_cover',
     date: 'date',
     afficher: 'afficher',
@@ -29651,7 +29639,6 @@ export namespace Prisma {
 
   export const photos_albumsOrderByRelevanceFieldEnum: {
     titre: 'titre',
-    description: 'description',
     lien_cover: 'lien_cover'
   };
 
@@ -30212,7 +30199,6 @@ export namespace Prisma {
     NOT?: photos_albumsWhereInput | photos_albumsWhereInput[]
     id_alb?: IntFilter<"photos_albums"> | number
     titre?: StringFilter<"photos_albums"> | string
-    description?: StringFilter<"photos_albums"> | string
     lien_cover?: StringFilter<"photos_albums"> | string
     date?: DateTimeFilter<"photos_albums"> | Date | string
     afficher?: BoolFilter<"photos_albums"> | boolean
@@ -30224,7 +30210,6 @@ export namespace Prisma {
   export type photos_albumsOrderByWithRelationInput = {
     id_alb?: SortOrder
     titre?: SortOrder
-    description?: SortOrder
     lien_cover?: SortOrder
     date?: SortOrder
     afficher?: SortOrder
@@ -30240,7 +30225,6 @@ export namespace Prisma {
     OR?: photos_albumsWhereInput[]
     NOT?: photos_albumsWhereInput | photos_albumsWhereInput[]
     titre?: StringFilter<"photos_albums"> | string
-    description?: StringFilter<"photos_albums"> | string
     lien_cover?: StringFilter<"photos_albums"> | string
     date?: DateTimeFilter<"photos_albums"> | Date | string
     afficher?: BoolFilter<"photos_albums"> | boolean
@@ -30252,7 +30236,6 @@ export namespace Prisma {
   export type photos_albumsOrderByWithAggregationInput = {
     id_alb?: SortOrder
     titre?: SortOrder
-    description?: SortOrder
     lien_cover?: SortOrder
     date?: SortOrder
     afficher?: SortOrder
@@ -30270,7 +30253,6 @@ export namespace Prisma {
     NOT?: photos_albumsScalarWhereWithAggregatesInput | photos_albumsScalarWhereWithAggregatesInput[]
     id_alb?: IntWithAggregatesFilter<"photos_albums"> | number
     titre?: StringWithAggregatesFilter<"photos_albums"> | string
-    description?: StringWithAggregatesFilter<"photos_albums"> | string
     lien_cover?: StringWithAggregatesFilter<"photos_albums"> | string
     date?: DateTimeWithAggregatesFilter<"photos_albums"> | Date | string
     afficher?: BoolWithAggregatesFilter<"photos_albums"> | boolean
@@ -31907,7 +31889,6 @@ export namespace Prisma {
 
   export type photos_albumsCreateInput = {
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -31919,7 +31900,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedCreateInput = {
     id_alb?: number
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -31930,7 +31910,6 @@ export namespace Prisma {
 
   export type photos_albumsUpdateInput = {
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -31942,7 +31921,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedUpdateInput = {
     id_alb?: IntFieldUpdateOperationsInput | number
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -31954,7 +31932,6 @@ export namespace Prisma {
   export type photos_albumsCreateManyInput = {
     id_alb?: number
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -31963,7 +31940,6 @@ export namespace Prisma {
 
   export type photos_albumsUpdateManyMutationInput = {
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -31973,7 +31949,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedUpdateManyInput = {
     id_alb?: IntFieldUpdateOperationsInput | number
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -33657,7 +33632,6 @@ export namespace Prisma {
   export type photos_albumsCountOrderByAggregateInput = {
     id_alb?: SortOrder
     titre?: SortOrder
-    description?: SortOrder
     lien_cover?: SortOrder
     date?: SortOrder
     afficher?: SortOrder
@@ -33671,7 +33645,6 @@ export namespace Prisma {
   export type photos_albumsMaxOrderByAggregateInput = {
     id_alb?: SortOrder
     titre?: SortOrder
-    description?: SortOrder
     lien_cover?: SortOrder
     date?: SortOrder
     afficher?: SortOrder
@@ -33681,7 +33654,6 @@ export namespace Prisma {
   export type photos_albumsMinOrderByAggregateInput = {
     id_alb?: SortOrder
     titre?: SortOrder
-    description?: SortOrder
     lien_cover?: SortOrder
     date?: SortOrder
     afficher?: SortOrder
@@ -36005,7 +35977,6 @@ export namespace Prisma {
 
   export type photos_albumsCreateWithoutPhotos_albums_linkInput = {
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -36016,7 +35987,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedCreateWithoutPhotos_albums_linkInput = {
     id_alb?: number
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -36084,7 +36054,6 @@ export namespace Prisma {
 
   export type photos_albumsUpdateWithoutPhotos_albums_linkInput = {
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -36095,7 +36064,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedUpdateWithoutPhotos_albums_linkInput = {
     id_alb?: IntFieldUpdateOperationsInput | number
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -36105,7 +36073,6 @@ export namespace Prisma {
 
   export type photos_albumsCreateWithoutPhotos_albums_tags_linkInput = {
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -36116,7 +36083,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedCreateWithoutPhotos_albums_tags_linkInput = {
     id_alb?: number
     titre: string
-    description: string
     lien_cover: string
     date: Date | string
     afficher: boolean
@@ -36160,7 +36126,6 @@ export namespace Prisma {
 
   export type photos_albumsUpdateWithoutPhotos_albums_tags_linkInput = {
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
@@ -36171,7 +36136,6 @@ export namespace Prisma {
   export type photos_albumsUncheckedUpdateWithoutPhotos_albums_tags_linkInput = {
     id_alb?: IntFieldUpdateOperationsInput | number
     titre?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
     lien_cover?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     afficher?: BoolFieldUpdateOperationsInput | boolean

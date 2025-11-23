@@ -1,10 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { MDXEditorMethods } from "@mdxeditor/editor";
 import {
   updateAlbumAction,
   deleteAlbumAction,
@@ -71,10 +69,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { RemovableTag } from "@/components/removable-tag";
-
-const EditorComp = dynamic(() => import("@/components/editor-textarea"), {
-  ssr: false,
-});
 
 type PhotoInfo = {
   id: number;
@@ -199,10 +193,6 @@ export function EditAlbumItem({
   const [date, setDate] = useState<Date | undefined>(
     new Date(initialData.date)
   );
-  const [markdown, setMarkdown] = useState<string>(
-    initialData.description || ""
-  );
-  const editorRef = useRef<MDXEditorMethods | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -245,11 +235,6 @@ export function EditAlbumItem({
         return newOrder;
       });
     }
-  };
-
-  // Ajoutez cette fonction pour gérer les changements dans l'éditeur
-  const handleEditorChange = (newMarkdown: string) => {
-    setMarkdown(newMarkdown);
   };
 
   const handleTagsChange = (newSelectedTags: string[]) => {
@@ -301,7 +286,6 @@ export function EditAlbumItem({
 
       // Ajouter l'ID de l'album
       formData.set("id", initialData.id_alb.toString());
-      formData.set("description", markdown);
 
       // Ajouter les tags sélectionnés
       formData.delete("tags");
@@ -370,7 +354,7 @@ export function EditAlbumItem({
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 mb-8">
       <div className="flex flex-col justify-center items-start gap-4 sm:flex-row sm:justify-between sm:items-center">
         <Breadcrumb>
           <BreadcrumbList>
@@ -432,19 +416,6 @@ export function EditAlbumItem({
             placeholder="Titre de l'album"
             required
           />
-        </div>
-
-        <div className="grid w-full gap-1.5">
-          <Label htmlFor="description">Description</Label>
-          <div className="border rounded-md overflow-hidden">
-            <EditorComp
-              markdown={markdown}
-              onChange={handleEditorChange}
-              editorRef={editorRef}
-            />
-            {/* Champ caché pour stocker la valeur markdown */}
-            <input type="hidden" name="description" value={markdown} />
-          </div>
         </div>
 
         <div className="grid w-full items-center gap-1.5">

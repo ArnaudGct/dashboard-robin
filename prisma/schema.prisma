@@ -68,7 +68,6 @@ model photos {
 model photos_albums {
   id_alb                  Int                       @id @default(autoincrement())
   titre                   String                    @db.VarChar(100)
-  description             String                    @db.VarChar(1000)
   lien_cover              String                    @db.VarChar(255)
   date                    DateTime                  @db.Date
   afficher                Boolean

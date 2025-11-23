@@ -310,330 +310,323 @@ export function AddPhotoItemMultiple({
   };
 
   return (
-    <div className="w-full">
-      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-        {/* Section d'upload de fichiers */}
-        <div
-          className="bg-muted p-8 rounded-lg border-2 border-dashed border-muted-foreground/25 flex flex-col items-center justify-center gap-4"
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
+    <form className="w-full mb-8 flex flex-col gap-8" onSubmit={handleSubmit}>
+      {/* Section d'upload de fichiers */}
+      <div
+        className="bg-muted p-8 rounded-lg border-2 border-dashed border-muted-foreground/25 flex flex-col items-center justify-center gap-4"
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      >
+        <UploadCloud size={48} className="text-muted-foreground" />
+        <div className="text-center">
+          <h3 className="text-lg font-medium">
+            Déposez vos images ici ou cliquez pour parcourir
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            Images supportées: PNG, JPG, WEBP (max 10MB par image)
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Une version basse résolution sera automatiquement générée pour
+            chaque image
+          </p>
+        </div>
+        <Input
+          type="file"
+          id="images"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          accept="image/png, image/jpeg, image/webp"
+          multiple
+          className="hidden"
+          disabled={isUploading}
+        />
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isUploading}
         >
-          <UploadCloud size={48} className="text-muted-foreground" />
-          <div className="text-center">
-            <h3 className="text-lg font-medium">
-              Déposez vos images ici ou cliquez pour parcourir
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Images supportées: PNG, JPG, WEBP (max 10MB par image)
-            </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Une version basse résolution sera automatiquement générée pour
-              chaque image
-            </p>
-          </div>
-          <Input
-            type="file"
-            id="images"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            accept="image/png, image/jpeg, image/webp"
-            multiple
-            className="hidden"
-            disabled={isUploading}
+          Sélectionner des images
+        </Button>
+      </div>
+
+      <div className="grid w-full gap-4">
+        <div className="grid w-full gap-1.5">
+          <Label htmlFor="albums" className="mb-1 block">
+            Sélectionnez un ou plusieurs albums
+          </Label>
+          <TagSheet
+            title="Sélection des albums"
+            description="Choisissez les albums dans lesquels ajouter toutes les images"
+            options={availableAlbums}
+            selectedTags={selectedAlbums}
+            onChange={handleAlbumsChange}
+            onAddNew={handleAddAlbum}
+            triggerLabel="Sélectionner des albums"
+            searchPlaceholder="Rechercher un album..."
+            addNewLabel="Ajouter un nouvel album"
+            type="album"
           />
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={isUploading}
-          >
-            Sélectionner des images
-          </Button>
         </div>
 
-        <div className="grid w-full gap-4">
-          <div className="grid w-full gap-1.5">
-            <Label htmlFor="albums" className="mb-1 block">
-              Sélectionnez un ou plusieurs albums
-            </Label>
-            <TagSheet
-              title="Sélection des albums"
-              description="Choisissez les albums dans lesquels ajouter toutes les images"
-              options={availableAlbums}
-              selectedTags={selectedAlbums}
-              onChange={handleAlbumsChange}
-              onAddNew={handleAddAlbum}
-              triggerLabel="Sélectionner des albums"
-              searchPlaceholder="Rechercher un album..."
-              addNewLabel="Ajouter un nouvel album"
-              type="album"
-            />
+        {selectedAlbums.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {selectedAlbums.map((albumId) => {
+              const album = availableAlbums.find((a) => a.id === albumId);
+              return (
+                <Badge
+                  key={albumId}
+                  className="flex items-center gap-1 pl-2 pr-1 cursor-pointer hover:bg-destructive/10 transition-colors group"
+                  variant="secondary"
+                  onClick={() => {
+                    setSelectedAlbums(
+                      selectedAlbums.filter((id) => id !== albumId)
+                    );
+                    toast.success(`Album "${album?.label || albumId}" retiré`);
+                  }}
+                >
+                  <span
+                    className="max-w-[150px] truncate"
+                    title={album?.label || albumId}
+                  >
+                    {album?.label || albumId}
+                  </span>
+                  <X
+                    className="h-3 w-3 ml-1 opacity-50 group-hover:opacity-100"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
+                  />
+                </Badge>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Liste des images sélectionnées */}
+      {images.length > 0 && (
+        <div className="mt-4">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="text-lg font-medium">
+              Images sélectionnées ({images.length})
+            </h3>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-1"
+              onClick={clearAllImages}
+              disabled={isUploading}
+            >
+              <Trash2 size={14} />
+              <span>Tout effacer</span>
+            </Button>
           </div>
 
-          {selectedAlbums.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {selectedAlbums.map((albumId) => {
-                const album = availableAlbums.find((a) => a.id === albumId);
-                return (
-                  <Badge
-                    key={albumId}
-                    className="flex items-center gap-1 pl-2 pr-1 cursor-pointer hover:bg-destructive/10 transition-colors group"
-                    variant="secondary"
-                    onClick={() => {
-                      setSelectedAlbums(
-                        selectedAlbums.filter((id) => id !== albumId)
-                      );
-                      toast.success(
-                        `Album "${album?.label || albumId}" retiré`
-                      );
-                    }}
-                  >
-                    <span
-                      className="max-w-[150px] truncate"
-                      title={album?.label || albumId}
-                    >
-                      {album?.label || albumId}
-                    </span>
-                    <X
-                      className="h-3 w-3 ml-1 opacity-50 group-hover:opacity-100"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                      }}
+          <ScrollArea className="h-[400px] rounded-md border">
+            <div className="p-4 grid grid-cols-1 gap-6">
+              {images.map((img, index) => (
+                <div
+                  key={index}
+                  className="flex gap-4 items-start border-b pb-6 last:border-0"
+                >
+                  <div className="relative w-24 h-24 flex-shrink-0">
+                    <Image
+                      src={img.preview}
+                      alt={img.alt}
+                      fill
+                      className="object-cover rounded-md"
+                      sizes="(max-width: 768px) 100px, 100px"
                     />
-                  </Badge>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
-        {/* Liste des images sélectionnées */}
-        {images.length > 0 && (
-          <div className="mt-4">
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="text-lg font-medium">
-                Images sélectionnées ({images.length})
-              </h3>
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-1"
-                onClick={clearAllImages}
-                disabled={isUploading}
-              >
-                <Trash2 size={14} />
-                <span>Tout effacer</span>
-              </Button>
-            </div>
-
-            <ScrollArea className="h-[400px] rounded-md border">
-              <div className="p-4 grid grid-cols-1 gap-6">
-                {images.map((img, index) => (
-                  <div
-                    key={index}
-                    className="flex gap-4 items-start border-b pb-6 last:border-0"
-                  >
-                    <div className="relative w-24 h-24 flex-shrink-0">
-                      <Image
-                        src={img.preview}
-                        alt={img.alt}
-                        fill
-                        className="object-cover rounded-md"
-                        sizes="(max-width: 768px) 100px, 100px"
+                  </div>
+                  <div className="flex-grow">
+                    <div className="grid w-full gap-1.5 mb-2">
+                      <Label htmlFor={`alt-${index}`}>Texte alternatif</Label>
+                      <Input
+                        id={`alt-${index}`}
+                        value={img.alt}
+                        onChange={(e) => updateAlt(index, e.target.value)}
+                        placeholder="Description de l'image"
+                        disabled={isUploading}
                       />
                     </div>
-                    <div className="flex-grow">
-                      <div className="grid w-full gap-1.5 mb-2">
-                        <Label htmlFor={`alt-${index}`}>Texte alternatif</Label>
-                        <Input
-                          id={`alt-${index}`}
-                          value={img.alt}
-                          onChange={(e) => updateAlt(index, e.target.value)}
-                          placeholder="Description de l'image"
-                          disabled={isUploading}
-                        />
-                      </div>
 
-                      {/* Switchs carrousel pour cette image */}
-                      <div className="flex flex-col gap-2 mt-3 p-3 border rounded-md bg-muted/20">
-                        <p className="text-xs font-medium text-muted-foreground mb-1">
-                          Mise en avant
-                        </p>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id={`carrouselMain-${index}`}
-                            checked={img.afficherCarrouselMain}
-                            onCheckedChange={(checked) => {
-                              const currentMainCount = images.filter(
-                                (i, idx) =>
-                                  idx !== index && i.afficherCarrouselMain
-                              ).length;
-                              if (
-                                checked &&
-                                carouselCounts.mainCount + currentMainCount >=
-                                  carouselCounts.mainLimit
-                              ) {
-                                toast.error(
-                                  `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
-                                );
-                                return;
-                              }
-                              updateCarrouselMain(index, checked);
-                            }}
-                            disabled={isUploading}
-                            className="cursor-pointer"
-                          />
-                          <Label
-                            htmlFor={`carrouselMain-${index}`}
-                            className="text-xs cursor-pointer"
-                          >
-                            Carrousel principal
-                          </Label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id={`carrouselPhotos-${index}`}
-                            checked={img.afficherCarrouselPhotos}
-                            onCheckedChange={(checked) => {
-                              const currentPhotosCount = images.filter(
-                                (i, idx) =>
-                                  idx !== index && i.afficherCarrouselPhotos
-                              ).length;
-                              if (
-                                checked &&
-                                carouselCounts.photosCount +
-                                  currentPhotosCount >=
-                                  carouselCounts.photosLimit
-                              ) {
-                                toast.error(
-                                  `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
-                                );
-                                return;
-                              }
-                              updateCarrouselPhotos(index, checked);
-                            }}
-                            disabled={isUploading}
-                            className="cursor-pointer"
-                          />
-                          <Label
-                            htmlFor={`carrouselPhotos-${index}`}
-                            className="text-xs cursor-pointer"
-                          >
-                            Carrousel photos
-                          </Label>
-                        </div>
-                      </div>
-
-                      <p className="text-xs text-muted-foreground mt-2">
-                        {img.file.name} -{" "}
-                        {(img.file.size / (1024 * 1024)).toFixed(2)} MB
+                    {/* Switchs carrousel pour cette image */}
+                    <div className="flex flex-col gap-2 mt-3 p-3 border rounded-md bg-muted/20">
+                      <p className="text-xs font-medium text-muted-foreground mb-1">
+                        Mise en avant
                       </p>
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id={`carrouselMain-${index}`}
+                          checked={img.afficherCarrouselMain}
+                          onCheckedChange={(checked) => {
+                            const currentMainCount = images.filter(
+                              (i, idx) =>
+                                idx !== index && i.afficherCarrouselMain
+                            ).length;
+                            if (
+                              checked &&
+                              carouselCounts.mainCount + currentMainCount >=
+                                carouselCounts.mainLimit
+                            ) {
+                              toast.error(
+                                `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
+                              );
+                              return;
+                            }
+                            updateCarrouselMain(index, checked);
+                          }}
+                          disabled={isUploading}
+                          className="cursor-pointer"
+                        />
+                        <Label
+                          htmlFor={`carrouselMain-${index}`}
+                          className="text-xs cursor-pointer"
+                        >
+                          Carrousel principal
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id={`carrouselPhotos-${index}`}
+                          checked={img.afficherCarrouselPhotos}
+                          onCheckedChange={(checked) => {
+                            const currentPhotosCount = images.filter(
+                              (i, idx) =>
+                                idx !== index && i.afficherCarrouselPhotos
+                            ).length;
+                            if (
+                              checked &&
+                              carouselCounts.photosCount + currentPhotosCount >=
+                                carouselCounts.photosLimit
+                            ) {
+                              toast.error(
+                                `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
+                              );
+                              return;
+                            }
+                            updateCarrouselPhotos(index, checked);
+                          }}
+                          disabled={isUploading}
+                          className="cursor-pointer"
+                        />
+                        <Label
+                          htmlFor={`carrouselPhotos-${index}`}
+                          className="text-xs cursor-pointer"
+                        >
+                          Carrousel photos
+                        </Label>
+                      </div>
                     </div>
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => removeImage(index)}
-                      className="flex-shrink-0"
-                      disabled={isUploading}
-                    >
-                      <X size={18} />
-                    </Button>
+
+                    <p className="text-xs text-muted-foreground mt-2">
+                      {img.file.name} -{" "}
+                      {(img.file.size / (1024 * 1024)).toFixed(2)} MB
+                    </p>
                   </div>
-                ))}
-              </div>
-            </ScrollArea>
-          </div>
-        )}
-
-        {/* Barre de progression lors de l'upload */}
-        {isUploading && (
-          <div className="mt-4">
-            <Label className="mb-2 block">Progression de l'upload</Label>
-            <Progress value={progress} className="h-2 w-full" />
-            <p className="text-sm text-muted-foreground mt-2 text-center">
-              {progress}% - Veuillez patienter pendant le traitement des
-              images...
-            </p>
-          </div>
-        )}
-
-        {/* Résumé des carrousels */}
-        {images.length > 0 && (
-          <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
-            <h3 className="text-sm font-medium">Résumé de la mise en avant</h3>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-sm">Carrousel principal :</span>
-                <span className="text-xs text-muted-foreground">
-                  ({images.filter((img) => img.afficherCarrouselMain).length}{" "}
-                  photo(s) sélectionnée(s))
-                </span>
-              </div>
-              <span
-                className={`text-sm font-medium ${
-                  carouselCounts.mainCount +
-                    images.filter((img) => img.afficherCarrouselMain).length >
-                  carouselCounts.mainLimit
-                    ? "text-destructive"
-                    : ""
-                }`}
-              >
-                {carouselCounts.mainCount +
-                  images.filter((img) => img.afficherCarrouselMain).length}{" "}
-                / {carouselCounts.mainLimit}
-              </span>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => removeImage(index)}
+                    className="flex-shrink-0"
+                    disabled={isUploading}
+                  >
+                    <X size={18} />
+                  </Button>
+                </div>
+              ))}
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-sm">Carrousel photos :</span>
-                <span className="text-xs text-muted-foreground">
-                  ({images.filter((img) => img.afficherCarrouselPhotos).length}{" "}
-                  photo(s) sélectionnée(s))
-                </span>
-              </div>
-              <span
-                className={`text-sm font-medium ${
-                  carouselCounts.photosCount +
-                    images.filter((img) => img.afficherCarrouselPhotos).length >
-                  carouselCounts.photosLimit
-                    ? "text-destructive"
-                    : ""
-                }`}
-              >
-                {carouselCounts.photosCount +
-                  images.filter((img) => img.afficherCarrouselPhotos)
-                    .length}{" "}
-                / {carouselCounts.photosLimit}
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Boutons d'action */}
-        <div className="flex gap-2 mt-4">
-          <Button
-            type="submit"
-            className="cursor-pointer"
-            disabled={
-              images.length === 0 || selectedAlbums.length === 0 || isUploading
-            }
-          >
-            {isUploading ? "Upload en cours..." : "Ajouter toutes les photos"}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.push("/photos")}
-            disabled={isUploading}
-          >
-            Annuler
-          </Button>
+          </ScrollArea>
         </div>
-      </form>
-    </div>
+      )}
+
+      {/* Barre de progression lors de l'upload */}
+      {isUploading && (
+        <div className="mt-4">
+          <Label className="mb-2 block">Progression de l'upload</Label>
+          <Progress value={progress} className="h-2 w-full" />
+          <p className="text-sm text-muted-foreground mt-2 text-center">
+            {progress}% - Veuillez patienter pendant le traitement des images...
+          </p>
+        </div>
+      )}
+
+      {/* Résumé des carrousels */}
+      {images.length > 0 && (
+        <div className="flex flex-col gap-3 mt-4 p-4 border rounded-lg bg-muted/30">
+          <h3 className="text-sm font-medium">Résumé de la mise en avant</h3>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-sm">Carrousel principal :</span>
+              <span className="text-xs text-muted-foreground">
+                ({images.filter((img) => img.afficherCarrouselMain).length}{" "}
+                photo(s) sélectionnée(s))
+              </span>
+            </div>
+            <span
+              className={`text-sm font-medium ${
+                carouselCounts.mainCount +
+                  images.filter((img) => img.afficherCarrouselMain).length >
+                carouselCounts.mainLimit
+                  ? "text-destructive"
+                  : ""
+              }`}
+            >
+              {carouselCounts.mainCount +
+                images.filter((img) => img.afficherCarrouselMain).length}{" "}
+              / {carouselCounts.mainLimit}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-sm">Carrousel photos :</span>
+              <span className="text-xs text-muted-foreground">
+                ({images.filter((img) => img.afficherCarrouselPhotos).length}{" "}
+                photo(s) sélectionnée(s))
+              </span>
+            </div>
+            <span
+              className={`text-sm font-medium ${
+                carouselCounts.photosCount +
+                  images.filter((img) => img.afficherCarrouselPhotos).length >
+                carouselCounts.photosLimit
+                  ? "text-destructive"
+                  : ""
+              }`}
+            >
+              {carouselCounts.photosCount +
+                images.filter((img) => img.afficherCarrouselPhotos).length}{" "}
+              / {carouselCounts.photosLimit}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Boutons d'action */}
+      <div className="flex gap-2 mt-4">
+        <Button
+          type="submit"
+          className="cursor-pointer"
+          disabled={
+            images.length === 0 || selectedAlbums.length === 0 || isUploading
+          }
+        >
+          {isUploading ? "Upload en cours..." : "Ajouter toutes les photos"}
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => router.push("/photos")}
+          disabled={isUploading}
+        >
+          Annuler
+        </Button>
+      </div>
+    </form>
   );
 }

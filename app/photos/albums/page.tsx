@@ -96,7 +96,6 @@ async function AlbumsList() {
     select: {
       id_alb: true,
       titre: true,
-      description: true,
       date: true,
       lien_cover: true, // Utiliser l'image de couverture générée
       // Compter les photos pour afficher le nombre
@@ -169,15 +168,7 @@ async function AlbumsList() {
                   )}
 
                   <div className="flex flex-col gap-4 w-full">
-                    <div className="flex flex-col gap-1.5">
-                      <p className="text-lg font-semibold">{album.titre}</p>
-
-                      {album.description && (
-                        <div className="text-sm text-muted-foreground line-clamp-2">
-                          <ReactMarkdown>{album.description}</ReactMarkdown>
-                        </div>
-                      )}
-                    </div>
+                    <p className="text-lg font-semibold">{album.titre}</p>
 
                     {album.photos_albums_tags_link.length > 0 && (
                       <div className="flex flex-wrap gap-2">
