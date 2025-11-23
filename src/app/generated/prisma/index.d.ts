@@ -84,10 +84,10 @@ export type photos_tags_recherche = $Result.DefaultSelection<Prisma.$photos_tags
  */
 export type photos_tags_recherche_link = $Result.DefaultSelection<Prisma.$photos_tags_recherche_linkPayload>
 /**
- * Model temoignages
+ * Model clients
  * 
  */
-export type temoignages = $Result.DefaultSelection<Prisma.$temoignagesPayload>
+export type clients = $Result.DefaultSelection<Prisma.$clientsPayload>
 /**
  * Model utilisateurs
  * 
@@ -410,14 +410,14 @@ export class PrismaClient<
   get photos_tags_recherche_link(): Prisma.photos_tags_recherche_linkDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.temoignages`: Exposes CRUD operations for the **temoignages** model.
+   * `prisma.clients`: Exposes CRUD operations for the **clients** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Temoignages
-    * const temoignages = await prisma.temoignages.findMany()
+    * // Fetch zero or more Clients
+    * const clients = await prisma.clients.findMany()
     * ```
     */
-  get temoignages(): Prisma.temoignagesDelegate<ExtArgs, ClientOptions>;
+  get clients(): Prisma.clientsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.utilisateurs`: Exposes CRUD operations for the **utilisateurs** model.
@@ -982,7 +982,7 @@ export namespace Prisma {
     photos_tags_link: 'photos_tags_link',
     photos_tags_recherche: 'photos_tags_recherche',
     photos_tags_recherche_link: 'photos_tags_recherche_link',
-    temoignages: 'temoignages',
+    clients: 'clients',
     utilisateurs: 'utilisateurs',
     videos: 'videos',
     videos_tags: 'videos_tags',
@@ -1012,7 +1012,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "experiences" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "temoignages" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils"
+      modelProps: "autre" | "autre_tags" | "autre_tags_link" | "experiences" | "faq" | "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_experiences" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "clients" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1940,69 +1940,69 @@ export namespace Prisma {
           }
         }
       }
-      temoignages: {
-        payload: Prisma.$temoignagesPayload<ExtArgs>
-        fields: Prisma.temoignagesFieldRefs
+      clients: {
+        payload: Prisma.$clientsPayload<ExtArgs>
+        fields: Prisma.clientsFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.temoignagesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload> | null
+            args: Prisma.clientsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.temoignagesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           findFirst: {
-            args: Prisma.temoignagesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload> | null
+            args: Prisma.clientsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.temoignagesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           findMany: {
-            args: Prisma.temoignagesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>[]
+            args: Prisma.clientsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>[]
           }
           create: {
-            args: Prisma.temoignagesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           createMany: {
-            args: Prisma.temoignagesCreateManyArgs<ExtArgs>
+            args: Prisma.clientsCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           delete: {
-            args: Prisma.temoignagesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           update: {
-            args: Prisma.temoignagesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           deleteMany: {
-            args: Prisma.temoignagesDeleteManyArgs<ExtArgs>
+            args: Prisma.clientsDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.temoignagesUpdateManyArgs<ExtArgs>
+            args: Prisma.clientsUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.temoignagesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$temoignagesPayload>
+            args: Prisma.clientsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$clientsPayload>
           }
           aggregate: {
-            args: Prisma.TemoignagesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTemoignages>
+            args: Prisma.ClientsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateClients>
           }
           groupBy: {
-            args: Prisma.temoignagesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TemoignagesGroupByOutputType>[]
+            args: Prisma.clientsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ClientsGroupByOutputType>[]
           }
           count: {
-            args: Prisma.temoignagesCountArgs<ExtArgs>
-            result: $Utils.Optional<TemoignagesCountAggregateOutputType> | number
+            args: Prisma.clientsCountArgs<ExtArgs>
+            result: $Utils.Optional<ClientsCountAggregateOutputType> | number
           }
         }
       }
@@ -2830,7 +2830,7 @@ export namespace Prisma {
     photos_tags_link?: photos_tags_linkOmit
     photos_tags_recherche?: photos_tags_rechercheOmit
     photos_tags_recherche_link?: photos_tags_recherche_linkOmit
-    temoignages?: temoignagesOmit
+    clients?: clientsOmit
     utilisateurs?: utilisateursOmit
     videos?: videosOmit
     videos_tags?: videos_tagsOmit
@@ -16826,373 +16826,363 @@ export namespace Prisma {
 
 
   /**
-   * Model temoignages
+   * Model clients
    */
 
-  export type AggregateTemoignages = {
-    _count: TemoignagesCountAggregateOutputType | null
-    _avg: TemoignagesAvgAggregateOutputType | null
-    _sum: TemoignagesSumAggregateOutputType | null
-    _min: TemoignagesMinAggregateOutputType | null
-    _max: TemoignagesMaxAggregateOutputType | null
+  export type AggregateClients = {
+    _count: ClientsCountAggregateOutputType | null
+    _avg: ClientsAvgAggregateOutputType | null
+    _sum: ClientsSumAggregateOutputType | null
+    _min: ClientsMinAggregateOutputType | null
+    _max: ClientsMaxAggregateOutputType | null
   }
 
-  export type TemoignagesAvgAggregateOutputType = {
-    id_tem: number | null
+  export type ClientsAvgAggregateOutputType = {
+    id_client: number | null
   }
 
-  export type TemoignagesSumAggregateOutputType = {
-    id_tem: number | null
+  export type ClientsSumAggregateOutputType = {
+    id_client: number | null
   }
 
-  export type TemoignagesMinAggregateOutputType = {
-    id_tem: number | null
-    contenu: string | null
+  export type ClientsMinAggregateOutputType = {
+    id_client: number | null
     client: string | null
-    plateforme: string | null
-    date: string | null
+    logo: string | null
+    alt_logo: string | null
     afficher: boolean | null
   }
 
-  export type TemoignagesMaxAggregateOutputType = {
-    id_tem: number | null
-    contenu: string | null
+  export type ClientsMaxAggregateOutputType = {
+    id_client: number | null
     client: string | null
-    plateforme: string | null
-    date: string | null
+    logo: string | null
+    alt_logo: string | null
     afficher: boolean | null
   }
 
-  export type TemoignagesCountAggregateOutputType = {
-    id_tem: number
-    contenu: number
+  export type ClientsCountAggregateOutputType = {
+    id_client: number
     client: number
-    plateforme: number
-    date: number
+    logo: number
+    alt_logo: number
     afficher: number
     _all: number
   }
 
 
-  export type TemoignagesAvgAggregateInputType = {
-    id_tem?: true
+  export type ClientsAvgAggregateInputType = {
+    id_client?: true
   }
 
-  export type TemoignagesSumAggregateInputType = {
-    id_tem?: true
+  export type ClientsSumAggregateInputType = {
+    id_client?: true
   }
 
-  export type TemoignagesMinAggregateInputType = {
-    id_tem?: true
-    contenu?: true
+  export type ClientsMinAggregateInputType = {
+    id_client?: true
     client?: true
-    plateforme?: true
-    date?: true
+    logo?: true
+    alt_logo?: true
     afficher?: true
   }
 
-  export type TemoignagesMaxAggregateInputType = {
-    id_tem?: true
-    contenu?: true
+  export type ClientsMaxAggregateInputType = {
+    id_client?: true
     client?: true
-    plateforme?: true
-    date?: true
+    logo?: true
+    alt_logo?: true
     afficher?: true
   }
 
-  export type TemoignagesCountAggregateInputType = {
-    id_tem?: true
-    contenu?: true
+  export type ClientsCountAggregateInputType = {
+    id_client?: true
     client?: true
-    plateforme?: true
-    date?: true
+    logo?: true
+    alt_logo?: true
     afficher?: true
     _all?: true
   }
 
-  export type TemoignagesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClientsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which temoignages to aggregate.
+     * Filter which clients to aggregate.
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of temoignages to fetch.
+     * Determine the order of clients to fetch.
      */
-    orderBy?: temoignagesOrderByWithRelationInput | temoignagesOrderByWithRelationInput[]
+    orderBy?: clientsOrderByWithRelationInput | clientsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: temoignagesWhereUniqueInput
+    cursor?: clientsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` temoignages from the position of the cursor.
+     * Take `±n` clients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` temoignages.
+     * Skip the first `n` clients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned temoignages
+     * Count returned clients
     **/
-    _count?: true | TemoignagesCountAggregateInputType
+    _count?: true | ClientsCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: TemoignagesAvgAggregateInputType
+    _avg?: ClientsAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: TemoignagesSumAggregateInputType
+    _sum?: ClientsSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: TemoignagesMinAggregateInputType
+    _min?: ClientsMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: TemoignagesMaxAggregateInputType
+    _max?: ClientsMaxAggregateInputType
   }
 
-  export type GetTemoignagesAggregateType<T extends TemoignagesAggregateArgs> = {
-        [P in keyof T & keyof AggregateTemoignages]: P extends '_count' | 'count'
+  export type GetClientsAggregateType<T extends ClientsAggregateArgs> = {
+        [P in keyof T & keyof AggregateClients]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateTemoignages[P]>
-      : GetScalarType<T[P], AggregateTemoignages[P]>
+        : GetScalarType<T[P], AggregateClients[P]>
+      : GetScalarType<T[P], AggregateClients[P]>
   }
 
 
 
 
-  export type temoignagesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: temoignagesWhereInput
-    orderBy?: temoignagesOrderByWithAggregationInput | temoignagesOrderByWithAggregationInput[]
-    by: TemoignagesScalarFieldEnum[] | TemoignagesScalarFieldEnum
-    having?: temoignagesScalarWhereWithAggregatesInput
+  export type clientsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: clientsWhereInput
+    orderBy?: clientsOrderByWithAggregationInput | clientsOrderByWithAggregationInput[]
+    by: ClientsScalarFieldEnum[] | ClientsScalarFieldEnum
+    having?: clientsScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: TemoignagesCountAggregateInputType | true
-    _avg?: TemoignagesAvgAggregateInputType
-    _sum?: TemoignagesSumAggregateInputType
-    _min?: TemoignagesMinAggregateInputType
-    _max?: TemoignagesMaxAggregateInputType
+    _count?: ClientsCountAggregateInputType | true
+    _avg?: ClientsAvgAggregateInputType
+    _sum?: ClientsSumAggregateInputType
+    _min?: ClientsMinAggregateInputType
+    _max?: ClientsMaxAggregateInputType
   }
 
-  export type TemoignagesGroupByOutputType = {
-    id_tem: number
-    contenu: string
+  export type ClientsGroupByOutputType = {
+    id_client: number
     client: string
-    plateforme: string
-    date: string | null
+    logo: string
+    alt_logo: string
     afficher: boolean
-    _count: TemoignagesCountAggregateOutputType | null
-    _avg: TemoignagesAvgAggregateOutputType | null
-    _sum: TemoignagesSumAggregateOutputType | null
-    _min: TemoignagesMinAggregateOutputType | null
-    _max: TemoignagesMaxAggregateOutputType | null
+    _count: ClientsCountAggregateOutputType | null
+    _avg: ClientsAvgAggregateOutputType | null
+    _sum: ClientsSumAggregateOutputType | null
+    _min: ClientsMinAggregateOutputType | null
+    _max: ClientsMaxAggregateOutputType | null
   }
 
-  type GetTemoignagesGroupByPayload<T extends temoignagesGroupByArgs> = Prisma.PrismaPromise<
+  type GetClientsGroupByPayload<T extends clientsGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TemoignagesGroupByOutputType, T['by']> &
+      PickEnumerable<ClientsGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof TemoignagesGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ClientsGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], TemoignagesGroupByOutputType[P]>
-            : GetScalarType<T[P], TemoignagesGroupByOutputType[P]>
+              : GetScalarType<T[P], ClientsGroupByOutputType[P]>
+            : GetScalarType<T[P], ClientsGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type temoignagesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id_tem?: boolean
-    contenu?: boolean
+  export type clientsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_client?: boolean
     client?: boolean
-    plateforme?: boolean
-    date?: boolean
+    logo?: boolean
+    alt_logo?: boolean
     afficher?: boolean
-  }, ExtArgs["result"]["temoignages"]>
+  }, ExtArgs["result"]["clients"]>
 
 
 
-  export type temoignagesSelectScalar = {
-    id_tem?: boolean
-    contenu?: boolean
+  export type clientsSelectScalar = {
+    id_client?: boolean
     client?: boolean
-    plateforme?: boolean
-    date?: boolean
+    logo?: boolean
+    alt_logo?: boolean
     afficher?: boolean
   }
 
-  export type temoignagesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_tem" | "contenu" | "client" | "plateforme" | "date" | "afficher", ExtArgs["result"]["temoignages"]>
+  export type clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_client" | "client" | "logo" | "alt_logo" | "afficher", ExtArgs["result"]["clients"]>
 
-  export type $temoignagesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "temoignages"
+  export type $clientsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "clients"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id_tem: number
-      contenu: string
+      id_client: number
       client: string
-      plateforme: string
-      date: string | null
+      logo: string
+      alt_logo: string
       afficher: boolean
-    }, ExtArgs["result"]["temoignages"]>
+    }, ExtArgs["result"]["clients"]>
     composites: {}
   }
 
-  type temoignagesGetPayload<S extends boolean | null | undefined | temoignagesDefaultArgs> = $Result.GetResult<Prisma.$temoignagesPayload, S>
+  type clientsGetPayload<S extends boolean | null | undefined | clientsDefaultArgs> = $Result.GetResult<Prisma.$clientsPayload, S>
 
-  type temoignagesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<temoignagesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TemoignagesCountAggregateInputType | true
+  type clientsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<clientsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ClientsCountAggregateInputType | true
     }
 
-  export interface temoignagesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['temoignages'], meta: { name: 'temoignages' } }
+  export interface clientsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['clients'], meta: { name: 'clients' } }
     /**
-     * Find zero or one Temoignages that matches the filter.
-     * @param {temoignagesFindUniqueArgs} args - Arguments to find a Temoignages
+     * Find zero or one Clients that matches the filter.
+     * @param {clientsFindUniqueArgs} args - Arguments to find a Clients
      * @example
-     * // Get one Temoignages
-     * const temoignages = await prisma.temoignages.findUnique({
+     * // Get one Clients
+     * const clients = await prisma.clients.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends temoignagesFindUniqueArgs>(args: SelectSubset<T, temoignagesFindUniqueArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends clientsFindUniqueArgs>(args: SelectSubset<T, clientsFindUniqueArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Temoignages that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Clients that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {temoignagesFindUniqueOrThrowArgs} args - Arguments to find a Temoignages
+     * @param {clientsFindUniqueOrThrowArgs} args - Arguments to find a Clients
      * @example
-     * // Get one Temoignages
-     * const temoignages = await prisma.temoignages.findUniqueOrThrow({
+     * // Get one Clients
+     * const clients = await prisma.clients.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends temoignagesFindUniqueOrThrowArgs>(args: SelectSubset<T, temoignagesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends clientsFindUniqueOrThrowArgs>(args: SelectSubset<T, clientsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Temoignages that matches the filter.
+     * Find the first Clients that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesFindFirstArgs} args - Arguments to find a Temoignages
+     * @param {clientsFindFirstArgs} args - Arguments to find a Clients
      * @example
-     * // Get one Temoignages
-     * const temoignages = await prisma.temoignages.findFirst({
+     * // Get one Clients
+     * const clients = await prisma.clients.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends temoignagesFindFirstArgs>(args?: SelectSubset<T, temoignagesFindFirstArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends clientsFindFirstArgs>(args?: SelectSubset<T, clientsFindFirstArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Temoignages that matches the filter or
+     * Find the first Clients that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesFindFirstOrThrowArgs} args - Arguments to find a Temoignages
+     * @param {clientsFindFirstOrThrowArgs} args - Arguments to find a Clients
      * @example
-     * // Get one Temoignages
-     * const temoignages = await prisma.temoignages.findFirstOrThrow({
+     * // Get one Clients
+     * const clients = await prisma.clients.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends temoignagesFindFirstOrThrowArgs>(args?: SelectSubset<T, temoignagesFindFirstOrThrowArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends clientsFindFirstOrThrowArgs>(args?: SelectSubset<T, clientsFindFirstOrThrowArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Temoignages that matches the filter.
+     * Find zero or more Clients that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {clientsFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Temoignages
-     * const temoignages = await prisma.temoignages.findMany()
+     * // Get all Clients
+     * const clients = await prisma.clients.findMany()
      * 
-     * // Get first 10 Temoignages
-     * const temoignages = await prisma.temoignages.findMany({ take: 10 })
+     * // Get first 10 Clients
+     * const clients = await prisma.clients.findMany({ take: 10 })
      * 
-     * // Only select the `id_tem`
-     * const temoignagesWithId_temOnly = await prisma.temoignages.findMany({ select: { id_tem: true } })
+     * // Only select the `id_client`
+     * const clientsWithId_clientOnly = await prisma.clients.findMany({ select: { id_client: true } })
      * 
      */
-    findMany<T extends temoignagesFindManyArgs>(args?: SelectSubset<T, temoignagesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends clientsFindManyArgs>(args?: SelectSubset<T, clientsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Temoignages.
-     * @param {temoignagesCreateArgs} args - Arguments to create a Temoignages.
+     * Create a Clients.
+     * @param {clientsCreateArgs} args - Arguments to create a Clients.
      * @example
-     * // Create one Temoignages
-     * const Temoignages = await prisma.temoignages.create({
+     * // Create one Clients
+     * const Clients = await prisma.clients.create({
      *   data: {
-     *     // ... data to create a Temoignages
+     *     // ... data to create a Clients
      *   }
      * })
      * 
      */
-    create<T extends temoignagesCreateArgs>(args: SelectSubset<T, temoignagesCreateArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends clientsCreateArgs>(args: SelectSubset<T, clientsCreateArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Temoignages.
-     * @param {temoignagesCreateManyArgs} args - Arguments to create many Temoignages.
+     * Create many Clients.
+     * @param {clientsCreateManyArgs} args - Arguments to create many Clients.
      * @example
-     * // Create many Temoignages
-     * const temoignages = await prisma.temoignages.createMany({
+     * // Create many Clients
+     * const clients = await prisma.clients.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends temoignagesCreateManyArgs>(args?: SelectSubset<T, temoignagesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends clientsCreateManyArgs>(args?: SelectSubset<T, clientsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Delete a Temoignages.
-     * @param {temoignagesDeleteArgs} args - Arguments to delete one Temoignages.
+     * Delete a Clients.
+     * @param {clientsDeleteArgs} args - Arguments to delete one Clients.
      * @example
-     * // Delete one Temoignages
-     * const Temoignages = await prisma.temoignages.delete({
+     * // Delete one Clients
+     * const Clients = await prisma.clients.delete({
      *   where: {
-     *     // ... filter to delete one Temoignages
+     *     // ... filter to delete one Clients
      *   }
      * })
      * 
      */
-    delete<T extends temoignagesDeleteArgs>(args: SelectSubset<T, temoignagesDeleteArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends clientsDeleteArgs>(args: SelectSubset<T, clientsDeleteArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Temoignages.
-     * @param {temoignagesUpdateArgs} args - Arguments to update one Temoignages.
+     * Update one Clients.
+     * @param {clientsUpdateArgs} args - Arguments to update one Clients.
      * @example
-     * // Update one Temoignages
-     * const temoignages = await prisma.temoignages.update({
+     * // Update one Clients
+     * const clients = await prisma.clients.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17202,30 +17192,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends temoignagesUpdateArgs>(args: SelectSubset<T, temoignagesUpdateArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends clientsUpdateArgs>(args: SelectSubset<T, clientsUpdateArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Temoignages.
-     * @param {temoignagesDeleteManyArgs} args - Arguments to filter Temoignages to delete.
+     * Delete zero or more Clients.
+     * @param {clientsDeleteManyArgs} args - Arguments to filter Clients to delete.
      * @example
-     * // Delete a few Temoignages
-     * const { count } = await prisma.temoignages.deleteMany({
+     * // Delete a few Clients
+     * const { count } = await prisma.clients.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends temoignagesDeleteManyArgs>(args?: SelectSubset<T, temoignagesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends clientsDeleteManyArgs>(args?: SelectSubset<T, clientsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Temoignages.
+     * Update zero or more Clients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {clientsUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Temoignages
-     * const temoignages = await prisma.temoignages.updateMany({
+     * // Update many Clients
+     * const clients = await prisma.clients.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -17235,56 +17225,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends temoignagesUpdateManyArgs>(args: SelectSubset<T, temoignagesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends clientsUpdateManyArgs>(args: SelectSubset<T, clientsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Temoignages.
-     * @param {temoignagesUpsertArgs} args - Arguments to update or create a Temoignages.
+     * Create or update one Clients.
+     * @param {clientsUpsertArgs} args - Arguments to update or create a Clients.
      * @example
-     * // Update or create a Temoignages
-     * const temoignages = await prisma.temoignages.upsert({
+     * // Update or create a Clients
+     * const clients = await prisma.clients.upsert({
      *   create: {
-     *     // ... data to create a Temoignages
+     *     // ... data to create a Clients
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Temoignages we want to update
+     *     // ... the filter for the Clients we want to update
      *   }
      * })
      */
-    upsert<T extends temoignagesUpsertArgs>(args: SelectSubset<T, temoignagesUpsertArgs<ExtArgs>>): Prisma__temoignagesClient<$Result.GetResult<Prisma.$temoignagesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends clientsUpsertArgs>(args: SelectSubset<T, clientsUpsertArgs<ExtArgs>>): Prisma__clientsClient<$Result.GetResult<Prisma.$clientsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Temoignages.
+     * Count the number of Clients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesCountArgs} args - Arguments to filter Temoignages to count.
+     * @param {clientsCountArgs} args - Arguments to filter Clients to count.
      * @example
-     * // Count the number of Temoignages
-     * const count = await prisma.temoignages.count({
+     * // Count the number of Clients
+     * const count = await prisma.clients.count({
      *   where: {
-     *     // ... the filter for the Temoignages we want to count
+     *     // ... the filter for the Clients we want to count
      *   }
      * })
     **/
-    count<T extends temoignagesCountArgs>(
-      args?: Subset<T, temoignagesCountArgs>,
+    count<T extends clientsCountArgs>(
+      args?: Subset<T, clientsCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], TemoignagesCountAggregateOutputType>
+          : GetScalarType<T['select'], ClientsCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Temoignages.
+     * Allows you to perform aggregations operations on a Clients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {TemoignagesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ClientsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -17304,13 +17294,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends TemoignagesAggregateArgs>(args: Subset<T, TemoignagesAggregateArgs>): Prisma.PrismaPromise<GetTemoignagesAggregateType<T>>
+    aggregate<T extends ClientsAggregateArgs>(args: Subset<T, ClientsAggregateArgs>): Prisma.PrismaPromise<GetClientsAggregateType<T>>
 
     /**
-     * Group by Temoignages.
+     * Group by Clients.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {temoignagesGroupByArgs} args - Group by arguments.
+     * @param {clientsGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -17325,14 +17315,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends temoignagesGroupByArgs,
+      T extends clientsGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: temoignagesGroupByArgs['orderBy'] }
-        : { orderBy?: temoignagesGroupByArgs['orderBy'] },
+        ? { orderBy: clientsGroupByArgs['orderBy'] }
+        : { orderBy?: clientsGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -17381,20 +17371,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, temoignagesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTemoignagesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, clientsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClientsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the temoignages model
+   * Fields of the clients model
    */
-  readonly fields: temoignagesFieldRefs;
+  readonly fields: clientsFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for temoignages.
+   * The delegate class that acts as a "Promise-like" for clients.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__temoignagesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__clientsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17422,333 +17412,332 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the temoignages model
+   * Fields of the clients model
    */
-  interface temoignagesFieldRefs {
-    readonly id_tem: FieldRef<"temoignages", 'Int'>
-    readonly contenu: FieldRef<"temoignages", 'String'>
-    readonly client: FieldRef<"temoignages", 'String'>
-    readonly plateforme: FieldRef<"temoignages", 'String'>
-    readonly date: FieldRef<"temoignages", 'String'>
-    readonly afficher: FieldRef<"temoignages", 'Boolean'>
+  interface clientsFieldRefs {
+    readonly id_client: FieldRef<"clients", 'Int'>
+    readonly client: FieldRef<"clients", 'String'>
+    readonly logo: FieldRef<"clients", 'String'>
+    readonly alt_logo: FieldRef<"clients", 'String'>
+    readonly afficher: FieldRef<"clients", 'Boolean'>
   }
     
 
   // Custom InputTypes
   /**
-   * temoignages findUnique
+   * clients findUnique
    */
-  export type temoignagesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter, which temoignages to fetch.
+     * Filter, which clients to fetch.
      */
-    where: temoignagesWhereUniqueInput
+    where: clientsWhereUniqueInput
   }
 
   /**
-   * temoignages findUniqueOrThrow
+   * clients findUniqueOrThrow
    */
-  export type temoignagesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter, which temoignages to fetch.
+     * Filter, which clients to fetch.
      */
-    where: temoignagesWhereUniqueInput
+    where: clientsWhereUniqueInput
   }
 
   /**
-   * temoignages findFirst
+   * clients findFirst
    */
-  export type temoignagesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter, which temoignages to fetch.
+     * Filter, which clients to fetch.
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of temoignages to fetch.
+     * Determine the order of clients to fetch.
      */
-    orderBy?: temoignagesOrderByWithRelationInput | temoignagesOrderByWithRelationInput[]
+    orderBy?: clientsOrderByWithRelationInput | clientsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for temoignages.
+     * Sets the position for searching for clients.
      */
-    cursor?: temoignagesWhereUniqueInput
+    cursor?: clientsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` temoignages from the position of the cursor.
+     * Take `±n` clients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` temoignages.
+     * Skip the first `n` clients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of temoignages.
+     * Filter by unique combinations of clients.
      */
-    distinct?: TemoignagesScalarFieldEnum | TemoignagesScalarFieldEnum[]
+    distinct?: ClientsScalarFieldEnum | ClientsScalarFieldEnum[]
   }
 
   /**
-   * temoignages findFirstOrThrow
+   * clients findFirstOrThrow
    */
-  export type temoignagesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter, which temoignages to fetch.
+     * Filter, which clients to fetch.
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of temoignages to fetch.
+     * Determine the order of clients to fetch.
      */
-    orderBy?: temoignagesOrderByWithRelationInput | temoignagesOrderByWithRelationInput[]
+    orderBy?: clientsOrderByWithRelationInput | clientsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for temoignages.
+     * Sets the position for searching for clients.
      */
-    cursor?: temoignagesWhereUniqueInput
+    cursor?: clientsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` temoignages from the position of the cursor.
+     * Take `±n` clients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` temoignages.
+     * Skip the first `n` clients.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of temoignages.
+     * Filter by unique combinations of clients.
      */
-    distinct?: TemoignagesScalarFieldEnum | TemoignagesScalarFieldEnum[]
+    distinct?: ClientsScalarFieldEnum | ClientsScalarFieldEnum[]
   }
 
   /**
-   * temoignages findMany
+   * clients findMany
    */
-  export type temoignagesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter, which temoignages to fetch.
+     * Filter, which clients to fetch.
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of temoignages to fetch.
+     * Determine the order of clients to fetch.
      */
-    orderBy?: temoignagesOrderByWithRelationInput | temoignagesOrderByWithRelationInput[]
+    orderBy?: clientsOrderByWithRelationInput | clientsOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing temoignages.
+     * Sets the position for listing clients.
      */
-    cursor?: temoignagesWhereUniqueInput
+    cursor?: clientsWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` temoignages from the position of the cursor.
+     * Take `±n` clients from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` temoignages.
+     * Skip the first `n` clients.
      */
     skip?: number
-    distinct?: TemoignagesScalarFieldEnum | TemoignagesScalarFieldEnum[]
+    distinct?: ClientsScalarFieldEnum | ClientsScalarFieldEnum[]
   }
 
   /**
-   * temoignages create
+   * clients create
    */
-  export type temoignagesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * The data needed to create a temoignages.
+     * The data needed to create a clients.
      */
-    data: XOR<temoignagesCreateInput, temoignagesUncheckedCreateInput>
+    data: XOR<clientsCreateInput, clientsUncheckedCreateInput>
   }
 
   /**
-   * temoignages createMany
+   * clients createMany
    */
-  export type temoignagesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many temoignages.
+     * The data used to create many clients.
      */
-    data: temoignagesCreateManyInput | temoignagesCreateManyInput[]
+    data: clientsCreateManyInput | clientsCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * temoignages update
+   * clients update
    */
-  export type temoignagesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * The data needed to update a temoignages.
+     * The data needed to update a clients.
      */
-    data: XOR<temoignagesUpdateInput, temoignagesUncheckedUpdateInput>
+    data: XOR<clientsUpdateInput, clientsUncheckedUpdateInput>
     /**
-     * Choose, which temoignages to update.
+     * Choose, which clients to update.
      */
-    where: temoignagesWhereUniqueInput
+    where: clientsWhereUniqueInput
   }
 
   /**
-   * temoignages updateMany
+   * clients updateMany
    */
-  export type temoignagesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update temoignages.
+     * The data used to update clients.
      */
-    data: XOR<temoignagesUpdateManyMutationInput, temoignagesUncheckedUpdateManyInput>
+    data: XOR<clientsUpdateManyMutationInput, clientsUncheckedUpdateManyInput>
     /**
-     * Filter which temoignages to update
+     * Filter which clients to update
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
-     * Limit how many temoignages to update.
+     * Limit how many clients to update.
      */
     limit?: number
   }
 
   /**
-   * temoignages upsert
+   * clients upsert
    */
-  export type temoignagesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * The filter to search for the temoignages to update in case it exists.
+     * The filter to search for the clients to update in case it exists.
      */
-    where: temoignagesWhereUniqueInput
+    where: clientsWhereUniqueInput
     /**
-     * In case the temoignages found by the `where` argument doesn't exist, create a new temoignages with this data.
+     * In case the clients found by the `where` argument doesn't exist, create a new clients with this data.
      */
-    create: XOR<temoignagesCreateInput, temoignagesUncheckedCreateInput>
+    create: XOR<clientsCreateInput, clientsUncheckedCreateInput>
     /**
-     * In case the temoignages was found with the provided `where` argument, update it with this data.
+     * In case the clients was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<temoignagesUpdateInput, temoignagesUncheckedUpdateInput>
+    update: XOR<clientsUpdateInput, clientsUncheckedUpdateInput>
   }
 
   /**
-   * temoignages delete
+   * clients delete
    */
-  export type temoignagesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
     /**
-     * Filter which temoignages to delete.
+     * Filter which clients to delete.
      */
-    where: temoignagesWhereUniqueInput
+    where: clientsWhereUniqueInput
   }
 
   /**
-   * temoignages deleteMany
+   * clients deleteMany
    */
-  export type temoignagesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which temoignages to delete
+     * Filter which clients to delete
      */
-    where?: temoignagesWhereInput
+    where?: clientsWhereInput
     /**
-     * Limit how many temoignages to delete.
+     * Limit how many clients to delete.
      */
     limit?: number
   }
 
   /**
-   * temoignages without action
+   * clients without action
    */
-  export type temoignagesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type clientsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the temoignages
+     * Select specific fields to fetch from the clients
      */
-    select?: temoignagesSelect<ExtArgs> | null
+    select?: clientsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the temoignages
+     * Omit specific fields from the clients
      */
-    omit?: temoignagesOmit<ExtArgs> | null
+    omit?: clientsOmit<ExtArgs> | null
   }
 
 
@@ -25359,9 +25348,8 @@ export namespace Prisma {
     video_cover: string | null
     photo: string | null
     photo_alt: string | null
-    credit_nom: string | null
-    credit_url: string | null
     description: string | null
+    localisation: string | null
   }
 
   export type Accueil_generalMaxAggregateOutputType = {
@@ -25371,9 +25359,8 @@ export namespace Prisma {
     video_cover: string | null
     photo: string | null
     photo_alt: string | null
-    credit_nom: string | null
-    credit_url: string | null
     description: string | null
+    localisation: string | null
   }
 
   export type Accueil_generalCountAggregateOutputType = {
@@ -25383,9 +25370,8 @@ export namespace Prisma {
     video_cover: number
     photo: number
     photo_alt: number
-    credit_nom: number
-    credit_url: number
     description: number
+    localisation: number
     _all: number
   }
 
@@ -25405,9 +25391,8 @@ export namespace Prisma {
     video_cover?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
+    localisation?: true
   }
 
   export type Accueil_generalMaxAggregateInputType = {
@@ -25417,9 +25402,8 @@ export namespace Prisma {
     video_cover?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
+    localisation?: true
   }
 
   export type Accueil_generalCountAggregateInputType = {
@@ -25429,9 +25413,8 @@ export namespace Prisma {
     video_cover?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
+    localisation?: true
     _all?: true
   }
 
@@ -25528,9 +25511,8 @@ export namespace Prisma {
     video_cover: string
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
+    localisation: string
     _count: Accueil_generalCountAggregateOutputType | null
     _avg: Accueil_generalAvgAggregateOutputType | null
     _sum: Accueil_generalSumAggregateOutputType | null
@@ -25559,9 +25541,8 @@ export namespace Prisma {
     video_cover?: boolean
     photo?: boolean
     photo_alt?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
     description?: boolean
+    localisation?: boolean
   }, ExtArgs["result"]["accueil_general"]>
 
 
@@ -25573,12 +25554,11 @@ export namespace Prisma {
     video_cover?: boolean
     photo?: boolean
     photo_alt?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
     description?: boolean
+    localisation?: boolean
   }
 
-  export type accueil_generalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_gen" | "video_desktop" | "video_mobile" | "video_cover" | "photo" | "photo_alt" | "credit_nom" | "credit_url" | "description", ExtArgs["result"]["accueil_general"]>
+  export type accueil_generalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_gen" | "video_desktop" | "video_mobile" | "video_cover" | "photo" | "photo_alt" | "description" | "localisation", ExtArgs["result"]["accueil_general"]>
 
   export type $accueil_generalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "accueil_general"
@@ -25590,9 +25570,8 @@ export namespace Prisma {
       video_cover: string
       photo: string
       photo_alt: string
-      credit_nom: string
-      credit_url: string
       description: string
+      localisation: string
     }, ExtArgs["result"]["accueil_general"]>
     composites: {}
   }
@@ -25968,9 +25947,8 @@ export namespace Prisma {
     readonly video_cover: FieldRef<"accueil_general", 'String'>
     readonly photo: FieldRef<"accueil_general", 'String'>
     readonly photo_alt: FieldRef<"accueil_general", 'String'>
-    readonly credit_nom: FieldRef<"accueil_general", 'String'>
-    readonly credit_url: FieldRef<"accueil_general", 'String'>
     readonly description: FieldRef<"accueil_general", 'String'>
+    readonly localisation: FieldRef<"accueil_general", 'String'>
   }
     
 
@@ -28397,16 +28375,15 @@ export namespace Prisma {
   export type Photos_tags_recherche_linkScalarFieldEnum = (typeof Photos_tags_recherche_linkScalarFieldEnum)[keyof typeof Photos_tags_recherche_linkScalarFieldEnum]
 
 
-  export const TemoignagesScalarFieldEnum: {
-    id_tem: 'id_tem',
-    contenu: 'contenu',
+  export const ClientsScalarFieldEnum: {
+    id_client: 'id_client',
     client: 'client',
-    plateforme: 'plateforme',
-    date: 'date',
+    logo: 'logo',
+    alt_logo: 'alt_logo',
     afficher: 'afficher'
   };
 
-  export type TemoignagesScalarFieldEnum = (typeof TemoignagesScalarFieldEnum)[keyof typeof TemoignagesScalarFieldEnum]
+  export type ClientsScalarFieldEnum = (typeof ClientsScalarFieldEnum)[keyof typeof ClientsScalarFieldEnum]
 
 
   export const UtilisateursScalarFieldEnum: {
@@ -28521,9 +28498,8 @@ export namespace Prisma {
     video_cover: 'video_cover',
     photo: 'photo',
     photo_alt: 'photo_alt',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url',
-    description: 'description'
+    description: 'description',
+    localisation: 'localisation'
   };
 
   export type Accueil_generalScalarFieldEnum = (typeof Accueil_generalScalarFieldEnum)[keyof typeof Accueil_generalScalarFieldEnum]
@@ -28659,14 +28635,13 @@ export namespace Prisma {
   export type photos_tags_rechercheOrderByRelevanceFieldEnum = (typeof photos_tags_rechercheOrderByRelevanceFieldEnum)[keyof typeof photos_tags_rechercheOrderByRelevanceFieldEnum]
 
 
-  export const temoignagesOrderByRelevanceFieldEnum: {
-    contenu: 'contenu',
+  export const clientsOrderByRelevanceFieldEnum: {
     client: 'client',
-    plateforme: 'plateforme',
-    date: 'date'
+    logo: 'logo',
+    alt_logo: 'alt_logo'
   };
 
-  export type temoignagesOrderByRelevanceFieldEnum = (typeof temoignagesOrderByRelevanceFieldEnum)[keyof typeof temoignagesOrderByRelevanceFieldEnum]
+  export type clientsOrderByRelevanceFieldEnum = (typeof clientsOrderByRelevanceFieldEnum)[keyof typeof clientsOrderByRelevanceFieldEnum]
 
 
   export const utilisateursOrderByRelevanceFieldEnum: {
@@ -28752,9 +28727,8 @@ export namespace Prisma {
     video_cover: 'video_cover',
     photo: 'photo',
     photo_alt: 'photo_alt',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url',
-    description: 'description'
+    description: 'description',
+    localisation: 'localisation'
   };
 
   export type accueil_generalOrderByRelevanceFieldEnum = (typeof accueil_generalOrderByRelevanceFieldEnum)[keyof typeof accueil_generalOrderByRelevanceFieldEnum]
@@ -29636,64 +29610,59 @@ export namespace Prisma {
     id_tags?: IntWithAggregatesFilter<"photos_tags_recherche_link"> | number
   }
 
-  export type temoignagesWhereInput = {
-    AND?: temoignagesWhereInput | temoignagesWhereInput[]
-    OR?: temoignagesWhereInput[]
-    NOT?: temoignagesWhereInput | temoignagesWhereInput[]
-    id_tem?: IntFilter<"temoignages"> | number
-    contenu?: StringFilter<"temoignages"> | string
-    client?: StringFilter<"temoignages"> | string
-    plateforme?: StringFilter<"temoignages"> | string
-    date?: StringNullableFilter<"temoignages"> | string | null
-    afficher?: BoolFilter<"temoignages"> | boolean
+  export type clientsWhereInput = {
+    AND?: clientsWhereInput | clientsWhereInput[]
+    OR?: clientsWhereInput[]
+    NOT?: clientsWhereInput | clientsWhereInput[]
+    id_client?: IntFilter<"clients"> | number
+    client?: StringFilter<"clients"> | string
+    logo?: StringFilter<"clients"> | string
+    alt_logo?: StringFilter<"clients"> | string
+    afficher?: BoolFilter<"clients"> | boolean
   }
 
-  export type temoignagesOrderByWithRelationInput = {
-    id_tem?: SortOrder
-    contenu?: SortOrder
+  export type clientsOrderByWithRelationInput = {
+    id_client?: SortOrder
     client?: SortOrder
-    plateforme?: SortOrder
-    date?: SortOrderInput | SortOrder
+    logo?: SortOrder
+    alt_logo?: SortOrder
     afficher?: SortOrder
-    _relevance?: temoignagesOrderByRelevanceInput
+    _relevance?: clientsOrderByRelevanceInput
   }
 
-  export type temoignagesWhereUniqueInput = Prisma.AtLeast<{
-    id_tem?: number
-    AND?: temoignagesWhereInput | temoignagesWhereInput[]
-    OR?: temoignagesWhereInput[]
-    NOT?: temoignagesWhereInput | temoignagesWhereInput[]
-    contenu?: StringFilter<"temoignages"> | string
-    client?: StringFilter<"temoignages"> | string
-    plateforme?: StringFilter<"temoignages"> | string
-    date?: StringNullableFilter<"temoignages"> | string | null
-    afficher?: BoolFilter<"temoignages"> | boolean
-  }, "id_tem">
+  export type clientsWhereUniqueInput = Prisma.AtLeast<{
+    id_client?: number
+    AND?: clientsWhereInput | clientsWhereInput[]
+    OR?: clientsWhereInput[]
+    NOT?: clientsWhereInput | clientsWhereInput[]
+    client?: StringFilter<"clients"> | string
+    logo?: StringFilter<"clients"> | string
+    alt_logo?: StringFilter<"clients"> | string
+    afficher?: BoolFilter<"clients"> | boolean
+  }, "id_client">
 
-  export type temoignagesOrderByWithAggregationInput = {
-    id_tem?: SortOrder
-    contenu?: SortOrder
+  export type clientsOrderByWithAggregationInput = {
+    id_client?: SortOrder
     client?: SortOrder
-    plateforme?: SortOrder
-    date?: SortOrderInput | SortOrder
+    logo?: SortOrder
+    alt_logo?: SortOrder
     afficher?: SortOrder
-    _count?: temoignagesCountOrderByAggregateInput
-    _avg?: temoignagesAvgOrderByAggregateInput
-    _max?: temoignagesMaxOrderByAggregateInput
-    _min?: temoignagesMinOrderByAggregateInput
-    _sum?: temoignagesSumOrderByAggregateInput
+    _count?: clientsCountOrderByAggregateInput
+    _avg?: clientsAvgOrderByAggregateInput
+    _max?: clientsMaxOrderByAggregateInput
+    _min?: clientsMinOrderByAggregateInput
+    _sum?: clientsSumOrderByAggregateInput
   }
 
-  export type temoignagesScalarWhereWithAggregatesInput = {
-    AND?: temoignagesScalarWhereWithAggregatesInput | temoignagesScalarWhereWithAggregatesInput[]
-    OR?: temoignagesScalarWhereWithAggregatesInput[]
-    NOT?: temoignagesScalarWhereWithAggregatesInput | temoignagesScalarWhereWithAggregatesInput[]
-    id_tem?: IntWithAggregatesFilter<"temoignages"> | number
-    contenu?: StringWithAggregatesFilter<"temoignages"> | string
-    client?: StringWithAggregatesFilter<"temoignages"> | string
-    plateforme?: StringWithAggregatesFilter<"temoignages"> | string
-    date?: StringNullableWithAggregatesFilter<"temoignages"> | string | null
-    afficher?: BoolWithAggregatesFilter<"temoignages"> | boolean
+  export type clientsScalarWhereWithAggregatesInput = {
+    AND?: clientsScalarWhereWithAggregatesInput | clientsScalarWhereWithAggregatesInput[]
+    OR?: clientsScalarWhereWithAggregatesInput[]
+    NOT?: clientsScalarWhereWithAggregatesInput | clientsScalarWhereWithAggregatesInput[]
+    id_client?: IntWithAggregatesFilter<"clients"> | number
+    client?: StringWithAggregatesFilter<"clients"> | string
+    logo?: StringWithAggregatesFilter<"clients"> | string
+    alt_logo?: StringWithAggregatesFilter<"clients"> | string
+    afficher?: BoolWithAggregatesFilter<"clients"> | boolean
   }
 
   export type utilisateursWhereInput = {
@@ -30235,9 +30204,8 @@ export namespace Prisma {
     video_cover?: StringFilter<"accueil_general"> | string
     photo?: StringFilter<"accueil_general"> | string
     photo_alt?: StringFilter<"accueil_general"> | string
-    credit_nom?: StringFilter<"accueil_general"> | string
-    credit_url?: StringFilter<"accueil_general"> | string
     description?: StringFilter<"accueil_general"> | string
+    localisation?: StringFilter<"accueil_general"> | string
   }
 
   export type accueil_generalOrderByWithRelationInput = {
@@ -30247,9 +30215,8 @@ export namespace Prisma {
     video_cover?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
+    localisation?: SortOrder
     _relevance?: accueil_generalOrderByRelevanceInput
   }
 
@@ -30263,9 +30230,8 @@ export namespace Prisma {
     video_cover?: StringFilter<"accueil_general"> | string
     photo?: StringFilter<"accueil_general"> | string
     photo_alt?: StringFilter<"accueil_general"> | string
-    credit_nom?: StringFilter<"accueil_general"> | string
-    credit_url?: StringFilter<"accueil_general"> | string
     description?: StringFilter<"accueil_general"> | string
+    localisation?: StringFilter<"accueil_general"> | string
   }, "id_gen">
 
   export type accueil_generalOrderByWithAggregationInput = {
@@ -30275,9 +30241,8 @@ export namespace Prisma {
     video_cover?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
+    localisation?: SortOrder
     _count?: accueil_generalCountOrderByAggregateInput
     _avg?: accueil_generalAvgOrderByAggregateInput
     _max?: accueil_generalMaxOrderByAggregateInput
@@ -30295,9 +30260,8 @@ export namespace Prisma {
     video_cover?: StringWithAggregatesFilter<"accueil_general"> | string
     photo?: StringWithAggregatesFilter<"accueil_general"> | string
     photo_alt?: StringWithAggregatesFilter<"accueil_general"> | string
-    credit_nom?: StringWithAggregatesFilter<"accueil_general"> | string
-    credit_url?: StringWithAggregatesFilter<"accueil_general"> | string
     description?: StringWithAggregatesFilter<"accueil_general"> | string
+    localisation?: StringWithAggregatesFilter<"accueil_general"> | string
   }
 
   export type apropos_generalWhereInput = {
@@ -31216,63 +31180,56 @@ export namespace Prisma {
     id_tags?: IntFieldUpdateOperationsInput | number
   }
 
-  export type temoignagesCreateInput = {
-    contenu: string
+  export type clientsCreateInput = {
     client: string
-    plateforme: string
-    date?: string | null
+    logo: string
+    alt_logo: string
     afficher: boolean
   }
 
-  export type temoignagesUncheckedCreateInput = {
-    id_tem?: number
-    contenu: string
+  export type clientsUncheckedCreateInput = {
+    id_client?: number
     client: string
-    plateforme: string
-    date?: string | null
+    logo: string
+    alt_logo: string
     afficher: boolean
   }
 
-  export type temoignagesUpdateInput = {
-    contenu?: StringFieldUpdateOperationsInput | string
+  export type clientsUpdateInput = {
     client?: StringFieldUpdateOperationsInput | string
-    plateforme?: StringFieldUpdateOperationsInput | string
-    date?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: StringFieldUpdateOperationsInput | string
+    alt_logo?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type temoignagesUncheckedUpdateInput = {
-    id_tem?: IntFieldUpdateOperationsInput | number
-    contenu?: StringFieldUpdateOperationsInput | string
+  export type clientsUncheckedUpdateInput = {
+    id_client?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
-    plateforme?: StringFieldUpdateOperationsInput | string
-    date?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: StringFieldUpdateOperationsInput | string
+    alt_logo?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type temoignagesCreateManyInput = {
-    id_tem?: number
-    contenu: string
+  export type clientsCreateManyInput = {
+    id_client?: number
     client: string
-    plateforme: string
-    date?: string | null
+    logo: string
+    alt_logo: string
     afficher: boolean
   }
 
-  export type temoignagesUpdateManyMutationInput = {
-    contenu?: StringFieldUpdateOperationsInput | string
+  export type clientsUpdateManyMutationInput = {
     client?: StringFieldUpdateOperationsInput | string
-    plateforme?: StringFieldUpdateOperationsInput | string
-    date?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: StringFieldUpdateOperationsInput | string
+    alt_logo?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type temoignagesUncheckedUpdateManyInput = {
-    id_tem?: IntFieldUpdateOperationsInput | number
-    contenu?: StringFieldUpdateOperationsInput | string
+  export type clientsUncheckedUpdateManyInput = {
+    id_client?: IntFieldUpdateOperationsInput | number
     client?: StringFieldUpdateOperationsInput | string
-    plateforme?: StringFieldUpdateOperationsInput | string
-    date?: NullableStringFieldUpdateOperationsInput | string | null
+    logo?: StringFieldUpdateOperationsInput | string
+    alt_logo?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -31847,9 +31804,8 @@ export namespace Prisma {
     video_cover: string
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
+    localisation: string
   }
 
   export type accueil_generalUncheckedCreateInput = {
@@ -31859,9 +31815,8 @@ export namespace Prisma {
     video_cover: string
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
+    localisation: string
   }
 
   export type accueil_generalUpdateInput = {
@@ -31870,9 +31825,8 @@ export namespace Prisma {
     video_cover?: StringFieldUpdateOperationsInput | string
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
   }
 
   export type accueil_generalUncheckedUpdateInput = {
@@ -31882,9 +31836,8 @@ export namespace Prisma {
     video_cover?: StringFieldUpdateOperationsInput | string
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
   }
 
   export type accueil_generalCreateManyInput = {
@@ -31894,9 +31847,8 @@ export namespace Prisma {
     video_cover: string
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
+    localisation: string
   }
 
   export type accueil_generalUpdateManyMutationInput = {
@@ -31905,9 +31857,8 @@ export namespace Prisma {
     video_cover?: StringFieldUpdateOperationsInput | string
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
   }
 
   export type accueil_generalUncheckedUpdateManyInput = {
@@ -31917,9 +31868,8 @@ export namespace Prisma {
     video_cover?: StringFieldUpdateOperationsInput | string
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
   }
 
   export type apropos_generalCreateInput = {
@@ -32836,6 +32786,44 @@ export namespace Prisma {
     id_tags?: SortOrder
   }
 
+  export type clientsOrderByRelevanceInput = {
+    fields: clientsOrderByRelevanceFieldEnum | clientsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type clientsCountOrderByAggregateInput = {
+    id_client?: SortOrder
+    client?: SortOrder
+    logo?: SortOrder
+    alt_logo?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type clientsAvgOrderByAggregateInput = {
+    id_client?: SortOrder
+  }
+
+  export type clientsMaxOrderByAggregateInput = {
+    id_client?: SortOrder
+    client?: SortOrder
+    logo?: SortOrder
+    alt_logo?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type clientsMinOrderByAggregateInput = {
+    id_client?: SortOrder
+    client?: SortOrder
+    logo?: SortOrder
+    alt_logo?: SortOrder
+    afficher?: SortOrder
+  }
+
+  export type clientsSumOrderByAggregateInput = {
+    id_client?: SortOrder
+  }
+
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -32849,65 +32837,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type temoignagesOrderByRelevanceInput = {
-    fields: temoignagesOrderByRelevanceFieldEnum | temoignagesOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type temoignagesCountOrderByAggregateInput = {
-    id_tem?: SortOrder
-    contenu?: SortOrder
-    client?: SortOrder
-    plateforme?: SortOrder
-    date?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type temoignagesAvgOrderByAggregateInput = {
-    id_tem?: SortOrder
-  }
-
-  export type temoignagesMaxOrderByAggregateInput = {
-    id_tem?: SortOrder
-    contenu?: SortOrder
-    client?: SortOrder
-    plateforme?: SortOrder
-    date?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type temoignagesMinOrderByAggregateInput = {
-    id_tem?: SortOrder
-    contenu?: SortOrder
-    client?: SortOrder
-    plateforme?: SortOrder
-    date?: SortOrder
-    afficher?: SortOrder
-  }
-
-  export type temoignagesSumOrderByAggregateInput = {
-    id_tem?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type utilisateursOrderByRelevanceInput = {
@@ -32949,6 +32878,24 @@ export namespace Prisma {
 
   export type utilisateursSumOrderByAggregateInput = {
     id_user?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type Videos_tags_linkListRelationFilter = {
@@ -33292,9 +33239,8 @@ export namespace Prisma {
     video_cover?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
+    localisation?: SortOrder
   }
 
   export type accueil_generalAvgOrderByAggregateInput = {
@@ -33308,9 +33254,8 @@ export namespace Prisma {
     video_cover?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
+    localisation?: SortOrder
   }
 
   export type accueil_generalMinOrderByAggregateInput = {
@@ -33320,9 +33265,8 @@ export namespace Prisma {
     video_cover?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
+    localisation?: SortOrder
   }
 
   export type accueil_generalSumOrderByAggregateInput = {

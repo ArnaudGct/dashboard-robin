@@ -22,9 +22,8 @@ type AccueilData = {
   video_cover: string;
   photo: string;
   photo_alt: string;
-  credit_nom: string;
-  credit_url: string;
   description: string;
+  localisation: string;
 } | null;
 
 interface AccueilGeneralFormProps {
@@ -146,9 +145,8 @@ export function AccueilGeneralForm({
 
       // Ajouter les autres données
       formData.set("photo_alt", (e.target as any).photo_alt.value);
-      formData.set("credit_nom", (e.target as any).credit_nom.value);
-      formData.set("credit_url", (e.target as any).credit_url.value);
       formData.set("description", markdown);
+      formData.set("localisation", (e.target as any).localisation.value);
       formData.set("force_regenerate_frame", forceRegenerateFrame.toString());
 
       const result = await updateAction(formData);
@@ -304,7 +302,6 @@ export function AccueilGeneralForm({
           )}
         </div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Upload de photo */}
         <div className="space-y-4">
@@ -369,32 +366,6 @@ export function AccueilGeneralForm({
             </div>
           )}
         </div>
-
-        <div className="flex flex-col gap-4">
-          {/* Crédit nom */}
-          <div className="space-y-2">
-            <Label htmlFor="credit_nom">Nom du crédit</Label>
-            <Input
-              id="credit_nom"
-              name="credit_nom"
-              type="text"
-              placeholder="Nom du crédit"
-              defaultValue={accueilData?.credit_nom || ""}
-            />
-          </div>
-
-          {/* Crédit URL */}
-          <div className="space-y-2">
-            <Label htmlFor="credit_url">URL du crédit</Label>
-            <Input
-              id="credit_url"
-              name="credit_url"
-              type="url"
-              placeholder="https://example.com"
-              defaultValue={accueilData?.credit_url || ""}
-            />
-          </div>
-        </div>
       </div>
 
       {/* Description avec éditeur MDX */}
@@ -405,6 +376,19 @@ export function AccueilGeneralForm({
             markdown={markdown}
             onChange={handleEditorChange}
             editorRef={editorRef}
+          />
+        </div>
+      </div>
+
+      <div className="grid w-full gap-1.5">
+        <Label htmlFor="localisation">Lieu de déplacement</Label>
+        <div className="border rounded-md overflow-hidden">
+          <Input
+            id="localisation"
+            name="localisation"
+            type="text"
+            placeholder="Lieu"
+            defaultValue={accueilData?.localisation || ""}
           />
         </div>
       </div>
@@ -424,7 +408,6 @@ export function AccueilGeneralForm({
           </Label>
         </div>
       )}
-
       {/* Bouton de mise à jour */}
       <Button type="submit" className="w-full" disabled={isUploading}>
         {isUploading ? "Mise à jour en cours..." : "Mettre à jour"}

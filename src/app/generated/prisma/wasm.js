@@ -227,12 +227,11 @@ exports.Prisma.Photos_tags_recherche_linkScalarFieldEnum = {
   id_tags: 'id_tags'
 };
 
-exports.Prisma.TemoignagesScalarFieldEnum = {
-  id_tem: 'id_tem',
-  contenu: 'contenu',
+exports.Prisma.ClientsScalarFieldEnum = {
+  id_client: 'id_client',
   client: 'client',
-  plateforme: 'plateforme',
-  date: 'date',
+  logo: 'logo',
+  alt_logo: 'alt_logo',
   afficher: 'afficher'
 };
 
@@ -324,9 +323,8 @@ exports.Prisma.Accueil_generalScalarFieldEnum = {
   video_cover: 'video_cover',
   photo: 'photo',
   photo_alt: 'photo_alt',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url',
-  description: 'description'
+  description: 'description',
+  localisation: 'localisation'
 };
 
 exports.Prisma.Apropos_generalScalarFieldEnum = {
@@ -420,11 +418,10 @@ exports.Prisma.photos_tags_rechercheOrderByRelevanceFieldEnum = {
   titre: 'titre'
 };
 
-exports.Prisma.temoignagesOrderByRelevanceFieldEnum = {
-  contenu: 'contenu',
+exports.Prisma.clientsOrderByRelevanceFieldEnum = {
   client: 'client',
-  plateforme: 'plateforme',
-  date: 'date'
+  logo: 'logo',
+  alt_logo: 'alt_logo'
 };
 
 exports.Prisma.utilisateursOrderByRelevanceFieldEnum = {
@@ -489,9 +486,8 @@ exports.Prisma.accueil_generalOrderByRelevanceFieldEnum = {
   video_cover: 'video_cover',
   photo: 'photo',
   photo_alt: 'photo_alt',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url',
-  description: 'description'
+  description: 'description',
+  localisation: 'localisation'
 };
 
 exports.Prisma.apropos_generalOrderByRelevanceFieldEnum = {
@@ -532,7 +528,7 @@ exports.Prisma.ModelName = {
   photos_tags_link: 'photos_tags_link',
   photos_tags_recherche: 'photos_tags_recherche',
   photos_tags_recherche_link: 'photos_tags_recherche_link',
-  temoignages: 'temoignages',
+  clients: 'clients',
   utilisateurs: 'utilisateurs',
   videos: 'videos',
   videos_tags: 'videos_tags',

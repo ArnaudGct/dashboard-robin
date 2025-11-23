@@ -16,9 +16,8 @@ export async function updateAccueilGeneral(formData: FormData) {
   const photoAlt = formData.get("photo_alt") as string;
   const videoDesktopFile = formData.get("video_desktop") as File;
   const videoMobileFile = formData.get("video_mobile") as File;
-  const creditNom = formData.get("credit_nom") as string;
-  const creditUrl = formData.get("credit_url") as string;
   const description = formData.get("description") as string;
+  const localisation = formData.get("localisation") as string;
   const forceRegenerateFrame =
     formData.get("force_regenerate_frame") === "true";
 
@@ -330,9 +329,8 @@ export async function updateAccueilGeneral(formData: FormData) {
           video_desktop: videoDesktopUrl,
           video_mobile: videoMobileUrl,
           video_cover: videoCoverUrl,
-          credit_nom: creditNom,
-          credit_url: creditUrl,
           description: description,
+          localisation: localisation || existingRecord.localisation || "",
         },
       });
       console.log("✓ Enregistrement mis à jour en base de données");
@@ -345,9 +343,8 @@ export async function updateAccueilGeneral(formData: FormData) {
           video_desktop: videoDesktopUrl,
           video_mobile: videoMobileUrl,
           video_cover: videoCoverUrl,
-          credit_nom: creditNom,
-          credit_url: creditUrl,
           description: description,
+          localisation: localisation || "",
         },
       });
       console.log("✓ Nouvel enregistrement créé en base de données");

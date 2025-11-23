@@ -150,13 +150,12 @@ model photos_tags_recherche_link {
   @@index([id_tags], map: "fk_photos_tags_recherche")
 }
 
-model temoignages {
-  id_tem     Int     @id @default(autoincrement())
-  contenu    String  @db.VarChar(500)
-  client     String  @db.VarChar(50)
-  plateforme String  @db.VarChar(50)
-  date       String? @db.VarChar(50)
-  afficher   Boolean
+model clients {
+  id_client Int     @id @default(autoincrement())
+  client    String  @db.VarChar(150)
+  logo      String  @db.VarChar(500)
+  alt_logo  String  @db.VarChar(255)
+  afficher  Boolean
 }
 
 model utilisateurs {
@@ -264,9 +263,8 @@ model accueil_general {
   video_cover   String @db.VarChar(255)
   photo         String @db.VarChar(255)
   photo_alt     String @db.VarChar(255)
-  credit_nom    String @db.VarChar(255)
-  credit_url    String @db.VarChar(255)
   description   String @db.VarChar(1024)
+  localisation  String @db.VarChar(255)
 }
 
 model apropos_general {

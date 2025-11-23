@@ -57,8 +57,8 @@ const data = {
           url: "/accueil/faq",
         },
         {
-          title: "Témoignages",
-          url: "/accueil/temoignages",
+          title: "Clients",
+          url: "/accueil/clients",
         },
       ],
     },
