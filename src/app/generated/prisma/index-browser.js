@@ -323,8 +323,6 @@ exports.Prisma.Apropos_generalScalarFieldEnum = {
   id_gen: 'id_gen',
   photo: 'photo',
   photo_alt: 'photo_alt',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url',
   description: 'description'
 };
 
@@ -494,8 +492,6 @@ exports.Prisma.accueil_generalOrderByRelevanceFieldEnum = {
 exports.Prisma.apropos_generalOrderByRelevanceFieldEnum = {
   photo: 'photo',
   photo_alt: 'photo_alt',
-  credit_nom: 'credit_nom',
-  credit_url: 'credit_url',
   description: 'description'
 };
 

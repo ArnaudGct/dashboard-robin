@@ -19,8 +19,6 @@ type AProposData = {
   id_gen: number;
   photo: string;
   photo_alt: string;
-  credit_nom: string;
-  credit_url: string;
   description: string;
 } | null;
 
@@ -91,8 +89,6 @@ export function AProposGeneralForm({
 
       // Ajouter les autres données
       formData.set("photo_alt", (e.target as any).photo_alt.value);
-      formData.set("credit_nom", (e.target as any).credit_nom.value);
-      formData.set("credit_url", (e.target as any).credit_url.value);
       formData.set("description", markdown);
 
       const result = await updateAction(formData);
@@ -180,32 +176,6 @@ export function AProposGeneralForm({
               </div>
             </div>
           )}
-        </div>
-
-        <div className="flex flex-col gap-4">
-          {/* Crédit nom */}
-          <div className="space-y-2">
-            <Label htmlFor="credit_nom">Nom du crédit</Label>
-            <Input
-              id="credit_nom"
-              name="credit_nom"
-              type="text"
-              placeholder="Nom du crédit"
-              defaultValue={aproposData?.credit_nom || ""}
-            />
-          </div>
-
-          {/* Crédit URL */}
-          <div className="space-y-2">
-            <Label htmlFor="credit_url">URL du crédit</Label>
-            <Input
-              id="credit_url"
-              name="credit_url"
-              type="url"
-              placeholder="https://example.com"
-              defaultValue={aproposData?.credit_url || ""}
-            />
-          </div>
         </div>
       </div>
 

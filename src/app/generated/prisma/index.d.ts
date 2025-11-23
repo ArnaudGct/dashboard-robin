@@ -25465,8 +25465,6 @@ export namespace Prisma {
     id_gen: number | null
     photo: string | null
     photo_alt: string | null
-    credit_nom: string | null
-    credit_url: string | null
     description: string | null
   }
 
@@ -25474,8 +25472,6 @@ export namespace Prisma {
     id_gen: number | null
     photo: string | null
     photo_alt: string | null
-    credit_nom: string | null
-    credit_url: string | null
     description: string | null
   }
 
@@ -25483,8 +25479,6 @@ export namespace Prisma {
     id_gen: number
     photo: number
     photo_alt: number
-    credit_nom: number
-    credit_url: number
     description: number
     _all: number
   }
@@ -25502,8 +25496,6 @@ export namespace Prisma {
     id_gen?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
   }
 
@@ -25511,8 +25503,6 @@ export namespace Prisma {
     id_gen?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
   }
 
@@ -25520,8 +25510,6 @@ export namespace Prisma {
     id_gen?: true
     photo?: true
     photo_alt?: true
-    credit_nom?: true
-    credit_url?: true
     description?: true
     _all?: true
   }
@@ -25616,8 +25604,6 @@ export namespace Prisma {
     id_gen: number
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
     _count: Apropos_generalCountAggregateOutputType | null
     _avg: Apropos_generalAvgAggregateOutputType | null
@@ -25644,8 +25630,6 @@ export namespace Prisma {
     id_gen?: boolean
     photo?: boolean
     photo_alt?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
     description?: boolean
   }, ExtArgs["result"]["apropos_general"]>
 
@@ -25655,12 +25639,10 @@ export namespace Prisma {
     id_gen?: boolean
     photo?: boolean
     photo_alt?: boolean
-    credit_nom?: boolean
-    credit_url?: boolean
     description?: boolean
   }
 
-  export type apropos_generalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_gen" | "photo" | "photo_alt" | "credit_nom" | "credit_url" | "description", ExtArgs["result"]["apropos_general"]>
+  export type apropos_generalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_gen" | "photo" | "photo_alt" | "description", ExtArgs["result"]["apropos_general"]>
 
   export type $apropos_generalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "apropos_general"
@@ -25669,8 +25651,6 @@ export namespace Prisma {
       id_gen: number
       photo: string
       photo_alt: string
-      credit_nom: string
-      credit_url: string
       description: string
     }, ExtArgs["result"]["apropos_general"]>
     composites: {}
@@ -26044,8 +26024,6 @@ export namespace Prisma {
     readonly id_gen: FieldRef<"apropos_general", 'Int'>
     readonly photo: FieldRef<"apropos_general", 'String'>
     readonly photo_alt: FieldRef<"apropos_general", 'String'>
-    readonly credit_nom: FieldRef<"apropos_general", 'String'>
-    readonly credit_url: FieldRef<"apropos_general", 'String'>
     readonly description: FieldRef<"apropos_general", 'String'>
   }
     
@@ -29538,8 +29516,6 @@ export namespace Prisma {
     id_gen: 'id_gen',
     photo: 'photo',
     photo_alt: 'photo_alt',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url',
     description: 'description'
   };
 
@@ -29778,8 +29754,6 @@ export namespace Prisma {
   export const apropos_generalOrderByRelevanceFieldEnum: {
     photo: 'photo',
     photo_alt: 'photo_alt',
-    credit_nom: 'credit_nom',
-    credit_url: 'credit_url',
     description: 'description'
   };
 
@@ -31273,8 +31247,6 @@ export namespace Prisma {
     id_gen?: IntFilter<"apropos_general"> | number
     photo?: StringFilter<"apropos_general"> | string
     photo_alt?: StringFilter<"apropos_general"> | string
-    credit_nom?: StringFilter<"apropos_general"> | string
-    credit_url?: StringFilter<"apropos_general"> | string
     description?: StringFilter<"apropos_general"> | string
   }
 
@@ -31282,8 +31254,6 @@ export namespace Prisma {
     id_gen?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
     _relevance?: apropos_generalOrderByRelevanceInput
   }
@@ -31295,8 +31265,6 @@ export namespace Prisma {
     NOT?: apropos_generalWhereInput | apropos_generalWhereInput[]
     photo?: StringFilter<"apropos_general"> | string
     photo_alt?: StringFilter<"apropos_general"> | string
-    credit_nom?: StringFilter<"apropos_general"> | string
-    credit_url?: StringFilter<"apropos_general"> | string
     description?: StringFilter<"apropos_general"> | string
   }, "id_gen">
 
@@ -31304,8 +31272,6 @@ export namespace Prisma {
     id_gen?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
     _count?: apropos_generalCountOrderByAggregateInput
     _avg?: apropos_generalAvgOrderByAggregateInput
@@ -31321,8 +31287,6 @@ export namespace Prisma {
     id_gen?: IntWithAggregatesFilter<"apropos_general"> | number
     photo?: StringWithAggregatesFilter<"apropos_general"> | string
     photo_alt?: StringWithAggregatesFilter<"apropos_general"> | string
-    credit_nom?: StringWithAggregatesFilter<"apropos_general"> | string
-    credit_url?: StringWithAggregatesFilter<"apropos_general"> | string
     description?: StringWithAggregatesFilter<"apropos_general"> | string
   }
 
@@ -32949,8 +32913,6 @@ export namespace Prisma {
   export type apropos_generalCreateInput = {
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
   }
 
@@ -32958,16 +32920,12 @@ export namespace Prisma {
     id_gen?: number
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
   }
 
   export type apropos_generalUpdateInput = {
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32975,8 +32933,6 @@ export namespace Prisma {
     id_gen?: IntFieldUpdateOperationsInput | number
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
@@ -32984,16 +32940,12 @@ export namespace Prisma {
     id_gen?: number
     photo: string
     photo_alt: string
-    credit_nom: string
-    credit_url: string
     description: string
   }
 
   export type apropos_generalUpdateManyMutationInput = {
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
@@ -33001,8 +32953,6 @@ export namespace Prisma {
     id_gen?: IntFieldUpdateOperationsInput | number
     photo?: StringFieldUpdateOperationsInput | string
     photo_alt?: StringFieldUpdateOperationsInput | string
-    credit_nom?: StringFieldUpdateOperationsInput | string
-    credit_url?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
   }
 
@@ -34448,8 +34398,6 @@ export namespace Prisma {
     id_gen?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
   }
 
@@ -34461,8 +34409,6 @@ export namespace Prisma {
     id_gen?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
   }
 
@@ -34470,8 +34416,6 @@ export namespace Prisma {
     id_gen?: SortOrder
     photo?: SortOrder
     photo_alt?: SortOrder
-    credit_nom?: SortOrder
-    credit_url?: SortOrder
     description?: SortOrder
   }
 

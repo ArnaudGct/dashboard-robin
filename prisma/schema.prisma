@@ -263,8 +263,6 @@ model apropos_general {
   id_gen      Int    @id @default(autoincrement())
   photo       String @db.VarChar(255)
   photo_alt   String @db.VarChar(255)
-  credit_nom  String @db.VarChar(255)
-  credit_url  String @db.VarChar(255)
   description String @db.VarChar(1024)
 }
 
