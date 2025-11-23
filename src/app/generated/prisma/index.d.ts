@@ -27211,14 +27211,17 @@ export namespace Prisma {
 
   export type Apropos_outilsAvgAggregateOutputType = {
     id_outil: number | null
+    ordre: number | null
   }
 
   export type Apropos_outilsSumAggregateOutputType = {
     id_outil: number | null
+    ordre: number | null
   }
 
   export type Apropos_outilsMinAggregateOutputType = {
     id_outil: number | null
+    type_outil: string | null
     titre: string | null
     description: string | null
     icone: string | null
@@ -27226,16 +27229,15 @@ export namespace Prisma {
     icone_rounded: boolean | null
     lien: string | null
     couleur_fond: string | null
-    couleur_contour: string | null
-    couleur_texte: string | null
-    couleur_fond_dark: string | null
-    couleur_contour_dark: string | null
-    couleur_texte_dark: string | null
+    couleur_titre: string | null
+    couleur_description: string | null
+    ordre: number | null
     afficher: boolean | null
   }
 
   export type Apropos_outilsMaxAggregateOutputType = {
     id_outil: number | null
+    type_outil: string | null
     titre: string | null
     description: string | null
     icone: string | null
@@ -27243,16 +27245,15 @@ export namespace Prisma {
     icone_rounded: boolean | null
     lien: string | null
     couleur_fond: string | null
-    couleur_contour: string | null
-    couleur_texte: string | null
-    couleur_fond_dark: string | null
-    couleur_contour_dark: string | null
-    couleur_texte_dark: string | null
+    couleur_titre: string | null
+    couleur_description: string | null
+    ordre: number | null
     afficher: boolean | null
   }
 
   export type Apropos_outilsCountAggregateOutputType = {
     id_outil: number
+    type_outil: number
     titre: number
     description: number
     icone: number
@@ -27260,11 +27261,9 @@ export namespace Prisma {
     icone_rounded: number
     lien: number
     couleur_fond: number
-    couleur_contour: number
-    couleur_texte: number
-    couleur_fond_dark: number
-    couleur_contour_dark: number
-    couleur_texte_dark: number
+    couleur_titre: number
+    couleur_description: number
+    ordre: number
     afficher: number
     _all: number
   }
@@ -27272,14 +27271,17 @@ export namespace Prisma {
 
   export type Apropos_outilsAvgAggregateInputType = {
     id_outil?: true
+    ordre?: true
   }
 
   export type Apropos_outilsSumAggregateInputType = {
     id_outil?: true
+    ordre?: true
   }
 
   export type Apropos_outilsMinAggregateInputType = {
     id_outil?: true
+    type_outil?: true
     titre?: true
     description?: true
     icone?: true
@@ -27287,16 +27289,15 @@ export namespace Prisma {
     icone_rounded?: true
     lien?: true
     couleur_fond?: true
-    couleur_contour?: true
-    couleur_texte?: true
-    couleur_fond_dark?: true
-    couleur_contour_dark?: true
-    couleur_texte_dark?: true
+    couleur_titre?: true
+    couleur_description?: true
+    ordre?: true
     afficher?: true
   }
 
   export type Apropos_outilsMaxAggregateInputType = {
     id_outil?: true
+    type_outil?: true
     titre?: true
     description?: true
     icone?: true
@@ -27304,16 +27305,15 @@ export namespace Prisma {
     icone_rounded?: true
     lien?: true
     couleur_fond?: true
-    couleur_contour?: true
-    couleur_texte?: true
-    couleur_fond_dark?: true
-    couleur_contour_dark?: true
-    couleur_texte_dark?: true
+    couleur_titre?: true
+    couleur_description?: true
+    ordre?: true
     afficher?: true
   }
 
   export type Apropos_outilsCountAggregateInputType = {
     id_outil?: true
+    type_outil?: true
     titre?: true
     description?: true
     icone?: true
@@ -27321,11 +27321,9 @@ export namespace Prisma {
     icone_rounded?: true
     lien?: true
     couleur_fond?: true
-    couleur_contour?: true
-    couleur_texte?: true
-    couleur_fond_dark?: true
-    couleur_contour_dark?: true
-    couleur_texte_dark?: true
+    couleur_titre?: true
+    couleur_description?: true
+    ordre?: true
     afficher?: true
     _all?: true
   }
@@ -27418,6 +27416,7 @@ export namespace Prisma {
 
   export type Apropos_outilsGroupByOutputType = {
     id_outil: number
+    type_outil: string
     titre: string
     description: string
     icone: string
@@ -27425,11 +27424,9 @@ export namespace Prisma {
     icone_rounded: boolean
     lien: string
     couleur_fond: string
-    couleur_contour: string
-    couleur_texte: string
-    couleur_fond_dark: string
-    couleur_contour_dark: string
-    couleur_texte_dark: string
+    couleur_titre: string
+    couleur_description: string
+    ordre: number
     afficher: boolean
     _count: Apropos_outilsCountAggregateOutputType | null
     _avg: Apropos_outilsAvgAggregateOutputType | null
@@ -27454,6 +27451,7 @@ export namespace Prisma {
 
   export type apropos_outilsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_outil?: boolean
+    type_outil?: boolean
     titre?: boolean
     description?: boolean
     icone?: boolean
@@ -27461,11 +27459,9 @@ export namespace Prisma {
     icone_rounded?: boolean
     lien?: boolean
     couleur_fond?: boolean
-    couleur_contour?: boolean
-    couleur_texte?: boolean
-    couleur_fond_dark?: boolean
-    couleur_contour_dark?: boolean
-    couleur_texte_dark?: boolean
+    couleur_titre?: boolean
+    couleur_description?: boolean
+    ordre?: boolean
     afficher?: boolean
   }, ExtArgs["result"]["apropos_outils"]>
 
@@ -27473,6 +27469,7 @@ export namespace Prisma {
 
   export type apropos_outilsSelectScalar = {
     id_outil?: boolean
+    type_outil?: boolean
     titre?: boolean
     description?: boolean
     icone?: boolean
@@ -27480,21 +27477,20 @@ export namespace Prisma {
     icone_rounded?: boolean
     lien?: boolean
     couleur_fond?: boolean
-    couleur_contour?: boolean
-    couleur_texte?: boolean
-    couleur_fond_dark?: boolean
-    couleur_contour_dark?: boolean
-    couleur_texte_dark?: boolean
+    couleur_titre?: boolean
+    couleur_description?: boolean
+    ordre?: boolean
     afficher?: boolean
   }
 
-  export type apropos_outilsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_outil" | "titre" | "description" | "icone" | "icone_alt" | "icone_rounded" | "lien" | "couleur_fond" | "couleur_contour" | "couleur_texte" | "couleur_fond_dark" | "couleur_contour_dark" | "couleur_texte_dark" | "afficher", ExtArgs["result"]["apropos_outils"]>
+  export type apropos_outilsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_outil" | "type_outil" | "titre" | "description" | "icone" | "icone_alt" | "icone_rounded" | "lien" | "couleur_fond" | "couleur_titre" | "couleur_description" | "ordre" | "afficher", ExtArgs["result"]["apropos_outils"]>
 
   export type $apropos_outilsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "apropos_outils"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id_outil: number
+      type_outil: string
       titre: string
       description: string
       icone: string
@@ -27502,11 +27498,9 @@ export namespace Prisma {
       icone_rounded: boolean
       lien: string
       couleur_fond: string
-      couleur_contour: string
-      couleur_texte: string
-      couleur_fond_dark: string
-      couleur_contour_dark: string
-      couleur_texte_dark: string
+      couleur_titre: string
+      couleur_description: string
+      ordre: number
       afficher: boolean
     }, ExtArgs["result"]["apropos_outils"]>
     composites: {}
@@ -27878,6 +27872,7 @@ export namespace Prisma {
    */
   interface apropos_outilsFieldRefs {
     readonly id_outil: FieldRef<"apropos_outils", 'Int'>
+    readonly type_outil: FieldRef<"apropos_outils", 'String'>
     readonly titre: FieldRef<"apropos_outils", 'String'>
     readonly description: FieldRef<"apropos_outils", 'String'>
     readonly icone: FieldRef<"apropos_outils", 'String'>
@@ -27885,11 +27880,9 @@ export namespace Prisma {
     readonly icone_rounded: FieldRef<"apropos_outils", 'Boolean'>
     readonly lien: FieldRef<"apropos_outils", 'String'>
     readonly couleur_fond: FieldRef<"apropos_outils", 'String'>
-    readonly couleur_contour: FieldRef<"apropos_outils", 'String'>
-    readonly couleur_texte: FieldRef<"apropos_outils", 'String'>
-    readonly couleur_fond_dark: FieldRef<"apropos_outils", 'String'>
-    readonly couleur_contour_dark: FieldRef<"apropos_outils", 'String'>
-    readonly couleur_texte_dark: FieldRef<"apropos_outils", 'String'>
+    readonly couleur_titre: FieldRef<"apropos_outils", 'String'>
+    readonly couleur_description: FieldRef<"apropos_outils", 'String'>
+    readonly ordre: FieldRef<"apropos_outils", 'Int'>
     readonly afficher: FieldRef<"apropos_outils", 'Boolean'>
   }
     
@@ -28519,6 +28512,7 @@ export namespace Prisma {
 
   export const Apropos_outilsScalarFieldEnum: {
     id_outil: 'id_outil',
+    type_outil: 'type_outil',
     titre: 'titre',
     description: 'description',
     icone: 'icone',
@@ -28526,11 +28520,9 @@ export namespace Prisma {
     icone_rounded: 'icone_rounded',
     lien: 'lien',
     couleur_fond: 'couleur_fond',
-    couleur_contour: 'couleur_contour',
-    couleur_texte: 'couleur_texte',
-    couleur_fond_dark: 'couleur_fond_dark',
-    couleur_contour_dark: 'couleur_contour_dark',
-    couleur_texte_dark: 'couleur_texte_dark',
+    couleur_titre: 'couleur_titre',
+    couleur_description: 'couleur_description',
+    ordre: 'ordre',
     afficher: 'afficher'
   };
 
@@ -28746,17 +28738,15 @@ export namespace Prisma {
 
 
   export const apropos_outilsOrderByRelevanceFieldEnum: {
+    type_outil: 'type_outil',
     titre: 'titre',
     description: 'description',
     icone: 'icone',
     icone_alt: 'icone_alt',
     lien: 'lien',
     couleur_fond: 'couleur_fond',
-    couleur_contour: 'couleur_contour',
-    couleur_texte: 'couleur_texte',
-    couleur_fond_dark: 'couleur_fond_dark',
-    couleur_contour_dark: 'couleur_contour_dark',
-    couleur_texte_dark: 'couleur_texte_dark'
+    couleur_titre: 'couleur_titre',
+    couleur_description: 'couleur_description'
   };
 
   export type apropos_outilsOrderByRelevanceFieldEnum = (typeof apropos_outilsOrderByRelevanceFieldEnum)[keyof typeof apropos_outilsOrderByRelevanceFieldEnum]
@@ -30329,6 +30319,7 @@ export namespace Prisma {
     OR?: apropos_outilsWhereInput[]
     NOT?: apropos_outilsWhereInput | apropos_outilsWhereInput[]
     id_outil?: IntFilter<"apropos_outils"> | number
+    type_outil?: StringFilter<"apropos_outils"> | string
     titre?: StringFilter<"apropos_outils"> | string
     description?: StringFilter<"apropos_outils"> | string
     icone?: StringFilter<"apropos_outils"> | string
@@ -30336,16 +30327,15 @@ export namespace Prisma {
     icone_rounded?: BoolFilter<"apropos_outils"> | boolean
     lien?: StringFilter<"apropos_outils"> | string
     couleur_fond?: StringFilter<"apropos_outils"> | string
-    couleur_contour?: StringFilter<"apropos_outils"> | string
-    couleur_texte?: StringFilter<"apropos_outils"> | string
-    couleur_fond_dark?: StringFilter<"apropos_outils"> | string
-    couleur_contour_dark?: StringFilter<"apropos_outils"> | string
-    couleur_texte_dark?: StringFilter<"apropos_outils"> | string
+    couleur_titre?: StringFilter<"apropos_outils"> | string
+    couleur_description?: StringFilter<"apropos_outils"> | string
+    ordre?: IntFilter<"apropos_outils"> | number
     afficher?: BoolFilter<"apropos_outils"> | boolean
   }
 
   export type apropos_outilsOrderByWithRelationInput = {
     id_outil?: SortOrder
+    type_outil?: SortOrder
     titre?: SortOrder
     description?: SortOrder
     icone?: SortOrder
@@ -30353,11 +30343,9 @@ export namespace Prisma {
     icone_rounded?: SortOrder
     lien?: SortOrder
     couleur_fond?: SortOrder
-    couleur_contour?: SortOrder
-    couleur_texte?: SortOrder
-    couleur_fond_dark?: SortOrder
-    couleur_contour_dark?: SortOrder
-    couleur_texte_dark?: SortOrder
+    couleur_titre?: SortOrder
+    couleur_description?: SortOrder
+    ordre?: SortOrder
     afficher?: SortOrder
     _relevance?: apropos_outilsOrderByRelevanceInput
   }
@@ -30367,6 +30355,7 @@ export namespace Prisma {
     AND?: apropos_outilsWhereInput | apropos_outilsWhereInput[]
     OR?: apropos_outilsWhereInput[]
     NOT?: apropos_outilsWhereInput | apropos_outilsWhereInput[]
+    type_outil?: StringFilter<"apropos_outils"> | string
     titre?: StringFilter<"apropos_outils"> | string
     description?: StringFilter<"apropos_outils"> | string
     icone?: StringFilter<"apropos_outils"> | string
@@ -30374,16 +30363,15 @@ export namespace Prisma {
     icone_rounded?: BoolFilter<"apropos_outils"> | boolean
     lien?: StringFilter<"apropos_outils"> | string
     couleur_fond?: StringFilter<"apropos_outils"> | string
-    couleur_contour?: StringFilter<"apropos_outils"> | string
-    couleur_texte?: StringFilter<"apropos_outils"> | string
-    couleur_fond_dark?: StringFilter<"apropos_outils"> | string
-    couleur_contour_dark?: StringFilter<"apropos_outils"> | string
-    couleur_texte_dark?: StringFilter<"apropos_outils"> | string
+    couleur_titre?: StringFilter<"apropos_outils"> | string
+    couleur_description?: StringFilter<"apropos_outils"> | string
+    ordre?: IntFilter<"apropos_outils"> | number
     afficher?: BoolFilter<"apropos_outils"> | boolean
   }, "id_outil">
 
   export type apropos_outilsOrderByWithAggregationInput = {
     id_outil?: SortOrder
+    type_outil?: SortOrder
     titre?: SortOrder
     description?: SortOrder
     icone?: SortOrder
@@ -30391,11 +30379,9 @@ export namespace Prisma {
     icone_rounded?: SortOrder
     lien?: SortOrder
     couleur_fond?: SortOrder
-    couleur_contour?: SortOrder
-    couleur_texte?: SortOrder
-    couleur_fond_dark?: SortOrder
-    couleur_contour_dark?: SortOrder
-    couleur_texte_dark?: SortOrder
+    couleur_titre?: SortOrder
+    couleur_description?: SortOrder
+    ordre?: SortOrder
     afficher?: SortOrder
     _count?: apropos_outilsCountOrderByAggregateInput
     _avg?: apropos_outilsAvgOrderByAggregateInput
@@ -30409,6 +30395,7 @@ export namespace Prisma {
     OR?: apropos_outilsScalarWhereWithAggregatesInput[]
     NOT?: apropos_outilsScalarWhereWithAggregatesInput | apropos_outilsScalarWhereWithAggregatesInput[]
     id_outil?: IntWithAggregatesFilter<"apropos_outils"> | number
+    type_outil?: StringWithAggregatesFilter<"apropos_outils"> | string
     titre?: StringWithAggregatesFilter<"apropos_outils"> | string
     description?: StringWithAggregatesFilter<"apropos_outils"> | string
     icone?: StringWithAggregatesFilter<"apropos_outils"> | string
@@ -30416,11 +30403,9 @@ export namespace Prisma {
     icone_rounded?: BoolWithAggregatesFilter<"apropos_outils"> | boolean
     lien?: StringWithAggregatesFilter<"apropos_outils"> | string
     couleur_fond?: StringWithAggregatesFilter<"apropos_outils"> | string
-    couleur_contour?: StringWithAggregatesFilter<"apropos_outils"> | string
-    couleur_texte?: StringWithAggregatesFilter<"apropos_outils"> | string
-    couleur_fond_dark?: StringWithAggregatesFilter<"apropos_outils"> | string
-    couleur_contour_dark?: StringWithAggregatesFilter<"apropos_outils"> | string
-    couleur_texte_dark?: StringWithAggregatesFilter<"apropos_outils"> | string
+    couleur_titre?: StringWithAggregatesFilter<"apropos_outils"> | string
+    couleur_description?: StringWithAggregatesFilter<"apropos_outils"> | string
+    ordre?: IntWithAggregatesFilter<"apropos_outils"> | number
     afficher?: BoolWithAggregatesFilter<"apropos_outils"> | boolean
   }
 
@@ -31933,6 +31918,7 @@ export namespace Prisma {
   }
 
   export type apropos_outilsCreateInput = {
+    type_outil?: string
     titre: string
     description: string
     icone: string
@@ -31940,16 +31926,15 @@ export namespace Prisma {
     icone_rounded: boolean
     lien: string
     couleur_fond: string
-    couleur_contour: string
-    couleur_texte: string
-    couleur_fond_dark: string
-    couleur_contour_dark: string
-    couleur_texte_dark: string
+    couleur_titre: string
+    couleur_description: string
+    ordre: number
     afficher: boolean
   }
 
   export type apropos_outilsUncheckedCreateInput = {
     id_outil?: number
+    type_outil?: string
     titre: string
     description: string
     icone: string
@@ -31957,15 +31942,14 @@ export namespace Prisma {
     icone_rounded: boolean
     lien: string
     couleur_fond: string
-    couleur_contour: string
-    couleur_texte: string
-    couleur_fond_dark: string
-    couleur_contour_dark: string
-    couleur_texte_dark: string
+    couleur_titre: string
+    couleur_description: string
+    ordre: number
     afficher: boolean
   }
 
   export type apropos_outilsUpdateInput = {
+    type_outil?: StringFieldUpdateOperationsInput | string
     titre?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     icone?: StringFieldUpdateOperationsInput | string
@@ -31973,16 +31957,15 @@ export namespace Prisma {
     icone_rounded?: BoolFieldUpdateOperationsInput | boolean
     lien?: StringFieldUpdateOperationsInput | string
     couleur_fond?: StringFieldUpdateOperationsInput | string
-    couleur_contour?: StringFieldUpdateOperationsInput | string
-    couleur_texte?: StringFieldUpdateOperationsInput | string
-    couleur_fond_dark?: StringFieldUpdateOperationsInput | string
-    couleur_contour_dark?: StringFieldUpdateOperationsInput | string
-    couleur_texte_dark?: StringFieldUpdateOperationsInput | string
+    couleur_titre?: StringFieldUpdateOperationsInput | string
+    couleur_description?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type apropos_outilsUncheckedUpdateInput = {
     id_outil?: IntFieldUpdateOperationsInput | number
+    type_outil?: StringFieldUpdateOperationsInput | string
     titre?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     icone?: StringFieldUpdateOperationsInput | string
@@ -31990,16 +31973,15 @@ export namespace Prisma {
     icone_rounded?: BoolFieldUpdateOperationsInput | boolean
     lien?: StringFieldUpdateOperationsInput | string
     couleur_fond?: StringFieldUpdateOperationsInput | string
-    couleur_contour?: StringFieldUpdateOperationsInput | string
-    couleur_texte?: StringFieldUpdateOperationsInput | string
-    couleur_fond_dark?: StringFieldUpdateOperationsInput | string
-    couleur_contour_dark?: StringFieldUpdateOperationsInput | string
-    couleur_texte_dark?: StringFieldUpdateOperationsInput | string
+    couleur_titre?: StringFieldUpdateOperationsInput | string
+    couleur_description?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type apropos_outilsCreateManyInput = {
     id_outil?: number
+    type_outil?: string
     titre: string
     description: string
     icone: string
@@ -32007,15 +31989,14 @@ export namespace Prisma {
     icone_rounded: boolean
     lien: string
     couleur_fond: string
-    couleur_contour: string
-    couleur_texte: string
-    couleur_fond_dark: string
-    couleur_contour_dark: string
-    couleur_texte_dark: string
+    couleur_titre: string
+    couleur_description: string
+    ordre: number
     afficher: boolean
   }
 
   export type apropos_outilsUpdateManyMutationInput = {
+    type_outil?: StringFieldUpdateOperationsInput | string
     titre?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     icone?: StringFieldUpdateOperationsInput | string
@@ -32023,16 +32004,15 @@ export namespace Prisma {
     icone_rounded?: BoolFieldUpdateOperationsInput | boolean
     lien?: StringFieldUpdateOperationsInput | string
     couleur_fond?: StringFieldUpdateOperationsInput | string
-    couleur_contour?: StringFieldUpdateOperationsInput | string
-    couleur_texte?: StringFieldUpdateOperationsInput | string
-    couleur_fond_dark?: StringFieldUpdateOperationsInput | string
-    couleur_contour_dark?: StringFieldUpdateOperationsInput | string
-    couleur_texte_dark?: StringFieldUpdateOperationsInput | string
+    couleur_titre?: StringFieldUpdateOperationsInput | string
+    couleur_description?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type apropos_outilsUncheckedUpdateManyInput = {
     id_outil?: IntFieldUpdateOperationsInput | number
+    type_outil?: StringFieldUpdateOperationsInput | string
     titre?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     icone?: StringFieldUpdateOperationsInput | string
@@ -32040,11 +32020,9 @@ export namespace Prisma {
     icone_rounded?: BoolFieldUpdateOperationsInput | boolean
     lien?: StringFieldUpdateOperationsInput | string
     couleur_fond?: StringFieldUpdateOperationsInput | string
-    couleur_contour?: StringFieldUpdateOperationsInput | string
-    couleur_texte?: StringFieldUpdateOperationsInput | string
-    couleur_fond_dark?: StringFieldUpdateOperationsInput | string
-    couleur_contour_dark?: StringFieldUpdateOperationsInput | string
-    couleur_texte_dark?: StringFieldUpdateOperationsInput | string
+    couleur_titre?: StringFieldUpdateOperationsInput | string
+    couleur_description?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -33322,6 +33300,7 @@ export namespace Prisma {
 
   export type apropos_outilsCountOrderByAggregateInput = {
     id_outil?: SortOrder
+    type_outil?: SortOrder
     titre?: SortOrder
     description?: SortOrder
     icone?: SortOrder
@@ -33329,20 +33308,20 @@ export namespace Prisma {
     icone_rounded?: SortOrder
     lien?: SortOrder
     couleur_fond?: SortOrder
-    couleur_contour?: SortOrder
-    couleur_texte?: SortOrder
-    couleur_fond_dark?: SortOrder
-    couleur_contour_dark?: SortOrder
-    couleur_texte_dark?: SortOrder
+    couleur_titre?: SortOrder
+    couleur_description?: SortOrder
+    ordre?: SortOrder
     afficher?: SortOrder
   }
 
   export type apropos_outilsAvgOrderByAggregateInput = {
     id_outil?: SortOrder
+    ordre?: SortOrder
   }
 
   export type apropos_outilsMaxOrderByAggregateInput = {
     id_outil?: SortOrder
+    type_outil?: SortOrder
     titre?: SortOrder
     description?: SortOrder
     icone?: SortOrder
@@ -33350,16 +33329,15 @@ export namespace Prisma {
     icone_rounded?: SortOrder
     lien?: SortOrder
     couleur_fond?: SortOrder
-    couleur_contour?: SortOrder
-    couleur_texte?: SortOrder
-    couleur_fond_dark?: SortOrder
-    couleur_contour_dark?: SortOrder
-    couleur_texte_dark?: SortOrder
+    couleur_titre?: SortOrder
+    couleur_description?: SortOrder
+    ordre?: SortOrder
     afficher?: SortOrder
   }
 
   export type apropos_outilsMinOrderByAggregateInput = {
     id_outil?: SortOrder
+    type_outil?: SortOrder
     titre?: SortOrder
     description?: SortOrder
     icone?: SortOrder
@@ -33367,16 +33345,15 @@ export namespace Prisma {
     icone_rounded?: SortOrder
     lien?: SortOrder
     couleur_fond?: SortOrder
-    couleur_contour?: SortOrder
-    couleur_texte?: SortOrder
-    couleur_fond_dark?: SortOrder
-    couleur_contour_dark?: SortOrder
-    couleur_texte_dark?: SortOrder
+    couleur_titre?: SortOrder
+    couleur_description?: SortOrder
+    ordre?: SortOrder
     afficher?: SortOrder
   }
 
   export type apropos_outilsSumOrderByAggregateInput = {
     id_outil?: SortOrder
+    ordre?: SortOrder
   }
 
   export type autre_tags_linkCreateNestedManyWithoutAutreInput = {

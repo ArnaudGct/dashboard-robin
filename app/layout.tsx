@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard - ArnaudGct",
+  title: "Dashboard - CosmoseProd",
   description:
     "Espace privé pour gérer les données du portfolio de Arnaud Graciet",
 };

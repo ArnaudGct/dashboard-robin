@@ -53,12 +53,12 @@ const data = {
           url: "/accueil/general",
         },
         {
-          title: "FAQ",
-          url: "/accueil/faq",
-        },
-        {
           title: "Clients",
           url: "/accueil/clients",
+        },
+        {
+          title: "FAQ",
+          url: "/accueil/faq",
         },
       ],
     },
@@ -122,7 +122,7 @@ export function AppSidebar({
             height={32}
             className="rounded-lg"
           />
-          <h1 className="text-lg font-bold">ArnaudGct</h1>
+          <h1 className="text-lg font-bold">CosmoseProd</h1>
         </div>
       </SidebarHeader>
       <SidebarContent className="gap-0">

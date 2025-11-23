@@ -9,6 +9,7 @@ import {
 } from "@/lib/cloudinary";
 
 export async function createOutilAction(formData: FormData) {
+  const typeOutil = (formData.get("type_outil") as string) || "detaille";
   const titre = formData.get("titre") as string;
   const description = formData.get("description") as string;
   const iconeFile = formData.get("icone") as File;
@@ -16,11 +17,8 @@ export async function createOutilAction(formData: FormData) {
   const iconeRounded = formData.get("icone_rounded") === "true";
   const lien = formData.get("lien") as string;
   const couleurFond = formData.get("couleur_fond") as string;
-  const couleurContour = formData.get("couleur_contour") as string;
-  const couleurTexte = formData.get("couleur_texte") as string;
-  const couleurFondDark = formData.get("couleur_fond_dark") as string;
-  const couleurContourDark = formData.get("couleur_contour_dark") as string;
-  const couleurTexteDark = formData.get("couleur_texte_dark") as string;
+  const couleurTitre = formData.get("couleur_titre") as string;
+  const couleurDescription = formData.get("couleur_description") as string;
   const afficher = formData.get("afficher") === "true";
 
   try {
@@ -54,17 +52,16 @@ export async function createOutilAction(formData: FormData) {
     const nouvelOutil = await prisma.apropos_outils.create({
       data: {
         titre,
-        description,
+        type_outil: typeOutil,
+        description: typeOutil === "detaille" ? description : "",
         icone: iconeUrl,
         icone_alt: iconeAlt,
         icone_rounded: iconeRounded,
         lien: lien || "",
-        couleur_fond: couleurFond,
-        couleur_contour: couleurContour,
-        couleur_texte: couleurTexte,
-        couleur_fond_dark: couleurFondDark,
-        couleur_contour_dark: couleurContourDark,
-        couleur_texte_dark: couleurTexteDark,
+        couleur_fond: typeOutil === "simple" ? couleurFond : "",
+        couleur_titre: couleurTitre,
+        couleur_description: typeOutil === "detaille" ? couleurDescription : "",
+        ordre: 0,
         afficher,
       },
     });
@@ -85,6 +82,7 @@ export async function createOutilAction(formData: FormData) {
 
 export async function updateOutilAction(formData: FormData) {
   const id = parseInt(formData.get("id") as string);
+  const typeOutil = (formData.get("type_outil") as string) || "detaille";
   const titre = formData.get("titre") as string;
   const description = formData.get("description") as string;
   const iconeFile = formData.get("icone") as File;
@@ -92,11 +90,8 @@ export async function updateOutilAction(formData: FormData) {
   const iconeRounded = formData.get("icone_rounded") === "true";
   const lien = formData.get("lien") as string;
   const couleurFond = formData.get("couleur_fond") as string;
-  const couleurContour = formData.get("couleur_contour") as string;
-  const couleurTexte = formData.get("couleur_texte") as string;
-  const couleurFondDark = formData.get("couleur_fond_dark") as string;
-  const couleurContourDark = formData.get("couleur_contour_dark") as string;
-  const couleurTexteDark = formData.get("couleur_texte_dark") as string;
+  const couleurTitre = formData.get("couleur_titre") as string;
+  const couleurDescription = formData.get("couleur_description") as string;
   const afficher = formData.get("afficher") === "true";
 
   try {
@@ -155,18 +150,16 @@ export async function updateOutilAction(formData: FormData) {
     const outilMisAJour = await prisma.apropos_outils.update({
       where: { id_outil: id },
       data: {
+        type_outil: typeOutil,
         titre,
-        description,
+        description: typeOutil === "detaille" ? description : "",
         icone: iconeUrl,
         icone_alt: iconeAlt,
         icone_rounded: iconeRounded,
         lien: lien || "",
-        couleur_fond: couleurFond,
-        couleur_contour: couleurContour,
-        couleur_texte: couleurTexte,
-        couleur_fond_dark: couleurFondDark,
-        couleur_contour_dark: couleurContourDark,
-        couleur_texte_dark: couleurTexteDark,
+        couleur_fond: typeOutil === "simple" ? couleurFond : "",
+        couleur_titre: couleurTitre,
+        couleur_description: typeOutil === "detaille" ? couleurDescription : "",
         afficher,
       },
     });
@@ -261,11 +254,54 @@ export async function toggleOutilVisibilityAction(
 export async function getOutils() {
   try {
     const outils = await prisma.apropos_outils.findMany({
-      orderBy: { titre: "asc" },
+      orderBy: { ordre: "asc" },
     });
     return outils;
   } catch (error) {
     console.error("Erreur lors de la récupération des outils:", error);
     return [];
+  }
+}
+
+export async function updateOutilOrdreAction(id: number, newOrdre: number) {
+  try {
+    await prisma.apropos_outils.update({
+      where: { id_outil: id },
+      data: { ordre: newOrdre },
+    });
+
+    revalidatePath("/a-propos/outils");
+    return { success: true, message: "Ordre mis à jour avec succès" };
+  } catch (error) {
+    console.error("❌ Erreur lors de la mise à jour de l'ordre:", error);
+    return {
+      success: false,
+      message: "Erreur lors de la mise à jour de l'ordre",
+    };
+  }
+}
+
+export async function reorderOutilsAction(
+  outils: { id_outil: number; ordre: number }[]
+) {
+  try {
+    // Mettre à jour l'ordre de tous les outils en une transaction
+    await prisma.$transaction(
+      outils.map((outil) =>
+        prisma.apropos_outils.update({
+          where: { id_outil: outil.id_outil },
+          data: { ordre: outil.ordre },
+        })
+      )
+    );
+
+    revalidatePath("/a-propos/outils");
+    return { success: true, message: "Ordre mis à jour avec succès" };
+  } catch (error) {
+    console.error("❌ Erreur lors de la réorganisation:", error);
+    return {
+      success: false,
+      message: "Erreur lors de la réorganisation",
+    };
   }
 }

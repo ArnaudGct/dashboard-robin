@@ -338,6 +338,7 @@ exports.Prisma.Apropos_generalScalarFieldEnum = {
 
 exports.Prisma.Apropos_outilsScalarFieldEnum = {
   id_outil: 'id_outil',
+  type_outil: 'type_outil',
   titre: 'titre',
   description: 'description',
   icone: 'icone',
@@ -345,11 +346,9 @@ exports.Prisma.Apropos_outilsScalarFieldEnum = {
   icone_rounded: 'icone_rounded',
   lien: 'lien',
   couleur_fond: 'couleur_fond',
-  couleur_contour: 'couleur_contour',
-  couleur_texte: 'couleur_texte',
-  couleur_fond_dark: 'couleur_fond_dark',
-  couleur_contour_dark: 'couleur_contour_dark',
-  couleur_texte_dark: 'couleur_texte_dark',
+  couleur_titre: 'couleur_titre',
+  couleur_description: 'couleur_description',
+  ordre: 'ordre',
   afficher: 'afficher'
 };
 
@@ -499,17 +498,15 @@ exports.Prisma.apropos_generalOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.apropos_outilsOrderByRelevanceFieldEnum = {
+  type_outil: 'type_outil',
   titre: 'titre',
   description: 'description',
   icone: 'icone',
   icone_alt: 'icone_alt',
   lien: 'lien',
   couleur_fond: 'couleur_fond',
-  couleur_contour: 'couleur_contour',
-  couleur_texte: 'couleur_texte',
-  couleur_fond_dark: 'couleur_fond_dark',
-  couleur_contour_dark: 'couleur_contour_dark',
-  couleur_texte_dark: 'couleur_texte_dark'
+  couleur_titre: 'couleur_titre',
+  couleur_description: 'couleur_description'
 };
 
 
