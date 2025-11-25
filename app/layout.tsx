@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { RouteDetector } from "@/components/layout/route-detector";
 import { getUser } from "@/lib/auth-session";
 
@@ -34,9 +33,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster />
-        <SidebarProvider>
-          <RouteDetector user={user}>{children}</RouteDetector>
-        </SidebarProvider>
+        <RouteDetector user={user}>{children}</RouteDetector>
       </body>
     </html>
   );

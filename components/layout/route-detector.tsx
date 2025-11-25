@@ -1,27 +1,35 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { useEffect } from "react"; // Ajoutez cette importation
+import { useEffect } from "react";
+import { User as UserType } from "@/types/user";
 
 interface RouteDetectorProps {
-  user: unknown;
+  user: UserType | undefined;
   children: React.ReactNode;
 }
 
 export function RouteDetector({ user, children }: RouteDetectorProps) {
   const pathname = usePathname();
-  // Ajoutez une vérification plus large pour inclure toutes les pages d'authentification
-  const isAuthPage = pathname?.includes("/auth");
+  const router = useRouter();
+  const isAuthPage = pathname?.startsWith("/auth");
 
   // Debug pour voir les valeurs
   useEffect(() => {
     console.log("Current path:", pathname);
     console.log("Is auth page:", isAuthPage);
     console.log("User:", user);
-  }, [pathname, isAuthPage, user]);
 
+    // Si l'utilisateur n'est pas connecté et n'est pas sur une page d'auth, rediriger
+    if (!user && !isAuthPage) {
+      console.log("User is undefined, redirecting to signin");
+      router.push("/auth/signin");
+    }
+  }, [pathname, isAuthPage, user, router]);
+
+  // Pages d'authentification : pas de sidebar
   if (isAuthPage) {
     return (
       <main className="flex items-center justify-center w-full min-h-screen">
@@ -30,11 +38,21 @@ export function RouteDetector({ user, children }: RouteDetectorProps) {
     );
   }
 
+  // Pages normales : avec sidebar si l'utilisateur est connecté
+  if (!user) {
+    // Afficher un loader pendant la redirection
+    return (
+      <div className="flex items-center justify-center w-full min-h-screen">
+        <p>Chargement...</p>
+      </div>
+    );
+  }
+
   return (
     <SidebarProvider>
-      {user ? <AppSidebar user={user} /> : null}
+      <AppSidebar user={user} />
       <main className="w-full h-full">
-        {!isAuthPage && <SidebarTrigger />}
+        <SidebarTrigger />
         {children}
       </main>
     </SidebarProvider>

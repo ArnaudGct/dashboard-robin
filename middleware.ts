@@ -9,16 +9,21 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Vérifier si l'utilisateur accède à une route d'authentification
-  const isAuthRoute = path.startsWith("/auth/");
+  const isAuthRoute = path.startsWith("/auth");
 
   // Si l'utilisateur n'est pas authentifié et n'accède pas à une route d'authentification
   if (!sessionCookie && !isAuthRoute) {
     // Rediriger vers la page de connexion
-    return NextResponse.redirect(new URL("/auth/signin", request.url));
+    const response = NextResponse.redirect(
+      new URL("/auth/signin", request.url)
+    );
+    // Nettoyer les cookies de session potentiellement corrompus
+    response.cookies.delete("better-auth.session_token");
+    return response;
   }
 
   // Cas spécial: si l'utilisateur est déjà authentifié et essaie d'accéder à la page de connexion
-  if (sessionCookie && path === "/auth/signin") {
+  if (sessionCookie && (path === "/auth/signin" || path === "/auth/signup")) {
     // Rediriger vers la page d'accueil
     return NextResponse.redirect(new URL("/", request.url));
   }

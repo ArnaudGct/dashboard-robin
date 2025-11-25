@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 import {
   updateFaqAction,
   deleteFaqAction,
-} from "@/actions/accueil_accueil_faq-actions";
+} from "@/actions/accueil_faq-actions";
 
 import {
   Breadcrumb,
