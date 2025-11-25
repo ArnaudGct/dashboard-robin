@@ -5,9 +5,9 @@ import { getExperienceByIdAction } from "@/actions/a-propos_experiences-actions"
 export const dynamic = "force-dynamic";
 
 interface EditExperiencePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EditExperiencePage({
