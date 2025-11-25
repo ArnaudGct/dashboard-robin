@@ -27,13 +27,27 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const user = await getUser();
+  const sanitizedUser = user
+    ? {
+        ...user,
+        createdAt:
+          user.createdAt instanceof Date
+            ? user.createdAt.toISOString()
+            : String(user.createdAt),
+        updatedAt:
+          user.updatedAt instanceof Date
+            ? user.updatedAt.toISOString()
+            : String(user.updatedAt),
+      }
+    : undefined;
+
   return (
     <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Toaster />
-        <RouteDetector user={user}>{children}</RouteDetector>
+        <RouteDetector user={sanitizedUser}>{children}</RouteDetector>
       </body>
     </html>
   );

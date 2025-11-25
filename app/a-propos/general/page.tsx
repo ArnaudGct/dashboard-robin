@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { JournalItem } from "@/components/sections/journal-personnel/journal-item";
 import { Button } from "@/components/ui/button";
 import { Plus, Upload } from "lucide-react";
 import { Card } from "@/components/ui/card";

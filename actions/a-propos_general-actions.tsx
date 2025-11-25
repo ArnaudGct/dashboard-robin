@@ -91,8 +91,6 @@ export async function updateAProposGeneral(formData: FormData) {
         data: {
           photo: photoUrl,
           photo_alt: photoAlt.trim(),
-          credit_nom: creditNom,
-          credit_url: creditUrl,
           description: description,
         },
       });
@@ -103,8 +101,6 @@ export async function updateAProposGeneral(formData: FormData) {
         data: {
           photo: photoUrl,
           photo_alt: photoAlt.trim(),
-          credit_nom: creditNom,
-          credit_url: creditUrl,
           description: description,
         },
       });
