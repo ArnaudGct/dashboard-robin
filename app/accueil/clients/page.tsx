@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Suspense, use } from "react";
 import prisma from "@/lib/prisma";
-import { ClientItem } from "@/components/sections/accueil/clients/client-item";
+import { ClientsList } from "@/components/sections/accueil/clients/clients-list";
 
 // Composant de chargement pour Suspense
 function ClientsLoading() {
@@ -29,9 +29,9 @@ export const revalidate = 60; // Revalidation des données toutes les 60 seconde
 
 async function fetchClients() {
   try {
-    return await prisma.clients.findMany({
+    return await prisma.accueil_clients.findMany({
       orderBy: {
-        id_client: "desc",
+        ordre: "asc",
       },
     });
   } catch (error) {
@@ -40,24 +40,10 @@ async function fetchClients() {
   }
 }
 
-function ClientsList() {
+function ClientsListWrapper() {
   const clients = use(fetchClients());
 
-  if (clients.length === 0) {
-    return (
-      <Card className="p-6">
-        <p className="text-center text-muted-foreground">Aucun client trouvé</p>
-      </Card>
-    );
-  }
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-      {clients.map((client) => (
-        <ClientItem key={client.id_client} client={client} />
-      ))}
-    </div>
-  );
+  return <ClientsList initialClients={clients} />;
 }
 
 export default function ClientsPage() {
@@ -74,7 +60,7 @@ export default function ClientsPage() {
         </div>
 
         <Suspense fallback={<ClientsLoading />}>
-          <ClientsList />
+          <ClientsListWrapper />
         </Suspense>
       </div>
     </section>

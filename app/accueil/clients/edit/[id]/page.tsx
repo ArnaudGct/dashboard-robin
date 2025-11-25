@@ -12,7 +12,7 @@ export default async function EditClientPage({ params }: { params: Params }) {
     notFound();
   }
 
-  const clientEntry = await prisma.clients.findUnique({
+  const clientEntry = await prisma.accueil_clients.findUnique({
     where: {
       id_client: clientId,
     },

@@ -8,46 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model autre {
-  id_autre              Int               @id @default(autoincrement())
-  titre                 String            @db.VarChar(100)
-  description           String            @db.VarChar(3500)
-  miniature             String            @db.VarChar(500)
-  lien_github           String            @db.VarChar(500)
-  lien_figma            String            @db.VarChar(500)
-  lien_site             String            @db.VarChar(500)
-  categorie             String            @db.VarChar(50)
-  tags                  String            @db.VarChar(50)
-  date                  DateTime          @db.Date
-  afficher              Boolean
-  derniere_modification DateTime          @db.DateTime(0)
-  autre_tags_link       autre_tags_link[]
-}
-
-model autre_tags {
-  id_tags         Int               @id @default(autoincrement())
-  titre           String            @db.VarChar(50)
-  important       Boolean
-  autre_tags_link autre_tags_link[]
-}
-
-model autre_tags_link {
-  id_autre   Int
-  id_tags    Int
-  autre      autre      @relation(fields: [id_autre], references: [id_autre], onDelete: Cascade, map: "fk_autre")
-  autre_tags autre_tags @relation(fields: [id_tags], references: [id_tags], onDelete: Cascade, map: "fk_autre_tags")
-
-  @@id([id_autre, id_tags])
-  @@index([id_tags], map: "fk_autre_tags")
-}
-
-model faq {
-  id_faq   Int     @id @default(autoincrement())
-  titre    String  @db.VarChar(250)
-  contenu  String  @db.VarChar(1000)
-  afficher Boolean
-}
-
 model photos {
   id_pho                     Int                          @id @default(autoincrement())
   lien_high                  String                       @db.VarChar(500)
@@ -97,13 +57,6 @@ model photos_albums_tags_link {
   @@index([id_tags], map: "fk_photos_albums_tags")
 }
 
-model photos_experiences {
-  id_photo Int    @id @default(autoincrement())
-  titre    String @db.VarChar(100)
-  url      String @db.VarChar(1000)
-  date     String @db.VarChar(50)
-}
-
 model photos_tags {
   id_tags                 Int                       @id @default(autoincrement())
   titre                   String                    @db.VarChar(50)
@@ -139,15 +92,6 @@ model photos_tags_recherche_link {
   @@index([id_tags], map: "fk_photos_tags_recherche")
 }
 
-model clients {
-  id_client   Int     @id @default(autoincrement())
-  client      String  @db.VarChar(150)
-  logo        String  @db.VarChar(500)
-  alt_logo    String  @db.VarChar(255)
-  lien_client String  @db.VarChar(255)
-  afficher    Boolean
-}
-
 model utilisateurs {
   id_user  Int     @id @default(autoincrement())
   img      String  @db.VarChar(250)
@@ -160,14 +104,8 @@ model utilisateurs {
 model videos {
   id_vid                  Int                @id @default(autoincrement())
   titre                   String             @db.VarChar(100)
-  description             String             @db.VarChar(3500)
-  tags                    String             @db.VarChar(50)
   lien                    String             @db.VarChar(500)
   date                    DateTime           @db.Date
-  media_webm              String             @db.VarChar(100)
-  media_mp4               String             @db.VarChar(100)
-  duree                   String             @db.VarChar(25)
-  afficher_competences    String             @db.VarChar(50)
   afficher_carrousel_main Boolean            @default(false)
   afficher_section_videos Boolean            @default(false)
   tag_section_videos      Int?
@@ -301,4 +239,22 @@ model apropos_experiences {
   nom_entreprise  String    @db.VarChar(255)
   lien_entreprise String    @db.VarChar(255)
   afficher        Boolean
+}
+
+model accueil_clients {
+  id_client   Int     @id @default(autoincrement())
+  client      String  @db.VarChar(150)
+  logo        String  @db.VarChar(500)
+  alt_logo    String  @db.VarChar(255)
+  lien_client String  @db.VarChar(255)
+  ordre       Int
+  afficher    Boolean
+}
+
+model accueil_faq {
+  id_faq   Int     @id @default(autoincrement())
+  titre    String  @db.VarChar(250)
+  contenu  String  @db.VarChar(1000)
+  ordre    Int
+  afficher Boolean
 }

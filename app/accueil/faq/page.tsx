@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Suspense } from "react";
+import { Suspense, use } from "react";
 import prisma from "@/lib/prisma";
-import { FaqItem } from "@/components/sections/accueil/faq/faq-item";
+import { FaqList } from "@/components/sections/accueil/faq/faq-list";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
@@ -45,63 +45,23 @@ export default function FAQ() {
 
         {/* Utiliser Suspense pour le chargement asynchrone */}
         <Suspense fallback={<FAQLoading />}>
-          <FAQList />
+          <FAQListWrapper />
         </Suspense>
       </div>
     </section>
   );
 }
 
-async function FAQList() {
+async function FAQListWrapper() {
   try {
     // Récupérer toutes les FAQ
-    const faqs = await prisma.faq.findMany({
+    const faqs = await prisma.accueil_faq.findMany({
       orderBy: {
-        id_faq: "asc",
+        ordre: "asc",
       },
     });
 
-    // Si aucune FAQ, afficher un message
-    if (faqs.length === 0) {
-      return (
-        <Card className="p-6">
-          <p className="text-center text-muted-foreground">
-            Aucune question fréquemment posée trouvée
-          </p>
-        </Card>
-      );
-    }
-
-    // Séparer les FAQ visibles et non visibles
-    const visibleFaqs = faqs.filter((faq) => faq.afficher);
-    const hiddenFaqs = faqs.filter((faq) => !faq.afficher);
-
-    return (
-      <div className="flex flex-col gap-8">
-        {/* FAQ visibles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
-          {visibleFaqs.map((faq) => (
-            <FaqItem key={faq.id_faq} faq={faq} />
-          ))}
-        </div>
-
-        {/* FAQ non visibles (si on veut les afficher pour l'admin) */}
-        {hiddenFaqs.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xl font-semibold mb-4 text-muted-foreground">
-              Questions non visibles
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 items-start">
-              {hiddenFaqs.map((faq) => (
-                <div key={faq.id_faq} className="opacity-60">
-                  <FaqItem faq={faq} />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    );
+    return <FaqList initialFaqs={faqs} />;
   } catch (error) {
     console.error("Erreur lors du chargement des FAQ:", error);
     return (

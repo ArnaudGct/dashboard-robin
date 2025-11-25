@@ -64,19 +64,13 @@ export async function addVideoAction(formData: FormData) {
     const video = await prisma.videos.create({
       data: {
         titre: formData.get("title")?.toString() || "",
-        description: formData.get("description")?.toString() || "",
         lien: youtubeId,
-        duree: formData.get("duree")?.toString() || "",
-        date: dateValue || new Date(), // Utiliser la date actuelle si aucune date n'est fournie
-        media_webm: "", // Valeur par défaut ou à récupérer du formulaire
-        media_mp4: "", // Valeur par défaut ou à récupérer du formulaire
-        afficher_competences: "", // Valeur par défaut ou à récupérer du formulaire
+        date: dateValue || new Date(),
         afficher_carrousel_main: formData.get("afficherCarrouselMain") === "on",
         afficher_section_videos: formData.get("afficherSectionVideos") === "on",
         tag_section_videos: tagSectionVideosId,
-        afficher: formData.get("isPublished") === "on", // MySQL utilise 0/1 pour les booléens
+        afficher: formData.get("isPublished") === "on",
         derniere_modification: new Date(),
-        tags: "", // Champ texte de tags, à utiliser si nécessaire
       },
     });
 
@@ -173,10 +167,8 @@ export async function updateVideoAction(formData: FormData) {
       },
       data: {
         titre: formData.get("title")?.toString() || "",
-        description: formData.get("description")?.toString() || "",
         lien: youtubeId,
-        duree: formData.get("duree")?.toString() || "",
-        date: dateValue || new Date(), // Utiliser la date actuelle si aucune date n'est fournie
+        date: dateValue || new Date(),
         afficher_carrousel_main: formData.get("afficherCarrouselMain") === "on",
         afficher_section_videos: formData.get("afficherSectionVideos") === "on",
         tag_section_videos: tagSectionVideosId,

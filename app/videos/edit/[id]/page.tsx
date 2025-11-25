@@ -59,9 +59,7 @@ async function EditVideoContent({ params }: { params: Params }) {
         select: {
           id_vid: true,
           titre: true,
-          description: true,
           lien: true,
-          duree: true,
           date: true,
           afficher: true,
           afficher_carrousel_main: true,
@@ -125,9 +123,7 @@ async function EditVideoContent({ params }: { params: Params }) {
     const initialData = {
       id_vid: video.id_vid,
       titre: video.titre,
-      description: video.description,
       lien: video.lien,
-      duree: video.duree,
       date: videoDate,
       afficher: video.afficher,
       afficher_carrousel_main: video.afficher_carrousel_main,

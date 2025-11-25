@@ -3,11 +3,10 @@
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import {
-  uploadAProposImageToCloudinary,
+  uploadToCloudinary,
   deleteFromCloudinary,
   extractPublicIdFromUrl,
 } from "@/lib/cloudinary";
-import sharp from "sharp";
 
 export async function updateAProposGeneral(formData: FormData) {
   const photoFile = formData.get("photo") as File;
@@ -44,26 +43,11 @@ export async function updateAProposGeneral(formData: FormData) {
         console.log(`Ancien publicId extrait: ${oldPublicId}`);
       }
 
-      // Obtenir les dimensions de l'image originale
-      const arrayBuffer = await photoFile.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-      const metadata = await sharp(buffer).metadata();
-      const largeur = metadata.width || 0;
-      const hauteur = metadata.height || 0;
-
-      console.log(`Dimensions détectées: ${largeur}x${hauteur}`);
-
-      // Utiliser la nouvelle fonction spécialisée pour les images à propos
-      const result = await uploadAProposImageToCloudinary(
+      // Upload de la photo sans compression
+      const result = await uploadToCloudinary(
         photoFile,
-        "portfolio/apropos/general",
-        {
-          width: 400,
-          height: undefined, // Maintenir le ratio d'aspect
-          crop: "scale",
-          quality: "auto:good",
-          format: "webp",
-        }
+        undefined,
+        "portfolio/apropos/general"
       );
 
       photoUrl = result.url;

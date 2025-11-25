@@ -59,7 +59,7 @@ async function EditFaqContent({ params }: { params: Params }) {
     }
 
     // Récupérer la FAQ directement avec Prisma
-    const faq = await prisma.faq.findUnique({
+    const faq = await prisma.accueil_faq.findUnique({
       where: {
         id_faq: editId,
       },

@@ -106,23 +106,27 @@ async function compressImageIfNeeded(file: File): Promise<Buffer> {
 // Helper pour uploader une image vers Cloudinary (pour les photos)
 export async function uploadToCloudinary(
   file: File,
-  type: "low" | "high" = "high",
+  type?: "low" | "high",
   folder: string = "portfolio/photos",
   originalPublicId?: string
 ): Promise<{ url: string; publicId: string }> {
   try {
-    // Compresser l'image si nécessaire
-    const buffer = await compressImageIfNeeded(file);
+    // Compresser l'image si nécessaire (sauf si type n'est pas défini)
+    const buffer = type
+      ? await compressImageIfNeeded(file)
+      : Buffer.from(await file.arrayBuffer());
 
     // Utiliser le même nom de base que l'original s'il est fourni
     let publicId: string;
     if (originalPublicId) {
       const baseName = originalPublicId.split("/").pop() || originalPublicId;
-      publicId = `${baseName}_${type}`;
+      publicId = type ? `${baseName}_${type}` : baseName;
     } else {
       const timestamp = Date.now();
       const randomId = Math.random().toString(36).substr(2, 9);
-      publicId = `img_${timestamp}_${randomId}_${type}`;
+      publicId = type
+        ? `img_${timestamp}_${randomId}_${type}`
+        : `img_${timestamp}_${randomId}`;
     }
 
     // Options d'upload selon le type
@@ -132,28 +136,32 @@ export async function uploadToCloudinary(
       public_id: publicId,
       use_filename: false,
       unique_filename: false,
-      format: "webp", // Force la conversion en WebP lors de l'upload
     };
 
-    // Configuration pour les images basse résolution
-    if (type === "low") {
-      uploadOptions.transformation = [
-        {
-          width: 800,
-          height: 800,
-          crop: "limit",
-          quality: "auto:low",
-        },
-      ];
-    } else {
-      uploadOptions.transformation = [
-        {
-          width: "iw_div_2",
-          height: "ih_div_2",
-          crop: "scale",
-          quality: "auto:eco",
-        },
-      ];
+    // Ne convertir en WebP et ne pas appliquer de transformation si type n'est pas défini
+    if (type) {
+      uploadOptions.format = "webp";
+
+      // Configuration pour les images basse résolution
+      if (type === "low") {
+        uploadOptions.transformation = [
+          {
+            width: 800,
+            height: 800,
+            crop: "limit",
+            quality: "auto:low",
+          },
+        ];
+      } else {
+        uploadOptions.transformation = [
+          {
+            width: "iw_div_2",
+            height: "ih_div_2",
+            crop: "scale",
+            quality: "auto:eco",
+          },
+        ];
+      }
     }
 
     // Upload standard puisque le fichier fait maintenant moins de 10MB

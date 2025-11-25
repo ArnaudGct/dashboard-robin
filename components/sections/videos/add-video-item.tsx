@@ -1,21 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
-import dynamic from "next/dynamic";
-import { MDXEditorMethods } from "@mdxeditor/editor";
 import { addVideoAction } from "@/actions/videos-actions";
 import { useRouter } from "next/navigation";
 import { TagSheet } from "@/components/sections/photos/tag-sheet";
 import { RemovableTag } from "@/components/removable-tag";
 import { createVideoTagAction } from "@/actions/videos-actions";
-
-// Importer l'éditeur de manière dynamique (côté client uniquement)
-const EditorComp = dynamic(() => import("@/components/editor-textarea"), {
-  ssr: false,
-});
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -63,8 +56,6 @@ export function AddVideoItem({
   const router = useRouter();
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [markdown, setMarkdown] = useState<string>("Description de la vidéo");
-  const editorRef = useRef<MDXEditorMethods | null>(null);
   const [afficherCarrouselMain, setAfficherCarrouselMain] = useState(false);
   const [afficherSectionVideos, setAfficherSectionVideos] = useState(false);
   const [tagSectionVideos, setTagSectionVideos] = useState<string | null>(null);
@@ -73,15 +64,8 @@ export function AddVideoItem({
     setSelectedTags(newSelectedTags);
   };
 
-  const handleEditorChange = (newMarkdown: string) => {
-    setMarkdown(newMarkdown);
-  };
-
   const handleAddVideo = async (formData: FormData) => {
     try {
-      // Ajouter le markdown à formData
-      formData.set("description", markdown);
-
       // Ajouter les tags sélectionnés
       formData.delete("tags"); // Supprimer les valeurs précédentes s'il y en a
       selectedTags.forEach((tag) => {
@@ -174,19 +158,6 @@ export function AddVideoItem({
             />
           </div>
 
-          <div className="grid w-full gap-1.5">
-            <Label htmlFor="description">Description</Label>
-            <div className="border rounded-md overflow-hidden">
-              <EditorComp
-                markdown={markdown}
-                onChange={handleEditorChange}
-                editorRef={editorRef}
-              />
-              {/* Champ caché pour stocker la valeur markdown */}
-              <input type="hidden" name="description" value={markdown} />
-            </div>
-          </div>
-
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="url">ID de la vidéo YouTube</Label>
             <Input
@@ -199,17 +170,6 @@ export function AddVideoItem({
             <p className="text-xs text-muted-foreground">
               Vous pouvez coller l'ID directement ou le lien complet YouTube
             </p>
-          </div>
-
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="duree">Durée</Label>
-            <Input
-              type="text"
-              id="duree"
-              name="duree"
-              placeholder="Ex : 00:02:18"
-              required
-            />
           </div>
 
           <div className="grid w-full items-center gap-1.5">

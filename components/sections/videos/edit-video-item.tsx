@@ -1,21 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
-import { CalendarIcon, Trash2 } from "lucide-react"; // Ajout de l'icône Trash2
-import dynamic from "next/dynamic";
-import { MDXEditorMethods } from "@mdxeditor/editor";
-import { updateVideoAction, deleteVideoAction } from "@/actions/videos-actions"; // Ajout de l'action de suppression
+import { CalendarIcon, Trash2 } from "lucide-react";
+import { updateVideoAction, deleteVideoAction } from "@/actions/videos-actions";
 import { useRouter } from "next/navigation";
 import { TagSheet } from "@/components/sections/photos/tag-sheet";
 import { RemovableTag } from "@/components/removable-tag";
-import { createVideoTagAction } from "@/actions/videos-actions"; // Assurez-vous que cette fonction existe
-
-// Importer l'éditeur de manière dynamique (côté client uniquement)
-const EditorComp = dynamic(() => import("@/components/editor-textarea"), {
-  ssr: false,
-});
+import { createVideoTagAction } from "@/actions/videos-actions";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -59,9 +52,7 @@ type EditVideoFormProps = {
   initialData: {
     id_vid: number;
     titre: string;
-    description: string;
     lien: string;
-    duree: string;
     date?: Date;
     afficher: boolean;
     afficher_carrousel_main: boolean;
@@ -96,9 +87,7 @@ export function EditVideoItem({
       : undefined
   );
   const [selectedTags, setSelectedTags] = useState<string[]>(initialData.tags);
-  const [markdown, setMarkdown] = useState<string>(initialData.description);
   const [isDeleting, setIsDeleting] = useState(false);
-  const editorRef = useRef<MDXEditorMethods | null>(null);
   const [afficherCarrouselMain, setAfficherCarrouselMain] = useState(
     initialData.afficher_carrousel_main
   );
@@ -111,10 +100,6 @@ export function EditVideoItem({
 
   const handleTagsChange = (newSelectedTags: string[]) => {
     setSelectedTags(newSelectedTags);
-  };
-
-  const handleEditorChange = (newMarkdown: string) => {
-    setMarkdown(newMarkdown);
   };
 
   const handleDeleteVideo = async () => {
@@ -136,9 +121,6 @@ export function EditVideoItem({
     try {
       // Ajouter l'ID de la vidéo
       formData.set("id", initialData.id_vid.toString());
-
-      // Ajouter le markdown à formData
-      formData.set("description", markdown);
 
       // Ajouter les tags sélectionnés - utilisez delete pour éviter les doublons
       formData.delete("tags");
@@ -282,19 +264,6 @@ export function EditVideoItem({
             />
           </div>
 
-          <div className="grid w-full gap-1.5">
-            <Label htmlFor="description">Description</Label>
-            <div className="border rounded-md overflow-hidden">
-              <EditorComp
-                markdown={markdown}
-                onChange={handleEditorChange}
-                editorRef={editorRef}
-              />
-              {/* Champ caché pour stocker la valeur markdown */}
-              <input type="hidden" name="description" value={markdown} />
-            </div>
-          </div>
-
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="url">ID de la vidéo YouTube</Label>
             <Input
@@ -308,18 +277,6 @@ export function EditVideoItem({
             <p className="text-xs text-muted-foreground">
               Vous pouvez coller l'ID directement ou le lien complet YouTube
             </p>
-          </div>
-
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="duree">Durée</Label>
-            <Input
-              type="text"
-              id="duree"
-              name="duree"
-              placeholder="Ex : 00:02:18"
-              defaultValue={initialData.duree}
-              required
-            />
           </div>
 
           <div className="grid w-full items-center gap-1.5">

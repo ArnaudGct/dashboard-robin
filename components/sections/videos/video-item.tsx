@@ -52,14 +52,6 @@ export function VideoItem({ video }: VideoType) {
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <p className="text-xl font-semibold">{video.titre}</p>
-              {video.duree && (
-                <span className="text-xs bg-secondary px-2 py-1 rounded-md">
-                  {video.duree}
-                </span>
-              )}
-            </div>
-            <div className="leading-7 text-muted-foreground prose prose-sm dark:prose-invert max-w-none">
-              <ReactMarkdown>{video.description}</ReactMarkdown>
             </div>
           </div>
 

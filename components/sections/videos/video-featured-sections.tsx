@@ -31,6 +31,12 @@ type Video = {
   afficher_carrousel_main: boolean;
   afficher_section_videos: boolean;
   tag_section_videos: number | null;
+  videos_tags_link?: {
+    videos_tags: {
+      id_tags: number;
+      titre: string;
+    };
+  }[];
 };
 
 type VideoFeaturedSectionsProps = {
@@ -211,8 +217,13 @@ export function VideoFeaturedSections({
               </div>
               <div className="flex flex-col gap-3">
                 {videosCarouselVideos.map((video) => {
+                  // Récupérer uniquement les tags associés à cette vidéo
+                  const videoTags =
+                    video.videos_tags_link?.map((link) => link.videos_tags) ||
+                    [];
+
                   const featuredTag = video.tag_section_videos
-                    ? allTags.find(
+                    ? videoTags.find(
                         (t) => t.id_tags === video.tag_section_videos
                       )
                     : null;
@@ -239,7 +250,7 @@ export function VideoFeaturedSections({
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="none">Aucun tag</SelectItem>
-                            {allTags.map((tag) => (
+                            {videoTags.map((tag) => (
                               <SelectItem
                                 key={tag.id_tags}
                                 value={tag.id_tags.toString()}
@@ -249,9 +260,6 @@ export function VideoFeaturedSections({
                             ))}
                           </SelectContent>
                         </Select>
-                        {featuredTag && (
-                          <Tag variant="default">{featuredTag.titre}</Tag>
-                        )}
                       </div>
                     </div>
                   );

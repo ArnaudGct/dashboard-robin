@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 // Récupérer une FAQ par son ID
 export async function getFaqByIdAction(id: number) {
   try {
-    const faq = await prisma.faq.findUnique({
+    const faq = await prisma.accueil_faq.findUnique({
       where: { id_faq: id },
     });
     return faq;
@@ -32,7 +32,7 @@ export async function updateFaqAction(formData: FormData) {
       return { success: false, error: "Le titre et le contenu sont requis." };
     }
 
-    await prisma.faq.update({
+    await prisma.accueil_faq.update({
       where: { id_faq: id },
       data: {
         titre,
@@ -65,10 +65,15 @@ export async function addFaqAction(formData: FormData) {
       return { success: false, error: "Le titre et le contenu sont requis." };
     }
 
-    await prisma.faq.create({
+    // Récupérer le nombre de FAQ existantes pour définir l'ordre
+    const faqCount = await prisma.accueil_faq.count();
+    const ordre = faqCount;
+
+    await prisma.accueil_faq.create({
       data: {
         titre,
         contenu,
+        ordre,
         afficher,
       },
     });
@@ -92,7 +97,7 @@ export async function deleteFaqAction(id: number) {
       throw new Error("ID manquant");
     }
 
-    await prisma.faq.delete({
+    await prisma.accueil_faq.delete({
       where: { id_faq: id },
     });
 
@@ -105,5 +110,31 @@ export async function deleteFaqAction(id: number) {
         ? error.message
         : "Une erreur inconnue s'est produite";
     return { success: false, error: errorMessage };
+  }
+}
+
+// Réorganiser les FAQ
+export async function reorderFaqsAction(
+  faqs: { id_faq: number; ordre: number }[]
+) {
+  try {
+    // Mettre à jour l'ordre de toutes les FAQ en une transaction
+    await prisma.$transaction(
+      faqs.map((faq) =>
+        prisma.accueil_faq.update({
+          where: { id_faq: faq.id_faq },
+          data: { ordre: faq.ordre },
+        })
+      )
+    );
+
+    revalidatePath("/accueil/faq");
+    return { success: true, message: "Ordre mis à jour avec succès" };
+  } catch (error) {
+    console.error("❌ Erreur lors de la réorganisation:", error);
+    return {
+      success: false,
+      message: "Erreur lors de la réorganisation",
+    };
   }
 }

@@ -21,6 +21,10 @@ export async function addClientAction(formData: FormData) {
       return { success: false, error: "Tous les champs sont requis." };
     }
 
+    // Récupérer le nombre de clients existants pour définir l'ordre
+    const clientsCount = await prisma.accueil_clients.count();
+    const ordre = clientsCount;
+
     let logoUrl = "";
 
     // Si un logo est uploadé
@@ -29,19 +33,20 @@ export async function addClientAction(formData: FormData) {
       console.log("Upload logo client...");
       const result = await uploadToCloudinary(
         logoFile,
-        "high",
+        undefined,
         "portfolio/clients/logos"
       );
       logoUrl = result.url;
       console.log("Logo client uploadé:", logoUrl);
     }
 
-    await prisma.clients.create({
+    await prisma.accueil_clients.create({
       data: {
         client,
         logo: logoUrl,
         alt_logo,
         lien_client,
+        ordre,
         afficher,
       },
     });
@@ -63,6 +68,7 @@ export async function updateClientAction(formData: FormData) {
     const client = formData.get("client")?.toString();
     const logo = formData.get("logo")?.toString() || "";
     const alt_logo = formData.get("alt_logo")?.toString();
+    const lien_client = formData.get("lien_client")?.toString() || "";
     const afficher = formData.get("afficher") === "on";
 
     if (!client || !alt_logo) {
@@ -77,7 +83,7 @@ export async function updateClientAction(formData: FormData) {
       console.log("Upload logo client...");
 
       // Récupérer l'ancien logo pour suppression
-      const existingClient = await prisma.clients.findUnique({
+      const existingClient = await prisma.accueil_clients.findUnique({
         where: { id_client: id },
       });
       if (existingClient?.logo) {
@@ -98,22 +104,22 @@ export async function updateClientAction(formData: FormData) {
       // Uploader le nouveau logo
       const result = await uploadToCloudinary(
         logoFile,
-        "high",
+        undefined,
         "portfolio/clients/logos"
       );
       logoUrl = result.url;
       console.log("Logo client uploadé:", logoUrl);
     } else {
       // Conserver l'ancien logo si aucun nouveau n'est uploadé
-      const existingClient = await prisma.clients.findUnique({
+      const existingClient = await prisma.accueil_clients.findUnique({
         where: { id_client: id },
       });
       logoUrl = existingClient?.logo || "";
     }
 
-    await prisma.clients.update({
+    await prisma.accueil_clients.update({
       where: { id_client: id },
-      data: { client, logo: logoUrl, alt_logo, afficher },
+      data: { client, logo: logoUrl, alt_logo, lien_client, afficher },
     });
 
     revalidatePath("/accueil/clients");
@@ -130,7 +136,7 @@ export async function deleteClientAction(id: number) {
   try {
     if (!id) throw new Error("ID manquant");
 
-    await prisma.clients.delete({
+    await prisma.accueil_clients.delete({
       where: { id_client: id },
     });
 
@@ -139,5 +145,31 @@ export async function deleteClientAction(id: number) {
   } catch (error) {
     console.error("Erreur lors de la suppression du client:", error);
     return { success: false, error: "Une erreur s'est produite." };
+  }
+}
+
+// Réorganiser les clients
+export async function reorderClientsAction(
+  clients: { id_client: number; ordre: number }[]
+) {
+  try {
+    // Mettre à jour l'ordre de tous les clients en une transaction
+    await prisma.$transaction(
+      clients.map((client) =>
+        prisma.accueil_clients.update({
+          where: { id_client: client.id_client },
+          data: { ordre: client.ordre },
+        })
+      )
+    );
+
+    revalidatePath("/accueil/clients");
+    return { success: true, message: "Ordre mis à jour avec succès" };
+  } catch (error) {
+    console.error("❌ Erreur lors de la réorganisation:", error);
+    return {
+      success: false,
+      message: "Erreur lors de la réorganisation",
+    };
   }
 }
