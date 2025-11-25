@@ -13,6 +13,7 @@ export async function addClientAction(formData: FormData) {
   try {
     const client = formData.get("client")?.toString();
     const logo = formData.get("logo")?.toString() || "";
+    const lien_client = formData.get("lien_client")?.toString() || "";
     const alt_logo = formData.get("alt_logo")?.toString();
     const afficher = formData.get("afficher") === "on";
 
@@ -40,6 +41,7 @@ export async function addClientAction(formData: FormData) {
         client,
         logo: logoUrl,
         alt_logo,
+        lien_client,
         afficher,
       },
     });
