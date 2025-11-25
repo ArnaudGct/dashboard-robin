@@ -4,6 +4,32 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import prisma from "@/lib/prisma";
 
+// Fonction utilitaire pour extraire l'ID YouTube d'un lien ou retourner l'ID tel quel
+function extractYouTubeId(urlOrId: string): string {
+  // Si c'est déjà un ID court (pas de protocole), le retourner tel quel
+  if (!urlOrId.includes("http") && !urlOrId.includes("/")) {
+    return urlOrId.trim();
+  }
+
+  // Patterns pour différents formats de liens YouTube
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([\w-]+)/,
+    /(?:youtu\.be\/)([\w-]+)/,
+    /(?:youtube\.com\/embed\/)([\w-]+)/,
+    /(?:youtube\.com\/v\/)([\w-]+)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = urlOrId.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+
+  // Si aucun pattern ne correspond, retourner la valeur telle quelle
+  return urlOrId.trim();
+}
+
 export async function addVideoAction(formData: FormData) {
   try {
     // Gérer correctement la date
@@ -31,11 +57,15 @@ export async function addVideoAction(formData: FormData) {
       }
     }
 
+    // Extraire l'ID YouTube du lien ou de l'ID fourni
+    const urlOrId = formData.get("url")?.toString() || "";
+    const youtubeId = extractYouTubeId(urlOrId);
+
     const video = await prisma.videos.create({
       data: {
         titre: formData.get("title")?.toString() || "",
         description: formData.get("description")?.toString() || "",
-        lien: formData.get("url")?.toString() || "",
+        lien: youtubeId,
         duree: formData.get("duree")?.toString() || "",
         date: dateValue || new Date(), // Utiliser la date actuelle si aucune date n'est fournie
         media_webm: "", // Valeur par défaut ou à récupérer du formulaire
@@ -132,6 +162,10 @@ export async function updateVideoAction(formData: FormData) {
       }
     }
 
+    // Extraire l'ID YouTube du lien ou de l'ID fourni
+    const urlOrId = formData.get("url")?.toString() || "";
+    const youtubeId = extractYouTubeId(urlOrId);
+
     // 1. Mettre à jour la vidéo
     const video = await prisma.videos.update({
       where: {
@@ -140,7 +174,7 @@ export async function updateVideoAction(formData: FormData) {
       data: {
         titre: formData.get("title")?.toString() || "",
         description: formData.get("description")?.toString() || "",
-        lien: formData.get("url")?.toString() || "",
+        lien: youtubeId,
         duree: formData.get("duree")?.toString() || "",
         date: dateValue || new Date(), // Utiliser la date actuelle si aucune date n'est fournie
         afficher_carrousel_main: formData.get("afficherCarrouselMain") === "on",

@@ -50,6 +50,7 @@ interface EditClientFormProps {
     afficher: boolean;
     logo?: string | null;
     alt_logo?: string | null;
+    lien_client?: string | null;
   };
 }
 
@@ -63,7 +64,7 @@ export function EditClientItem({ initialData }: EditClientFormProps) {
 
     const result = await updateClientAction(formData);
     if (result.success) {
-      toast.success("Témoignage mis à jour !");
+      toast.success("Client mis à jour !");
       router.push("/accueil/clients");
       router.refresh();
     } else {
@@ -76,7 +77,7 @@ export function EditClientItem({ initialData }: EditClientFormProps) {
     setIsDeleting(true);
     const result = await deleteClientAction(initialData.id_client);
     if (result.success) {
-      toast.success("Témoignage supprimé !");
+      toast.success("Client supprimé !");
       router.push("/accueil/clients");
       router.refresh();
     } else {
@@ -151,6 +152,17 @@ export function EditClientItem({ initialData }: EditClientFormProps) {
               initialData.alt_logo || `Logo de ${initialData.client}`
             }
             required
+          />
+        </div>
+
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="lien_client">Lien du site du client</Label>
+          <Input
+            type="url"
+            id="lien_client"
+            name="lien_client"
+            placeholder="https://exemple.com"
+            defaultValue={initialData.lien_client || ""}
           />
         </div>
 

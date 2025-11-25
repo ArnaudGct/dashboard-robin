@@ -44,7 +44,7 @@ export function AddClientItem() {
 
     const result = await addClientAction(formData);
     if (result.success) {
-      toast.success("Témoignage ajouté avec succès !");
+      toast.success("Client ajouté avec succès !");
       router.push("/accueil/clients");
       router.refresh();
     } else {
@@ -76,6 +76,16 @@ export function AddClientItem() {
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="alt_logo">Alt du logo</Label>
           <Input type="text" id="alt_logo" name="alt_logo" required />
+        </div>
+
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="lien_client">Lien du site du client</Label>
+          <Input
+            type="url"
+            id="lien_client"
+            name="lien_client"
+            placeholder="https://exemple.com"
+          />
         </div>
 
         <div className="grid w-full items-center gap-1.5">

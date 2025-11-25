@@ -15984,6 +15984,7 @@ export namespace Prisma {
     client: string | null
     logo: string | null
     alt_logo: string | null
+    lien_client: string | null
     afficher: boolean | null
   }
 
@@ -15992,6 +15993,7 @@ export namespace Prisma {
     client: string | null
     logo: string | null
     alt_logo: string | null
+    lien_client: string | null
     afficher: boolean | null
   }
 
@@ -16000,6 +16002,7 @@ export namespace Prisma {
     client: number
     logo: number
     alt_logo: number
+    lien_client: number
     afficher: number
     _all: number
   }
@@ -16018,6 +16021,7 @@ export namespace Prisma {
     client?: true
     logo?: true
     alt_logo?: true
+    lien_client?: true
     afficher?: true
   }
 
@@ -16026,6 +16030,7 @@ export namespace Prisma {
     client?: true
     logo?: true
     alt_logo?: true
+    lien_client?: true
     afficher?: true
   }
 
@@ -16034,6 +16039,7 @@ export namespace Prisma {
     client?: true
     logo?: true
     alt_logo?: true
+    lien_client?: true
     afficher?: true
     _all?: true
   }
@@ -16129,6 +16135,7 @@ export namespace Prisma {
     client: string
     logo: string
     alt_logo: string
+    lien_client: string
     afficher: boolean
     _count: ClientsCountAggregateOutputType | null
     _avg: ClientsAvgAggregateOutputType | null
@@ -16156,6 +16163,7 @@ export namespace Prisma {
     client?: boolean
     logo?: boolean
     alt_logo?: boolean
+    lien_client?: boolean
     afficher?: boolean
   }, ExtArgs["result"]["clients"]>
 
@@ -16166,10 +16174,11 @@ export namespace Prisma {
     client?: boolean
     logo?: boolean
     alt_logo?: boolean
+    lien_client?: boolean
     afficher?: boolean
   }
 
-  export type clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_client" | "client" | "logo" | "alt_logo" | "afficher", ExtArgs["result"]["clients"]>
+  export type clientsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_client" | "client" | "logo" | "alt_logo" | "lien_client" | "afficher", ExtArgs["result"]["clients"]>
 
   export type $clientsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "clients"
@@ -16179,6 +16188,7 @@ export namespace Prisma {
       client: string
       logo: string
       alt_logo: string
+      lien_client: string
       afficher: boolean
     }, ExtArgs["result"]["clients"]>
     composites: {}
@@ -16553,6 +16563,7 @@ export namespace Prisma {
     readonly client: FieldRef<"clients", 'String'>
     readonly logo: FieldRef<"clients", 'String'>
     readonly alt_logo: FieldRef<"clients", 'String'>
+    readonly lien_client: FieldRef<"clients", 'String'>
     readonly afficher: FieldRef<"clients", 'Boolean'>
   }
     
@@ -29384,6 +29395,7 @@ export namespace Prisma {
     client: 'client',
     logo: 'logo',
     alt_logo: 'alt_logo',
+    lien_client: 'lien_client',
     afficher: 'afficher'
   };
 
@@ -29655,7 +29667,8 @@ export namespace Prisma {
   export const clientsOrderByRelevanceFieldEnum: {
     client: 'client',
     logo: 'logo',
-    alt_logo: 'alt_logo'
+    alt_logo: 'alt_logo',
+    lien_client: 'lien_client'
   };
 
   export type clientsOrderByRelevanceFieldEnum = (typeof clientsOrderByRelevanceFieldEnum)[keyof typeof clientsOrderByRelevanceFieldEnum]
@@ -30579,6 +30592,7 @@ export namespace Prisma {
     client?: StringFilter<"clients"> | string
     logo?: StringFilter<"clients"> | string
     alt_logo?: StringFilter<"clients"> | string
+    lien_client?: StringFilter<"clients"> | string
     afficher?: BoolFilter<"clients"> | boolean
   }
 
@@ -30587,6 +30601,7 @@ export namespace Prisma {
     client?: SortOrder
     logo?: SortOrder
     alt_logo?: SortOrder
+    lien_client?: SortOrder
     afficher?: SortOrder
     _relevance?: clientsOrderByRelevanceInput
   }
@@ -30599,6 +30614,7 @@ export namespace Prisma {
     client?: StringFilter<"clients"> | string
     logo?: StringFilter<"clients"> | string
     alt_logo?: StringFilter<"clients"> | string
+    lien_client?: StringFilter<"clients"> | string
     afficher?: BoolFilter<"clients"> | boolean
   }, "id_client">
 
@@ -30607,6 +30623,7 @@ export namespace Prisma {
     client?: SortOrder
     logo?: SortOrder
     alt_logo?: SortOrder
+    lien_client?: SortOrder
     afficher?: SortOrder
     _count?: clientsCountOrderByAggregateInput
     _avg?: clientsAvgOrderByAggregateInput
@@ -30623,6 +30640,7 @@ export namespace Prisma {
     client?: StringWithAggregatesFilter<"clients"> | string
     logo?: StringWithAggregatesFilter<"clients"> | string
     alt_logo?: StringWithAggregatesFilter<"clients"> | string
+    lien_client?: StringWithAggregatesFilter<"clients"> | string
     afficher?: BoolWithAggregatesFilter<"clients"> | boolean
   }
 
@@ -32201,6 +32219,7 @@ export namespace Prisma {
     client: string
     logo: string
     alt_logo: string
+    lien_client: string
     afficher: boolean
   }
 
@@ -32209,6 +32228,7 @@ export namespace Prisma {
     client: string
     logo: string
     alt_logo: string
+    lien_client: string
     afficher: boolean
   }
 
@@ -32216,6 +32236,7 @@ export namespace Prisma {
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     alt_logo?: StringFieldUpdateOperationsInput | string
+    lien_client?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -32224,6 +32245,7 @@ export namespace Prisma {
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     alt_logo?: StringFieldUpdateOperationsInput | string
+    lien_client?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -32232,6 +32254,7 @@ export namespace Prisma {
     client: string
     logo: string
     alt_logo: string
+    lien_client: string
     afficher: boolean
   }
 
@@ -32239,6 +32262,7 @@ export namespace Prisma {
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     alt_logo?: StringFieldUpdateOperationsInput | string
+    lien_client?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -32247,6 +32271,7 @@ export namespace Prisma {
     client?: StringFieldUpdateOperationsInput | string
     logo?: StringFieldUpdateOperationsInput | string
     alt_logo?: StringFieldUpdateOperationsInput | string
+    lien_client?: StringFieldUpdateOperationsInput | string
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -33901,6 +33926,7 @@ export namespace Prisma {
     client?: SortOrder
     logo?: SortOrder
     alt_logo?: SortOrder
+    lien_client?: SortOrder
     afficher?: SortOrder
   }
 
@@ -33913,6 +33939,7 @@ export namespace Prisma {
     client?: SortOrder
     logo?: SortOrder
     alt_logo?: SortOrder
+    lien_client?: SortOrder
     afficher?: SortOrder
   }
 
@@ -33921,6 +33948,7 @@ export namespace Prisma {
     client?: SortOrder
     logo?: SortOrder
     alt_logo?: SortOrder
+    lien_client?: SortOrder
     afficher?: SortOrder
   }
 

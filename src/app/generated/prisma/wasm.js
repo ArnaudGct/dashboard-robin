@@ -221,6 +221,7 @@ exports.Prisma.ClientsScalarFieldEnum = {
   client: 'client',
   logo: 'logo',
   alt_logo: 'alt_logo',
+  lien_client: 'lien_client',
   afficher: 'afficher'
 };
 
@@ -420,7 +421,8 @@ exports.Prisma.photos_tags_rechercheOrderByRelevanceFieldEnum = {
 exports.Prisma.clientsOrderByRelevanceFieldEnum = {
   client: 'client',
   logo: 'logo',
-  alt_logo: 'alt_logo'
+  alt_logo: 'alt_logo',
+  lien_client: 'lien_client'
 };
 
 exports.Prisma.utilisateursOrderByRelevanceFieldEnum = {

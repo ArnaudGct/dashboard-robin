@@ -140,11 +140,12 @@ model photos_tags_recherche_link {
 }
 
 model clients {
-  id_client Int     @id @default(autoincrement())
-  client    String  @db.VarChar(150)
-  logo      String  @db.VarChar(500)
-  alt_logo  String  @db.VarChar(255)
-  afficher  Boolean
+  id_client   Int     @id @default(autoincrement())
+  client      String  @db.VarChar(150)
+  logo        String  @db.VarChar(500)
+  alt_logo    String  @db.VarChar(255)
+  lien_client String  @db.VarChar(255)
+  afficher    Boolean
 }
 
 model utilisateurs {

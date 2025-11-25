@@ -32,12 +32,12 @@ export function AnalyticsHeader({
           <p>
             Aperçu des données d'Analytics pour{" "}
             <a
-              href="https://arnaudgct.fr"
+              href="https://cosmoseprod.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline inline-flex items-center gap-1"
             >
-              arnaudgct.fr
+              cosmoseprod.com
               <ExternalLink className="h-3 w-3" />
             </a>
           </p>

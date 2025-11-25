@@ -296,15 +296,18 @@ export function EditVideoItem({
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="url">Lien de la vidéo</Label>
+            <Label htmlFor="url">ID de la vidéo YouTube</Label>
             <Input
-              type="url"
+              type="text"
               id="url"
               name="url"
-              placeholder="Ex : https://www.youtube.com/watch?v=I_hdJUyyet0"
+              placeholder="Ex : I_hdJUyyet0 ou https://www.youtube.com/watch?v=I_hdJUyyet0"
               defaultValue={initialData.lien}
               required
             />
+            <p className="text-xs text-muted-foreground">
+              Vous pouvez coller l'ID directement ou le lien complet YouTube
+            </p>
           </div>
 
           <div className="grid w-full items-center gap-1.5">

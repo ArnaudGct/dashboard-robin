@@ -15,9 +15,6 @@ export function VideoItem({ video }: VideoType) {
   // État pour suivre si nous sommes côté client
   const [isClient, setIsClient] = useState(false);
 
-  // Extraire l'ID YouTube du lien
-  const youtubeId = extractYoutubeId(video.lien);
-
   useEffect(() => {
     // S'assurer que ce code ne s'exécute que côté client
     setIsClient(true);
@@ -38,12 +35,12 @@ export function VideoItem({ video }: VideoType) {
       onClick={handleCardClick}
     >
       <div className="flex flex-col justify-center xl:justify-start items-center xl:flex-row gap-6 px-6">
-        {isClient && youtubeId ? (
+        {isClient && video.lien ? (
           <div
             className="w-full aspect-video min-w-[250px] lg:min-w-[350px] max-w-[500px] rounded-lg overflow-hidden"
             onClick={handleButtonClick} // Empêcher la navigation lors du clic sur la vidéo
           >
-            <LiteYoutubeEmbed id={youtubeId} />
+            <LiteYoutubeEmbed id={video.lien} />
           </div>
         ) : (
           <div className="w-full aspect-video bg-muted flex items-center justify-center min-w-[250px] lg:min-w-[350px] max-w-[500px] rounded-lg">

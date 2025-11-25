@@ -75,9 +75,7 @@ export function VideoFeaturedSections({
   };
 
   const renderVideoThumbnail = (video: Video) => {
-    const youtubeId = extractYoutubeId(video.lien);
-
-    if (!isClient || !youtubeId) {
+    if (!isClient || !video.lien) {
       return (
         <div className="w-full h-full bg-muted flex items-center justify-center">
           <Loader2 size={16} className="animate-spin" />
@@ -87,7 +85,7 @@ export function VideoFeaturedSections({
 
     return (
       <div className="w-full h-full pointer-events-none">
-        <LiteYoutubeEmbed id={youtubeId} />
+        <LiteYoutubeEmbed id={video.lien} />
       </div>
     );
   };
