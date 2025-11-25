@@ -174,7 +174,6 @@ async function EditAlbumContent({ params }: { params: Params }) {
     const initialData = {
       id_alb: album.id_alb,
       titre: album.titre,
-      description: album.description,
       date: album.date || new Date(),
       afficher: album.afficher,
       photos: albumPhotos,

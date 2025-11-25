@@ -170,7 +170,6 @@ type EditAlbumFormProps = {
   initialData: {
     id_alb: number;
     titre: string;
-    description: string | null;
     date: Date;
     afficher: boolean;
     photos: PhotoInfo[];

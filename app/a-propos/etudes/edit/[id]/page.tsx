@@ -5,9 +5,9 @@ import { getEtudeByIdAction } from "@/actions/a-propos_etudes-actions";
 export const dynamic = "force-dynamic";
 
 interface EditEtudePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function EditEtudePage({ params }: EditEtudePageProps) {
