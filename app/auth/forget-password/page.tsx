@@ -3,7 +3,7 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function ForgetPassword() {
+function ForgetPasswordContent() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function ForgetPassword() {
             <form
               action={async (formData) => {
                 const email = formData.get("email") as string;
-                await authClient.forgetPassword(
+                await authClient.requestPasswordReset(
                   {
                     email: email as string,
                     redirectTo: "/auth/forget-password",
@@ -55,7 +55,7 @@ export default function ForgetPassword() {
                       );
                       setLoading(false);
                     },
-                    onError: (ctx) => {
+                    onError: (ctx: { error: { message: string } }) => {
                       toast.error(ctx.error.message);
                     },
                   }
@@ -175,5 +175,19 @@ export default function ForgetPassword() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function ForgetPassword() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center w-full h-screen">
+          <Loader2 size={32} className="animate-spin" />
+        </div>
+      }
+    >
+      <ForgetPasswordContent />
+    </Suspense>
   );
 }
