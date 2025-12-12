@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "500mb",
     },
+    // Configuration pour autoriser les gros uploads via middleware
+    middlewareClientMaxBodySize: "500mb",
   },
   serverExternalPackages: ["sharp"],
   images: {

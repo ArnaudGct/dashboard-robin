@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Progress } from "@/components/ui/progress";
 import { Upload } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
@@ -45,6 +46,8 @@ export function AccueilGeneralForm({
     null
   );
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [uploadStep, setUploadStep] = useState("");
   const [markdown, setMarkdown] = useState<string>(
     accueilData?.description || ""
   );
@@ -82,8 +85,8 @@ export function AccueilGeneralForm({
         return;
       }
 
-      if (file.size > 50 * 1024 * 1024) {
-        toast.error("La vidéo est trop volumineuse (max 50MB)");
+      if (file.size > 200 * 1024 * 1024) {
+        toast.error("La vidéo est trop volumineuse (max 200MB)");
         return;
       }
 
@@ -105,8 +108,8 @@ export function AccueilGeneralForm({
         return;
       }
 
-      if (file.size > 50 * 1024 * 1024) {
-        toast.error("La vidéo est trop volumineuse (max 50MB)");
+      if (file.size > 200 * 1024 * 1024) {
+        toast.error("La vidéo est trop volumineuse (max 200MB)");
         return;
       }
 
@@ -129,6 +132,8 @@ export function AccueilGeneralForm({
 
     try {
       setIsUploading(true);
+      setUploadProgress(0);
+      setUploadStep("Préparation des fichiers...");
 
       const formData = new FormData();
 
@@ -149,9 +154,36 @@ export function AccueilGeneralForm({
       formData.set("localisation", (e.target as any).localisation.value);
       formData.set("force_regenerate_frame", forceRegenerateFrame.toString());
 
+      // Calculer le nombre d'étapes
+      let totalSteps = 2; // Début et fin
+      if (selectedPhotoFile) totalSteps += 1;
+      if (selectedVideoDesktopFile) totalSteps += 2; // Upload + génération cover
+      if (selectedVideoMobileFile) totalSteps += 1;
+      if (forceRegenerateFrame && !selectedVideoDesktopFile) totalSteps += 1;
+
+      let currentStep = 0;
+      const incrementProgress = () => {
+        currentStep++;
+        setUploadProgress(Math.round((currentStep / totalSteps) * 100));
+      };
+
+      incrementProgress(); // Préparation
+
+      if (selectedPhotoFile) {
+        setUploadStep("Upload de la photo...");
+      } else if (selectedVideoDesktopFile) {
+        setUploadStep("Upload de la vidéo desktop...");
+      } else if (selectedVideoMobileFile) {
+        setUploadStep("Upload de la vidéo mobile...");
+      } else {
+        setUploadStep("Mise à jour des données...");
+      }
+
       const result = await updateAction(formData);
 
       if (result.success) {
+        setUploadProgress(100);
+        setUploadStep("Terminé !");
         toast.success(result.message);
         setPhotoPreview(null);
         setVideoDesktopPreview(null);
@@ -159,6 +191,7 @@ export function AccueilGeneralForm({
         setSelectedPhotoFile(null);
         setSelectedVideoDesktopFile(null);
         setSelectedVideoMobileFile(null);
+        setForceRegenerateFrame(false);
 
         // Réinitialiser les inputs file
         const photoInput = document.getElementById("photo") as HTMLInputElement;
@@ -177,9 +210,21 @@ export function AccueilGeneralForm({
       }
     } catch (error) {
       console.error("Erreur lors de la mise à jour:", error);
-      toast.error("Erreur lors de la mise à jour");
+      setUploadStep("Erreur lors de l'upload");
+      if (error instanceof Error) {
+        toast.error(`Erreur: ${error.message}`);
+      } else {
+        toast.error(
+          "Erreur lors de la mise à jour. Vérifiez que vos fichiers ne sont pas trop volumineux."
+        );
+      }
     } finally {
       setIsUploading(false);
+      // Réinitialiser la progression après 2 secondes
+      setTimeout(() => {
+        setUploadProgress(0);
+        setUploadStep("");
+      }, 2000);
     }
   };
 
@@ -408,6 +453,18 @@ export function AccueilGeneralForm({
           </Label>
         </div>
       )}
+
+      {/* Barre de progression */}
+      {isUploading && (
+        <div className="space-y-2">
+          <div className="flex justify-between text-sm">
+            <span className="text-muted-foreground">{uploadStep}</span>
+            <span className="font-medium">{uploadProgress}%</span>
+          </div>
+          <Progress value={uploadProgress} className="w-full" />
+        </div>
+      )}
+
       {/* Bouton de mise à jour */}
       <Button type="submit" className="w-full" disabled={isUploading}>
         {isUploading ? "Mise à jour en cours..." : "Mettre à jour"}

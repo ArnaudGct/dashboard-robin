@@ -12,10 +12,10 @@ import {
 import { generateValidatedFrameUrl, diagnoseVideoUrl } from "@/lib/video-utils";
 
 export async function updateAccueilGeneral(formData: FormData) {
-  const photoFile = formData.get("photo") as File;
+  const photoFile = formData.get("photo") as File | null;
   const photoAlt = formData.get("photo_alt") as string;
-  const videoDesktopFile = formData.get("video_desktop") as File;
-  const videoMobileFile = formData.get("video_mobile") as File;
+  const videoDesktopFile = formData.get("video_desktop") as File | null;
+  const videoMobileFile = formData.get("video_mobile") as File | null;
   const description = formData.get("description") as string;
   const localisation = formData.get("localisation") as string;
   const forceRegenerateFrame =
@@ -28,7 +28,10 @@ export async function updateAccueilGeneral(formData: FormData) {
     const existingRecord = await prisma.accueil_general.findFirst();
 
     // Validation du texte alternatif si une photo est présente ou uploadée
-    if ((photoFile && photoFile.size > 0) || existingRecord?.photo) {
+    if (
+      (photoFile instanceof File && photoFile.size > 0) ||
+      existingRecord?.photo
+    ) {
       if (!photoAlt || !photoAlt.trim()) {
         return {
           success: false,
@@ -47,7 +50,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     let oldVideoCoverPublicId: string | null = null;
 
     // Si une nouvelle photo est uploadée
-    if (photoFile && photoFile.size > 0) {
+    if (photoFile instanceof File && photoFile.size > 0) {
       console.log("Upload nouvelle photo accueil...");
       console.log(`Taille du fichier photo: ${photoFile.size} bytes`);
 
@@ -91,7 +94,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     }
 
     // Si une nouvelle vidéo desktop est uploadée
-    if (videoDesktopFile && videoDesktopFile.size > 0) {
+    if (videoDesktopFile instanceof File && videoDesktopFile.size > 0) {
       console.log("Upload nouvelle vidéo desktop...");
       console.log(
         `Taille du fichier vidéo desktop: ${videoDesktopFile.size} bytes`
@@ -265,7 +268,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     }
 
     // Si une nouvelle vidéo mobile est uploadée
-    if (videoMobileFile && videoMobileFile.size > 0) {
+    if (videoMobileFile instanceof File && videoMobileFile.size > 0) {
       console.log("Upload nouvelle vidéo mobile...");
       console.log(
         `Taille du fichier vidéo mobile: ${videoMobileFile.size} bytes`
