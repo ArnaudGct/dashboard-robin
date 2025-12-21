@@ -8,6 +8,12 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "mysql", // or "mysql", "postgresql", ...etc
   }),
+  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL: process.env.BETTER_AUTH_URL,
+  trustedOrigins: [
+    process.env.BETTER_AUTH_URL || "",
+    "https://dashboard.cosmoseprod.com",
+  ],
   emailAndPassword: {
     enabled: true,
     async sendResetPassword(data) {
