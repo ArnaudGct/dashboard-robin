@@ -33,12 +33,18 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Installer uniquement les deps prod
+# Copier package.json pour installer les deps de production
 COPY package*.json ./
 RUN npm install --only=production
 
-# Copier le build et Prisma
-COPY --from=builder /app ./
+# Copier le build Next.js
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/prisma ./prisma
+
+# Copier les fichiers de config nécessaires
+COPY --from=builder /app/next.config.ts ./next.config.ts
 
 EXPOSE 3001
 ENV NODE_ENV=production
