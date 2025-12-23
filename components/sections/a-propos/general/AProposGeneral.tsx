@@ -35,7 +35,6 @@ export function AProposGeneralForm({
 }: AProposGeneralFormProps) {
   const [preview, setPreview] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  // Initialiser directement avec les données comme dans AccueilGeneralForm
   const [markdown, setMarkdown] = useState<string>(
     aproposData?.description || ""
   );
@@ -43,14 +42,13 @@ export function AProposGeneralForm({
   const [isMounted, setIsMounted] = useState(false);
   const editorRef = useRef<MDXEditorMethods | null>(null);
 
-  // Mettre à jour le useEffect pour éviter les conflits
+  // Synchroniser le markdown quand les données changent
   useEffect(() => {
     setIsMounted(true);
-    // Mettre à jour seulement si les données changent et sont différentes
-    if (aproposData?.description && aproposData.description !== markdown) {
+    if (aproposData?.description !== undefined) {
       setMarkdown(aproposData.description);
     }
-  }, [aproposData?.description, markdown]);
+  }, [aproposData?.description]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
