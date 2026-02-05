@@ -14,11 +14,11 @@ import {
 async function saveImageToCloudinary(
   file: File,
   type: "low" | "high" = "high",
-  originalPublicId?: string
+  originalPublicId?: string,
 ): Promise<string> {
   try {
     console.log(
-      `Début upload vers Cloudinary - Type: ${type}, Taille: ${file.size} bytes`
+      `Début upload vers Cloudinary - Type: ${type}, Taille: ${file.size} bytes`,
     );
 
     if (!file || file.size === 0) {
@@ -29,7 +29,7 @@ async function saveImageToCloudinary(
       file,
       type,
       "portfolio/photos",
-      originalPublicId
+      originalPublicId,
     );
     console.log(`Upload réussi - URL: ${result.url}`);
     return result.url;
@@ -74,7 +74,7 @@ async function generateAlbumCover(albumId: number): Promise<string> {
     async function downloadAndResize(
       url: string,
       width: number,
-      height: number
+      height: number,
     ) {
       try {
         const response = await fetch(url);
@@ -111,7 +111,7 @@ async function generateAlbumCover(albumId: number): Promise<string> {
       coverBuffer = await downloadAndResize(
         imageUrls[0],
         coverWidth,
-        coverHeight
+        coverHeight,
       );
     } else if (imageUrls.length === 2) {
       // Deux images - côte à côte (50% chacune)
@@ -175,7 +175,7 @@ async function generateAlbumCover(albumId: number): Promise<string> {
     const result = await uploadToCloudinary(
       coverFile,
       "high",
-      "portfolio/albums"
+      "portfolio/albums",
     );
 
     console.log(`Couverture d'album générée: ${result.url}`);
@@ -183,7 +183,7 @@ async function generateAlbumCover(albumId: number): Promise<string> {
   } catch (error) {
     console.error(
       "Erreur lors de la génération de la couverture d'album:",
-      error
+      error,
     );
     throw error;
   }
@@ -193,7 +193,7 @@ async function generateAlbumCover(albumId: number): Promise<string> {
 async function regenerateAlbumCovers(photoId: number): Promise<void> {
   try {
     console.log(
-      `Régénération des couvertures pour les albums contenant la photo ${photoId}`
+      `Régénération des couvertures pour les albums contenant la photo ${photoId}`,
     );
 
     // Récupérer tous les albums qui contiennent cette photo
@@ -232,7 +232,7 @@ async function regenerateAlbumCovers(photoId: number): Promise<void> {
       } catch (coverError) {
         console.error(
           `Erreur lors de la régénération de la couverture pour l'album ${albumId}:`,
-          coverError
+          coverError,
         );
       }
     }
@@ -242,7 +242,7 @@ async function regenerateAlbumCovers(photoId: number): Promise<void> {
   } catch (error) {
     console.error(
       "Erreur lors de la régénération des couvertures d'albums:",
-      error
+      error,
     );
   }
 }
@@ -250,7 +250,7 @@ async function regenerateAlbumCovers(photoId: number): Promise<void> {
 export async function regenerateAllAlbumCoversAction() {
   try {
     console.log(
-      "=== DÉBUT RÉGÉNÉRATION DE TOUTES LES COUVERTURES D'ALBUMS ==="
+      "=== DÉBUT RÉGÉNÉRATION DE TOUTES LES COUVERTURES D'ALBUMS ===",
     );
 
     // Récupérer tous les albums
@@ -279,7 +279,7 @@ export async function regenerateAllAlbumCoversAction() {
     // Traiter chaque album
     for (const album of albums) {
       console.log(
-        `\n--- Traitement de l'album ${album.id_alb}: "${album.titre}" ---`
+        `\n--- Traitement de l'album ${album.id_alb}: "${album.titre}" ---`,
       );
 
       try {
@@ -288,12 +288,12 @@ export async function regenerateAllAlbumCoversAction() {
           try {
             await deleteAlbumCover(album.lien_cover);
             console.log(
-              `✓ Ancienne couverture supprimée pour l'album ${album.id_alb}`
+              `✓ Ancienne couverture supprimée pour l'album ${album.id_alb}`,
             );
           } catch (deleteError) {
             console.warn(
               `⚠️ Erreur lors de la suppression de l'ancienne couverture pour l'album ${album.id_alb}:`,
-              deleteError
+              deleteError,
             );
           }
         }
@@ -309,7 +309,7 @@ export async function regenerateAllAlbumCoversAction() {
           });
 
           console.log(
-            `✓ Couverture générée avec succès pour l'album ${album.id_alb}`
+            `✓ Couverture générée avec succès pour l'album ${album.id_alb}`,
           );
           successCount++;
         } else {
@@ -320,18 +320,18 @@ export async function regenerateAllAlbumCoversAction() {
           });
 
           console.log(
-            `✓ Couverture vidée pour l'album ${album.id_alb} (aucune photo)`
+            `✓ Couverture vidée pour l'album ${album.id_alb} (aucune photo)`,
           );
           successCount++;
         }
       } catch (error) {
         console.error(
           `❌ Erreur lors du traitement de l'album ${album.id_alb}:`,
-          error
+          error,
         );
         errorCount++;
         errors.push(
-          `Album "${album.titre}" (ID: ${album.id_alb}): ${error instanceof Error ? error.message : String(error)}`
+          `Album "${album.titre}" (ID: ${album.id_alb}): ${error instanceof Error ? error.message : String(error)}`,
         );
       }
     }
@@ -357,7 +357,7 @@ export async function regenerateAllAlbumCoversAction() {
   } catch (error) {
     console.error(
       "❌ Erreur lors de la régénération de toutes les couvertures:",
-      error
+      error,
     );
     return {
       success: false,
@@ -400,12 +400,12 @@ export async function addPhotoAction(formData: FormData) {
       originalPublicId = originalResult.publicId;
       console.log(
         "✓ Image originale sauvegardée avec succès:",
-        originalPublicId
+        originalPublicId,
       );
     } catch (originalError) {
       console.warn(
         "⚠️ Erreur lors de la sauvegarde de l'original (continuons quand même):",
-        originalError
+        originalError,
       );
     }
 
@@ -414,7 +414,7 @@ export async function addPhotoAction(formData: FormData) {
     lienHigh = await saveImageToCloudinary(
       imageHighRes,
       "high",
-      originalPublicId
+      originalPublicId,
     );
     console.log("Image haute résolution uploadée:", lienHigh);
 
@@ -424,7 +424,7 @@ export async function addPhotoAction(formData: FormData) {
       lienLow = await saveImageToCloudinary(
         imageLowRes,
         "low",
-        originalPublicId
+        originalPublicId,
       );
       console.log("Image basse résolution uploadée:", lienLow);
     }
@@ -510,7 +510,7 @@ export async function addPhotoAction(formData: FormData) {
       } catch (coverError) {
         console.error(
           "Erreur lors de la régénération des couvertures:",
-          coverError
+          coverError,
         );
       }
     }
@@ -595,7 +595,7 @@ export async function updatePhotoAction(formData: FormData) {
         } catch (originalError) {
           console.warn(
             "⚠️ Erreur lors de la sauvegarde de l'original (continuons quand même):",
-            originalError
+            originalError,
           );
         }
 
@@ -614,7 +614,7 @@ export async function updatePhotoAction(formData: FormData) {
       } catch (uploadError) {
         console.error(
           "❌ Erreur lors de l'upload de l'image haute résolution:",
-          uploadError
+          uploadError,
         );
         throw uploadError;
       }
@@ -632,7 +632,7 @@ export async function updatePhotoAction(formData: FormData) {
       } catch (uploadError) {
         console.error(
           "❌ Erreur lors de l'upload de l'image basse résolution:",
-          uploadError
+          uploadError,
         );
         throw uploadError;
       }
@@ -676,7 +676,7 @@ export async function updatePhotoAction(formData: FormData) {
     // Si une nouvelle image HR a été uploadée et qu'une ancienne existait, on la supprime.
     if (hasUploadedNewHighRes && oldPublicIdHigh) {
       console.log(
-        `🗑️ Programmation suppression ancienne image HR: ${oldPublicIdHigh}`
+        `🗑️ Programmation suppression ancienne image HR: ${oldPublicIdHigh}`,
       );
       deletionPromises.push(deleteFromCloudinary(oldPublicIdHigh));
 
@@ -692,21 +692,21 @@ export async function updatePhotoAction(formData: FormData) {
       oldPublicIdLow !== oldPublicIdHigh
     ) {
       console.log(
-        `🗑️ Programmation suppression ancienne image BR: ${oldPublicIdLow}`
+        `🗑️ Programmation suppression ancienne image BR: ${oldPublicIdLow}`,
       );
       deletionPromises.push(deleteFromCloudinary(oldPublicIdLow));
     }
 
     if (deletionPromises.length > 0) {
       console.log(
-        `Exécution de ${deletionPromises.length} suppression(s) sur Cloudinary...`
+        `Exécution de ${deletionPromises.length} suppression(s) sur Cloudinary...`,
       );
       const results = await Promise.allSettled(deletionPromises);
       results.forEach((result, index) => {
         if (result.status === "rejected") {
           console.error(
             `⚠️ Erreur lors de la suppression d'une image Cloudinary:`,
-            result.reason
+            result.reason,
           );
         } else {
           console.log(`✓ Une ancienne image a été supprimée avec succès.`);
@@ -715,7 +715,7 @@ export async function updatePhotoAction(formData: FormData) {
       console.log("🗑️ Suppression des anciennes images terminée.");
     } else {
       console.log(
-        "ℹ️ Aucune nouvelle image uploadée, conservation des images existantes."
+        "ℹ️ Aucune nouvelle image uploadée, conservation des images existantes.",
       );
     }
 
@@ -818,20 +818,20 @@ export async function updatePhotoAction(formData: FormData) {
               data: { lien_cover: "" },
             });
             console.log(
-              `✓ Couverture vidée pour l'album ${albumId} (aucune photo)`
+              `✓ Couverture vidée pour l'album ${albumId} (aucune photo)`,
             );
           }
         } catch (coverError) {
           console.error(
             `Erreur lors de la régénération de la couverture pour l'album ${albumId}:`,
-            coverError
+            coverError,
           );
         }
       }
     } catch (coverError) {
       console.error(
         "Erreur lors de la régénération des couvertures:",
-        coverError
+        coverError,
       );
     }
 
@@ -920,7 +920,7 @@ export async function deletePhotoAction(photoId: number) {
             if (result.status === "rejected") {
               console.error(
                 `⚠️ Erreur lors de la suppression d'une image Cloudinary:`,
-                result.reason
+                result.reason,
               );
             } else {
               console.log(`✓ Image supprimée avec succès`);
@@ -930,7 +930,7 @@ export async function deletePhotoAction(photoId: number) {
       } catch (imageError) {
         console.error(
           "Erreur lors de la suppression des images depuis Cloudinary:",
-          imageError
+          imageError,
         );
       }
     }
@@ -968,20 +968,20 @@ export async function deletePhotoAction(photoId: number) {
               data: { lien_cover: "" },
             });
             console.log(
-              `✓ Couverture vidée pour l'album ${albumId} (aucune photo)`
+              `✓ Couverture vidée pour l'album ${albumId} (aucune photo)`,
             );
           }
         } catch (coverError) {
           console.error(
             `Erreur lors de la régénération de la couverture pour l'album ${albumId}:`,
-            coverError
+            coverError,
           );
         }
       }
     } catch (coverError) {
       console.error(
         "Erreur lors de la régénération des couvertures:",
-        coverError
+        coverError,
       );
     }
 
@@ -994,10 +994,69 @@ export async function deletePhotoAction(photoId: number) {
   }
 }
 
+// Action pour supprimer plusieurs photos en une fois
+export async function deleteMultiplePhotosAction(photoIds: number[]) {
+  try {
+    if (!photoIds || photoIds.length === 0) {
+      throw new Error("Aucune photo à supprimer");
+    }
+
+    console.log(`Suppression de ${photoIds.length} photo(s)...`);
+
+    let successCount = 0;
+    let errorCount = 0;
+    const errors: string[] = [];
+
+    // Supprimer chaque photo individuellement
+    for (const photoId of photoIds) {
+      try {
+        await deletePhotoAction(photoId);
+        successCount++;
+      } catch (error) {
+        errorCount++;
+        const errorMessage =
+          error instanceof Error ? error.message : String(error);
+        errors.push(`Photo ${photoId}: ${errorMessage}`);
+        console.error(
+          `Erreur lors de la suppression de la photo ${photoId}:`,
+          error,
+        );
+      }
+    }
+
+    revalidatePath("/photos");
+    revalidatePath("/photos/albums");
+
+    if (errorCount === 0) {
+      return {
+        success: true,
+        message: `${successCount} photo(s) supprimée(s) avec succès`,
+      };
+    } else if (successCount === 0) {
+      return {
+        success: false,
+        error: `Échec de la suppression de toutes les photos. Erreurs: ${errors.join(", ")}`,
+      };
+    } else {
+      return {
+        success: true,
+        message: `${successCount} photo(s) supprimée(s), ${errorCount} échec(s)`,
+        errors,
+      };
+    }
+  } catch (error) {
+    console.error("Erreur lors de la suppression multiple:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Erreur inconnue",
+    };
+  }
+}
+
 // Actions pour les tags de photos
 export async function createPhotoTagAction(
   title: string,
-  important: boolean = false
+  important: boolean = false,
 ) {
   try {
     const existingTag = await prisma.photos_tags.findFirst({
@@ -1030,7 +1089,7 @@ export async function createPhotoTagAction(
 export async function updatePhotoTagAction(
   id: number,
   title: string,
-  important?: boolean // Nouveau paramètre optionnel
+  important?: boolean, // Nouveau paramètre optionnel
 ) {
   try {
     // Créer l'objet de données à mettre à jour
@@ -1077,7 +1136,7 @@ export async function deletePhotoTagAction(id: number) {
 // Actions pour les tags de recherche
 export async function createPhotoSearchTagAction(
   title: string,
-  important: boolean = false
+  important: boolean = false,
 ) {
   try {
     const existingTag = await prisma.photos_tags_recherche.findFirst({
@@ -1110,7 +1169,7 @@ export async function createPhotoSearchTagAction(
 export async function updatePhotoSearchTagAction(
   id: number,
   title: string,
-  important?: boolean // Nouveau paramètre optionnel
+  important?: boolean, // Nouveau paramètre optionnel
 ) {
   try {
     // Créer l'objet de données à mettre à jour
@@ -1184,8 +1243,8 @@ export async function createAlbumAction(formData: FormData) {
               id_alb: newAlbum.id_alb,
               id_tags: parseInt(tagId),
             },
-          })
-        )
+          }),
+        ),
       );
     }
 
@@ -1199,8 +1258,8 @@ export async function createAlbumAction(formData: FormData) {
               id_pho: parseInt(imageId),
               position: index,
             },
-          })
-        )
+          }),
+        ),
       );
 
       // Générer la couverture d'album
@@ -1215,7 +1274,7 @@ export async function createAlbumAction(formData: FormData) {
       } catch (coverError) {
         console.error(
           "Erreur lors de la génération de la couverture:",
-          coverError
+          coverError,
         );
       }
     }
@@ -1271,8 +1330,8 @@ export async function updateAlbumAction(formData: FormData) {
               id_alb: id,
               id_tags: parseInt(tagId),
             },
-          })
-        )
+          }),
+        ),
       );
     }
 
@@ -1293,8 +1352,8 @@ export async function updateAlbumAction(formData: FormData) {
                 ? parseInt(imageOrders[index])
                 : index,
             },
-          })
-        )
+          }),
+        ),
       );
 
       // Régénérer la couverture d'album
@@ -1315,7 +1374,7 @@ export async function updateAlbumAction(formData: FormData) {
       } catch (coverError) {
         console.error(
           "Erreur lors de la régénération de la couverture:",
-          coverError
+          coverError,
         );
       }
     } else {
@@ -1373,7 +1432,7 @@ export async function deleteAlbumAction(albumId: number) {
       } catch (coverError) {
         console.error(
           "Erreur lors de la suppression de la couverture:",
-          coverError
+          coverError,
         );
       }
     }
@@ -1535,12 +1594,12 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
           originalPublicId = originalResult.publicId;
           console.log(
             `✓ Image originale ${i} sauvegardée avec succès:`,
-            originalPublicId
+            originalPublicId,
           );
         } catch (originalError) {
           console.warn(
             `⚠️ Erreur lors de la sauvegarde de l'original ${i} (continuons quand même):`,
-            originalError
+            originalError,
           );
         }
 
@@ -1601,13 +1660,13 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
           // Une nouvelle image HR a toujours été uploadée dans ce bloc.
           if (oldPublicIdHigh) {
             console.log(
-              `🗑️ Programmation suppression ancienne image HR: ${oldPublicIdHigh}`
+              `🗑️ Programmation suppression ancienne image HR: ${oldPublicIdHigh}`,
             );
             deletionPromises.push(deleteFromCloudinary(oldPublicIdHigh));
 
             // Supprimer l'ancienne image originale
             deletionPromises.push(
-              deleteOriginalFromCloudinary(oldPublicIdHigh)
+              deleteOriginalFromCloudinary(oldPublicIdHigh),
             );
           }
 
@@ -1618,32 +1677,32 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
             oldPublicIdLow !== oldPublicIdHigh
           ) {
             console.log(
-              `🗑️ Programmation suppression ancienne image BR: ${oldPublicIdLow}`
+              `🗑️ Programmation suppression ancienne image BR: ${oldPublicIdLow}`,
             );
             deletionPromises.push(deleteFromCloudinary(oldPublicIdLow));
           }
 
           if (deletionPromises.length > 0) {
             console.log(
-              `Exécution de ${deletionPromises.length} suppression(s) sur Cloudinary...`
+              `Exécution de ${deletionPromises.length} suppression(s) sur Cloudinary...`,
             );
             const results = await Promise.allSettled(deletionPromises);
             results.forEach((result) => {
               if (result.status === "rejected") {
                 console.error(
                   `⚠️ Erreur lors de la suppression d'une image Cloudinary:`,
-                  result.reason
+                  result.reason,
                 );
               } else {
                 console.log(
-                  `✓ Une ancienne image a été supprimée avec succès.`
+                  `✓ Une ancienne image a été supprimée avec succès.`,
                 );
               }
             });
             console.log("🗑️ Suppression des anciennes images terminée.");
           } else {
             console.log(
-              "ℹ️ Aucune nouvelle image uploadée, conservation des images existantes."
+              "ℹ️ Aucune nouvelle image uploadée, conservation des images existantes.",
             );
           }
 
@@ -1726,7 +1785,7 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
               });
             }
           }
-        })
+        }),
       );
     }
 
@@ -1751,14 +1810,14 @@ async function deleteAlbumCover(coverUrl: string): Promise<void> {
   } catch (error) {
     console.error(
       "Erreur lors de la suppression de l'ancienne couverture:",
-      error
+      error,
     );
   }
 }
 
 // Helper pour supprimer l'image originale basée sur le public_id des images transformées
 async function deleteOriginalFromCloudinary(
-  publicId: string
+  publicId: string,
 ): Promise<boolean> {
   try {
     console.log(`🐛 Public ID reçu: ${publicId}`);
@@ -1773,7 +1832,7 @@ async function deleteOriginalFromCloudinary(
       // Remplacer portfolio/photos/ par portfolio/photos/originals/
       originalPublicId = baseName.replace(
         "portfolio/photos/",
-        "portfolio/photos/originals/"
+        "portfolio/photos/originals/",
       );
     } else {
       // Cas où on n'a que le nom de fichier
@@ -1782,7 +1841,7 @@ async function deleteOriginalFromCloudinary(
     }
 
     console.log(
-      `🗑️ Tentative de suppression de l'image originale: ${originalPublicId}`
+      `🗑️ Tentative de suppression de l'image originale: ${originalPublicId}`,
     );
 
     const result = await deleteFromCloudinary(originalPublicId);
@@ -1795,7 +1854,7 @@ async function deleteOriginalFromCloudinary(
   } catch (error) {
     console.warn(
       `⚠️ Erreur lors de la suppression de l'image originale:`,
-      error
+      error,
     );
     return false;
   }
@@ -1804,7 +1863,7 @@ async function deleteOriginalFromCloudinary(
 // Basculer l'état d'une photo dans les sections épinglées
 export async function togglePhotoFeaturedAction(
   photoId: number,
-  section: "main" | "photos"
+  section: "main" | "photos",
 ) {
   try {
     const photo = await prisma.photos.findUnique({

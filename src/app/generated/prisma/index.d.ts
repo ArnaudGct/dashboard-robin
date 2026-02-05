@@ -128,6 +128,21 @@ export type accueil_clients = $Result.DefaultSelection<Prisma.$accueil_clientsPa
  * 
  */
 export type accueil_faq = $Result.DefaultSelection<Prisma.$accueil_faqPayload>
+/**
+ * Model autres_contact
+ * 
+ */
+export type autres_contact = $Result.DefaultSelection<Prisma.$autres_contactPayload>
+/**
+ * Model autres_general
+ * 
+ */
+export type autres_general = $Result.DefaultSelection<Prisma.$autres_generalPayload>
+/**
+ * Model autres_tags_roles
+ * 
+ */
+export type autres_tags_roles = $Result.DefaultSelection<Prisma.$autres_tags_rolesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -483,6 +498,36 @@ export class PrismaClient<
     * ```
     */
   get accueil_faq(): Prisma.accueil_faqDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.autres_contact`: Exposes CRUD operations for the **autres_contact** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Autres_contacts
+    * const autres_contacts = await prisma.autres_contact.findMany()
+    * ```
+    */
+  get autres_contact(): Prisma.autres_contactDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.autres_general`: Exposes CRUD operations for the **autres_general** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Autres_generals
+    * const autres_generals = await prisma.autres_general.findMany()
+    * ```
+    */
+  get autres_general(): Prisma.autres_generalDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.autres_tags_roles`: Exposes CRUD operations for the **autres_tags_roles** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Autres_tags_roles
+    * const autres_tags_roles = await prisma.autres_tags_roles.findMany()
+    * ```
+    */
+  get autres_tags_roles(): Prisma.autres_tags_rolesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -945,7 +990,10 @@ export namespace Prisma {
     apropos_etudes: 'apropos_etudes',
     apropos_experiences: 'apropos_experiences',
     accueil_clients: 'accueil_clients',
-    accueil_faq: 'accueil_faq'
+    accueil_faq: 'accueil_faq',
+    autres_contact: 'autres_contact',
+    autres_general: 'autres_general',
+    autres_tags_roles: 'autres_tags_roles'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -964,7 +1012,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes" | "apropos_experiences" | "accueil_clients" | "accueil_faq"
+      modelProps: "photos" | "photos_albums" | "photos_albums_link" | "photos_albums_tags_link" | "photos_tags" | "photos_tags_link" | "photos_tags_recherche" | "photos_tags_recherche_link" | "utilisateurs" | "videos" | "videos_tags" | "videos_tags_link" | "user" | "session" | "account" | "verification" | "accueil_general" | "apropos_general" | "apropos_outils" | "apropos_etudes" | "apropos_experiences" | "accueil_clients" | "accueil_faq" | "autres_contact" | "autres_general" | "autres_tags_roles"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2486,6 +2534,204 @@ export namespace Prisma {
           }
         }
       }
+      autres_contact: {
+        payload: Prisma.$autres_contactPayload<ExtArgs>
+        fields: Prisma.autres_contactFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.autres_contactFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.autres_contactFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          findFirst: {
+            args: Prisma.autres_contactFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.autres_contactFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          findMany: {
+            args: Prisma.autres_contactFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>[]
+          }
+          create: {
+            args: Prisma.autres_contactCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          createMany: {
+            args: Prisma.autres_contactCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.autres_contactDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          update: {
+            args: Prisma.autres_contactUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          deleteMany: {
+            args: Prisma.autres_contactDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.autres_contactUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.autres_contactUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_contactPayload>
+          }
+          aggregate: {
+            args: Prisma.Autres_contactAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAutres_contact>
+          }
+          groupBy: {
+            args: Prisma.autres_contactGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Autres_contactGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.autres_contactCountArgs<ExtArgs>
+            result: $Utils.Optional<Autres_contactCountAggregateOutputType> | number
+          }
+        }
+      }
+      autres_general: {
+        payload: Prisma.$autres_generalPayload<ExtArgs>
+        fields: Prisma.autres_generalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.autres_generalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.autres_generalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          findFirst: {
+            args: Prisma.autres_generalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.autres_generalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          findMany: {
+            args: Prisma.autres_generalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>[]
+          }
+          create: {
+            args: Prisma.autres_generalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          createMany: {
+            args: Prisma.autres_generalCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.autres_generalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          update: {
+            args: Prisma.autres_generalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          deleteMany: {
+            args: Prisma.autres_generalDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.autres_generalUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.autres_generalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_generalPayload>
+          }
+          aggregate: {
+            args: Prisma.Autres_generalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAutres_general>
+          }
+          groupBy: {
+            args: Prisma.autres_generalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Autres_generalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.autres_generalCountArgs<ExtArgs>
+            result: $Utils.Optional<Autres_generalCountAggregateOutputType> | number
+          }
+        }
+      }
+      autres_tags_roles: {
+        payload: Prisma.$autres_tags_rolesPayload<ExtArgs>
+        fields: Prisma.autres_tags_rolesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.autres_tags_rolesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.autres_tags_rolesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          findFirst: {
+            args: Prisma.autres_tags_rolesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.autres_tags_rolesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          findMany: {
+            args: Prisma.autres_tags_rolesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>[]
+          }
+          create: {
+            args: Prisma.autres_tags_rolesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          createMany: {
+            args: Prisma.autres_tags_rolesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.autres_tags_rolesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          update: {
+            args: Prisma.autres_tags_rolesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          deleteMany: {
+            args: Prisma.autres_tags_rolesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.autres_tags_rolesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.autres_tags_rolesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$autres_tags_rolesPayload>
+          }
+          aggregate: {
+            args: Prisma.Autres_tags_rolesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAutres_tags_roles>
+          }
+          groupBy: {
+            args: Prisma.autres_tags_rolesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Autres_tags_rolesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.autres_tags_rolesCountArgs<ExtArgs>
+            result: $Utils.Optional<Autres_tags_rolesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2593,6 +2839,9 @@ export namespace Prisma {
     apropos_experiences?: apropos_experiencesOmit
     accueil_clients?: accueil_clientsOmit
     accueil_faq?: accueil_faqOmit
+    autres_contact?: autres_contactOmit
+    autres_general?: autres_generalOmit
+    autres_tags_roles?: autres_tags_rolesOmit
   }
 
   /* Types for Logging */
@@ -24936,6 +25185,2740 @@ export namespace Prisma {
 
 
   /**
+   * Model autres_contact
+   */
+
+  export type AggregateAutres_contact = {
+    _count: Autres_contactCountAggregateOutputType | null
+    _avg: Autres_contactAvgAggregateOutputType | null
+    _sum: Autres_contactSumAggregateOutputType | null
+    _min: Autres_contactMinAggregateOutputType | null
+    _max: Autres_contactMaxAggregateOutputType | null
+  }
+
+  export type Autres_contactAvgAggregateOutputType = {
+    id_contact: number | null
+    ordre: number | null
+  }
+
+  export type Autres_contactSumAggregateOutputType = {
+    id_contact: number | null
+    ordre: number | null
+  }
+
+  export type Autres_contactMinAggregateOutputType = {
+    id_contact: number | null
+    logo: string | null
+    nom: string | null
+    lien: string | null
+    nom_profil: string | null
+    ordre: number | null
+  }
+
+  export type Autres_contactMaxAggregateOutputType = {
+    id_contact: number | null
+    logo: string | null
+    nom: string | null
+    lien: string | null
+    nom_profil: string | null
+    ordre: number | null
+  }
+
+  export type Autres_contactCountAggregateOutputType = {
+    id_contact: number
+    logo: number
+    nom: number
+    lien: number
+    nom_profil: number
+    ordre: number
+    _all: number
+  }
+
+
+  export type Autres_contactAvgAggregateInputType = {
+    id_contact?: true
+    ordre?: true
+  }
+
+  export type Autres_contactSumAggregateInputType = {
+    id_contact?: true
+    ordre?: true
+  }
+
+  export type Autres_contactMinAggregateInputType = {
+    id_contact?: true
+    logo?: true
+    nom?: true
+    lien?: true
+    nom_profil?: true
+    ordre?: true
+  }
+
+  export type Autres_contactMaxAggregateInputType = {
+    id_contact?: true
+    logo?: true
+    nom?: true
+    lien?: true
+    nom_profil?: true
+    ordre?: true
+  }
+
+  export type Autres_contactCountAggregateInputType = {
+    id_contact?: true
+    logo?: true
+    nom?: true
+    lien?: true
+    nom_profil?: true
+    ordre?: true
+    _all?: true
+  }
+
+  export type Autres_contactAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_contact to aggregate.
+     */
+    where?: autres_contactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_contacts to fetch.
+     */
+    orderBy?: autres_contactOrderByWithRelationInput | autres_contactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: autres_contactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned autres_contacts
+    **/
+    _count?: true | Autres_contactCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Autres_contactAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Autres_contactSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Autres_contactMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Autres_contactMaxAggregateInputType
+  }
+
+  export type GetAutres_contactAggregateType<T extends Autres_contactAggregateArgs> = {
+        [P in keyof T & keyof AggregateAutres_contact]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAutres_contact[P]>
+      : GetScalarType<T[P], AggregateAutres_contact[P]>
+  }
+
+
+
+
+  export type autres_contactGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: autres_contactWhereInput
+    orderBy?: autres_contactOrderByWithAggregationInput | autres_contactOrderByWithAggregationInput[]
+    by: Autres_contactScalarFieldEnum[] | Autres_contactScalarFieldEnum
+    having?: autres_contactScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Autres_contactCountAggregateInputType | true
+    _avg?: Autres_contactAvgAggregateInputType
+    _sum?: Autres_contactSumAggregateInputType
+    _min?: Autres_contactMinAggregateInputType
+    _max?: Autres_contactMaxAggregateInputType
+  }
+
+  export type Autres_contactGroupByOutputType = {
+    id_contact: number
+    logo: string
+    nom: string
+    lien: string
+    nom_profil: string
+    ordre: number
+    _count: Autres_contactCountAggregateOutputType | null
+    _avg: Autres_contactAvgAggregateOutputType | null
+    _sum: Autres_contactSumAggregateOutputType | null
+    _min: Autres_contactMinAggregateOutputType | null
+    _max: Autres_contactMaxAggregateOutputType | null
+  }
+
+  type GetAutres_contactGroupByPayload<T extends autres_contactGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Autres_contactGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Autres_contactGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Autres_contactGroupByOutputType[P]>
+            : GetScalarType<T[P], Autres_contactGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type autres_contactSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_contact?: boolean
+    logo?: boolean
+    nom?: boolean
+    lien?: boolean
+    nom_profil?: boolean
+    ordre?: boolean
+  }, ExtArgs["result"]["autres_contact"]>
+
+
+
+  export type autres_contactSelectScalar = {
+    id_contact?: boolean
+    logo?: boolean
+    nom?: boolean
+    lien?: boolean
+    nom_profil?: boolean
+    ordre?: boolean
+  }
+
+  export type autres_contactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_contact" | "logo" | "nom" | "lien" | "nom_profil" | "ordre", ExtArgs["result"]["autres_contact"]>
+
+  export type $autres_contactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "autres_contact"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id_contact: number
+      logo: string
+      nom: string
+      lien: string
+      nom_profil: string
+      ordre: number
+    }, ExtArgs["result"]["autres_contact"]>
+    composites: {}
+  }
+
+  type autres_contactGetPayload<S extends boolean | null | undefined | autres_contactDefaultArgs> = $Result.GetResult<Prisma.$autres_contactPayload, S>
+
+  type autres_contactCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<autres_contactFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Autres_contactCountAggregateInputType | true
+    }
+
+  export interface autres_contactDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['autres_contact'], meta: { name: 'autres_contact' } }
+    /**
+     * Find zero or one Autres_contact that matches the filter.
+     * @param {autres_contactFindUniqueArgs} args - Arguments to find a Autres_contact
+     * @example
+     * // Get one Autres_contact
+     * const autres_contact = await prisma.autres_contact.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends autres_contactFindUniqueArgs>(args: SelectSubset<T, autres_contactFindUniqueArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Autres_contact that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {autres_contactFindUniqueOrThrowArgs} args - Arguments to find a Autres_contact
+     * @example
+     * // Get one Autres_contact
+     * const autres_contact = await prisma.autres_contact.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends autres_contactFindUniqueOrThrowArgs>(args: SelectSubset<T, autres_contactFindUniqueOrThrowArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_contact that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactFindFirstArgs} args - Arguments to find a Autres_contact
+     * @example
+     * // Get one Autres_contact
+     * const autres_contact = await prisma.autres_contact.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends autres_contactFindFirstArgs>(args?: SelectSubset<T, autres_contactFindFirstArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_contact that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactFindFirstOrThrowArgs} args - Arguments to find a Autres_contact
+     * @example
+     * // Get one Autres_contact
+     * const autres_contact = await prisma.autres_contact.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends autres_contactFindFirstOrThrowArgs>(args?: SelectSubset<T, autres_contactFindFirstOrThrowArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Autres_contacts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Autres_contacts
+     * const autres_contacts = await prisma.autres_contact.findMany()
+     * 
+     * // Get first 10 Autres_contacts
+     * const autres_contacts = await prisma.autres_contact.findMany({ take: 10 })
+     * 
+     * // Only select the `id_contact`
+     * const autres_contactWithId_contactOnly = await prisma.autres_contact.findMany({ select: { id_contact: true } })
+     * 
+     */
+    findMany<T extends autres_contactFindManyArgs>(args?: SelectSubset<T, autres_contactFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Autres_contact.
+     * @param {autres_contactCreateArgs} args - Arguments to create a Autres_contact.
+     * @example
+     * // Create one Autres_contact
+     * const Autres_contact = await prisma.autres_contact.create({
+     *   data: {
+     *     // ... data to create a Autres_contact
+     *   }
+     * })
+     * 
+     */
+    create<T extends autres_contactCreateArgs>(args: SelectSubset<T, autres_contactCreateArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Autres_contacts.
+     * @param {autres_contactCreateManyArgs} args - Arguments to create many Autres_contacts.
+     * @example
+     * // Create many Autres_contacts
+     * const autres_contact = await prisma.autres_contact.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends autres_contactCreateManyArgs>(args?: SelectSubset<T, autres_contactCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Autres_contact.
+     * @param {autres_contactDeleteArgs} args - Arguments to delete one Autres_contact.
+     * @example
+     * // Delete one Autres_contact
+     * const Autres_contact = await prisma.autres_contact.delete({
+     *   where: {
+     *     // ... filter to delete one Autres_contact
+     *   }
+     * })
+     * 
+     */
+    delete<T extends autres_contactDeleteArgs>(args: SelectSubset<T, autres_contactDeleteArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Autres_contact.
+     * @param {autres_contactUpdateArgs} args - Arguments to update one Autres_contact.
+     * @example
+     * // Update one Autres_contact
+     * const autres_contact = await prisma.autres_contact.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends autres_contactUpdateArgs>(args: SelectSubset<T, autres_contactUpdateArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Autres_contacts.
+     * @param {autres_contactDeleteManyArgs} args - Arguments to filter Autres_contacts to delete.
+     * @example
+     * // Delete a few Autres_contacts
+     * const { count } = await prisma.autres_contact.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends autres_contactDeleteManyArgs>(args?: SelectSubset<T, autres_contactDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Autres_contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Autres_contacts
+     * const autres_contact = await prisma.autres_contact.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends autres_contactUpdateManyArgs>(args: SelectSubset<T, autres_contactUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Autres_contact.
+     * @param {autres_contactUpsertArgs} args - Arguments to update or create a Autres_contact.
+     * @example
+     * // Update or create a Autres_contact
+     * const autres_contact = await prisma.autres_contact.upsert({
+     *   create: {
+     *     // ... data to create a Autres_contact
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Autres_contact we want to update
+     *   }
+     * })
+     */
+    upsert<T extends autres_contactUpsertArgs>(args: SelectSubset<T, autres_contactUpsertArgs<ExtArgs>>): Prisma__autres_contactClient<$Result.GetResult<Prisma.$autres_contactPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Autres_contacts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactCountArgs} args - Arguments to filter Autres_contacts to count.
+     * @example
+     * // Count the number of Autres_contacts
+     * const count = await prisma.autres_contact.count({
+     *   where: {
+     *     // ... the filter for the Autres_contacts we want to count
+     *   }
+     * })
+    **/
+    count<T extends autres_contactCountArgs>(
+      args?: Subset<T, autres_contactCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Autres_contactCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Autres_contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Autres_contactAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Autres_contactAggregateArgs>(args: Subset<T, Autres_contactAggregateArgs>): Prisma.PrismaPromise<GetAutres_contactAggregateType<T>>
+
+    /**
+     * Group by Autres_contact.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_contactGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends autres_contactGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: autres_contactGroupByArgs['orderBy'] }
+        : { orderBy?: autres_contactGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, autres_contactGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAutres_contactGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the autres_contact model
+   */
+  readonly fields: autres_contactFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for autres_contact.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__autres_contactClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the autres_contact model
+   */
+  interface autres_contactFieldRefs {
+    readonly id_contact: FieldRef<"autres_contact", 'Int'>
+    readonly logo: FieldRef<"autres_contact", 'String'>
+    readonly nom: FieldRef<"autres_contact", 'String'>
+    readonly lien: FieldRef<"autres_contact", 'String'>
+    readonly nom_profil: FieldRef<"autres_contact", 'String'>
+    readonly ordre: FieldRef<"autres_contact", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * autres_contact findUnique
+   */
+  export type autres_contactFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_contact to fetch.
+     */
+    where: autres_contactWhereUniqueInput
+  }
+
+  /**
+   * autres_contact findUniqueOrThrow
+   */
+  export type autres_contactFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_contact to fetch.
+     */
+    where: autres_contactWhereUniqueInput
+  }
+
+  /**
+   * autres_contact findFirst
+   */
+  export type autres_contactFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_contact to fetch.
+     */
+    where?: autres_contactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_contacts to fetch.
+     */
+    orderBy?: autres_contactOrderByWithRelationInput | autres_contactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_contacts.
+     */
+    cursor?: autres_contactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_contacts.
+     */
+    distinct?: Autres_contactScalarFieldEnum | Autres_contactScalarFieldEnum[]
+  }
+
+  /**
+   * autres_contact findFirstOrThrow
+   */
+  export type autres_contactFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_contact to fetch.
+     */
+    where?: autres_contactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_contacts to fetch.
+     */
+    orderBy?: autres_contactOrderByWithRelationInput | autres_contactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_contacts.
+     */
+    cursor?: autres_contactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_contacts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_contacts.
+     */
+    distinct?: Autres_contactScalarFieldEnum | Autres_contactScalarFieldEnum[]
+  }
+
+  /**
+   * autres_contact findMany
+   */
+  export type autres_contactFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_contacts to fetch.
+     */
+    where?: autres_contactWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_contacts to fetch.
+     */
+    orderBy?: autres_contactOrderByWithRelationInput | autres_contactOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing autres_contacts.
+     */
+    cursor?: autres_contactWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_contacts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_contacts.
+     */
+    skip?: number
+    distinct?: Autres_contactScalarFieldEnum | Autres_contactScalarFieldEnum[]
+  }
+
+  /**
+   * autres_contact create
+   */
+  export type autres_contactCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * The data needed to create a autres_contact.
+     */
+    data: XOR<autres_contactCreateInput, autres_contactUncheckedCreateInput>
+  }
+
+  /**
+   * autres_contact createMany
+   */
+  export type autres_contactCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many autres_contacts.
+     */
+    data: autres_contactCreateManyInput | autres_contactCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * autres_contact update
+   */
+  export type autres_contactUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * The data needed to update a autres_contact.
+     */
+    data: XOR<autres_contactUpdateInput, autres_contactUncheckedUpdateInput>
+    /**
+     * Choose, which autres_contact to update.
+     */
+    where: autres_contactWhereUniqueInput
+  }
+
+  /**
+   * autres_contact updateMany
+   */
+  export type autres_contactUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update autres_contacts.
+     */
+    data: XOR<autres_contactUpdateManyMutationInput, autres_contactUncheckedUpdateManyInput>
+    /**
+     * Filter which autres_contacts to update
+     */
+    where?: autres_contactWhereInput
+    /**
+     * Limit how many autres_contacts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_contact upsert
+   */
+  export type autres_contactUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * The filter to search for the autres_contact to update in case it exists.
+     */
+    where: autres_contactWhereUniqueInput
+    /**
+     * In case the autres_contact found by the `where` argument doesn't exist, create a new autres_contact with this data.
+     */
+    create: XOR<autres_contactCreateInput, autres_contactUncheckedCreateInput>
+    /**
+     * In case the autres_contact was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<autres_contactUpdateInput, autres_contactUncheckedUpdateInput>
+  }
+
+  /**
+   * autres_contact delete
+   */
+  export type autres_contactDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+    /**
+     * Filter which autres_contact to delete.
+     */
+    where: autres_contactWhereUniqueInput
+  }
+
+  /**
+   * autres_contact deleteMany
+   */
+  export type autres_contactDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_contacts to delete
+     */
+    where?: autres_contactWhereInput
+    /**
+     * Limit how many autres_contacts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_contact without action
+   */
+  export type autres_contactDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_contact
+     */
+    select?: autres_contactSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_contact
+     */
+    omit?: autres_contactOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model autres_general
+   */
+
+  export type AggregateAutres_general = {
+    _count: Autres_generalCountAggregateOutputType | null
+    _avg: Autres_generalAvgAggregateOutputType | null
+    _sum: Autres_generalSumAggregateOutputType | null
+    _min: Autres_generalMinAggregateOutputType | null
+    _max: Autres_generalMaxAggregateOutputType | null
+  }
+
+  export type Autres_generalAvgAggregateOutputType = {
+    id_general: number | null
+  }
+
+  export type Autres_generalSumAggregateOutputType = {
+    id_general: number | null
+  }
+
+  export type Autres_generalMinAggregateOutputType = {
+    id_general: number | null
+    logo: string | null
+    email: string | null
+    localisation: string | null
+  }
+
+  export type Autres_generalMaxAggregateOutputType = {
+    id_general: number | null
+    logo: string | null
+    email: string | null
+    localisation: string | null
+  }
+
+  export type Autres_generalCountAggregateOutputType = {
+    id_general: number
+    logo: number
+    email: number
+    localisation: number
+    _all: number
+  }
+
+
+  export type Autres_generalAvgAggregateInputType = {
+    id_general?: true
+  }
+
+  export type Autres_generalSumAggregateInputType = {
+    id_general?: true
+  }
+
+  export type Autres_generalMinAggregateInputType = {
+    id_general?: true
+    logo?: true
+    email?: true
+    localisation?: true
+  }
+
+  export type Autres_generalMaxAggregateInputType = {
+    id_general?: true
+    logo?: true
+    email?: true
+    localisation?: true
+  }
+
+  export type Autres_generalCountAggregateInputType = {
+    id_general?: true
+    logo?: true
+    email?: true
+    localisation?: true
+    _all?: true
+  }
+
+  export type Autres_generalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_general to aggregate.
+     */
+    where?: autres_generalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_generals to fetch.
+     */
+    orderBy?: autres_generalOrderByWithRelationInput | autres_generalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: autres_generalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_generals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_generals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned autres_generals
+    **/
+    _count?: true | Autres_generalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Autres_generalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Autres_generalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Autres_generalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Autres_generalMaxAggregateInputType
+  }
+
+  export type GetAutres_generalAggregateType<T extends Autres_generalAggregateArgs> = {
+        [P in keyof T & keyof AggregateAutres_general]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAutres_general[P]>
+      : GetScalarType<T[P], AggregateAutres_general[P]>
+  }
+
+
+
+
+  export type autres_generalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: autres_generalWhereInput
+    orderBy?: autres_generalOrderByWithAggregationInput | autres_generalOrderByWithAggregationInput[]
+    by: Autres_generalScalarFieldEnum[] | Autres_generalScalarFieldEnum
+    having?: autres_generalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Autres_generalCountAggregateInputType | true
+    _avg?: Autres_generalAvgAggregateInputType
+    _sum?: Autres_generalSumAggregateInputType
+    _min?: Autres_generalMinAggregateInputType
+    _max?: Autres_generalMaxAggregateInputType
+  }
+
+  export type Autres_generalGroupByOutputType = {
+    id_general: number
+    logo: string
+    email: string
+    localisation: string
+    _count: Autres_generalCountAggregateOutputType | null
+    _avg: Autres_generalAvgAggregateOutputType | null
+    _sum: Autres_generalSumAggregateOutputType | null
+    _min: Autres_generalMinAggregateOutputType | null
+    _max: Autres_generalMaxAggregateOutputType | null
+  }
+
+  type GetAutres_generalGroupByPayload<T extends autres_generalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Autres_generalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Autres_generalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Autres_generalGroupByOutputType[P]>
+            : GetScalarType<T[P], Autres_generalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type autres_generalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_general?: boolean
+    logo?: boolean
+    email?: boolean
+    localisation?: boolean
+  }, ExtArgs["result"]["autres_general"]>
+
+
+
+  export type autres_generalSelectScalar = {
+    id_general?: boolean
+    logo?: boolean
+    email?: boolean
+    localisation?: boolean
+  }
+
+  export type autres_generalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_general" | "logo" | "email" | "localisation", ExtArgs["result"]["autres_general"]>
+
+  export type $autres_generalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "autres_general"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id_general: number
+      logo: string
+      email: string
+      localisation: string
+    }, ExtArgs["result"]["autres_general"]>
+    composites: {}
+  }
+
+  type autres_generalGetPayload<S extends boolean | null | undefined | autres_generalDefaultArgs> = $Result.GetResult<Prisma.$autres_generalPayload, S>
+
+  type autres_generalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<autres_generalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Autres_generalCountAggregateInputType | true
+    }
+
+  export interface autres_generalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['autres_general'], meta: { name: 'autres_general' } }
+    /**
+     * Find zero or one Autres_general that matches the filter.
+     * @param {autres_generalFindUniqueArgs} args - Arguments to find a Autres_general
+     * @example
+     * // Get one Autres_general
+     * const autres_general = await prisma.autres_general.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends autres_generalFindUniqueArgs>(args: SelectSubset<T, autres_generalFindUniqueArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Autres_general that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {autres_generalFindUniqueOrThrowArgs} args - Arguments to find a Autres_general
+     * @example
+     * // Get one Autres_general
+     * const autres_general = await prisma.autres_general.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends autres_generalFindUniqueOrThrowArgs>(args: SelectSubset<T, autres_generalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_general that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalFindFirstArgs} args - Arguments to find a Autres_general
+     * @example
+     * // Get one Autres_general
+     * const autres_general = await prisma.autres_general.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends autres_generalFindFirstArgs>(args?: SelectSubset<T, autres_generalFindFirstArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_general that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalFindFirstOrThrowArgs} args - Arguments to find a Autres_general
+     * @example
+     * // Get one Autres_general
+     * const autres_general = await prisma.autres_general.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends autres_generalFindFirstOrThrowArgs>(args?: SelectSubset<T, autres_generalFindFirstOrThrowArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Autres_generals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Autres_generals
+     * const autres_generals = await prisma.autres_general.findMany()
+     * 
+     * // Get first 10 Autres_generals
+     * const autres_generals = await prisma.autres_general.findMany({ take: 10 })
+     * 
+     * // Only select the `id_general`
+     * const autres_generalWithId_generalOnly = await prisma.autres_general.findMany({ select: { id_general: true } })
+     * 
+     */
+    findMany<T extends autres_generalFindManyArgs>(args?: SelectSubset<T, autres_generalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Autres_general.
+     * @param {autres_generalCreateArgs} args - Arguments to create a Autres_general.
+     * @example
+     * // Create one Autres_general
+     * const Autres_general = await prisma.autres_general.create({
+     *   data: {
+     *     // ... data to create a Autres_general
+     *   }
+     * })
+     * 
+     */
+    create<T extends autres_generalCreateArgs>(args: SelectSubset<T, autres_generalCreateArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Autres_generals.
+     * @param {autres_generalCreateManyArgs} args - Arguments to create many Autres_generals.
+     * @example
+     * // Create many Autres_generals
+     * const autres_general = await prisma.autres_general.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends autres_generalCreateManyArgs>(args?: SelectSubset<T, autres_generalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Autres_general.
+     * @param {autres_generalDeleteArgs} args - Arguments to delete one Autres_general.
+     * @example
+     * // Delete one Autres_general
+     * const Autres_general = await prisma.autres_general.delete({
+     *   where: {
+     *     // ... filter to delete one Autres_general
+     *   }
+     * })
+     * 
+     */
+    delete<T extends autres_generalDeleteArgs>(args: SelectSubset<T, autres_generalDeleteArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Autres_general.
+     * @param {autres_generalUpdateArgs} args - Arguments to update one Autres_general.
+     * @example
+     * // Update one Autres_general
+     * const autres_general = await prisma.autres_general.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends autres_generalUpdateArgs>(args: SelectSubset<T, autres_generalUpdateArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Autres_generals.
+     * @param {autres_generalDeleteManyArgs} args - Arguments to filter Autres_generals to delete.
+     * @example
+     * // Delete a few Autres_generals
+     * const { count } = await prisma.autres_general.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends autres_generalDeleteManyArgs>(args?: SelectSubset<T, autres_generalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Autres_generals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Autres_generals
+     * const autres_general = await prisma.autres_general.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends autres_generalUpdateManyArgs>(args: SelectSubset<T, autres_generalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Autres_general.
+     * @param {autres_generalUpsertArgs} args - Arguments to update or create a Autres_general.
+     * @example
+     * // Update or create a Autres_general
+     * const autres_general = await prisma.autres_general.upsert({
+     *   create: {
+     *     // ... data to create a Autres_general
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Autres_general we want to update
+     *   }
+     * })
+     */
+    upsert<T extends autres_generalUpsertArgs>(args: SelectSubset<T, autres_generalUpsertArgs<ExtArgs>>): Prisma__autres_generalClient<$Result.GetResult<Prisma.$autres_generalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Autres_generals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalCountArgs} args - Arguments to filter Autres_generals to count.
+     * @example
+     * // Count the number of Autres_generals
+     * const count = await prisma.autres_general.count({
+     *   where: {
+     *     // ... the filter for the Autres_generals we want to count
+     *   }
+     * })
+    **/
+    count<T extends autres_generalCountArgs>(
+      args?: Subset<T, autres_generalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Autres_generalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Autres_general.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Autres_generalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Autres_generalAggregateArgs>(args: Subset<T, Autres_generalAggregateArgs>): Prisma.PrismaPromise<GetAutres_generalAggregateType<T>>
+
+    /**
+     * Group by Autres_general.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_generalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends autres_generalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: autres_generalGroupByArgs['orderBy'] }
+        : { orderBy?: autres_generalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, autres_generalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAutres_generalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the autres_general model
+   */
+  readonly fields: autres_generalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for autres_general.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__autres_generalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the autres_general model
+   */
+  interface autres_generalFieldRefs {
+    readonly id_general: FieldRef<"autres_general", 'Int'>
+    readonly logo: FieldRef<"autres_general", 'String'>
+    readonly email: FieldRef<"autres_general", 'String'>
+    readonly localisation: FieldRef<"autres_general", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * autres_general findUnique
+   */
+  export type autres_generalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_general to fetch.
+     */
+    where: autres_generalWhereUniqueInput
+  }
+
+  /**
+   * autres_general findUniqueOrThrow
+   */
+  export type autres_generalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_general to fetch.
+     */
+    where: autres_generalWhereUniqueInput
+  }
+
+  /**
+   * autres_general findFirst
+   */
+  export type autres_generalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_general to fetch.
+     */
+    where?: autres_generalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_generals to fetch.
+     */
+    orderBy?: autres_generalOrderByWithRelationInput | autres_generalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_generals.
+     */
+    cursor?: autres_generalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_generals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_generals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_generals.
+     */
+    distinct?: Autres_generalScalarFieldEnum | Autres_generalScalarFieldEnum[]
+  }
+
+  /**
+   * autres_general findFirstOrThrow
+   */
+  export type autres_generalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_general to fetch.
+     */
+    where?: autres_generalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_generals to fetch.
+     */
+    orderBy?: autres_generalOrderByWithRelationInput | autres_generalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_generals.
+     */
+    cursor?: autres_generalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_generals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_generals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_generals.
+     */
+    distinct?: Autres_generalScalarFieldEnum | Autres_generalScalarFieldEnum[]
+  }
+
+  /**
+   * autres_general findMany
+   */
+  export type autres_generalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_generals to fetch.
+     */
+    where?: autres_generalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_generals to fetch.
+     */
+    orderBy?: autres_generalOrderByWithRelationInput | autres_generalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing autres_generals.
+     */
+    cursor?: autres_generalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_generals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_generals.
+     */
+    skip?: number
+    distinct?: Autres_generalScalarFieldEnum | Autres_generalScalarFieldEnum[]
+  }
+
+  /**
+   * autres_general create
+   */
+  export type autres_generalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * The data needed to create a autres_general.
+     */
+    data: XOR<autres_generalCreateInput, autres_generalUncheckedCreateInput>
+  }
+
+  /**
+   * autres_general createMany
+   */
+  export type autres_generalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many autres_generals.
+     */
+    data: autres_generalCreateManyInput | autres_generalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * autres_general update
+   */
+  export type autres_generalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * The data needed to update a autres_general.
+     */
+    data: XOR<autres_generalUpdateInput, autres_generalUncheckedUpdateInput>
+    /**
+     * Choose, which autres_general to update.
+     */
+    where: autres_generalWhereUniqueInput
+  }
+
+  /**
+   * autres_general updateMany
+   */
+  export type autres_generalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update autres_generals.
+     */
+    data: XOR<autres_generalUpdateManyMutationInput, autres_generalUncheckedUpdateManyInput>
+    /**
+     * Filter which autres_generals to update
+     */
+    where?: autres_generalWhereInput
+    /**
+     * Limit how many autres_generals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_general upsert
+   */
+  export type autres_generalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * The filter to search for the autres_general to update in case it exists.
+     */
+    where: autres_generalWhereUniqueInput
+    /**
+     * In case the autres_general found by the `where` argument doesn't exist, create a new autres_general with this data.
+     */
+    create: XOR<autres_generalCreateInput, autres_generalUncheckedCreateInput>
+    /**
+     * In case the autres_general was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<autres_generalUpdateInput, autres_generalUncheckedUpdateInput>
+  }
+
+  /**
+   * autres_general delete
+   */
+  export type autres_generalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+    /**
+     * Filter which autres_general to delete.
+     */
+    where: autres_generalWhereUniqueInput
+  }
+
+  /**
+   * autres_general deleteMany
+   */
+  export type autres_generalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_generals to delete
+     */
+    where?: autres_generalWhereInput
+    /**
+     * Limit how many autres_generals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_general without action
+   */
+  export type autres_generalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_general
+     */
+    select?: autres_generalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_general
+     */
+    omit?: autres_generalOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model autres_tags_roles
+   */
+
+  export type AggregateAutres_tags_roles = {
+    _count: Autres_tags_rolesCountAggregateOutputType | null
+    _avg: Autres_tags_rolesAvgAggregateOutputType | null
+    _sum: Autres_tags_rolesSumAggregateOutputType | null
+    _min: Autres_tags_rolesMinAggregateOutputType | null
+    _max: Autres_tags_rolesMaxAggregateOutputType | null
+  }
+
+  export type Autres_tags_rolesAvgAggregateOutputType = {
+    id_tag_role: number | null
+    ordre: number | null
+  }
+
+  export type Autres_tags_rolesSumAggregateOutputType = {
+    id_tag_role: number | null
+    ordre: number | null
+  }
+
+  export type Autres_tags_rolesMinAggregateOutputType = {
+    id_tag_role: number | null
+    nom: string | null
+    ordre: number | null
+  }
+
+  export type Autres_tags_rolesMaxAggregateOutputType = {
+    id_tag_role: number | null
+    nom: string | null
+    ordre: number | null
+  }
+
+  export type Autres_tags_rolesCountAggregateOutputType = {
+    id_tag_role: number
+    nom: number
+    ordre: number
+    _all: number
+  }
+
+
+  export type Autres_tags_rolesAvgAggregateInputType = {
+    id_tag_role?: true
+    ordre?: true
+  }
+
+  export type Autres_tags_rolesSumAggregateInputType = {
+    id_tag_role?: true
+    ordre?: true
+  }
+
+  export type Autres_tags_rolesMinAggregateInputType = {
+    id_tag_role?: true
+    nom?: true
+    ordre?: true
+  }
+
+  export type Autres_tags_rolesMaxAggregateInputType = {
+    id_tag_role?: true
+    nom?: true
+    ordre?: true
+  }
+
+  export type Autres_tags_rolesCountAggregateInputType = {
+    id_tag_role?: true
+    nom?: true
+    ordre?: true
+    _all?: true
+  }
+
+  export type Autres_tags_rolesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_tags_roles to aggregate.
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_tags_roles to fetch.
+     */
+    orderBy?: autres_tags_rolesOrderByWithRelationInput | autres_tags_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: autres_tags_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_tags_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_tags_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned autres_tags_roles
+    **/
+    _count?: true | Autres_tags_rolesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Autres_tags_rolesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Autres_tags_rolesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Autres_tags_rolesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Autres_tags_rolesMaxAggregateInputType
+  }
+
+  export type GetAutres_tags_rolesAggregateType<T extends Autres_tags_rolesAggregateArgs> = {
+        [P in keyof T & keyof AggregateAutres_tags_roles]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAutres_tags_roles[P]>
+      : GetScalarType<T[P], AggregateAutres_tags_roles[P]>
+  }
+
+
+
+
+  export type autres_tags_rolesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: autres_tags_rolesWhereInput
+    orderBy?: autres_tags_rolesOrderByWithAggregationInput | autres_tags_rolesOrderByWithAggregationInput[]
+    by: Autres_tags_rolesScalarFieldEnum[] | Autres_tags_rolesScalarFieldEnum
+    having?: autres_tags_rolesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Autres_tags_rolesCountAggregateInputType | true
+    _avg?: Autres_tags_rolesAvgAggregateInputType
+    _sum?: Autres_tags_rolesSumAggregateInputType
+    _min?: Autres_tags_rolesMinAggregateInputType
+    _max?: Autres_tags_rolesMaxAggregateInputType
+  }
+
+  export type Autres_tags_rolesGroupByOutputType = {
+    id_tag_role: number
+    nom: string
+    ordre: number
+    _count: Autres_tags_rolesCountAggregateOutputType | null
+    _avg: Autres_tags_rolesAvgAggregateOutputType | null
+    _sum: Autres_tags_rolesSumAggregateOutputType | null
+    _min: Autres_tags_rolesMinAggregateOutputType | null
+    _max: Autres_tags_rolesMaxAggregateOutputType | null
+  }
+
+  type GetAutres_tags_rolesGroupByPayload<T extends autres_tags_rolesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Autres_tags_rolesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Autres_tags_rolesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Autres_tags_rolesGroupByOutputType[P]>
+            : GetScalarType<T[P], Autres_tags_rolesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type autres_tags_rolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_tag_role?: boolean
+    nom?: boolean
+    ordre?: boolean
+  }, ExtArgs["result"]["autres_tags_roles"]>
+
+
+
+  export type autres_tags_rolesSelectScalar = {
+    id_tag_role?: boolean
+    nom?: boolean
+    ordre?: boolean
+  }
+
+  export type autres_tags_rolesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_tag_role" | "nom" | "ordre", ExtArgs["result"]["autres_tags_roles"]>
+
+  export type $autres_tags_rolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "autres_tags_roles"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id_tag_role: number
+      nom: string
+      ordre: number
+    }, ExtArgs["result"]["autres_tags_roles"]>
+    composites: {}
+  }
+
+  type autres_tags_rolesGetPayload<S extends boolean | null | undefined | autres_tags_rolesDefaultArgs> = $Result.GetResult<Prisma.$autres_tags_rolesPayload, S>
+
+  type autres_tags_rolesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<autres_tags_rolesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Autres_tags_rolesCountAggregateInputType | true
+    }
+
+  export interface autres_tags_rolesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['autres_tags_roles'], meta: { name: 'autres_tags_roles' } }
+    /**
+     * Find zero or one Autres_tags_roles that matches the filter.
+     * @param {autres_tags_rolesFindUniqueArgs} args - Arguments to find a Autres_tags_roles
+     * @example
+     * // Get one Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends autres_tags_rolesFindUniqueArgs>(args: SelectSubset<T, autres_tags_rolesFindUniqueArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Autres_tags_roles that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {autres_tags_rolesFindUniqueOrThrowArgs} args - Arguments to find a Autres_tags_roles
+     * @example
+     * // Get one Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends autres_tags_rolesFindUniqueOrThrowArgs>(args: SelectSubset<T, autres_tags_rolesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_tags_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesFindFirstArgs} args - Arguments to find a Autres_tags_roles
+     * @example
+     * // Get one Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends autres_tags_rolesFindFirstArgs>(args?: SelectSubset<T, autres_tags_rolesFindFirstArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Autres_tags_roles that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesFindFirstOrThrowArgs} args - Arguments to find a Autres_tags_roles
+     * @example
+     * // Get one Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends autres_tags_rolesFindFirstOrThrowArgs>(args?: SelectSubset<T, autres_tags_rolesFindFirstOrThrowArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Autres_tags_roles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findMany()
+     * 
+     * // Get first 10 Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.findMany({ take: 10 })
+     * 
+     * // Only select the `id_tag_role`
+     * const autres_tags_rolesWithId_tag_roleOnly = await prisma.autres_tags_roles.findMany({ select: { id_tag_role: true } })
+     * 
+     */
+    findMany<T extends autres_tags_rolesFindManyArgs>(args?: SelectSubset<T, autres_tags_rolesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Autres_tags_roles.
+     * @param {autres_tags_rolesCreateArgs} args - Arguments to create a Autres_tags_roles.
+     * @example
+     * // Create one Autres_tags_roles
+     * const Autres_tags_roles = await prisma.autres_tags_roles.create({
+     *   data: {
+     *     // ... data to create a Autres_tags_roles
+     *   }
+     * })
+     * 
+     */
+    create<T extends autres_tags_rolesCreateArgs>(args: SelectSubset<T, autres_tags_rolesCreateArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Autres_tags_roles.
+     * @param {autres_tags_rolesCreateManyArgs} args - Arguments to create many Autres_tags_roles.
+     * @example
+     * // Create many Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends autres_tags_rolesCreateManyArgs>(args?: SelectSubset<T, autres_tags_rolesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Autres_tags_roles.
+     * @param {autres_tags_rolesDeleteArgs} args - Arguments to delete one Autres_tags_roles.
+     * @example
+     * // Delete one Autres_tags_roles
+     * const Autres_tags_roles = await prisma.autres_tags_roles.delete({
+     *   where: {
+     *     // ... filter to delete one Autres_tags_roles
+     *   }
+     * })
+     * 
+     */
+    delete<T extends autres_tags_rolesDeleteArgs>(args: SelectSubset<T, autres_tags_rolesDeleteArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Autres_tags_roles.
+     * @param {autres_tags_rolesUpdateArgs} args - Arguments to update one Autres_tags_roles.
+     * @example
+     * // Update one Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends autres_tags_rolesUpdateArgs>(args: SelectSubset<T, autres_tags_rolesUpdateArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Autres_tags_roles.
+     * @param {autres_tags_rolesDeleteManyArgs} args - Arguments to filter Autres_tags_roles to delete.
+     * @example
+     * // Delete a few Autres_tags_roles
+     * const { count } = await prisma.autres_tags_roles.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends autres_tags_rolesDeleteManyArgs>(args?: SelectSubset<T, autres_tags_rolesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Autres_tags_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends autres_tags_rolesUpdateManyArgs>(args: SelectSubset<T, autres_tags_rolesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Autres_tags_roles.
+     * @param {autres_tags_rolesUpsertArgs} args - Arguments to update or create a Autres_tags_roles.
+     * @example
+     * // Update or create a Autres_tags_roles
+     * const autres_tags_roles = await prisma.autres_tags_roles.upsert({
+     *   create: {
+     *     // ... data to create a Autres_tags_roles
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Autres_tags_roles we want to update
+     *   }
+     * })
+     */
+    upsert<T extends autres_tags_rolesUpsertArgs>(args: SelectSubset<T, autres_tags_rolesUpsertArgs<ExtArgs>>): Prisma__autres_tags_rolesClient<$Result.GetResult<Prisma.$autres_tags_rolesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Autres_tags_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesCountArgs} args - Arguments to filter Autres_tags_roles to count.
+     * @example
+     * // Count the number of Autres_tags_roles
+     * const count = await prisma.autres_tags_roles.count({
+     *   where: {
+     *     // ... the filter for the Autres_tags_roles we want to count
+     *   }
+     * })
+    **/
+    count<T extends autres_tags_rolesCountArgs>(
+      args?: Subset<T, autres_tags_rolesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Autres_tags_rolesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Autres_tags_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Autres_tags_rolesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Autres_tags_rolesAggregateArgs>(args: Subset<T, Autres_tags_rolesAggregateArgs>): Prisma.PrismaPromise<GetAutres_tags_rolesAggregateType<T>>
+
+    /**
+     * Group by Autres_tags_roles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {autres_tags_rolesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends autres_tags_rolesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: autres_tags_rolesGroupByArgs['orderBy'] }
+        : { orderBy?: autres_tags_rolesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, autres_tags_rolesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAutres_tags_rolesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the autres_tags_roles model
+   */
+  readonly fields: autres_tags_rolesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for autres_tags_roles.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__autres_tags_rolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the autres_tags_roles model
+   */
+  interface autres_tags_rolesFieldRefs {
+    readonly id_tag_role: FieldRef<"autres_tags_roles", 'Int'>
+    readonly nom: FieldRef<"autres_tags_roles", 'String'>
+    readonly ordre: FieldRef<"autres_tags_roles", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * autres_tags_roles findUnique
+   */
+  export type autres_tags_rolesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_tags_roles to fetch.
+     */
+    where: autres_tags_rolesWhereUniqueInput
+  }
+
+  /**
+   * autres_tags_roles findUniqueOrThrow
+   */
+  export type autres_tags_rolesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_tags_roles to fetch.
+     */
+    where: autres_tags_rolesWhereUniqueInput
+  }
+
+  /**
+   * autres_tags_roles findFirst
+   */
+  export type autres_tags_rolesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_tags_roles to fetch.
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_tags_roles to fetch.
+     */
+    orderBy?: autres_tags_rolesOrderByWithRelationInput | autres_tags_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_tags_roles.
+     */
+    cursor?: autres_tags_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_tags_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_tags_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_tags_roles.
+     */
+    distinct?: Autres_tags_rolesScalarFieldEnum | Autres_tags_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * autres_tags_roles findFirstOrThrow
+   */
+  export type autres_tags_rolesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_tags_roles to fetch.
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_tags_roles to fetch.
+     */
+    orderBy?: autres_tags_rolesOrderByWithRelationInput | autres_tags_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for autres_tags_roles.
+     */
+    cursor?: autres_tags_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_tags_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_tags_roles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of autres_tags_roles.
+     */
+    distinct?: Autres_tags_rolesScalarFieldEnum | Autres_tags_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * autres_tags_roles findMany
+   */
+  export type autres_tags_rolesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter, which autres_tags_roles to fetch.
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of autres_tags_roles to fetch.
+     */
+    orderBy?: autres_tags_rolesOrderByWithRelationInput | autres_tags_rolesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing autres_tags_roles.
+     */
+    cursor?: autres_tags_rolesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` autres_tags_roles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` autres_tags_roles.
+     */
+    skip?: number
+    distinct?: Autres_tags_rolesScalarFieldEnum | Autres_tags_rolesScalarFieldEnum[]
+  }
+
+  /**
+   * autres_tags_roles create
+   */
+  export type autres_tags_rolesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a autres_tags_roles.
+     */
+    data: XOR<autres_tags_rolesCreateInput, autres_tags_rolesUncheckedCreateInput>
+  }
+
+  /**
+   * autres_tags_roles createMany
+   */
+  export type autres_tags_rolesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many autres_tags_roles.
+     */
+    data: autres_tags_rolesCreateManyInput | autres_tags_rolesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * autres_tags_roles update
+   */
+  export type autres_tags_rolesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a autres_tags_roles.
+     */
+    data: XOR<autres_tags_rolesUpdateInput, autres_tags_rolesUncheckedUpdateInput>
+    /**
+     * Choose, which autres_tags_roles to update.
+     */
+    where: autres_tags_rolesWhereUniqueInput
+  }
+
+  /**
+   * autres_tags_roles updateMany
+   */
+  export type autres_tags_rolesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update autres_tags_roles.
+     */
+    data: XOR<autres_tags_rolesUpdateManyMutationInput, autres_tags_rolesUncheckedUpdateManyInput>
+    /**
+     * Filter which autres_tags_roles to update
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * Limit how many autres_tags_roles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_tags_roles upsert
+   */
+  export type autres_tags_rolesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the autres_tags_roles to update in case it exists.
+     */
+    where: autres_tags_rolesWhereUniqueInput
+    /**
+     * In case the autres_tags_roles found by the `where` argument doesn't exist, create a new autres_tags_roles with this data.
+     */
+    create: XOR<autres_tags_rolesCreateInput, autres_tags_rolesUncheckedCreateInput>
+    /**
+     * In case the autres_tags_roles was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<autres_tags_rolesUpdateInput, autres_tags_rolesUncheckedUpdateInput>
+  }
+
+  /**
+   * autres_tags_roles delete
+   */
+  export type autres_tags_rolesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+    /**
+     * Filter which autres_tags_roles to delete.
+     */
+    where: autres_tags_rolesWhereUniqueInput
+  }
+
+  /**
+   * autres_tags_roles deleteMany
+   */
+  export type autres_tags_rolesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which autres_tags_roles to delete
+     */
+    where?: autres_tags_rolesWhereInput
+    /**
+     * Limit how many autres_tags_roles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * autres_tags_roles without action
+   */
+  export type autres_tags_rolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the autres_tags_roles
+     */
+    select?: autres_tags_rolesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the autres_tags_roles
+     */
+    omit?: autres_tags_rolesOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -25224,6 +28207,37 @@ export namespace Prisma {
   export type Accueil_faqScalarFieldEnum = (typeof Accueil_faqScalarFieldEnum)[keyof typeof Accueil_faqScalarFieldEnum]
 
 
+  export const Autres_contactScalarFieldEnum: {
+    id_contact: 'id_contact',
+    logo: 'logo',
+    nom: 'nom',
+    lien: 'lien',
+    nom_profil: 'nom_profil',
+    ordre: 'ordre'
+  };
+
+  export type Autres_contactScalarFieldEnum = (typeof Autres_contactScalarFieldEnum)[keyof typeof Autres_contactScalarFieldEnum]
+
+
+  export const Autres_generalScalarFieldEnum: {
+    id_general: 'id_general',
+    logo: 'logo',
+    email: 'email',
+    localisation: 'localisation'
+  };
+
+  export type Autres_generalScalarFieldEnum = (typeof Autres_generalScalarFieldEnum)[keyof typeof Autres_generalScalarFieldEnum]
+
+
+  export const Autres_tags_rolesScalarFieldEnum: {
+    id_tag_role: 'id_tag_role',
+    nom: 'nom',
+    ordre: 'ordre'
+  };
+
+  export type Autres_tags_rolesScalarFieldEnum = (typeof Autres_tags_rolesScalarFieldEnum)[keyof typeof Autres_tags_rolesScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -25413,6 +28427,32 @@ export namespace Prisma {
   };
 
   export type accueil_faqOrderByRelevanceFieldEnum = (typeof accueil_faqOrderByRelevanceFieldEnum)[keyof typeof accueil_faqOrderByRelevanceFieldEnum]
+
+
+  export const autres_contactOrderByRelevanceFieldEnum: {
+    logo: 'logo',
+    nom: 'nom',
+    lien: 'lien',
+    nom_profil: 'nom_profil'
+  };
+
+  export type autres_contactOrderByRelevanceFieldEnum = (typeof autres_contactOrderByRelevanceFieldEnum)[keyof typeof autres_contactOrderByRelevanceFieldEnum]
+
+
+  export const autres_generalOrderByRelevanceFieldEnum: {
+    logo: 'logo',
+    email: 'email',
+    localisation: 'localisation'
+  };
+
+  export type autres_generalOrderByRelevanceFieldEnum = (typeof autres_generalOrderByRelevanceFieldEnum)[keyof typeof autres_generalOrderByRelevanceFieldEnum]
+
+
+  export const autres_tags_rolesOrderByRelevanceFieldEnum: {
+    nom: 'nom'
+  };
+
+  export type autres_tags_rolesOrderByRelevanceFieldEnum = (typeof autres_tags_rolesOrderByRelevanceFieldEnum)[keyof typeof autres_tags_rolesOrderByRelevanceFieldEnum]
 
 
   /**
@@ -26885,6 +29925,161 @@ export namespace Prisma {
     afficher?: BoolWithAggregatesFilter<"accueil_faq"> | boolean
   }
 
+  export type autres_contactWhereInput = {
+    AND?: autres_contactWhereInput | autres_contactWhereInput[]
+    OR?: autres_contactWhereInput[]
+    NOT?: autres_contactWhereInput | autres_contactWhereInput[]
+    id_contact?: IntFilter<"autres_contact"> | number
+    logo?: StringFilter<"autres_contact"> | string
+    nom?: StringFilter<"autres_contact"> | string
+    lien?: StringFilter<"autres_contact"> | string
+    nom_profil?: StringFilter<"autres_contact"> | string
+    ordre?: IntFilter<"autres_contact"> | number
+  }
+
+  export type autres_contactOrderByWithRelationInput = {
+    id_contact?: SortOrder
+    logo?: SortOrder
+    nom?: SortOrder
+    lien?: SortOrder
+    nom_profil?: SortOrder
+    ordre?: SortOrder
+    _relevance?: autres_contactOrderByRelevanceInput
+  }
+
+  export type autres_contactWhereUniqueInput = Prisma.AtLeast<{
+    id_contact?: number
+    AND?: autres_contactWhereInput | autres_contactWhereInput[]
+    OR?: autres_contactWhereInput[]
+    NOT?: autres_contactWhereInput | autres_contactWhereInput[]
+    logo?: StringFilter<"autres_contact"> | string
+    nom?: StringFilter<"autres_contact"> | string
+    lien?: StringFilter<"autres_contact"> | string
+    nom_profil?: StringFilter<"autres_contact"> | string
+    ordre?: IntFilter<"autres_contact"> | number
+  }, "id_contact">
+
+  export type autres_contactOrderByWithAggregationInput = {
+    id_contact?: SortOrder
+    logo?: SortOrder
+    nom?: SortOrder
+    lien?: SortOrder
+    nom_profil?: SortOrder
+    ordre?: SortOrder
+    _count?: autres_contactCountOrderByAggregateInput
+    _avg?: autres_contactAvgOrderByAggregateInput
+    _max?: autres_contactMaxOrderByAggregateInput
+    _min?: autres_contactMinOrderByAggregateInput
+    _sum?: autres_contactSumOrderByAggregateInput
+  }
+
+  export type autres_contactScalarWhereWithAggregatesInput = {
+    AND?: autres_contactScalarWhereWithAggregatesInput | autres_contactScalarWhereWithAggregatesInput[]
+    OR?: autres_contactScalarWhereWithAggregatesInput[]
+    NOT?: autres_contactScalarWhereWithAggregatesInput | autres_contactScalarWhereWithAggregatesInput[]
+    id_contact?: IntWithAggregatesFilter<"autres_contact"> | number
+    logo?: StringWithAggregatesFilter<"autres_contact"> | string
+    nom?: StringWithAggregatesFilter<"autres_contact"> | string
+    lien?: StringWithAggregatesFilter<"autres_contact"> | string
+    nom_profil?: StringWithAggregatesFilter<"autres_contact"> | string
+    ordre?: IntWithAggregatesFilter<"autres_contact"> | number
+  }
+
+  export type autres_generalWhereInput = {
+    AND?: autres_generalWhereInput | autres_generalWhereInput[]
+    OR?: autres_generalWhereInput[]
+    NOT?: autres_generalWhereInput | autres_generalWhereInput[]
+    id_general?: IntFilter<"autres_general"> | number
+    logo?: StringFilter<"autres_general"> | string
+    email?: StringFilter<"autres_general"> | string
+    localisation?: StringFilter<"autres_general"> | string
+  }
+
+  export type autres_generalOrderByWithRelationInput = {
+    id_general?: SortOrder
+    logo?: SortOrder
+    email?: SortOrder
+    localisation?: SortOrder
+    _relevance?: autres_generalOrderByRelevanceInput
+  }
+
+  export type autres_generalWhereUniqueInput = Prisma.AtLeast<{
+    id_general?: number
+    AND?: autres_generalWhereInput | autres_generalWhereInput[]
+    OR?: autres_generalWhereInput[]
+    NOT?: autres_generalWhereInput | autres_generalWhereInput[]
+    logo?: StringFilter<"autres_general"> | string
+    email?: StringFilter<"autres_general"> | string
+    localisation?: StringFilter<"autres_general"> | string
+  }, "id_general">
+
+  export type autres_generalOrderByWithAggregationInput = {
+    id_general?: SortOrder
+    logo?: SortOrder
+    email?: SortOrder
+    localisation?: SortOrder
+    _count?: autres_generalCountOrderByAggregateInput
+    _avg?: autres_generalAvgOrderByAggregateInput
+    _max?: autres_generalMaxOrderByAggregateInput
+    _min?: autres_generalMinOrderByAggregateInput
+    _sum?: autres_generalSumOrderByAggregateInput
+  }
+
+  export type autres_generalScalarWhereWithAggregatesInput = {
+    AND?: autres_generalScalarWhereWithAggregatesInput | autres_generalScalarWhereWithAggregatesInput[]
+    OR?: autres_generalScalarWhereWithAggregatesInput[]
+    NOT?: autres_generalScalarWhereWithAggregatesInput | autres_generalScalarWhereWithAggregatesInput[]
+    id_general?: IntWithAggregatesFilter<"autres_general"> | number
+    logo?: StringWithAggregatesFilter<"autres_general"> | string
+    email?: StringWithAggregatesFilter<"autres_general"> | string
+    localisation?: StringWithAggregatesFilter<"autres_general"> | string
+  }
+
+  export type autres_tags_rolesWhereInput = {
+    AND?: autres_tags_rolesWhereInput | autres_tags_rolesWhereInput[]
+    OR?: autres_tags_rolesWhereInput[]
+    NOT?: autres_tags_rolesWhereInput | autres_tags_rolesWhereInput[]
+    id_tag_role?: IntFilter<"autres_tags_roles"> | number
+    nom?: StringFilter<"autres_tags_roles"> | string
+    ordre?: IntFilter<"autres_tags_roles"> | number
+  }
+
+  export type autres_tags_rolesOrderByWithRelationInput = {
+    id_tag_role?: SortOrder
+    nom?: SortOrder
+    ordre?: SortOrder
+    _relevance?: autres_tags_rolesOrderByRelevanceInput
+  }
+
+  export type autres_tags_rolesWhereUniqueInput = Prisma.AtLeast<{
+    id_tag_role?: number
+    AND?: autres_tags_rolesWhereInput | autres_tags_rolesWhereInput[]
+    OR?: autres_tags_rolesWhereInput[]
+    NOT?: autres_tags_rolesWhereInput | autres_tags_rolesWhereInput[]
+    nom?: StringFilter<"autres_tags_roles"> | string
+    ordre?: IntFilter<"autres_tags_roles"> | number
+  }, "id_tag_role">
+
+  export type autres_tags_rolesOrderByWithAggregationInput = {
+    id_tag_role?: SortOrder
+    nom?: SortOrder
+    ordre?: SortOrder
+    _count?: autres_tags_rolesCountOrderByAggregateInput
+    _avg?: autres_tags_rolesAvgOrderByAggregateInput
+    _max?: autres_tags_rolesMaxOrderByAggregateInput
+    _min?: autres_tags_rolesMinOrderByAggregateInput
+    _sum?: autres_tags_rolesSumOrderByAggregateInput
+  }
+
+  export type autres_tags_rolesScalarWhereWithAggregatesInput = {
+    AND?: autres_tags_rolesScalarWhereWithAggregatesInput | autres_tags_rolesScalarWhereWithAggregatesInput[]
+    OR?: autres_tags_rolesScalarWhereWithAggregatesInput[]
+    NOT?: autres_tags_rolesScalarWhereWithAggregatesInput | autres_tags_rolesScalarWhereWithAggregatesInput[]
+    id_tag_role?: IntWithAggregatesFilter<"autres_tags_roles"> | number
+    nom?: StringWithAggregatesFilter<"autres_tags_roles"> | string
+    ordre?: IntWithAggregatesFilter<"autres_tags_roles"> | number
+  }
+
   export type photosCreateInput = {
     lien_high: string
     lien_low: string
@@ -28319,6 +31514,151 @@ export namespace Prisma {
     afficher?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type autres_contactCreateInput = {
+    logo: string
+    nom: string
+    lien: string
+    nom_profil: string
+    ordre: number
+  }
+
+  export type autres_contactUncheckedCreateInput = {
+    id_contact?: number
+    logo: string
+    nom: string
+    lien: string
+    nom_profil: string
+    ordre: number
+  }
+
+  export type autres_contactUpdateInput = {
+    logo?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    lien?: StringFieldUpdateOperationsInput | string
+    nom_profil?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_contactUncheckedUpdateInput = {
+    id_contact?: IntFieldUpdateOperationsInput | number
+    logo?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    lien?: StringFieldUpdateOperationsInput | string
+    nom_profil?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_contactCreateManyInput = {
+    id_contact?: number
+    logo: string
+    nom: string
+    lien: string
+    nom_profil: string
+    ordre: number
+  }
+
+  export type autres_contactUpdateManyMutationInput = {
+    logo?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    lien?: StringFieldUpdateOperationsInput | string
+    nom_profil?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_contactUncheckedUpdateManyInput = {
+    id_contact?: IntFieldUpdateOperationsInput | number
+    logo?: StringFieldUpdateOperationsInput | string
+    nom?: StringFieldUpdateOperationsInput | string
+    lien?: StringFieldUpdateOperationsInput | string
+    nom_profil?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_generalCreateInput = {
+    logo: string
+    email: string
+    localisation: string
+  }
+
+  export type autres_generalUncheckedCreateInput = {
+    id_general?: number
+    logo: string
+    email: string
+    localisation: string
+  }
+
+  export type autres_generalUpdateInput = {
+    logo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type autres_generalUncheckedUpdateInput = {
+    id_general?: IntFieldUpdateOperationsInput | number
+    logo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type autres_generalCreateManyInput = {
+    id_general?: number
+    logo: string
+    email: string
+    localisation: string
+  }
+
+  export type autres_generalUpdateManyMutationInput = {
+    logo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type autres_generalUncheckedUpdateManyInput = {
+    id_general?: IntFieldUpdateOperationsInput | number
+    logo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    localisation?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type autres_tags_rolesCreateInput = {
+    nom: string
+    ordre: number
+  }
+
+  export type autres_tags_rolesUncheckedCreateInput = {
+    id_tag_role?: number
+    nom: string
+    ordre: number
+  }
+
+  export type autres_tags_rolesUpdateInput = {
+    nom?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_tags_rolesUncheckedUpdateInput = {
+    id_tag_role?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_tags_rolesCreateManyInput = {
+    id_tag_role?: number
+    nom: string
+    ordre: number
+  }
+
+  export type autres_tags_rolesUpdateManyMutationInput = {
+    nom?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type autres_tags_rolesUncheckedUpdateManyInput = {
+    id_tag_role?: IntFieldUpdateOperationsInput | number
+    nom?: StringFieldUpdateOperationsInput | string
+    ordre?: IntFieldUpdateOperationsInput | number
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -29511,6 +32851,118 @@ export namespace Prisma {
 
   export type accueil_faqSumOrderByAggregateInput = {
     id_faq?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_contactOrderByRelevanceInput = {
+    fields: autres_contactOrderByRelevanceFieldEnum | autres_contactOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type autres_contactCountOrderByAggregateInput = {
+    id_contact?: SortOrder
+    logo?: SortOrder
+    nom?: SortOrder
+    lien?: SortOrder
+    nom_profil?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_contactAvgOrderByAggregateInput = {
+    id_contact?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_contactMaxOrderByAggregateInput = {
+    id_contact?: SortOrder
+    logo?: SortOrder
+    nom?: SortOrder
+    lien?: SortOrder
+    nom_profil?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_contactMinOrderByAggregateInput = {
+    id_contact?: SortOrder
+    logo?: SortOrder
+    nom?: SortOrder
+    lien?: SortOrder
+    nom_profil?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_contactSumOrderByAggregateInput = {
+    id_contact?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_generalOrderByRelevanceInput = {
+    fields: autres_generalOrderByRelevanceFieldEnum | autres_generalOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type autres_generalCountOrderByAggregateInput = {
+    id_general?: SortOrder
+    logo?: SortOrder
+    email?: SortOrder
+    localisation?: SortOrder
+  }
+
+  export type autres_generalAvgOrderByAggregateInput = {
+    id_general?: SortOrder
+  }
+
+  export type autres_generalMaxOrderByAggregateInput = {
+    id_general?: SortOrder
+    logo?: SortOrder
+    email?: SortOrder
+    localisation?: SortOrder
+  }
+
+  export type autres_generalMinOrderByAggregateInput = {
+    id_general?: SortOrder
+    logo?: SortOrder
+    email?: SortOrder
+    localisation?: SortOrder
+  }
+
+  export type autres_generalSumOrderByAggregateInput = {
+    id_general?: SortOrder
+  }
+
+  export type autres_tags_rolesOrderByRelevanceInput = {
+    fields: autres_tags_rolesOrderByRelevanceFieldEnum | autres_tags_rolesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type autres_tags_rolesCountOrderByAggregateInput = {
+    id_tag_role?: SortOrder
+    nom?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_tags_rolesAvgOrderByAggregateInput = {
+    id_tag_role?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_tags_rolesMaxOrderByAggregateInput = {
+    id_tag_role?: SortOrder
+    nom?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_tags_rolesMinOrderByAggregateInput = {
+    id_tag_role?: SortOrder
+    nom?: SortOrder
+    ordre?: SortOrder
+  }
+
+  export type autres_tags_rolesSumOrderByAggregateInput = {
+    id_tag_role?: SortOrder
     ordre?: SortOrder
   }
 

@@ -258,3 +258,25 @@ model accueil_faq {
   ordre    Int
   afficher Boolean
 }
+
+model autres_contact {
+  id_contact Int    @id @default(autoincrement())
+  logo       String @db.VarChar(1024)
+  nom        String @db.VarChar(255)
+  lien       String @db.VarChar(1024)
+  nom_profil String @db.VarChar(255)
+  ordre      Int
+}
+
+model autres_general {
+  id_general   Int    @id @default(autoincrement())
+  logo         String @db.VarChar(1024)
+  email        String @db.VarChar(255)
+  localisation String @db.VarChar(255)
+}
+
+model autres_tags_roles {
+  id_tag_role Int    @id @default(autoincrement())
+  nom         String @db.VarChar(255)
+  ordre       Int
+}

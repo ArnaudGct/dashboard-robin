@@ -326,6 +326,28 @@ exports.Prisma.Accueil_faqScalarFieldEnum = {
   afficher: 'afficher'
 };
 
+exports.Prisma.Autres_contactScalarFieldEnum = {
+  id_contact: 'id_contact',
+  logo: 'logo',
+  nom: 'nom',
+  lien: 'lien',
+  nom_profil: 'nom_profil',
+  ordre: 'ordre'
+};
+
+exports.Prisma.Autres_generalScalarFieldEnum = {
+  id_general: 'id_general',
+  logo: 'logo',
+  email: 'email',
+  localisation: 'localisation'
+};
+
+exports.Prisma.Autres_tags_rolesScalarFieldEnum = {
+  id_tag_role: 'id_tag_role',
+  nom: 'nom',
+  ordre: 'ordre'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -457,6 +479,23 @@ exports.Prisma.accueil_faqOrderByRelevanceFieldEnum = {
   contenu: 'contenu'
 };
 
+exports.Prisma.autres_contactOrderByRelevanceFieldEnum = {
+  logo: 'logo',
+  nom: 'nom',
+  lien: 'lien',
+  nom_profil: 'nom_profil'
+};
+
+exports.Prisma.autres_generalOrderByRelevanceFieldEnum = {
+  logo: 'logo',
+  email: 'email',
+  localisation: 'localisation'
+};
+
+exports.Prisma.autres_tags_rolesOrderByRelevanceFieldEnum = {
+  nom: 'nom'
+};
+
 
 exports.Prisma.ModelName = {
   photos: 'photos',
@@ -481,7 +520,10 @@ exports.Prisma.ModelName = {
   apropos_etudes: 'apropos_etudes',
   apropos_experiences: 'apropos_experiences',
   accueil_clients: 'accueil_clients',
-  accueil_faq: 'accueil_faq'
+  accueil_faq: 'accueil_faq',
+  autres_contact: 'autres_contact',
+  autres_general: 'autres_general',
+  autres_tags_roles: 'autres_tags_roles'
 };
 
 /**

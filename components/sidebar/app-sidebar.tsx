@@ -6,6 +6,7 @@ import {
   User as UserIcon,
   Newspaper,
   PenTool,
+  CircleEllipsis,
   LayoutDashboard,
   Video,
   Camera,
@@ -99,6 +100,12 @@ const data = {
       icon: Camera, // Icône pour cette page
       items: [], // Pas de sous-items, lien direct
     },
+    {
+      title: "Autres",
+      url: "/autres",
+      icon: CircleEllipsis, // Icône pour cette page
+      items: [], // Pas de sous-items, lien direct
+    },
   ],
 };
 
@@ -180,7 +187,7 @@ export function AppSidebar({
                 </a>
               </SidebarGroupLabel>
             </SidebarGroup>
-          )
+          ),
         )}
       </SidebarContent>
       <SidebarFooter>
