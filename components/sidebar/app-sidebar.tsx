@@ -120,7 +120,7 @@ export function AppSidebar({
       <SidebarHeader>
         <div className="flex items-center justify-start px-4 py-2 gap-4">
           <Image
-            src="/photo_robin_main.webp"
+            src="https://res.cloudinary.com/ddit7absq/image/upload/v1770302444/portfolio/header/apropos_1770302443471_z0e17vsy4.png"
             alt="Logo"
             width={32}
             height={32}

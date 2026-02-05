@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -53,6 +54,8 @@ export function AutresForm({
   reseauxSociaux,
   tagsRoles,
 }: AutresFormProps) {
+  const router = useRouter();
+
   // États pour le général
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const [isUpdatingGeneral, setIsUpdatingGeneral] = useState(false);
@@ -214,12 +217,15 @@ export function AutresForm({
 
       const result = await createReseauSocial(formData);
 
-      if (result.success) {
+      if (result.success && result.data) {
         toast.success(result.message);
+        // Ajouter le nouveau réseau à l'état local
+        setReseaux([...reseaux, result.data]);
         setShowAddReseauForm(false);
         setReseauLogoPreview(null);
         setSelectedReseauLogoFile(null);
         (e.target as HTMLFormElement).reset();
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -237,11 +243,18 @@ export function AutresForm({
 
       const result = await updateReseauSocial(formData);
 
-      if (result.success) {
+      if (result.success && result.data) {
         toast.success(result.message);
+        // Mettre à jour le réseau dans l'état local
+        setReseaux(
+          reseaux.map((r) =>
+            r.id_contact === result.data.id_contact ? result.data : r,
+          ),
+        );
         setEditingReseau(null);
         setReseauLogoPreview(null);
         setSelectedReseauLogoFile(null);
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -261,6 +274,9 @@ export function AutresForm({
 
       if (result.success) {
         toast.success(result.message);
+        // Supprimer le réseau de l'état local
+        setReseaux(reseaux.filter((r) => r.id_contact !== id));
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -331,10 +347,13 @@ export function AutresForm({
 
       const result = await createTagRole(formData);
 
-      if (result.success) {
+      if (result.success && result.data) {
         toast.success(result.message);
+        // Ajouter le nouveau tag à l'état local
+        setTags([...tags, result.data]);
         setShowAddTagForm(false);
         (e.target as HTMLFormElement).reset();
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -352,9 +371,16 @@ export function AutresForm({
 
       const result = await updateTagRole(formData);
 
-      if (result.success) {
+      if (result.success && result.data) {
         toast.success(result.message);
+        // Mettre à jour le tag dans l'état local
+        setTags(
+          tags.map((t) =>
+            t.id_tag_role === result.data.id_tag_role ? result.data : t,
+          ),
+        );
         setEditingTag(null);
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -374,6 +400,9 @@ export function AutresForm({
 
       if (result.success) {
         toast.success(result.message);
+        // Supprimer le tag de l'état local
+        setTags(tags.filter((t) => t.id_tag_role !== id));
+        router.refresh();
       } else {
         toast.error(result.message);
       }
@@ -503,7 +532,7 @@ export function AutresForm({
               </Button>
             </div>
             <form onSubmit={handleAddReseauSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="new_reseau_logo">Logo *</Label>
                   <Input
@@ -616,7 +645,7 @@ export function AutresForm({
                         value={reseau.id_contact}
                       />
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div className="space-y-2">
                           <Label>Logo</Label>
                           <Input
@@ -852,7 +881,7 @@ export function AutresForm({
                     <form onSubmit={handleEditTagSubmit} className="space-y-4">
                       <input type="hidden" name="id" value={tag.id_tag_role} />
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4">
                         <div className="space-y-2">
                           <Label>Nom du rôle</Label>
                           <Input

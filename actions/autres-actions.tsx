@@ -139,7 +139,7 @@ export async function createReseauSocial(formData: FormData) {
     const nextOrdre = (maxOrdreReseau?.ordre ?? -1) + 1;
 
     // Créer le réseau social
-    await prisma.autres_contact.create({
+    const newReseau = await prisma.autres_contact.create({
       data: {
         logo: result.url,
         nom,
@@ -155,6 +155,7 @@ export async function createReseauSocial(formData: FormData) {
     return {
       success: true,
       message: "Réseau social créé avec succès",
+      data: newReseau,
     };
   } catch (error) {
     console.error("Erreur lors de la création du réseau social:", error);
@@ -230,7 +231,7 @@ export async function updateReseauSocial(formData: FormData) {
     }
 
     // Mettre à jour le réseau social (garde l'ordre existant)
-    await prisma.autres_contact.update({
+    const updatedReseau = await prisma.autres_contact.update({
       where: { id_contact: parseInt(id, 10) },
       data: {
         logo: logoUrl,
@@ -246,6 +247,7 @@ export async function updateReseauSocial(formData: FormData) {
     return {
       success: true,
       message: "Réseau social mis à jour avec succès",
+      data: updatedReseau,
     };
   } catch (error) {
     console.error("Erreur lors de la mise à jour du réseau social:", error);
@@ -318,15 +320,21 @@ export async function deleteReseauSocial(id: number) {
 // Action pour créer un tag de rôle
 export async function createTagRole(formData: FormData) {
   const nom = formData.get("nom") as string;
-  const ordre = formData.get("ordre") as string;
 
   try {
     console.log("=== DÉBUT CRÉATION TAG RÔLE ===");
 
-    await prisma.autres_tags_roles.create({
+    // Trouver le prochain ordre disponible
+    const maxOrdreTag = await prisma.autres_tags_roles.findFirst({
+      orderBy: { ordre: "desc" },
+      select: { ordre: true },
+    });
+    const nextOrdre = (maxOrdreTag?.ordre ?? -1) + 1;
+
+    const newTag = await prisma.autres_tags_roles.create({
       data: {
         nom,
-        ordre: parseInt(ordre, 10),
+        ordre: nextOrdre,
       },
     });
 
@@ -336,6 +344,7 @@ export async function createTagRole(formData: FormData) {
     return {
       success: true,
       message: "Tag de rôle créé avec succès",
+      data: newTag,
     };
   } catch (error) {
     console.error("Erreur lors de la création du tag de rôle:", error);
@@ -353,7 +362,6 @@ export async function createTagRole(formData: FormData) {
 export async function updateTagRole(formData: FormData) {
   const id = formData.get("id") as string;
   const nom = formData.get("nom") as string;
-  const ordre = formData.get("ordre") as string;
 
   try {
     console.log("=== DÉBUT MISE À JOUR TAG RÔLE ===");
@@ -369,11 +377,11 @@ export async function updateTagRole(formData: FormData) {
       };
     }
 
-    await prisma.autres_tags_roles.update({
+    // Mettre à jour le tag de rôle (garde l'ordre existant)
+    const updatedTag = await prisma.autres_tags_roles.update({
       where: { id_tag_role: parseInt(id, 10) },
       data: {
         nom,
-        ordre: parseInt(ordre, 10),
       },
     });
 
@@ -383,6 +391,7 @@ export async function updateTagRole(formData: FormData) {
     return {
       success: true,
       message: "Tag de rôle mis à jour avec succès",
+      data: updatedTag,
     };
   } catch (error) {
     console.error("Erreur lors de la mise à jour du tag de rôle:", error);
