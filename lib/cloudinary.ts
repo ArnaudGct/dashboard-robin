@@ -19,7 +19,7 @@ async function compressImageIfNeeded(file: File): Promise<Buffer> {
   }
 
   console.log(
-    `Fichier trop volumineux (${(file.size / (1024 * 1024)).toFixed(2)}MB), compression légère nécessaire...`
+    `Fichier trop volumineux (${(file.size / (1024 * 1024)).toFixed(2)}MB), compression légère nécessaire...`,
   );
 
   try {
@@ -92,7 +92,7 @@ async function compressImageIfNeeded(file: File): Promise<Buffer> {
     }
 
     console.log(
-      `Image compressée: ${(compressedBuffer.length / (1024 * 1024)).toFixed(2)}MB (format: ${originalFormat})`
+      `Image compressée: ${(compressedBuffer.length / (1024 * 1024)).toFixed(2)}MB (format: ${originalFormat})`,
     );
 
     return compressedBuffer;
@@ -108,7 +108,7 @@ export async function uploadToCloudinary(
   file: File,
   type?: "low" | "high",
   folder: string = "portfolio/photos",
-  originalPublicId?: string
+  originalPublicId?: string,
 ): Promise<{ url: string; publicId: string }> {
   try {
     // Compresser l'image si nécessaire (sauf si type n'est pas défini)
@@ -186,7 +186,61 @@ export async function uploadToCloudinary(
   } catch (error) {
     console.error("Erreur lors de l'upload vers Cloudinary:", error);
     throw new Error(
-      `Erreur d'upload Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+}
+
+// Helper pour uploader un buffer image (utile côté serveur sans objet File)
+export async function uploadBufferToCloudinary(
+  buffer: Buffer,
+  options?: {
+    folder?: string;
+    publicId?: string;
+    format?: string;
+    transformation?: UploadApiOptions["transformation"];
+  },
+): Promise<{ url: string; publicId: string }> {
+  try {
+    const folder = options?.folder || "portfolio/albums";
+    const timestamp = Date.now();
+    const randomId = Math.random().toString(36).substr(2, 9);
+    const publicId = options?.publicId || `cover_${timestamp}_${randomId}`;
+
+    const uploadOptions: UploadApiOptions = {
+      folder,
+      resource_type: "image",
+      public_id: publicId,
+      use_filename: false,
+      unique_filename: false,
+      ...(options?.format ? { format: options.format } : {}),
+      ...(options?.transformation
+        ? { transformation: options.transformation }
+        : {}),
+    };
+
+    const result = await new Promise<any>((resolve, reject) => {
+      cloudinary.uploader
+        .upload_stream(uploadOptions, (error, result) => {
+          if (error) {
+            console.error("Erreur Cloudinary (buffer):", error);
+            reject(error);
+          } else {
+            console.log("Upload buffer réussi:", result?.secure_url);
+            resolve(result);
+          }
+        })
+        .end(buffer);
+    });
+
+    return {
+      url: result.secure_url,
+      publicId: result.public_id,
+    };
+  } catch (error) {
+    console.error("Erreur lors de l'upload buffer vers Cloudinary:", error);
+    throw new Error(
+      `Erreur d'upload buffer Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
@@ -194,7 +248,7 @@ export async function uploadToCloudinary(
 // Helper pour uploader une image de journal vers Cloudinary
 export async function uploadJournalImageToCloudinary(
   file: File,
-  folder: string = "portfolio/journal"
+  folder: string = "portfolio/journal",
 ): Promise<{ url: string; publicId: string }> {
   try {
     console.log(`Upload journal vers Cloudinary - Taille: ${file.size} bytes`);
@@ -243,7 +297,7 @@ export async function uploadJournalImageToCloudinary(
   } catch (error) {
     console.error("Erreur lors de l'upload journal vers Cloudinary:", error);
     throw new Error(
-      `Erreur d'upload journal Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload journal Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
@@ -251,11 +305,11 @@ export async function uploadJournalImageToCloudinary(
 // Helper pour uploader une image d'autre projet vers Cloudinary
 export async function uploadAutreImageToCloudinary(
   file: File,
-  folder: string = "portfolio/autres"
+  folder: string = "portfolio/autres",
 ): Promise<{ url: string; publicId: string }> {
   try {
     console.log(
-      `Upload autre projet vers Cloudinary - Taille: ${file.size} bytes`
+      `Upload autre projet vers Cloudinary - Taille: ${file.size} bytes`,
     );
 
     // Compresser l'image si nécessaire
@@ -302,10 +356,10 @@ export async function uploadAutreImageToCloudinary(
   } catch (error) {
     console.error(
       "Erreur lors de l'upload autre projet vers Cloudinary:",
-      error
+      error,
     );
     throw new Error(
-      `Erreur d'upload autre projet Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload autre projet Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
@@ -313,7 +367,7 @@ export async function uploadAutreImageToCloudinary(
 // Nouvelle fonction pour sauvegarder l'image originale sans retouche
 export async function uploadOriginalToCloudinary(
   file: File,
-  folder: string = "portfolio/photos/originals"
+  folder: string = "portfolio/photos/originals",
 ): Promise<{ url: string; publicId: string }> {
   try {
     // Compresser l'image si nécessaire
@@ -352,10 +406,10 @@ export async function uploadOriginalToCloudinary(
   } catch (error) {
     console.error(
       "Erreur lors de l'upload de l'original vers Cloudinary:",
-      error
+      error,
     );
     throw new Error(
-      `Erreur d'upload original Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload original Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
@@ -364,7 +418,7 @@ export async function uploadOriginalToCloudinary(
 export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
   try {
     console.log(
-      `Tentative de suppression Cloudinary pour publicId: ${publicId}`
+      `Tentative de suppression Cloudinary pour publicId: ${publicId}`,
     );
 
     // Tenter de supprimer comme vidéo d'abord
@@ -403,7 +457,7 @@ export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
 
 // Helper spécifique pour supprimer une vidéo
 export async function deleteVideoFromCloudinary(
-  publicId: string
+  publicId: string,
 ): Promise<boolean> {
   try {
     console.log(`Suppression vidéo Cloudinary pour publicId: ${publicId}`);
@@ -424,7 +478,7 @@ export async function deleteVideoFromCloudinary(
   } catch (error) {
     console.error(
       "Erreur lors de la suppression vidéo depuis Cloudinary:",
-      error
+      error,
     );
     return false;
   }
@@ -443,7 +497,7 @@ export function extractPublicIdFromUrl(url: string): string | null {
 
     if (!uploadMatch || !uploadMatch[1]) {
       console.warn(
-        `Impossible de trouver la partie upload dans l'URL: ${cleanUrl}`
+        `Impossible de trouver la partie upload dans l'URL: ${cleanUrl}`,
       );
       return null;
     }
@@ -486,7 +540,7 @@ export async function uploadAProposImageToCloudinary(
     crop?: string;
     quality?: string;
     format?: string;
-  }
+  },
 ): Promise<{ url: string; publicId: string }> {
   try {
     console.log(`Upload à propos vers Cloudinary - Taille: ${file.size} bytes`);
@@ -549,7 +603,7 @@ export async function uploadAProposImageToCloudinary(
   } catch (error) {
     console.error("Erreur lors de l'upload à propos vers Cloudinary:", error);
     throw new Error(
-      `Erreur d'upload à propos Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload à propos Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
@@ -563,7 +617,7 @@ export async function uploadVideoToCloudinary(
     format?: string;
     width?: number;
     height?: number;
-  }
+  },
 ): Promise<{ url: string; publicId: string }> {
   try {
     console.log(`Upload vidéo vers Cloudinary - Taille: ${file.size} bytes`);
@@ -625,7 +679,7 @@ export async function uploadVideoToCloudinary(
   } catch (error) {
     console.error("Erreur lors de l'upload vidéo vers Cloudinary:", error);
     throw new Error(
-      `Erreur d'upload vidéo Cloudinary: ${error instanceof Error ? error.message : String(error)}`
+      `Erreur d'upload vidéo Cloudinary: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
 }
