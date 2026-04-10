@@ -78,7 +78,11 @@ async function generateAlbumCover(albumId: number): Promise<string> {
       height: number,
     ) {
       try {
-        const response = await fetch(url);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const response = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+
         if (!response.ok) {
           throw new Error(`Erreur HTTP: ${response.status}`);
         }

@@ -53,6 +53,26 @@ export function AddPhotoItemMultiple({
   availableAlbums,
   carouselCounts,
 }: AddPhotoItemMultipleProps) {
+  const UPLOAD_TIMEOUT_MS = 180000;
+
+  function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      const timeoutId = setTimeout(() => {
+        reject(new Error("Timeout upload"));
+      }, ms);
+
+      promise
+        .then((result) => {
+          clearTimeout(timeoutId);
+          resolve(result);
+        })
+        .catch((error) => {
+          clearTimeout(timeoutId);
+          reject(error);
+        });
+    });
+  }
+
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [images, setImages] = useState<PreviewImage[]>([]);
@@ -234,11 +254,14 @@ export function AddPhotoItemMultiple({
         });
 
         try {
-          await addPhotoAction(formData);
+          await withTimeout(addPhotoAction(formData), UPLOAD_TIMEOUT_MS);
           successCount++;
         } catch (error) {
           console.error(`Erreur sur l'image ${img.file.name}:`, error);
           failedImages.push(img.file.name);
+          toast.error(
+            `Echec sur "${img.file.name}". Passage à l'image suivante.`,
+          );
         }
 
         setProgress(Math.round(((index + 1) / images.length) * 100));
