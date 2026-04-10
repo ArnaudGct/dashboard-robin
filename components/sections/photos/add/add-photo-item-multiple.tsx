@@ -3,10 +3,7 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { TagSheet } from "@/components/sections/photos/tag-sheet";
-import {
-  batchUploadPhotosWithMetadataAction,
-  createAlbumAction,
-} from "@/actions/photos-actions";
+import { addPhotoAction, createAlbumAction } from "@/actions/photos-actions";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -62,7 +59,7 @@ export function AddPhotoItemMultiple({
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [analyzingImages, setAnalyzingImages] = useState<Set<number>>(
-    new Set()
+    new Set(),
   );
 
   // Album sélectionné
@@ -79,12 +76,12 @@ export function AddPhotoItemMultiple({
 
       // Filtrer les fichiers qui ne sont pas des images
       const imageFiles = newFiles.filter((file) =>
-        file.type.startsWith("image/")
+        file.type.startsWith("image/"),
       );
 
       if (imageFiles.length !== newFiles.length) {
         toast.warning(
-          `${newFiles.length - imageFiles.length} fichiers ont été ignorés car ils ne sont pas des images.`
+          `${newFiles.length - imageFiles.length} fichiers ont été ignorés car ils ne sont pas des images.`,
         );
       }
 
@@ -93,7 +90,7 @@ export function AddPhotoItemMultiple({
         if (file.size > 50 * 1024 * 1024) {
           // 20MB
           toast.warning(
-            `L'image "${file.name}" est trop volumineuse (max 50MB).`
+            `L'image "${file.name}" est trop volumineuse (max 50MB).`,
           );
           return false;
         }
@@ -112,7 +109,7 @@ export function AddPhotoItemMultiple({
           // Générer le texte alternatif à partir du nom de fichier
           const fileName = file.name.split(".")[0].replace(/[-_]/g, " ");
           const formattedName = fileName.replace(/\b\w/g, (char) =>
-            char.toUpperCase()
+            char.toUpperCase(),
           );
 
           newImages.push({
@@ -208,72 +205,89 @@ export function AddPhotoItemMultiple({
     }
 
     setIsUploading(true);
+    setProgress(0);
 
     try {
-      const formData = new FormData();
+      let successCount = 0;
+      const failedImages: string[] = [];
 
-      // Ajouter uniquement les albums sélectionnés
-      selectedAlbums.forEach((album) => {
-        formData.append("albums", album);
-      });
+      // Envoyer les images une par une pour éviter une requête multipart trop volumineuse
+      // et limiter les erreurs 413 (Payload Too Large).
+      for (let index = 0; index < images.length; index++) {
+        const img = images[index];
+        const formData = new FormData();
 
-      // État de publication
-      formData.append("isPublished", isPublished ? "on" : "off");
+        formData.append("imageHigh", img.file);
+        formData.append("imageLow", img.file);
+        formData.append("alt", img.alt);
+        formData.append("isPublished", isPublished ? "on" : "off");
 
-      // Ajouter chaque image et ses métadonnées
-      images.forEach((img, index) => {
-        formData.append(`photo_${index}`, img.file);
-        formData.append(`alt_${index}`, img.alt);
-        // Toujours générer la version basse résolution
-        formData.append(`generateLowRes_${index}`, "true");
-        // Ajouter les états carrousel pour chaque image
         if (img.afficherCarrouselMain) {
-          formData.append(`afficherCarrouselMain_${index}`, "on");
+          formData.append("afficherCarrouselMain", "on");
         }
         if (img.afficherCarrouselPhotos) {
-          formData.append(`afficherCarrouselPhotos_${index}`, "on");
+          formData.append("afficherCarrouselPhotos", "on");
         }
-      });
 
-      // Ajouter le nombre total d'images
-      formData.append("imageCount", images.length.toString());
-
-      // Simuler la progression localement (car on ne peut pas la recevoir du serveur)
-      const progressInterval = setInterval(() => {
-        setProgress((prev) => {
-          if (prev >= 95) {
-            clearInterval(progressInterval);
-            return prev;
-          }
-          return prev + 5;
+        selectedAlbums.forEach((album) => {
+          formData.append("albums", album);
         });
-      }, 1000);
 
-      // Upload des images sans callback de progression
-      const result = await batchUploadPhotosWithMetadataAction(formData);
+        try {
+          await addPhotoAction(formData);
+          successCount++;
+        } catch (error) {
+          console.error(`Erreur sur l'image ${img.file.name}:`, error);
+          failedImages.push(img.file.name);
+        }
 
-      // Arrêter l'intervalle de simulation et mettre la progression à 100%
-      clearInterval(progressInterval);
-      setProgress(100);
+        setProgress(Math.round(((index + 1) / images.length) * 100));
+      }
+
+      if (failedImages.length > 0) {
+        const possible413 = failedImages.length > 0;
+        toast.error(
+          possible413
+            ? `${successCount}/${images.length} image(s) envoyée(s). Certaines ont échoué (possiblement limite de taille requête/proxy - erreur 413).`
+            : `${successCount}/${images.length} image(s) envoyée(s).`,
+        );
+      }
 
       const albumNames = selectedAlbums.map(
         (albumId) =>
-          availableAlbums.find((a) => a.id === albumId)?.label || albumId
+          availableAlbums.find((a) => a.id === albumId)?.label || albumId,
       );
 
-      toast.success(
-        `${result} photos ajoutées avec succès dans ${
-          albumNames.length > 1
-            ? `les albums ${albumNames.slice(0, -1).join(", ")} et ${albumNames.slice(-1)}`
-            : `l'album ${albumNames[0]}`
-        }!`
-      );
+      if (successCount > 0) {
+        toast.success(
+          `${successCount} photo(s) ajoutée(s) dans ${
+            albumNames.length > 1
+              ? `les albums ${albumNames.slice(0, -1).join(", ")} et ${albumNames.slice(-1)}`
+              : `l'album ${albumNames[0]}`
+          }!`,
+        );
+      }
+
+      if (successCount === 0) {
+        throw new Error("Aucune image n'a pu être importée");
+      }
 
       router.push("/photos");
       router.refresh();
     } catch (error) {
       console.error("Erreur lors de l'upload des images:", error);
-      toast.error("Une erreur est survenue lors de l'upload des images.");
+      const message = String(error);
+      if (
+        message.includes("413") ||
+        message.toLowerCase().includes("payload") ||
+        message.toLowerCase().includes("unexpected response")
+      ) {
+        toast.error(
+          "Upload refusé (413). La limite de taille vient probablement du proxy/serveur web.",
+        );
+      } else {
+        toast.error("Une erreur est survenue lors de l'upload des images.");
+      }
     } finally {
       setIsUploading(false);
     }
@@ -281,7 +295,7 @@ export function AddPhotoItemMultiple({
 
   const handleAddAlbum = async (
     tagName: string,
-    important: boolean = false
+    important: boolean = false,
   ): Promise<TagOption | null> => {
     try {
       const formData = new FormData();
@@ -380,7 +394,7 @@ export function AddPhotoItemMultiple({
                   variant="secondary"
                   onClick={() => {
                     setSelectedAlbums(
-                      selectedAlbums.filter((id) => id !== albumId)
+                      selectedAlbums.filter((id) => id !== albumId),
                     );
                     toast.success(`Album "${album?.label || albumId}" retiré`);
                   }}
@@ -464,7 +478,7 @@ export function AddPhotoItemMultiple({
                           onCheckedChange={(checked) => {
                             const currentMainCount = images.filter(
                               (i, idx) =>
-                                idx !== index && i.afficherCarrouselMain
+                                idx !== index && i.afficherCarrouselMain,
                             ).length;
                             if (
                               checked &&
@@ -472,7 +486,7 @@ export function AddPhotoItemMultiple({
                                 carouselCounts.mainLimit
                             ) {
                               toast.error(
-                                `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`
+                                `Limite atteinte pour le carrousel principal (${carouselCounts.mainLimit} photos max)`,
                               );
                               return;
                             }
@@ -495,7 +509,7 @@ export function AddPhotoItemMultiple({
                           onCheckedChange={(checked) => {
                             const currentPhotosCount = images.filter(
                               (i, idx) =>
-                                idx !== index && i.afficherCarrouselPhotos
+                                idx !== index && i.afficherCarrouselPhotos,
                             ).length;
                             if (
                               checked &&
@@ -503,7 +517,7 @@ export function AddPhotoItemMultiple({
                                 carouselCounts.photosLimit
                             ) {
                               toast.error(
-                                `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`
+                                `Limite atteinte pour le carrousel photos (${carouselCounts.photosLimit} photos max)`,
                               );
                               return;
                             }
