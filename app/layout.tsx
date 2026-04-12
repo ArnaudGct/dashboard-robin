@@ -44,7 +44,7 @@ export default async function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-mono text-sm antialiased`}
       >
         <Toaster />
         <RouteDetector user={sanitizedUser}>{children}</RouteDetector>
