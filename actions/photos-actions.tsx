@@ -501,7 +501,9 @@ export async function addPhotoAction(formData: FormData) {
       }
     }
 
-    revalidatePath("/photos");
+    if (formData.get("skipRevalidate") !== "true") {
+      revalidatePath("/photos");
+    }
     return { success: true, photoId: photo.id_pho };
   } catch (error) {
     console.error("Erreur lors de l'ajout de la photo:", error);
@@ -1473,8 +1475,10 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
       }
 
       // Revalider les chemins
-      revalidatePath("/photos");
-      revalidatePath(`/photos/${photoId}/edit`);
+      if (formData.get("skipRevalidate") !== "true") {
+        revalidatePath("/photos");
+        revalidatePath(`/photos/${photoId}/edit`);
+      }
 
       return { success: true, mode: "update-metadata" };
     }
@@ -1632,8 +1636,10 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
           }
 
           // Revalider les chemins
-          revalidatePath("/photos");
-          revalidatePath(`/photos/${photoId}/edit`);
+          if (formData.get("skipRevalidate") !== "true") {
+            revalidatePath("/photos");
+            revalidatePath(`/photos/${photoId}/edit`);
+          }
 
           return { success: true, mode: "update" };
         }
@@ -1714,7 +1720,9 @@ export async function batchUploadPhotosWithMetadataAction(formData: FormData) {
       );
     }
 
-    revalidatePath("/photos");
+    if (formData.get("skipRevalidate") !== "true") {
+      revalidatePath("/photos");
+    }
     return { success: true };
   } catch (error) {
     console.error("Erreur lors de l'upload par lot des photos:", error);

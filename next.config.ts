@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: "500mb",
+      allowedOrigins: ["dashboard.cosmoseprod.com", "localhost:3000"],
     },
     // Configuration pour autoriser les gros uploads via middleware
     middlewareClientMaxBodySize: "500mb",

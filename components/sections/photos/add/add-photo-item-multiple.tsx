@@ -253,8 +253,24 @@ export function AddPhotoItemMultiple({
           formData.append("albums", album);
         });
 
+        // Optimisation : On empêche Next.js de recompiler le layout sur chaque photo sauf à la toute fin
+        if (index < images.length - 1) {
+          formData.append("skipRevalidate", "true");
+        }
+
         try {
-          await withTimeout(addPhotoAction(formData), UPLOAD_TIMEOUT_MS);
+          const apiCall = fetch("/api/photos/upload", {
+            method: "POST",
+            body: formData,
+          }).then(async (res) => {
+            if (!res.ok) {
+              const data = await res.json();
+              throw new Error(data.error || `HTTP ${res.status}`);
+            }
+            return res.json();
+          });
+
+          await withTimeout(apiCall, UPLOAD_TIMEOUT_MS);
           successCount++;
         } catch (error) {
           console.error(`Erreur sur l'image ${img.file.name}:`, error);
