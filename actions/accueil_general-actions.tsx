@@ -29,7 +29,7 @@ export async function updateAccueilGeneral(formData: FormData) {
 
     // Validation du texte alternatif si une photo est présente ou uploadée
     if (
-      (photoFile instanceof File && photoFile.size > 0) ||
+      (photoFile && typeof photoFile === "object" && "size" in photoFile && photoFile.size > 0) ||
       existingRecord?.photo
     ) {
       if (!photoAlt || !photoAlt.trim()) {
@@ -50,7 +50,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     let oldVideoCoverPublicId: string | null = null;
 
     // Si une nouvelle photo est uploadée
-    if (photoFile instanceof File && photoFile.size > 0) {
+    if (photoFile && typeof photoFile === "object" && "size" in photoFile && photoFile.size > 0) {
       console.log("Upload nouvelle photo accueil...");
       console.log(`Taille du fichier photo: ${photoFile.size} bytes`);
 
@@ -94,7 +94,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     }
 
     // Si une nouvelle vidéo desktop est uploadée
-    if (videoDesktopFile instanceof File && videoDesktopFile.size > 0) {
+    if (videoDesktopFile && typeof videoDesktopFile === "object" && "size" in videoDesktopFile && videoDesktopFile.size > 0) {
       console.log("Upload nouvelle vidéo desktop...");
       console.log(
         `Taille du fichier vidéo desktop: ${videoDesktopFile.size} bytes`
@@ -268,7 +268,7 @@ export async function updateAccueilGeneral(formData: FormData) {
     }
 
     // Si une nouvelle vidéo mobile est uploadée
-    if (videoMobileFile instanceof File && videoMobileFile.size > 0) {
+    if (videoMobileFile && typeof videoMobileFile === "object" && "size" in videoMobileFile && videoMobileFile.size > 0) {
       console.log("Upload nouvelle vidéo mobile...");
       console.log(
         `Taille du fichier vidéo mobile: ${videoMobileFile.size} bytes`

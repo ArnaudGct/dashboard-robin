@@ -23,7 +23,7 @@ export async function updateGeneral(formData: FormData) {
     let oldLogoPublicId: string | null = null;
 
     // Si un nouveau logo est uploadé
-    if (logoFile instanceof File && logoFile.size > 0) {
+    if (logoFile && typeof logoFile === "object" && "size" in logoFile && logoFile.size > 0) {
       console.log("Upload nouveau logo...");
 
       if (existingGeneral?.logo) {
@@ -199,7 +199,7 @@ export async function updateReseauSocial(formData: FormData) {
     let oldLogoPublicId: string | null = null;
 
     // Si un nouveau logo est uploadé
-    if (logoFile instanceof File && logoFile.size > 0) {
+    if (logoFile && typeof logoFile === "object" && "size" in logoFile && logoFile.size > 0) {
       console.log("Upload nouveau logo du réseau social...");
 
       if (existingReseau.logo) {
