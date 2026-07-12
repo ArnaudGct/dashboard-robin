@@ -30,6 +30,8 @@ export async function updateGeneral(formData: FormData) {
         oldLogoPublicId = extractPublicIdFromUrl(existingGeneral.logo);
       }
 
+      const isSvg = logoFile.type === "image/svg+xml" || logoFile.name.toLowerCase().endsWith(".svg");
+
       const result = await uploadAProposImageToCloudinary(
         logoFile,
         "portfolio/general",
@@ -38,7 +40,7 @@ export async function updateGeneral(formData: FormData) {
           height: 300,
           crop: "fit",
           quality: "auto:good",
-          format: "png",
+          format: isSvg ? "svg" : "png",
         },
       );
 
@@ -118,6 +120,8 @@ export async function createReseauSocial(formData: FormData) {
       };
     }
 
+    const isSvg = logoFile.type === "image/svg+xml" || logoFile.name.toLowerCase().endsWith(".svg");
+
     // Upload du logo
     const result = await uploadAProposImageToCloudinary(
       logoFile,
@@ -127,7 +131,7 @@ export async function createReseauSocial(formData: FormData) {
         height: 100,
         crop: "fit",
         quality: "auto:good",
-        format: "png",
+        format: isSvg ? "svg" : "png",
       },
     );
 
@@ -202,6 +206,8 @@ export async function updateReseauSocial(formData: FormData) {
         oldLogoPublicId = extractPublicIdFromUrl(existingReseau.logo);
       }
 
+      const isSvg = logoFile.type === "image/svg+xml" || logoFile.name.toLowerCase().endsWith(".svg");
+
       const result = await uploadAProposImageToCloudinary(
         logoFile,
         "portfolio/contact",
@@ -210,7 +216,7 @@ export async function updateReseauSocial(formData: FormData) {
           height: 100,
           crop: "fit",
           quality: "auto:good",
-          format: "png",
+          format: isSvg ? "svg" : "png",
         },
       );
 
